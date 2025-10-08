@@ -79,7 +79,6 @@ body {
     max-width: 900px;
     margin: 2rem auto;
     background: var(--parchment-light);
-    background-image: var(--paper-texture);
     box-shadow:
         0 0 20px rgba(0, 0, 0, 0.3),
         inset 0 0 0 5px var(--border-tan),
@@ -195,7 +194,6 @@ body {
     border: 6px solid var(--gold-ink);
     border-radius: 50%;
     background: var(--parchment);
-    background-image: var(--paper-texture);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -358,7 +356,6 @@ body {
 .sheet-tabs {
     display: flex;
     background: var(--parchment-light);
-    background-image: var(--paper-texture);
     border-bottom: 3px solid var(--border-dark);
     overflow-x: auto;
     position: relative;
@@ -454,7 +451,6 @@ body {
     position: relative;
     z-index: 2;
     background: var(--parchment-light);
-    background-image: var(--paper-texture);
 }
 
 .sheet-content::before {
@@ -1214,7 +1210,6 @@ body {
 .work-item,
 .project-card {
     background: var(--parchment-light);
-    background-image: var(--paper-texture);
     border: 3px solid var(--border-dark);
     border-radius: 10%;
     box-shadow:
@@ -1367,7 +1362,6 @@ body {
 
 .modal-content {
     background: var(--parchment-light);
-    background-image: var(--paper-texture);
     border: 5px solid var(--border-dark);
     border-radius: 10px;
     box-shadow:
@@ -1528,7 +1522,6 @@ body {
 
 .exp-card {
     background: var(--parchment-light);
-    background-image: var(--paper-texture);
     border: 3px solid var(--border-dark);
     border-radius: 15px;
     overflow: hidden;
@@ -1951,7 +1944,6 @@ body {
     padding: 2rem;
     margin-bottom: 2rem;
     background: var(--parchment-light);
-    background-image: var(--paper-texture);
     border: 4px solid var(--red-theme);
     border-radius: 20px;
     box-shadow:
@@ -2331,7 +2323,6 @@ body {
 
 .skill-group {
     background: var(--parchment-light);
-    background-image: var(--paper-texture);
     border: 3px solid var(--border-dark);
     border-radius: 15px;
     padding: 1.5rem;
@@ -2468,7 +2459,6 @@ body {
 
 .language-card {
     background: var(--parchment-light);
-    background-image: var(--paper-texture);
     border: 3px solid var(--border-dark);
     border-radius: 15px;
     padding: 1.5rem;
@@ -2619,7 +2609,6 @@ body {
 
 .stat-box {
     background: var(--parchment-light);
-    background-image: var(--paper-texture);
     border: 3px solid var(--border-dark);
     border-radius: 15px;
     padding: 1.25rem;
@@ -2685,7 +2674,6 @@ body {
 /* Mission Statement */
 .mission-statement {
     background: var(--parchment-light);
-    background-image: var(--paper-texture);
     border: 3px solid var(--border-dark);
     border-radius: 15px;
     padding: 2rem;
@@ -2751,7 +2739,6 @@ body {
 
 .expertise-card {
     background: var(--parchment-light);
-    background-image: var(--paper-texture);
     border: 3px solid var(--border-dark);
     border-radius: 15px;
     padding: 1.5rem;
@@ -2863,7 +2850,6 @@ body {
 /* Journey Section */
 .journey-section {
     background: var(--parchment-light);
-    background-image: var(--paper-texture);
     border: 3px solid var(--border-dark);
     border-radius: 15px;
     padding: 2rem;
@@ -2970,7 +2956,6 @@ body {
 /* Interests Section */
 .interests-section {
     background: var(--parchment-light);
-    background-image: var(--paper-texture);
     border: 3px solid var(--border-dark);
     border-radius: 15px;
     padding: 2rem;
