@@ -409,10 +409,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const modalBody = document.getElementById('modal-body');
 
         const videoSources = {
-            'voban': {
-                title: 'VOBAN - Serious Game Demo',
-                src: 'Portfolio/Game Development (Design, Worldbuilding, Graphic)/2) GameJams & Prototypes/2023 - VOBAN (serious game) demo.mp4'
-            },
             'clicker': {
                 title: 'Knowledge-based Incremental Clicker',
                 src: 'Portfolio/Game Development (Design, Worldbuilding, Graphic)/2) GameJams & Prototypes/2023 - WIP Knowledge-based Incremental Clicker project.mp4'
