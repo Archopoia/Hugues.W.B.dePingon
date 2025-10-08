@@ -80,7 +80,7 @@
             <section id="about" class="tab-content active">
                 <div class="content-header">
                     <h2><i class="fas fa-user-circle"></i> Character Profile</h2>
-                    <p class="header-subtitle">Game designer, philosopher, and multidisciplinary creator</p>
+                    <!-- <p class="header-subtitle">Game designer, philosopher, and multidisciplinary creator</p> -->
             </div>
 
                 <!-- Profile Mission Statement -->
@@ -245,73 +245,305 @@
             <!-- Education Tab -->
             <section id="education" class="tab-content">
                 <div class="content-header">
-                    <h2><i class="fas fa-graduation-cap"></i> Academic Achievements</h2>
+                    <h2><i class="fas fa-graduation-cap"></i> Academic Journey & Achievements</h2>
+                </div>
+
+                <!-- Academic Stats Overview -->
+                <div class="academic-stats-grid">
+                    <div class="stat-card academic-stat theme-red">
+                        <div class="stat-icon"><i class="fas fa-university"></i></div>
+                        <div class="stat-content">
+                            <div class="stat-number">6</div>
+                            <div class="stat-label">Institutions</div>
+                        </div>
                     </div>
-                    <div class="education-timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-marker"></div>
-                            <div class="timeline-content">
-                            <h3>Full Stack Software Development, AI Specialization</h3>
-                                <p class="institution">MTÜ Tuleviku Tehnoloogiaharidus, Kood/Jõhvi, Estonia</p>
-                                <p class="period">May 2024 — Present</p>
+                    <div class="stat-card academic-stat theme-yellow">
+                        <div class="stat-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="stat-content">
+                            <div class="stat-number">8+</div>
+                            <div class="stat-label">Degrees & Diplomas</div>
+                        </div>
+                    </div>
+                    <div class="stat-card academic-stat theme-green">
+                        <div class="stat-icon"><i class="fas fa-globe"></i></div>
+                        <div class="stat-content">
+                            <div class="stat-number">5</div>
+                            <div class="stat-label">Countries</div>
+                        </div>
+                    </div>
+                    <div class="stat-card academic-stat theme-teal">
+                        <div class="stat-icon"><i class="fas fa-award"></i></div>
+                        <div class="stat-content">
+                            <div class="stat-number">9.73</div>
+                            <div class="stat-label">GPA (Laude)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Academic Navigation -->
+                <div class="education-nav">
+                    <button class="edu-nav-btn active" data-section="current">Current Studies</button>
+                    <button class="edu-nav-btn" data-section="graduate">Graduate</button>
+                    <button class="edu-nav-btn" data-section="undergraduate">Undergraduate</button>
+                    <button class="edu-nav-btn" data-section="specialized">Specialized</button>
+                </div>
+
+                <!-- Current Studies Section -->
+                <div class="education-section active" id="current-studies">
+                    <div class="section-header">
+                        <h3><i class="fas fa-rocket"></i> Current Academic Pursuits</h3>
+                        <p class="section-subtitle">Active learning and continuous development</p>
+                    </div>
+
+                    <div class="education-card current-study">
+                        <div class="edu-card-header">
+                            <div class="degree-badge current">IN PROGRESS</div>
+                            <div class="institution-logo">
+                                <i class="fas fa-code"></i>
                             </div>
                         </div>
-                        <div class="timeline-item">
-                            <div class="timeline-marker"></div>
-                            <div class="timeline-content">
-                            <h3>MPhil – Applied Ethics</h3>
-                                <p class="institution">Linköping University, Linköping, Sweden</p>
-                                <p class="period">September 2023 — August 2025</p>
-                                <p class="thesis">Thesis: "Biocracy: From Artificial Intelligence to Accelerated Independence"</p>
+                        <div class="edu-card-content">
+                            <h4>Full Stack Software Development, AI Specialization</h4>
+                            <div class="institution-info">
+                                <span class="institution-name">MTÜ Tuleviku Tehnoloogiaharidus</span>
+                                <span class="location"><i class="fas fa-map-marker-alt"></i> Kood/Jõhvi, Estonia</span>
+                            </div>
+                            <div class="study-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 65%"></div>
+                                </div>
+                                <span class="progress-text">65% Complete</span>
+                            </div>
+                            <div class="study-details">
+                                <div class="study-focus">
+                                    <h5>Focus Areas:</h5>
+                                    <div class="focus-tags">
+                                        <span class="focus-tag">Machine Learning</span>
+                                        <span class="focus-tag">Web Development</span>
+                                        <span class="focus-tag">AI Integration</span>
+                                    </div>
+                                </div>
+                                <div class="study-period">
+                                    <i class="fas fa-calendar"></i> May 2024 — Present
+                                </div>
                             </div>
                         </div>
-                        <div class="timeline-item">
-                            <div class="timeline-marker"></div>
-                            <div class="timeline-content">
-                                <h3>MBA - Foresight and Strategic Governance</h3>
-                                <p class="institution">Kazimiero Simonaviciaus Universitetas, Vilnius, Lithuania</p>
-                                <p class="period">September 2019 — January 2021</p>
-                                <p class="achievement">Laude, 9.73/10. Master's Thesis 10/10: Evaluation of morality as a factor of creativity in foresight</p>
+                    </div>
+                </div>
+
+                <!-- Graduate Studies Section -->
+                <div class="education-section" id="graduate-studies">
+                    <div class="section-header">
+                        <h3><i class="fas fa-user-graduate"></i> Graduate Education</h3>
+                        <p class="section-subtitle">Advanced research and specialized expertise</p>
+                    </div>
+
+                    <div class="education-card graduate-degree">
+                        <div class="edu-card-header">
+                            <div class="degree-badge completed">COMPLETED</div>
+                            <div class="institution-logo">
+                                <i class="fas fa-balance-scale"></i>
                             </div>
                         </div>
-                        <div class="timeline-item">
-                            <div class="timeline-marker"></div>
-                            <div class="timeline-content">
-                                <h3>Diploma in Alpine Grazing</h3>
-                                <p class="institution">Agrilogy Granges-Verney, Moudon</p>
-                                <p class="period">May 2020 — August 2020</p>
+                        <div class="edu-card-content">
+                            <h4>MPhil – Applied Ethics</h4>
+                            <div class="institution-info">
+                                <span class="institution-name">Linköping University</span>
+                                <span class="location"><i class="fas fa-map-marker-alt"></i> Linköping, Sweden</span>
+                            </div>
+                            <div class="thesis-info">
+                                <h5><i class="fas fa-scroll"></i> Master's Thesis:</h5>
+                                <p class="thesis-title">"Biocracy: From Artificial Intelligence to Accelerated Independence"</p>
+                            </div>
+                            <div class="achievement-highlight">
+                                <i class="fas fa-star"></i> Advanced research in AI ethics and biotechnological governance
+                            </div>
+                            <div class="study-period">
+                                <i class="fas fa-calendar"></i> September 2023 — August 2025
                             </div>
                         </div>
-                        <div class="timeline-item">
-                            <div class="timeline-marker"></div>
-                            <div class="timeline-content">
-                            <h3>Multiple Degrees - University of Montana</h3>
-                            <p class="institution">Missoula, Montana, USA</p>
-                                <p class="period">January 2015 — May 2019</p>
-                            <ul class="degree-list">
-                                <li>B.S. Neuroscience, Memory and Cognition</li>
-                                <li>B.S. Biology, Ecology and Organisms</li>
-                                <li>B.A. Anthropology, Forensics</li>
-                                <li>Associate of Arts, General</li>
-                            </ul>
+                    </div>
+
+                    <div class="education-card graduate-degree">
+                        <div class="edu-card-header">
+                            <div class="degree-badge completed laude">LAUDE</div>
+                            <div class="institution-logo">
+                                <i class="fas fa-chart-line"></i>
                             </div>
                         </div>
-                        <div class="timeline-item">
-                            <div class="timeline-marker"></div>
-                            <div class="timeline-content">
-                            <h3>Maturité</h3>
-                                <p class="institution">Ecole Nouvelle de la Suisse Romande, Chailly</p>
-                                <p class="period">September 2012 — August 2014</p>
-                            <p class="focus">Focus on Philosophy, Biochemistry, Advanced Mathematics</p>
+                        <div class="edu-card-content">
+                            <h4>MBA - Foresight and Strategic Governance</h4>
+                            <div class="institution-info">
+                                <span class="institution-name">Kazimiero Simonaviciaus Universitetas</span>
+                                <span class="location"><i class="fas fa-map-marker-alt"></i> Vilnius, Lithuania</span>
+                            </div>
+                            <div class="grade-showcase">
+                                <div class="grade-display">
+                                    <span class="grade-number">9.73</span>
+                                    <span class="grade-max">/10</span>
+                                </div>
+                                <div class="thesis-grade">
+                                    <span class="thesis-score">Thesis: 10/10</span>
+                                </div>
+                            </div>
+                            <div class="thesis-info">
+                                <h5><i class="fas fa-scroll"></i> Master's Thesis:</h5>
+                                <p class="thesis-title">"Evaluation of morality as a factor of creativity in foresight"</p>
+                            </div>
+                            <div class="study-period">
+                                <i class="fas fa-calendar"></i> September 2019 — January 2021
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Undergraduate Studies Section -->
+                <div class="education-section" id="undergraduate-studies">
+                    <div class="section-header">
+                        <h3><i class="fas fa-book"></i> Undergraduate Foundation</h3>
+                        <p class="section-subtitle">Multi-disciplinary academic foundation</p>
+                    </div>
+
+                    <div class="education-card undergraduate-multi">
+                        <div class="edu-card-header">
+                            <div class="degree-badge completed">COMPLETED</div>
+                            <div class="institution-logo">
+                                <i class="fas fa-graduation-cap"></i>
                             </div>
+                        </div>
+                        <div class="edu-card-content">
+                            <h4>University of Montana - Multiple Degrees</h4>
+                            <div class="institution-info">
+                                <span class="institution-name">University of Montana</span>
+                                <span class="location"><i class="fas fa-map-marker-alt"></i> Missoula, Montana, USA</span>
+                            </div>
+
+                            <div class="degrees-grid">
+                                <div class="degree-item">
+                                    <div class="degree-icon"><i class="fas fa-brain"></i></div>
+                                    <div class="degree-info">
+                                        <h5>B.S. Neuroscience</h5>
+                                        <p>Memory and Cognition</p>
+                                    </div>
+                                </div>
+                                <div class="degree-item">
+                                    <div class="degree-icon"><i class="fas fa-leaf"></i></div>
+                                    <div class="degree-info">
+                                        <h5>B.S. Biology</h5>
+                                        <p>Ecology and Organisms</p>
+                                    </div>
+                                </div>
+                                <div class="degree-item">
+                                    <div class="degree-icon"><i class="fas fa-users"></i></div>
+                                    <div class="degree-info">
+                                        <h5>B.A. Anthropology</h5>
+                                        <p>Forensics</p>
+                                    </div>
+                                </div>
+                                <div class="degree-item">
+                                    <div class="degree-icon"><i class="fas fa-book-open"></i></div>
+                                    <div class="degree-info">
+                                        <h5>Associate of Arts</h5>
+                                        <p>General Studies</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="study-period">
+                                <i class="fas fa-calendar"></i> January 2015 — May 2019
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="education-card high-school">
+                        <div class="edu-card-header">
+                            <div class="degree-badge completed">COMPLETED</div>
+                            <div class="institution-logo">
+                                <i class="fas fa-school"></i>
+                            </div>
+                        </div>
+                        <div class="edu-card-content">
+                            <h4>Maturité</h4>
+                            <div class="institution-info">
+                                <span class="institution-name">Ecole Nouvelle de la Suisse Romande</span>
+                                <span class="location"><i class="fas fa-map-marker-alt"></i> Chailly, Switzerland</span>
+                            </div>
+                            <div class="focus-areas">
+                                <h5>Specialized Focus:</h5>
+                                <div class="focus-tags">
+                                    <span class="focus-tag philosophy">Philosophy</span>
+                                    <span class="focus-tag science">Biochemistry</span>
+                                    <span class="focus-tag math">Advanced Mathematics</span>
+                                </div>
+                            </div>
+                            <div class="study-period">
+                                <i class="fas fa-calendar"></i> September 2012 — August 2014
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Specialized Training Section -->
+                <div class="education-section" id="specialized-training">
+                    <div class="section-header">
+                        <h3><i class="fas fa-tools"></i> Specialized Training & Certifications</h3>
+                        <p class="section-subtitle">Practical skills and professional development</p>
+                    </div>
+
+                    <div class="education-card specialized-training">
+                        <div class="edu-card-header">
+                            <div class="degree-badge completed">COMPLETED</div>
+                            <div class="institution-logo">
+                                <i class="fas fa-mountain"></i>
+                            </div>
+                        </div>
+                        <div class="edu-card-content">
+                            <h4>Diploma in Traditional Alpine Pasturing</h4>
+                            <div class="institution-info">
+                                <span class="institution-name">Agrilogy Granges-Verney</span>
+                                <span class="location"><i class="fas fa-map-marker-alt"></i> Moudon, Switzerland</span>
+                            </div>
+                            <div class="training-skills">
+                                <h5>Skills Acquired:</h5>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Sustainable Agriculture</span>
+                                    <span class="skill-tag">Environmental Management</span>
+                                    <span class="skill-tag">Rural Development</span>
+                                </div>
+                            </div>
+                            <div class="study-period">
+                                <i class="fas fa-calendar"></i> May 2020 — August 2020
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="certification-grid">
+                        <div class="cert-card">
+                            <div class="cert-icon"><i class="fas fa-gamepad"></i></div>
+                            <h5>Game Design Certificate</h5>
+                            <p>IFAGE, Geneva</p>
+                            <span class="cert-date">2023</span>
+                        </div>
+                        <div class="cert-card">
+                            <div class="cert-icon"><i class="fas fa-language"></i></div>
+                            <h5>Russian Language Course</h5>
+                            <p>LINGUA LITUANICA</p>
+                            <span class="cert-date">2019</span>
+                        </div>
+                        <div class="cert-card">
+                            <div class="cert-icon"><i class="fas fa-globe-europe"></i></div>
+                            <h5>Lithuanian Language</h5>
+                            <p>Vilnius University</p>
+                            <span class="cert-date">2019</span>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <!-- Academic Work Tab -->
             <section id="academia" class="tab-content">
                 <div class="content-header">
-                    <h2><i class="fas fa-book"></i> Academic Publications & Research</h2>
+                    <h2><i class="fas fa-book"></i> Publications & Research</h2>
                         </div>
                 <div class="academic-works-grid">
                     <div class="academic-card">
@@ -907,7 +1139,7 @@
             <section id="skills" class="tab-content">
                 <div class="content-header">
                     <h2><i class="fas fa-chart-bar"></i> Skills & Abilities</h2>
-                    <p class="header-subtitle">Competencies forged through years of multidisciplinary pursuit</p>
+                    <!-- <p class="header-subtitle">Competencies forged through years of multidisciplinary pursuit</p> -->
             </div>
 
                 <!-- Skills Navigation -->

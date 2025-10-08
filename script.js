@@ -549,13 +549,13 @@ document.addEventListener('keydown', function(e) {
                     section.style.animation = 'fadeIn 0.5s ease-in-out';
 
                     // Animate skill bars when section becomes visible
-                    setTimeout(() => {
+                setTimeout(() => {
                         const skillFills = section.querySelectorAll('.skill-fill');
                         skillFills.forEach(fill => {
                             const width = fill.getAttribute('data-width');
                             fill.style.width = width + '%';
                         });
-                    }, 100);
+                }, 100);
                 } else {
                     section.style.display = 'none';
                 }
@@ -572,5 +572,33 @@ document.addEventListener('keydown', function(e) {
         });
     }, 500);
 
+    // Initialize Education Navigation
+    initializeEducationNavigation();
+
     console.log('Medieval Character Sheet with Interactive Portfolio loaded successfully! ⚔️');
 });
+
+function initializeEducationNavigation() {
+    const eduNavBtns = document.querySelectorAll('.edu-nav-btn');
+    const educationSections = document.querySelectorAll('.education-section');
+
+    eduNavBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const targetSection = this.getAttribute('data-section');
+
+            // Remove active class from all buttons and sections
+            eduNavBtns.forEach(b => b.classList.remove('active'));
+            educationSections.forEach(s => s.classList.remove('active'));
+
+            // Add active class to clicked button
+            this.classList.add('active');
+
+            // Show target section
+            const targetElement = document.getElementById(targetSection + '-studies') ||
+                                 document.getElementById(targetSection + '-training');
+            if (targetElement) {
+                targetElement.classList.add('active');
+            }
+        });
+    });
+}
