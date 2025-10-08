@@ -1,0 +1,30 @@
+{
+  "name": "hugues-de-pingon-portfolio",
+  "version": "1.0.0",
+  "description": "Medieval-themed interactive portfolio website for Hugues W.B. de Pingon",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "serve": "python -m http.server 8000",
+    "build": "echo 'No build process needed for static site'",
+    "deploy": "echo 'Deploy to GitHub Pages by pushing to main branch'"
+  },
+  "keywords": [
+    "portfolio",
+    "medieval",
+    "character-sheet",
+    "interactive",
+    "game-designer",
+    "philosopher",
+    "academic"
+  ],
+  "author": "Hugues William Brentone de Pingon",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hugues-de-pingon/hugues-de-pingon.github.io.git"
+  },
+  "homepage": "https://hugues-de-pingon.github.io",
+  "devDependencies": {},
+  "dependencies": {}
+}
