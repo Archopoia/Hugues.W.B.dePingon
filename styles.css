@@ -654,7 +654,7 @@ body {
     border-radius: 15px;
     padding: 1.5rem;
     text-align: center;
-    box-shadow: 
+    box-shadow:
         0 0 15px rgba(0, 0, 0, 0.1),
         inset 0 0 0 2px var(--border-tan);
     transition: all var(--transition-speed);
@@ -663,7 +663,7 @@ body {
 
 .academic-stat:hover {
     transform: scale(1.05);
-    box-shadow: 
+    box-shadow:
         0 0 25px rgba(0, 0, 0, 0.2),
         0 0 15px var(--gold-glow),
         inset 0 0 0 2px var(--border-tan);
@@ -672,6 +672,13 @@ body {
 .academic-stat .stat-icon {
     font-size: 2.5rem;
     margin-bottom: 1rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem auto;
 }
 
 .academic-stat .stat-number {
@@ -694,7 +701,8 @@ body {
 
 /* Theme-specific styling for academic stats */
 .academic-stat.theme-red .stat-icon {
-    color: var(--red-theme);
+    background: var(--red-theme);
+    color: var(--text-cream);
 }
 
 .academic-stat.theme-red .stat-label {
@@ -703,7 +711,8 @@ body {
 }
 
 .academic-stat.theme-yellow .stat-icon {
-    color: var(--yellow-theme);
+    background: var(--yellow-theme);
+    color: var(--text-cream);
 }
 
 .academic-stat.theme-yellow .stat-label {
@@ -712,7 +721,8 @@ body {
 }
 
 .academic-stat.theme-green .stat-icon {
-    color: var(--green-theme);
+    background: var(--green-theme);
+    color: var(--text-cream);
 }
 
 .academic-stat.theme-green .stat-label {
@@ -721,7 +731,8 @@ body {
 }
 
 .academic-stat.theme-teal .stat-icon {
-    color: var(--teal-theme);
+    background: var(--teal-theme);
+    color: var(--text-cream);
 }
 
 .academic-stat.theme-teal .stat-label {
