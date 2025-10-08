@@ -54,9 +54,6 @@ body {
 
     /* Transitions */
     --transition-speed: 0.4s;
-
-    /* Paper Texture */
-    --paper-texture: url("https://i.imgur.com/U9nCBCy.jpg");
 }
 
 * {
