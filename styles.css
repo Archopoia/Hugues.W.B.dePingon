@@ -83,7 +83,15 @@ body {
 .character-sheet {
     max-width: 900px;
     margin: 2rem auto;
-    background: var(--parchment-light);
+    background:
+        radial-gradient(#6100001f 3px, transparent 4px),
+        radial-gradient(#6100001f 3px, transparent 4px),
+        linear-gradient(var(--parchment-light) 4px, transparent 0),
+        linear-gradient(45deg, transparent 74px, transparent 75px, #78c9a3 75px, #78c9a3 76px, transparent 77px, transparent 109px),
+        linear-gradient(-45deg, transparent 75px, transparent 76px, #78c9a3 76px, #78c9a3 77px, transparent 78px, transparent 109px),
+        var(--parchment-light);
+    background-size: 109px 109px, 109px 109px, 100% 6px, 109px 109px, 109px 109px;
+    background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
     box-shadow:
         0 0 20px rgba(0, 0, 0, 0.3),
         inset 0 0 0 5px var(--border-tan),
