@@ -67,9 +67,7 @@ body {
 
 body {
     font-family: 'Quintessential', cursive;
-    background-image: var(--paper-texture);
     background-color: var(--parchment-bg);
-    background-repeat: repeat;
     color: var(--text-dark);
     min-height: 100vh;
     overflow-x: hidden;
