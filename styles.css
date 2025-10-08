@@ -68,8 +68,8 @@ body {
         radial-gradient(#6100001f 3px, transparent 4px),
         radial-gradient(#6100001f 3px, transparent 4px),
         linear-gradient(var(--parchment-bg) 4px, transparent 0),
-        linear-gradient(45deg, transparent 74px, transparent 75px, #78c9a3 75px, #78c9a3 76px, transparent 77px, transparent 109px),
-        linear-gradient(-45deg, transparent 75px, transparent 76px, #78c9a3 76px, #78c9a3 77px, transparent 78px, transparent 109px),
+        linear-gradient(45deg, transparent 74px, #78c9a3 75px, transparent 76px, transparent 109px),
+        linear-gradient(-45deg, transparent 75px, #78c9a3 76px, transparent 77px, transparent 109px),
         var(--parchment-bg);
     background-size: 109px 109px, 109px 109px, 100% 6px, 109px 109px, 109px 109px;
     background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
@@ -87,8 +87,8 @@ body {
         radial-gradient(#6100001f 3px, transparent 4px),
         radial-gradient(#6100001f 3px, transparent 4px),
         linear-gradient(var(--parchment-light) 4px, transparent 0),
-        linear-gradient(45deg, transparent 74px, transparent 75px, #78c9a3 75px, #78c9a3 76px, transparent 77px, transparent 109px),
-        linear-gradient(-45deg, transparent 75px, transparent 76px, #78c9a3 76px, #78c9a3 77px, transparent 78px, transparent 109px),
+        linear-gradient(45deg, transparent 74px, #78c9a3 75px, transparent 76px, transparent 109px),
+        linear-gradient(-45deg, transparent 75px, #78c9a3 76px, transparent 77px, transparent 109px),
         var(--parchment-light);
     background-size: 109px 109px, 109px 109px, 100% 6px, 109px 109px, 109px 109px;
     background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
@@ -477,8 +477,8 @@ body {
         radial-gradient(#6100001f 3px, transparent 4px),
         radial-gradient(#6100001f 3px, transparent 4px),
         linear-gradient(transparent 4px, transparent 0),
-        linear-gradient(45deg, transparent 74px, transparent 75px, #78c9a3 75px, #78c9a3 76px, transparent 77px, transparent 109px),
-        linear-gradient(-45deg, transparent 75px, transparent 76px, #78c9a3 76px, #78c9a3 77px, transparent 78px, transparent 109px);
+        linear-gradient(45deg, transparent 74px, #78c9a3 75px, transparent 76px, transparent 109px),
+        linear-gradient(-45deg, transparent 75px, #78c9a3 76px, transparent 77px, transparent 109px);
     background-size: 109px 109px, 109px 109px, 100% 6px, 109px 109px, 109px 109px;
     background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
     pointer-events: none;
