@@ -195,7 +195,7 @@ body {
     width: 140px;
     height: 140px;
     border: 6px solid var(--gold-ink);
-    border-radius: 0;
+    border-radius: 50%;
     background: var(--parchment);
     background-image: var(--paper-texture);
     display: flex;
@@ -205,7 +205,7 @@ body {
         0 0 15px rgba(0, 0, 0, 0.4),
         inset 0 0 0 2px rgba(184, 134, 11, 0.3);
     z-index: 3;
-    transform: rotate(-2deg);
+    transform: rotate(0deg);
     transition: transform 0.3s ease;
 }
 
@@ -235,6 +235,7 @@ body {
     right: 5px;
     bottom: 5px;
     border: 1px solid var(--gold-faded);
+    border-radius: 50%;
     z-index: 1;
 }
 
@@ -249,6 +250,7 @@ body {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     z-index: 2;
     overflow: hidden;
+    border-radius: 50%;
 }
 
 .portrait-image {
@@ -256,6 +258,7 @@ body {
     height: 100%;
     object-fit: cover;
     display: block;
+    border-radius: 50%;
 }
 
 .portrait-decoration {
@@ -265,6 +268,7 @@ body {
     right: -12px;
     bottom: -12px;
     border: 3px solid var(--gold-bright);
+    border-radius: 50%;
     background:
         radial-gradient(circle at 25% 25%, rgba(184, 134, 11, 0.1) 0%, transparent 50%),
         radial-gradient(circle at 75% 75%, rgba(184, 134, 11, 0.1) 0%, transparent 50%);
