@@ -328,7 +328,7 @@ document.addEventListener('DOMContentLoaded', function() {
             font-size: 2rem;
             text-align: center;
         `;
-        loadingText.innerHTML = 'Loading Character Sheet...';
+        loadingText.innerHTML = 'Loading Portfolio...';
         loader.appendChild(loadingText);
 
         const loadingStyle = document.createElement('style');
@@ -564,7 +564,7 @@ document.addEventListener('keydown', function(e) {
     });
 
     // Animate skill bars on initial load
-    setTimeout(() => {
+                    setTimeout(() => {
         const visibleSkillFills = document.querySelectorAll('.skill-section:not([style*="display: none"]) .skill-fill');
         visibleSkillFills.forEach(fill => {
             const width = fill.getAttribute('data-width');
