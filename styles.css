@@ -2713,7 +2713,6 @@ body {
     line-height: 1.8;
     color: var(--text-dark);
     text-align: justify;
-    text-indent: 2rem;
 }
 
 .mission-text::first-letter {
@@ -2722,6 +2721,7 @@ body {
     float: left;
     line-height: 1;
     margin-right: 0.5rem;
+    margin-top: 0.1rem;
     color: var(--red-theme);
     font-family: 'Quintessential', cursive;
 }
