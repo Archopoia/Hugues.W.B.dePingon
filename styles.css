@@ -2765,14 +2765,13 @@ body {
 .portrait-image {
     cursor: pointer;
     transition: transform 0.3s ease;
-}
-
-.portrait-image:hover {
-    transform: scale(1.05);
+    position: relative;
 }
 
 .portrait-spinning {
     animation: spinAwayAndBack 3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 9999 !important;
+    position: relative;
 }
 
 @keyframes spinAwayAndBack {
@@ -2810,6 +2809,22 @@ body {
     }
     100% {
         transform: translateY(0);
+    }
+}
+
+/* Coin Ping Animation */
+@keyframes coinPing {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.5) translateY(-50px);
+        opacity: 0;
     }
 }
 

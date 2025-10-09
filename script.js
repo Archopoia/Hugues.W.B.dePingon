@@ -779,7 +779,7 @@ function openFullImage(imageSrc) {
     const modal = document.getElementById('modal-overlay');
     const modalTitle = document.getElementById('modal-title');
     const modalBody = document.getElementById('modal-body');
-    
+
     modalTitle.textContent = 'Professional Photo';
     modalBody.innerHTML = `
         <div class="full-image-container">
@@ -787,7 +787,7 @@ function openFullImage(imageSrc) {
             <p class="full-image-caption">Professional photo snapped by @vincasalesius, Vilnius' (LT) street photographer</p>
         </div>
     `;
-    
+
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
 }
@@ -796,7 +796,8 @@ function openFullImage(imageSrc) {
 document.addEventListener('DOMContentLoaded', function() {
     const portrait = document.querySelector('.portrait-image');
     if (portrait) {
-        portrait.addEventListener('click', function() {
+        // Trigger animation on hover
+        portrait.addEventListener('mouseenter', function() {
             // Prevent multiple animations
             if (this.classList.contains('portrait-spinning')) return;
             
@@ -807,6 +808,49 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.classList.remove('portrait-spinning');
             }, 3000);
         });
+
+        // Play coin sound when clicked during animation
+        portrait.addEventListener('click', function() {
+            if (this.classList.contains('portrait-spinning')) {
+                // Create coin ping sound using Web Audio API
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                // Coin ping sound: high frequency with quick decay
+                oscillator.frequency.setValueAtTime(1000, audioContext.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(2000, audioContext.currentTime + 0.05);
+                oscillator.frequency.exponentialRampToValueAtTime(800, audioContext.currentTime + 0.1);
+                
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.3);
+
+                // Visual feedback - golden flash
+                const flash = document.createElement('div');
+                flash.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    font-size: 3rem;
+                    color: var(--gold-glow);
+                    text-shadow: 0 0 20px var(--gold-glow);
+                    pointer-events: none;
+                    z-index: 10000;
+                    animation: coinPing 0.5s ease-out;
+                `;
+                flash.innerHTML = '💰';
+                document.body.appendChild(flash);
+
+                setTimeout(() => flash.remove(), 500);
+            }
+        });
     }
 
     // Contact Tab Drop Animation
@@ -814,13 +858,13 @@ document.addEventListener('DOMContentLoaded', function() {
     if (contactTab) {
         contactTab.addEventListener('click', function() {
             const contactContent = document.getElementById('contact');
-            
+
             // Prevent multiple animations
             if (contactContent.classList.contains('tab-dropping')) return;
-            
+
             // Add animation class
             contactContent.classList.add('tab-dropping');
-            
+
             // Remove class after animation completes
             setTimeout(() => {
                 contactContent.classList.remove('tab-dropping');
