@@ -951,23 +951,23 @@ function initializeEducationNavigation() {
 }
 
 function initializeVideoHoverPlay() {
-    // Find all divs containing videos
-    const videoContainers = document.querySelectorAll('.project-video, .project-media');
+    // Find all project cards (the entire box including title, description, etc.)
+    const projectCards = document.querySelectorAll('.project-card');
     
-    videoContainers.forEach(container => {
-        const video = container.querySelector('video');
+    projectCards.forEach(card => {
+        const video = card.querySelector('video');
         
         if (video) {
-            // Play video on hover
-            container.addEventListener('mouseenter', function() {
+            // Play video when hovering over the entire card
+            card.addEventListener('mouseenter', function() {
                 video.play().catch(error => {
                     // Handle autoplay restrictions gracefully
                     console.log('Video autoplay prevented:', error);
                 });
             });
             
-            // Pause video when mouse leaves (optional - remove if you want it to keep playing)
-            container.addEventListener('mouseleave', function() {
+            // Pause video when mouse leaves the entire card
+            card.addEventListener('mouseleave', function() {
                 video.pause();
             });
         }
