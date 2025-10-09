@@ -5034,7 +5034,7 @@ body {
    ======================================== */
 
 .language-switcher {
-    position: absolute;
+    position: fixed;
     top: 1.5rem;
     right: 1.5rem;
     z-index: 1000;
@@ -5069,7 +5069,7 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.lang-icon {
+.flag-icon {
     font-size: 1.25rem;
     filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.2));
 }
@@ -5093,7 +5093,7 @@ body {
         font-size: 0.9rem;
     }
     
-    .lang-icon {
+    .flag-icon {
         font-size: 1.1rem;
     }
     
