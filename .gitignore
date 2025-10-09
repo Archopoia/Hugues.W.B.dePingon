@@ -1,6 +1,12 @@
 # Ignore Assets/sheet folder
 Assets/sheet/
 
+# Ignore sensitive Portfolio directories
+Portfolio/Academia (Foresight, Ethics & Serious Games)/Diplomas/
+Portfolio/Game Development (Design, Worldbuilding, Graphic)/2) Clients' Graphic Design/
+Portfolio/Game Development (Design, Worldbuilding, Graphic)/2) PsychoStratégie (serious games)/
+Portfolio/Game Development (Design, Worldbuilding, Graphic)/3) Senior GameDesign at OLG (The Wayward Realms)/
+
 # Common files to ignore
 .DS_Store
 *.log
