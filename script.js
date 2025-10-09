@@ -1210,15 +1210,25 @@ function openFullImage(imageSrc) {
     const modalTitle = document.getElementById('modal-title');
     const modalBody = document.getElementById('modal-body');
 
-    // Check if this is the ASUM image
-    if (imageSrc.includes('ASUM.jpg')) {
-        modalTitle.textContent = 'ASUM Presidential Campaign';
-        modalBody.innerHTML = `
-            <div class="full-image-container">
-                <img src="${imageSrc}" alt="Full size campaign photo" class="full-image">
-                <p class="full-image-caption">ASUM Presidential Campaign - Spring 2018</p>
-            </div>
-        `;
+    // Check if this is an ASUM image
+    if (imageSrc.includes('ASUM')) {
+        if (imageSrc.includes('poster.png')) {
+            modalTitle.textContent = 'ASUM Campaign Poster';
+            modalBody.innerHTML = `
+                <div class="full-image-container">
+                    <img src="${imageSrc}" alt="Full size campaign poster" class="full-image">
+                    <p class="full-image-caption">ASUM Presidential Campaign Poster - Spring 2018</p>
+                </div>
+            `;
+        } else {
+            modalTitle.textContent = 'ASUM Presidential Campaign';
+            modalBody.innerHTML = `
+                <div class="full-image-container">
+                    <img src="${imageSrc}" alt="Full size campaign photo" class="full-image">
+                    <p class="full-image-caption">ASUM Presidential Campaign - Spring 2018</p>
+                </div>
+            `;
+        }
     } else {
         modalTitle.textContent = 'Professional Photo';
         modalBody.innerHTML = `
