@@ -889,7 +889,7 @@ document.addEventListener('keydown', function(e) {
     // Toggle Experience Card expansion
     window.toggleExpCard = function(card) {
         card.classList.toggle('expanded');
-        
+
         // Check if card is now expanded and has a video
         const video = card.querySelector('video');
         if (video) {
@@ -977,6 +977,9 @@ document.addEventListener('keydown', function(e) {
 
     // Video Hover-to-Play Functionality
     initializeVideoHoverPlay();
+
+    // Alpine Education Card Video Hover-to-Play
+    initializeAlpineEducationVideo();
 
     console.log('Medieval Character Sheet with Interactive Portfolio loaded successfully! ⚔️');
 });
@@ -1207,14 +1210,45 @@ function openFullImage(imageSrc) {
     const modalTitle = document.getElementById('modal-title');
     const modalBody = document.getElementById('modal-body');
 
-    modalTitle.textContent = 'Professional Photo';
-    modalBody.innerHTML = `
-        <div class="full-image-container">
-            <img src="${imageSrc}" alt="Full size professional photo" class="full-image">
-            <p class="full-image-caption">Professional photo snapped by @vincasalesius, Vilnius' (LT) street photographer</p>
-        </div>
-    `;
+    // Check if this is the ASUM image
+    if (imageSrc.includes('ASUM.jpg')) {
+        modalTitle.textContent = 'ASUM Presidential Campaign';
+        modalBody.innerHTML = `
+            <div class="full-image-container">
+                <img src="${imageSrc}" alt="Full size campaign photo" class="full-image">
+                <p class="full-image-caption">ASUM Presidential Campaign - Spring 2018</p>
+            </div>
+        `;
+    } else {
+        modalTitle.textContent = 'Professional Photo';
+        modalBody.innerHTML = `
+            <div class="full-image-container">
+                <img src="${imageSrc}" alt="Full size professional photo" class="full-image">
+                <p class="full-image-caption">Professional photo snapped by @vincasalesius, Vilnius' (LT) street photographer</p>
+            </div>
+        `;
+    }
 
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
+}
+
+// Alpine Education Card Video Hover Functionality
+function initializeAlpineEducationVideo() {
+    const alpineCard = document.querySelector('.alpine-card');
+    const alpineVideo = document.querySelector('.alpine-education-video');
+
+    if (alpineCard && alpineVideo) {
+        // Play video when hovering over the entire card
+        alpineCard.addEventListener('mouseenter', function() {
+            alpineVideo.play().catch(error => {
+                console.log('Video autoplay prevented:', error);
+            });
+        });
+
+        // Pause video when mouse leaves the card
+        alpineCard.addEventListener('mouseleave', function() {
+            alpineVideo.pause();
+        });
+    }
 }
