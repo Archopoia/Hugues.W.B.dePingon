@@ -889,6 +889,21 @@ document.addEventListener('keydown', function(e) {
     // Toggle Experience Card expansion
     window.toggleExpCard = function(card) {
         card.classList.toggle('expanded');
+        
+        // Check if card is now expanded and has a video
+        const video = card.querySelector('video');
+        if (video) {
+            if (card.classList.contains('expanded')) {
+                // Card is expanding - play the video
+                video.play().catch(error => {
+                    console.log('Video autoplay prevented:', error);
+                });
+            } else {
+                // Card is collapsing - pause and reset the video
+                video.pause();
+                video.currentTime = 0;
+            }
+        }
     };
 
     // Portfolio Category Filtering
