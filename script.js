@@ -919,6 +919,9 @@ document.addEventListener('keydown', function(e) {
     // Initialize Education Navigation
     initializeEducationNavigation();
 
+    // Video Hover-to-Play Functionality
+    initializeVideoHoverPlay();
+
     console.log('Medieval Character Sheet with Interactive Portfolio loaded successfully! ⚔️');
 });
 
@@ -944,6 +947,30 @@ function initializeEducationNavigation() {
                 targetElement.classList.add('active');
             }
         });
+    });
+}
+
+function initializeVideoHoverPlay() {
+    // Find all divs containing videos
+    const videoContainers = document.querySelectorAll('.project-video, .project-media');
+    
+    videoContainers.forEach(container => {
+        const video = container.querySelector('video');
+        
+        if (video) {
+            // Play video on hover
+            container.addEventListener('mouseenter', function() {
+                video.play().catch(error => {
+                    // Handle autoplay restrictions gracefully
+                    console.log('Video autoplay prevented:', error);
+                });
+            });
+            
+            // Pause video when mouse leaves (optional - remove if you want it to keep playing)
+            container.addEventListener('mouseleave', function() {
+                video.pause();
+            });
+        }
     });
 }
 
