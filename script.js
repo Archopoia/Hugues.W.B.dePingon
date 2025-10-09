@@ -87,46 +87,43 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add subtle hint to Age stat (first in sequence)
     let hintInterval;
     function startAgeHint() {
-        const ageStat = Array.from(stats).find(stat =>
+        const ageStat = Array.from(stats).find(stat => 
             stat.querySelector('.stat-label').textContent.toLowerCase().replace(/\s/g, '') === 'age'
         );
-
-        if (ageStat && secretSequence.length === 0) {
-            // Add periodic subtle pulse to Age stat
+        
+        if (ageStat) {
+            // Add periodic subtle pulse to Age stat (continues until achievement unlocked)
             hintInterval = setInterval(() => {
-                if (secretSequence.length === 0 && !ageStat.classList.contains('stat-locked')) {
+                if (secretSequence.length === 0 && !ageStat.classList.contains('stat-locked') && !achievementUnlocked) {
                     ageStat.classList.add('stat-hint-pulse');
                     setTimeout(() => ageStat.classList.remove('stat-hint-pulse'), 2000);
                 }
             }, 8000); // Pulse every 8 seconds
-
+            
             // Do first pulse immediately
     setTimeout(() => {
-                if (secretSequence.length === 0) {
+                if (secretSequence.length === 0 && !achievementUnlocked) {
                     ageStat.classList.add('stat-hint-pulse');
                     setTimeout(() => ageStat.classList.remove('stat-hint-pulse'), 2000);
                 }
             }, 2000); // First hint after 2 seconds on page
         }
     }
-
+    
     // Start the hint system
     startAgeHint();
 
     function updatePortraitFeedback() {
         const count = secretSequence.length;
-
+        
         // Remove all previous vibration classes
         portraitFrame.classList.remove('portrait-vibrate-1', 'portrait-vibrate-2', 'portrait-vibrate-3', 'portrait-vibrate-4');
-
+        
         if (count > 0 && count <= 4) {
             portraitFrame.classList.add(`portrait-vibrate-${count}`);
         }
-
-        // Stop Age hint once sequence starts
-        if (count > 0) {
-            clearInterval(hintInterval);
-        }
+        
+        // Age hint continues until achievement is unlocked (not just when sequence starts)
     }
 
     stats.forEach(stat => {
