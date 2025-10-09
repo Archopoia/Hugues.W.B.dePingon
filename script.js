@@ -395,16 +395,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Parallax effect for background
-    window.addEventListener('scroll', function() {
-        const scrolled = window.pageYOffset;
-        const parallax = document.querySelector('.character-sheet');
-        const speed = scrolled * 0.5;
-
-        if (parallax) {
-            parallax.style.transform = `translateY(${speed}px)`;
-        }
-    });
+    // Parallax effect for background - DISABLED (was causing scroll issues)
+    // window.addEventListener('scroll', function() {
+    //     const scrolled = window.pageYOffset;
+    //     const parallax = document.querySelector('.character-sheet');
+    //     const speed = scrolled * 0.5;
+    //
+    //     if (parallax) {
+    //         parallax.style.transform = `translateY(${speed}px)`;
+    //     }
+    // });
 
     // Hover effects for cards
     const cards = document.querySelectorAll('.highlight-card, .project-card, .work-item');
