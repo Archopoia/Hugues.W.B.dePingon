@@ -602,3 +602,192 @@ function initializeEducationNavigation() {
         });
     });
 }
+
+// Contact Form Navigation
+let currentQuestion = 1;
+const totalQuestions = 5;
+
+function switchContactMethod(method) {
+    // Update button states
+    document.querySelectorAll('.method-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.method === method) {
+            btn.classList.add('active');
+        }
+    });
+
+    // Hide all sections
+    document.querySelectorAll('.contact-method-content').forEach(section => {
+        section.style.display = 'none';
+    });
+
+    // Show selected section
+    document.getElementById(`contact-${method}-section`).style.display = 'block';
+}
+
+function nextQuestion() {
+    const currentQ = document.querySelector(`.quest-question[data-question="${currentQuestion}"]`);
+    const inputs = currentQ.querySelectorAll('input[required], textarea[required]');
+
+    // Validate current question
+    let isValid = true;
+    inputs.forEach(input => {
+        if (input.type === 'radio') {
+            const radioGroup = currentQ.querySelectorAll(`input[name="${input.name}"]`);
+            const isChecked = Array.from(radioGroup).some(radio => radio.checked);
+            if (!isChecked) isValid = false;
+        } else if (!input.value.trim()) {
+            isValid = false;
+        }
+    });
+
+    if (!isValid) {
+        // Show validation feedback
+        currentQ.style.animation = 'shake 0.3s';
+        setTimeout(() => currentQ.style.animation = '', 300);
+        return;
+    }
+
+    // Hide current question
+    currentQ.classList.remove('active');
+
+    // Show next question
+    currentQuestion++;
+    document.querySelector(`.quest-question[data-question="${currentQuestion}"]`).classList.add('active');
+
+    // Update progress dots
+    updateProgressDots();
+
+    // Update navigation buttons
+    document.getElementById('prev-btn').disabled = false;
+
+    if (currentQuestion === totalQuestions) {
+        document.getElementById('next-btn').style.display = 'none';
+        document.getElementById('submit-btn').style.display = 'block';
+    }
+}
+
+function previousQuestion() {
+    // Hide current question
+    document.querySelector(`.quest-question[data-question="${currentQuestion}"]`).classList.remove('active');
+
+    // Show previous question
+    currentQuestion--;
+    document.querySelector(`.quest-question[data-question="${currentQuestion}"]`).classList.add('active');
+
+    // Update progress dots
+    updateProgressDots();
+
+    // Update navigation buttons
+    if (currentQuestion === 1) {
+        document.getElementById('prev-btn').disabled = true;
+    }
+
+    document.getElementById('next-btn').style.display = 'block';
+    document.getElementById('submit-btn').style.display = 'none';
+}
+
+function updateProgressDots() {
+    const dots = document.querySelectorAll('.progress-dots .dot');
+    dots.forEach((dot, index) => {
+        if (index < currentQuestion) {
+            dot.classList.add('active');
+        } else {
+            dot.classList.remove('active');
+        }
+    });
+}
+
+// Handle form submission
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('interactive-contact-form');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Collect form data
+            const formData = new FormData(form);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            // Create email body
+            const emailBody = `
+Purpose: ${data.purpose}
+Interest Area: ${data.interest}
+Timeline: ${data.timeline}
+Name: ${data.name}
+Email: ${data.email}
+Organization: ${data.organization || 'N/A'}
+
+Message:
+${data.message}
+            `.trim();
+
+            // Create mailto link
+            const subject = `Contact Quest: ${data.purpose} - ${data.interest}`;
+            const mailtoLink = `mailto:hugues.ii.w.b.depingon@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+
+            // Open email client
+            window.location.href = mailtoLink;
+
+            // Show success message
+            setTimeout(() => {
+                document.querySelector('.contact-quest-form').style.display = 'none';
+                document.querySelector('.contact-quest-intro').style.display = 'none';
+                document.getElementById('form-success').style.display = 'block';
+            }, 500);
+        });
+    }
+});
+
+function resetContactForm() {
+    // Reset form
+    document.getElementById('interactive-contact-form').reset();
+
+    // Reset to first question
+    document.querySelectorAll('.quest-question').forEach(q => q.classList.remove('active'));
+    document.querySelector('.quest-question[data-question="1"]').classList.add('active');
+    currentQuestion = 1;
+
+    // Reset navigation
+    document.getElementById('prev-btn').disabled = true;
+    document.getElementById('next-btn').style.display = 'block';
+    document.getElementById('submit-btn').style.display = 'none';
+    updateProgressDots();
+
+    // Show form again
+    document.querySelector('.contact-quest-form').style.display = 'block';
+    document.querySelector('.contact-quest-intro').style.display = 'block';
+    document.getElementById('form-success').style.display = 'none';
+}
+
+// Add shake animation for validation
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-10px); }
+        75% { transform: translateX(10px); }
+    }
+`;
+document.head.appendChild(style);
+
+// Full Image Modal Function
+function openFullImage(imageSrc) {
+    const modal = document.getElementById('modal-overlay');
+    const modalTitle = document.getElementById('modal-title');
+    const modalBody = document.getElementById('modal-body');
+
+    modalTitle.textContent = 'Professional Photo';
+    modalBody.innerHTML = `
+        <div class="full-image-container">
+            <img src="${imageSrc}" alt="Full size professional photo" class="full-image">
+            <p class="full-image-caption">Professional photo snapped by @vincasalesius, Vilnius' (LT) street photographer</p>
+        </div>
+    `;
+
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
