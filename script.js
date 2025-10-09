@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function playDiscordantBuzz() {
         for (let i = 0; i < 3; i++) {
-            setTimeout(() => {
+    setTimeout(() => {
                 playChime(110 + Math.random() * 50, 0.1);
             }, i * 80);
         }
@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Play discordant buzz
         playDiscordantBuzz();
 
-        setTimeout(() => {
+                setTimeout(() => {
             sheet.classList.remove('shake-fail');
             failFlash.remove();
         }, 800);
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
             for (let i = 0; i < 30; i++) {
                 setTimeout(() => createParticle(), i * 100);
             }
-        } else {
+            } else {
             achievement.innerHTML = `
                 <i class="fas fa-check-circle"></i>
                 <h3>Code Confirmed</h3>
@@ -173,7 +173,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function createRainbowParticle() {
         const particle = document.createElement('div');
         particle.className = 'rainbow-particle';
-        const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#6c5ce7', '#a29bfe'];
+        // Medieval color palette: burgundy, gold, bronze, amber, copper
+        const colors = ['#8B1A1A', '#DAA520', '#B8860B', '#CD7F32', '#D4AF37', '#C9A961'];
         particle.style.background = colors[Math.floor(Math.random() * colors.length)];
         particle.style.left = Math.random() * 100 + 'vw';
         particle.style.animationDelay = Math.random() * 2 + 's';
@@ -251,7 +252,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 lockedStats.push(this);
 
                 secretSequence.push(label);
-                
+
                 // Play chime based on this stat's position in the CORRECT sequence
                 // This way, players can hear if they're on the right track!
                 const correctIndex = correctSequence.indexOf(label);
@@ -635,10 +636,10 @@ document.addEventListener('DOMContentLoaded', function() {
         feedback.innerHTML = '';
         document.body.appendChild(feedback);
 
-        setTimeout(() => {
+                setTimeout(() => {
             feedback.remove();
         }, 500);
-    }
+            }
 
     // Add sound feedback to tab switches
     tabButtons.forEach(button => {
@@ -711,7 +712,7 @@ document.addEventListener('DOMContentLoaded', function() {
             tooltip.className = 'tooltip';
             tooltip.textContent = text;
             tooltip.style.cssText = `
-                position: absolute;
+            position: absolute;
                 background: var(--burgundy-dark);
                 color: var(--beige-paper);
                 padding: 0.5rem;
@@ -735,9 +736,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
             element.addEventListener('mouseleave', function() {
                 tooltip.remove();
-            });
         });
-    }
+    });
+}
 
     // Add tooltips to skill items
     skillItems.forEach(item => {
@@ -899,7 +900,7 @@ document.addEventListener('keydown', function(e) {
                             fill.style.width = width + '%';
                         });
                 }, 100);
-                } else {
+            } else {
                     section.style.display = 'none';
                 }
             });
