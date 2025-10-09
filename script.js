@@ -1,16 +1,223 @@
 // Medieval Character Sheet Interactive Features
 document.addEventListener('DOMContentLoaded', function() {
-    // Portrait click animation
+    // Hidden Minigame: Secret Code Quest
+    let secretSequence = [];
+    const correctSequence = ['age', 'origin', 'location', 'currentrole'];
+    let resetTimer = null;
+    let achievementUnlocked = false;
+    let lockedStats = [];
+
+    function resetSequence() {
+        secretSequence = [];
+        // Remove locked highlights
+        lockedStats.forEach(stat => {
+            stat.classList.remove('stat-locked');
+        });
+        lockedStats = [];
+        clearTimeout(resetTimer);
+
+        // Remove portrait vibration
+        const portraitFrame = document.querySelector('.portrait-frame');
+        if (portraitFrame) {
+            portraitFrame.classList.remove('portrait-vibrate-1', 'portrait-vibrate-2', 'portrait-vibrate-3', 'portrait-vibrate-4');
+        }
+    }
+
+    function showFailAnimation() {
+        const sheet = document.querySelector('.character-sheet');
+        sheet.classList.add('shake-fail');
+
+        // Flash red
+        const failFlash = document.createElement('div');
+        failFlash.className = 'fail-flash';
+        document.body.appendChild(failFlash);
+
+        setTimeout(() => {
+            sheet.classList.remove('shake-fail');
+            failFlash.remove();
+        }, 800);
+    }
+
+    function unlockAchievement(isFirstTime) {
+        const achievement = document.createElement('div');
+        achievement.className = isFirstTime ? 'secret-achievement' : 'secret-achievement-repeat';
+
+        if (isFirstTime) {
+            achievement.innerHTML = `
+                <div class="achievement-glow"></div>
+                <i class="fas fa-trophy"></i>
+                <h3>Secret Discovered!</h3>
+                <p>"The Designer's Code"</p>
+                <p class="achievement-subtext">You've uncovered the hidden sequence. Us designers see and make patterns everywhere.</p>
+            `;
+
+            // Create particle effects
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => createParticle(), i * 100);
+            }
+        } else {
+            achievement.innerHTML = `
+                <i class="fas fa-check-circle"></i>
+                <h3>Code Confirmed</h3>
+                <p class="achievement-subtext">You remember the sequence well.</p>
+            `;
+        }
+
+        document.body.appendChild(achievement);
+
+        setTimeout(() => {
+            achievement.style.animation = 'fadeOut 1s forwards';
+            setTimeout(() => achievement.remove(), 1000);
+        }, isFirstTime ? 5000 : 3000);
+    }
+
+    function createParticle() {
+        const particle = document.createElement('div');
+        particle.className = 'gold-particle';
+        particle.style.left = Math.random() * 100 + 'vw';
+        particle.style.animationDelay = Math.random() * 2 + 's';
+        document.body.appendChild(particle);
+        setTimeout(() => particle.remove(), 3000);
+    }
+
+    // Add click listeners to stat values
+    const stats = document.querySelectorAll('.stat-item');
+    const portraitFrame = document.querySelector('.portrait-frame');
+
+    // Add subtle hint to Age stat (first in sequence)
+    let hintInterval;
+    function startAgeHint() {
+        const ageStat = Array.from(stats).find(stat =>
+            stat.querySelector('.stat-label').textContent.toLowerCase().replace(/\s/g, '') === 'age'
+        );
+
+        if (ageStat && secretSequence.length === 0) {
+            // Add periodic subtle pulse to Age stat
+            hintInterval = setInterval(() => {
+                if (secretSequence.length === 0 && !ageStat.classList.contains('stat-locked')) {
+                    ageStat.classList.add('stat-hint-pulse');
+                    setTimeout(() => ageStat.classList.remove('stat-hint-pulse'), 2000);
+                }
+            }, 8000); // Pulse every 8 seconds
+
+            // Do first pulse immediately
+    setTimeout(() => {
+                if (secretSequence.length === 0) {
+                    ageStat.classList.add('stat-hint-pulse');
+                    setTimeout(() => ageStat.classList.remove('stat-hint-pulse'), 2000);
+                }
+            }, 2000); // First hint after 2 seconds on page
+        }
+    }
+
+    // Start the hint system
+    startAgeHint();
+
+    function updatePortraitFeedback() {
+        const count = secretSequence.length;
+
+        // Remove all previous vibration classes
+        portraitFrame.classList.remove('portrait-vibrate-1', 'portrait-vibrate-2', 'portrait-vibrate-3', 'portrait-vibrate-4');
+
+        if (count > 0 && count <= 4) {
+            portraitFrame.classList.add(`portrait-vibrate-${count}`);
+        }
+
+        // Stop Age hint once sequence starts
+        if (count > 0) {
+            clearInterval(hintInterval);
+        }
+    }
+
+    stats.forEach(stat => {
+        const label = stat.querySelector('.stat-label').textContent.toLowerCase().replace(/\s/g, '');
+        stat.addEventListener('click', function() {
+            // Only add if not already locked
+            if (!this.classList.contains('stat-locked')) {
+                this.style.animation = 'pulse 0.3s';
+                setTimeout(() => this.style.animation = '', 300);
+
+                // Lock this stat with highlight
+                this.classList.add('stat-locked');
+                lockedStats.push(this);
+
+                secretSequence.push(label);
+
+                // Update portrait feedback based on sequence length
+                updatePortraitFeedback();
+
+                // Reset after 5 seconds of inactivity
+                clearTimeout(resetTimer);
+                resetTimer = setTimeout(() => {
+                    resetSequence();
+                    portraitFrame.classList.remove('portrait-vibrate-1', 'portrait-vibrate-2', 'portrait-vibrate-3', 'portrait-vibrate-4');
+                }, 5000);
+            }
+        });
+    });
+
+    // Portrait click = Submit/Check sequence
     const portraitImage = document.querySelector('.portrait-image');
     if (portraitImage) {
         portraitImage.addEventListener('click', function() {
-            // Add spinning class
-            this.classList.add('portrait-spinning');
+            // Check if sequence is correct
+            const current = secretSequence.join(',');
+            const correct = correctSequence.join(',');
 
-            // Remove class after animation completes
-            setTimeout(() => {
-                this.classList.remove('portrait-spinning');
-            }, 4000); // Match the animation duration
+            if (current === correct) {
+                // SUCCESS!
+                if (!achievementUnlocked) {
+                    // First time discovery
+                    achievementUnlocked = true;
+                    this.classList.add('portrait-spinning');
+                    unlockAchievement(true);
+                    resetSequence();
+
+                    setTimeout(() => {
+                        this.classList.remove('portrait-spinning');
+                    }, 4000);
+                } else {
+                    // Already discovered, show simpler confirmation
+                    unlockAchievement(false);
+                    resetSequence();
+
+                    // Just a quick pulse
+                    this.style.animation = 'pulse 0.3s';
+                    setTimeout(() => this.style.animation = '', 300);
+                }
+            } else if (secretSequence.length > 0) {
+                // FAILED - show fail animation
+                showFailAnimation();
+                resetSequence();
+
+                // Still do a small shake on portrait
+                this.style.animation = 'shake 0.5s';
+                setTimeout(() => this.style.animation = '', 500);
+            } else {
+                // No sequence attempted - show fail animation and give hint by highlighting Age stat twice
+                showFailAnimation();
+
+                const ageStat = Array.from(stats).find(stat =>
+                    stat.querySelector('.stat-label').textContent.toLowerCase().replace(/\s/g, '') === 'age'
+                );
+
+                if (ageStat) {
+                    // First pulse (white highlight like when clicking)
+                    ageStat.style.animation = 'pulse 0.3s';
+                    setTimeout(() => {
+                        ageStat.style.animation = '';
+                        // Second pulse after a brief pause
+                        setTimeout(() => {
+                            ageStat.style.animation = 'pulse 0.3s';
+                            setTimeout(() => ageStat.style.animation = '', 300);
+                        }, 400);
+                    }, 300);
+                }
+
+                // Portrait shakes as feedback
+                this.style.animation = 'shake 0.5s';
+                setTimeout(() => this.style.animation = '', 500);
+            }
         });
     }
 
@@ -104,16 +311,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 1000);
     }
 
-    // Floating animation for portrait
-    const portrait = document.querySelector('.portrait-frame');
-    if (portrait) {
-        setInterval(() => {
-            portrait.style.transform = 'translateY(-5px)';
-            setTimeout(() => {
-                portrait.style.transform = 'translateY(0)';
-            }, 2000);
-        }, 4000);
-    }
+    // Portrait stays static - no floating animation
 
     // Interactive skill bars with click to reveal
     const skillItems = document.querySelectorAll('.skill-item');
