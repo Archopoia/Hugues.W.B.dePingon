@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Main Portfolio Page -->
+  <url>
+    <loc>https://archopoia.github.io/Hugues.W.B.dePingon/</loc>
+    <lastmod>2025-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://archopoia.github.io/Hugues.W.B.dePingon/Assets/Hugues/roundvignette.jpg</image:loc>
+      <image:title>Hugues de Pingon Portrait</image:title>
+      <image:caption>Hugues William Brentone de Pingon - Lead Game Designer at OnceLost Games</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://archopoia.github.io/Hugues.W.B.dePingon/Assets/Hugues/speakingatmicrophone.jpg</image:loc>
+      <image:title>Hugues de Pingon speaking at Brain Bar 2025</image:title>
+      <image:caption>Discussing the creation of new species with Ben Lamm at Brain Bar 2025</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Index.html (alternative path) -->
+  <url>
+    <loc>https://archopoia.github.io/Hugues.W.B.dePingon/index.html</loc>
+    <lastmod>2025-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- About Section -->
+  <url>
+    <loc>https://archopoia.github.io/Hugues.W.B.dePingon/#about</loc>
+    <lastmod>2025-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Portfolio Section -->
+  <url>
+    <loc>https://archopoia.github.io/Hugues.W.B.dePingon/#portfolio</loc>
+    <lastmod>2025-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Experience Section -->
+  <url>
+    <loc>https://archopoia.github.io/Hugues.W.B.dePingon/#experience</loc>
+    <lastmod>2025-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Education Section -->
+  <url>
+    <loc>https://archopoia.github.io/Hugues.W.B.dePingon/#education</loc>
+    <lastmod>2025-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Academia Section -->
+  <url>
+    <loc>https://archopoia.github.io/Hugues.W.B.dePingon/#academia</loc>
+    <lastmod>2025-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Skills Section -->
+  <url>
+    <loc>https://archopoia.github.io/Hugues.W.B.dePingon/#skills</loc>
+    <lastmod>2025-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Contact Section -->
+  <url>
+    <loc>https://archopoia.github.io/Hugues.W.B.dePingon/#contact</loc>
+    <lastmod>2025-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>
+

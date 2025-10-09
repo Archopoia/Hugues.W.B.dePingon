@@ -1,0 +1,12 @@
+# robots.txt for https://archopoia.github.io/Hugues.W.B.dePingon/
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://archopoia.github.io/Hugues.W.B.dePingon/sitemap.xml
+
+# Disallow common directories (if any)
+Disallow: /node_modules/
+Disallow: /.git/
+

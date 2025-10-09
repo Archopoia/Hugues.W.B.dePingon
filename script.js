@@ -1,4 +1,20 @@
 // Medieval Character Sheet Interactive Features
+
+// Security: HTML Sanitization Helper
+function sanitizeHTML(str) {
+    const temp = document.createElement('div');
+    temp.textContent = str;
+    return temp.innerHTML;
+}
+
+// Security: Create element safely with text content
+function createElementSafe(tag, content, className) {
+    const elem = document.createElement(tag);
+    if (className) elem.className = className;
+    if (content) elem.textContent = content;
+    return elem;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Web Audio API - Medieval Sound Effects
     const audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -109,13 +125,27 @@ document.addEventListener('DOMContentLoaded', function() {
         achievement.className = isFirstTime ? 'secret-achievement' : 'secret-achievement-repeat';
 
         if (isFirstTime) {
-            achievement.innerHTML = `
-                <div class="achievement-glow"></div>
-                <i class="fas fa-trophy"></i>
-                <h3>Secret Discovered!</h3>
-                <p>"The Designer's Code"</p>
-                <p class="achievement-subtext">You've uncovered the hidden sequence. Us designers see and make patterns everywhere.</p>
-            `;
+            // Create elements safely without innerHTML
+            const glow = document.createElement('div');
+            glow.className = 'achievement-glow';
+            achievement.appendChild(glow);
+
+            const icon = document.createElement('i');
+            icon.className = 'fas fa-trophy';
+            achievement.appendChild(icon);
+
+            const title = document.createElement('h3');
+            title.textContent = 'Secret Discovered!';
+            achievement.appendChild(title);
+
+            const subtitle = document.createElement('p');
+            subtitle.textContent = '"The Designer\'s Code"';
+            achievement.appendChild(subtitle);
+
+            const text = document.createElement('p');
+            text.className = 'achievement-subtext';
+            text.textContent = 'You\'ve uncovered the hidden sequence. Us designers see and make patterns everywhere.';
+            achievement.appendChild(text);
 
             // Play triumphant fanfare
             playFanfare();
@@ -124,12 +154,19 @@ document.addEventListener('DOMContentLoaded', function() {
             for (let i = 0; i < 30; i++) {
                 setTimeout(() => createParticle(), i * 100);
             }
-            } else {
-            achievement.innerHTML = `
-                <i class="fas fa-check-circle"></i>
-                <h3>Code Confirmed</h3>
-                <p class="achievement-subtext">You remember the sequence well.</p>
-            `;
+        } else {
+            const icon = document.createElement('i');
+            icon.className = 'fas fa-check-circle';
+            achievement.appendChild(icon);
+
+            const title = document.createElement('h3');
+            title.textContent = 'Code Confirmed';
+            achievement.appendChild(title);
+
+            const text = document.createElement('p');
+            text.className = 'achievement-subtext';
+            text.textContent = 'You remember the sequence well.';
+            achievement.appendChild(text);
 
             // Play simple chime
             playChime(523.25, 0.3);
@@ -146,13 +183,29 @@ document.addEventListener('DOMContentLoaded', function() {
     function unlockKonamiSecret() {
         const achievement = document.createElement('div');
         achievement.className = 'konami-achievement';
-        achievement.innerHTML = `
-            <div class="achievement-glow"></div>
-            <i class="fas fa-star"></i>
-            <h3>Master Navigator!</h3>
-            <p>"The Seven Paths"</p>
-            <p class="achievement-subtext">You've mastered the sacred navigation sequence. About → Education → Portfolio → Skills → Portfolio → Education → About</p>
-        `;
+
+        // Create elements safely without innerHTML
+        const glow = document.createElement('div');
+        glow.className = 'achievement-glow';
+        achievement.appendChild(glow);
+
+        const icon = document.createElement('i');
+        icon.className = 'fas fa-star';
+        achievement.appendChild(icon);
+
+        const title = document.createElement('h3');
+        title.textContent = 'Master Navigator!';
+        achievement.appendChild(title);
+
+        const subtitle = document.createElement('p');
+        subtitle.textContent = '"The Seven Paths"';
+        achievement.appendChild(subtitle);
+
+        const text = document.createElement('p');
+        text.className = 'achievement-subtext';
+        text.textContent = 'You\'ve mastered the sacred navigation sequence. About → Education → Portfolio → Skills → Portfolio → Education → About';
+        achievement.appendChild(text);
+
         document.body.appendChild(achievement);
 
         // Special rainbow particles
@@ -459,14 +512,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Typing effect for character name
+    // Typing effect for character name (secure version)
     function typeWriter(element, text, speed = 100) {
         let i = 0;
-        element.innerHTML = '';
+        element.textContent = '';
 
         function type() {
             if (i < text.length) {
-                element.innerHTML += text.charAt(i);
+                element.textContent += text.charAt(i);
                 i++;
                 setTimeout(type, speed);
             }
@@ -674,7 +727,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         document.head.appendChild(soundStyle);
 
-        feedback.innerHTML = '';
+        feedback.textContent = '';
         document.body.appendChild(feedback);
 
                 setTimeout(() => {
@@ -713,7 +766,7 @@ document.addEventListener('DOMContentLoaded', function() {
             font-size: 2rem;
             text-align: center;
         `;
-        loadingText.innerHTML = 'Loading Portfolio...';
+        loadingText.textContent = 'Loading Portfolio...';
         loader.appendChild(loadingText);
 
         const loadingStyle = document.createElement('style');
@@ -811,7 +864,23 @@ document.addEventListener('DOMContentLoaded', function() {
         const video = videoSources[videoType];
         if (video) {
             modalTitle.textContent = video.title;
-            modalBody.innerHTML = `<video class="modal-video" controls autoplay><source src="${video.src}" type="video/mp4">Your browser does not support the video tag.</video>`;
+
+            // Create video element safely
+            const videoElement = document.createElement('video');
+            videoElement.className = 'modal-video';
+            videoElement.controls = true;
+            videoElement.autoplay = true;
+
+            const source = document.createElement('source');
+            source.src = video.src;
+            source.type = 'video/mp4';
+
+            videoElement.appendChild(source);
+            videoElement.appendChild(document.createTextNode('Your browser does not support the video tag.'));
+
+            modalBody.innerHTML = '';
+            modalBody.appendChild(videoElement);
+
             modal.style.display = 'flex';
             modal.style.animation = 'fadeIn 0.3s ease-in-out';
         }
@@ -856,7 +925,16 @@ document.addEventListener('DOMContentLoaded', function() {
         const pdf = pdfSources[pdfType];
         if (pdf) {
             modalTitle.textContent = pdf.title;
-            modalBody.innerHTML = `<iframe class="modal-pdf" src="${pdf.src}#toolbar=1&navpanes=1&scrollbar=1" frameborder="0"></iframe>`;
+
+            // Create iframe element safely
+            const iframe = document.createElement('iframe');
+            iframe.className = 'modal-pdf';
+            iframe.src = pdf.src + '#toolbar=1&navpanes=1&scrollbar=1';
+            iframe.frameBorder = '0';
+
+            modalBody.innerHTML = '';
+            modalBody.appendChild(iframe);
+
             modal.style.display = 'flex';
             modal.style.animation = 'fadeIn 0.3s ease-in-out';
         }
@@ -1210,34 +1288,40 @@ function openFullImage(imageSrc) {
     const modalTitle = document.getElementById('modal-title');
     const modalBody = document.getElementById('modal-body');
 
+    // Clear modal body
+    modalBody.innerHTML = '';
+
+    // Create container safely
+    const container = document.createElement('div');
+    container.className = 'full-image-container';
+
+    const img = document.createElement('img');
+    img.className = 'full-image';
+    img.src = imageSrc;
+
+    const caption = document.createElement('p');
+    caption.className = 'full-image-caption';
+
     // Check if this is an ASUM image
     if (imageSrc.includes('ASUM')) {
         if (imageSrc.includes('poster.png')) {
             modalTitle.textContent = 'ASUM Campaign Poster';
-            modalBody.innerHTML = `
-                <div class="full-image-container">
-                    <img src="${imageSrc}" alt="Full size campaign poster" class="full-image">
-                    <p class="full-image-caption">ASUM Presidential Campaign Poster - Spring 2018</p>
-                </div>
-            `;
+            img.alt = 'Full size campaign poster';
+            caption.textContent = 'ASUM Presidential Campaign Poster - Spring 2018';
         } else {
             modalTitle.textContent = 'ASUM Presidential Campaign';
-            modalBody.innerHTML = `
-                <div class="full-image-container">
-                    <img src="${imageSrc}" alt="Full size campaign photo" class="full-image">
-                    <p class="full-image-caption">ASUM Presidential Campaign - Spring 2018</p>
-                </div>
-            `;
+            img.alt = 'Full size campaign photo';
+            caption.textContent = 'ASUM Presidential Campaign - Spring 2018';
         }
     } else {
         modalTitle.textContent = 'Professional Photo';
-        modalBody.innerHTML = `
-            <div class="full-image-container">
-                <img src="${imageSrc}" alt="Full size professional photo" class="full-image">
-                <p class="full-image-caption">Professional photo snapped by @vincasalesius, Vilnius' (LT) street photographer</p>
-            </div>
-        `;
+        img.alt = 'Full size professional photo';
+        caption.textContent = 'Professional photo snapped by @vincasalesius, Vilnius\' (LT) street photographer';
     }
+
+    container.appendChild(img);
+    container.appendChild(caption);
+    modalBody.appendChild(container);
 
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
