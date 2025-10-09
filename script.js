@@ -279,6 +279,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Portrait click = Submit/Check sequence
     const portraitImage = document.querySelector('.portrait-image');
     if (portraitImage) {
+        // Load saved portrait state from localStorage
+        const savedPortrait = localStorage.getItem('portraitState');
+        if (savedPortrait === 'funny') {
+            portraitImage.src = 'Assets/Hugues/funnysmiling.PNG';
+        }
+
         portraitImage.addEventListener('click', function() {
             // Check if sequence is correct
             const current = secretSequence.join(',');
@@ -290,13 +296,23 @@ document.addEventListener('DOMContentLoaded', function() {
                     // First time discovery
                     achievementUnlocked = true;
                     this.classList.add('portrait-spinning');
-                    
-                    // Change portrait to funny smiling version
-                    const portraitImg = document.querySelector('.portrait-image');
-                    if (portraitImg) {
-                        portraitImg.src = 'Assets/Hugues/funnysmiling.PNG';
-                    }
-                    
+
+                    // Change portrait 3 seconds in (1 second before animation ends)
+                    setTimeout(() => {
+                        const portraitImg = document.querySelector('.portrait-image');
+                        if (portraitImg) {
+                            // Toggle between original and funny
+                            const currentSrc = portraitImg.src;
+                            if (currentSrc.includes('funnysmiling.PNG')) {
+                                portraitImg.src = 'Assets/Hugues/roundvignette.jpg';
+                                localStorage.setItem('portraitState', 'original');
+                            } else {
+                                portraitImg.src = 'Assets/Hugues/funnysmiling.PNG';
+                                localStorage.setItem('portraitState', 'funny');
+                            }
+                        }
+                    }, 3000);
+
                     unlockAchievement(true);
                     resetSequence();
 
@@ -304,13 +320,31 @@ document.addEventListener('DOMContentLoaded', function() {
                         this.classList.remove('portrait-spinning');
                     }, 4000);
                 } else {
-                    // Already discovered, show simpler confirmation
+                    // Already discovered, do the same toggle with spinning
+                    this.classList.add('portrait-spinning');
+
+                    // Change portrait 3 seconds in (1 second before animation ends)
+                    setTimeout(() => {
+                        const portraitImg = document.querySelector('.portrait-image');
+                        if (portraitImg) {
+                            // Toggle between original and funny
+                            const currentSrc = portraitImg.src;
+                            if (currentSrc.includes('funnysmiling.PNG')) {
+                                portraitImg.src = 'Assets/Hugues/roundvignette.jpg';
+                                localStorage.setItem('portraitState', 'original');
+                            } else {
+                                portraitImg.src = 'Assets/Hugues/funnysmiling.PNG';
+                                localStorage.setItem('portraitState', 'funny');
+                            }
+                        }
+                    }, 3000);
+
                     unlockAchievement(false);
                     resetSequence();
 
-                    // Just a quick pulse
-                    this.style.animation = 'pulse 0.3s';
-                    setTimeout(() => this.style.animation = '', 300);
+                    setTimeout(() => {
+                        this.classList.remove('portrait-spinning');
+                    }, 4000);
                 }
             } else if (secretSequence.length > 0) {
                 // FAILED - show fail animation
