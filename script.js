@@ -290,6 +290,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     // First time discovery
                     achievementUnlocked = true;
                     this.classList.add('portrait-spinning');
+                    
+                    // Change portrait to funny smiling version
+                    const portraitImg = document.querySelector('.portrait-image');
+                    if (portraitImg) {
+                        portraitImg.src = 'Assets/Hugues/funnysmiling.PNG';
+                    }
+                    
                     unlockAchievement(true);
                     resetSequence();
 
@@ -953,10 +960,10 @@ function initializeEducationNavigation() {
 function initializeVideoHoverPlay() {
     // Find all project cards (the entire box including title, description, etc.)
     const projectCards = document.querySelectorAll('.project-card');
-    
+
     projectCards.forEach(card => {
         const video = card.querySelector('video');
-        
+
         if (video) {
             // Play video when hovering over the entire card
             card.addEventListener('mouseenter', function() {
@@ -965,7 +972,7 @@ function initializeVideoHoverPlay() {
                     console.log('Video autoplay prevented:', error);
                 });
             });
-            
+
             // Pause video when mouse leaves the entire card
             card.addEventListener('mouseleave', function() {
                 video.pause();
