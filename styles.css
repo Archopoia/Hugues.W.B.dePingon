@@ -1399,7 +1399,7 @@ body {
 
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
 }
 
@@ -1642,10 +1642,6 @@ body {
     }
 
     .contact-content {
-        grid-template-columns: 1fr;
-    }
-
-    .project-grid {
         grid-template-columns: 1fr;
     }
 
@@ -2573,11 +2569,10 @@ body {
 
 /* Hero Card - Full Width Feature */
 .project-card.hero-card {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 2rem;
-    padding: 2rem;
-    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem;
     background: var(--parchment-light);
     border: 4px solid var(--red-theme);
     border-radius: 20px;
@@ -2655,10 +2650,18 @@ body {
     background: var(--teal-theme);
 }
 
+/* Hero Cards Container - 2 Column Layout */
+.hero-cards-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
 /* Featured Grid - 3 Column Layout */
 .featured-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
     margin-top: 2rem;
 }
@@ -2758,15 +2761,76 @@ body {
     font-weight: 700;
 }
 
-/* Responsive Portfolio */
+/* Portrait Circle Animation */
+.portrait-image {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.portrait-image:hover {
+    transform: scale(1.05);
+}
+
+.portrait-spinning {
+    animation: spinAwayAndBack 3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes spinAwayAndBack {
+    0% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+    25% {
+        transform: translate(150vw, -150vh) scale(3) rotate(360deg);
+    }
+    50% {
+        transform: translate(150vw, 150vh) scale(4) rotate(720deg);
+    }
+    75% {
+        transform: translate(-150vw, 150vh) scale(3) rotate(1080deg);
+    }
+    100% {
+        transform: translate(0, 0) scale(1) rotate(1440deg);
+    }
+}
+
+/* Contact Tab Drop Animation */
+.tab-dropping {
+    animation: dropAndReturn 2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes dropAndReturn {
+    0% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(200vh);
+    }
+    60% {
+        transform: translateY(-200vh);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Portfolio - Tablets */
+@media (max-width: 1200px) {
+    .project-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Responsive Portfolio - Mobile */
 @media (max-width: 768px) {
-    .project-card.hero-card {
+    .hero-cards-container {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
-        padding: 1.5rem;
     }
 
     .featured-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-grid {
         grid-template-columns: 1fr;
     }
 

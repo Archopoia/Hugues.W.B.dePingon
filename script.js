@@ -779,7 +779,7 @@ function openFullImage(imageSrc) {
     const modal = document.getElementById('modal-overlay');
     const modalTitle = document.getElementById('modal-title');
     const modalBody = document.getElementById('modal-body');
-
+    
     modalTitle.textContent = 'Professional Photo';
     modalBody.innerHTML = `
         <div class="full-image-container">
@@ -787,7 +787,44 @@ function openFullImage(imageSrc) {
             <p class="full-image-caption">Professional photo snapped by @vincasalesius, Vilnius' (LT) street photographer</p>
         </div>
     `;
-
+    
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
 }
+
+// Portrait Spin Animation
+document.addEventListener('DOMContentLoaded', function() {
+    const portrait = document.querySelector('.portrait-image');
+    if (portrait) {
+        portrait.addEventListener('click', function() {
+            // Prevent multiple animations
+            if (this.classList.contains('portrait-spinning')) return;
+            
+            this.classList.add('portrait-spinning');
+            
+            // Remove class after animation completes
+            setTimeout(() => {
+                this.classList.remove('portrait-spinning');
+            }, 3000);
+        });
+    }
+
+    // Contact Tab Drop Animation
+    const contactTab = document.querySelector('[data-tab="contact"]');
+    if (contactTab) {
+        contactTab.addEventListener('click', function() {
+            const contactContent = document.getElementById('contact');
+            
+            // Prevent multiple animations
+            if (contactContent.classList.contains('tab-dropping')) return;
+            
+            // Add animation class
+            contactContent.classList.add('tab-dropping');
+            
+            // Remove class after animation completes
+            setTimeout(() => {
+                contactContent.classList.remove('tab-dropping');
+            }, 2000);
+        });
+    }
+});
