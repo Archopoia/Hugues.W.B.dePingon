@@ -2765,66 +2765,29 @@ body {
 .portrait-image {
     cursor: pointer;
     transition: transform 0.3s ease;
-    position: relative;
 }
 
 .portrait-spinning {
-    animation: spinAwayAndBack 3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    z-index: 9999 !important;
-    position: relative;
+    animation: spinCircle 4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 99999 !important;
+    position: fixed !important;
 }
 
-@keyframes spinAwayAndBack {
+@keyframes spinCircle {
     0% {
         transform: translate(0, 0) scale(1) rotate(0deg);
     }
     25% {
-        transform: translate(150vw, -150vh) scale(3) rotate(360deg);
+        transform: translate(80vw, -40vh) scale(2.5) rotate(360deg);
     }
     50% {
-        transform: translate(150vw, 150vh) scale(4) rotate(720deg);
+        transform: translate(80vw, 80vh) scale(3) rotate(720deg);
     }
     75% {
-        transform: translate(-150vw, 150vh) scale(3) rotate(1080deg);
+        transform: translate(-80vw, 80vh) scale(2.5) rotate(1080deg);
     }
     100% {
         transform: translate(0, 0) scale(1) rotate(1440deg);
-    }
-}
-
-/* Contact Tab Drop Animation */
-.tab-dropping {
-    animation: dropAndReturn 2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-@keyframes dropAndReturn {
-    0% {
-        transform: translateY(0);
-    }
-    40% {
-        transform: translateY(200vh);
-    }
-    60% {
-        transform: translateY(-200vh);
-    }
-    100% {
-        transform: translateY(0);
-    }
-}
-
-/* Coin Ping Animation */
-@keyframes coinPing {
-    0% {
-        transform: translate(-50%, -50%) scale(0.5);
-        opacity: 1;
-    }
-    50% {
-        transform: translate(-50%, -50%) scale(1.2);
-        opacity: 1;
-    }
-    100% {
-        transform: translate(-50%, -50%) scale(1.5) translateY(-50px);
-        opacity: 0;
     }
 }
 

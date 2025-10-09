@@ -1,5 +1,19 @@
 // Medieval Character Sheet Interactive Features
 document.addEventListener('DOMContentLoaded', function() {
+    // Portrait click animation
+    const portraitImage = document.querySelector('.portrait-image');
+    if (portraitImage) {
+        portraitImage.addEventListener('click', function() {
+            // Add spinning class
+            this.classList.add('portrait-spinning');
+
+            // Remove class after animation completes
+            setTimeout(() => {
+                this.classList.remove('portrait-spinning');
+            }, 4000); // Match the animation duration
+        });
+    }
+
     // Tab switching functionality
     const tabButtons = document.querySelectorAll('.tab-button');
     const tabContents = document.querySelectorAll('.tab-content');
@@ -791,84 +805,3 @@ function openFullImage(imageSrc) {
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
 }
-
-// Portrait Spin Animation
-document.addEventListener('DOMContentLoaded', function() {
-    const portrait = document.querySelector('.portrait-image');
-    if (portrait) {
-        // Trigger animation on hover
-        portrait.addEventListener('mouseenter', function() {
-            // Prevent multiple animations
-            if (this.classList.contains('portrait-spinning')) return;
-            
-            this.classList.add('portrait-spinning');
-            
-            // Remove class after animation completes
-            setTimeout(() => {
-                this.classList.remove('portrait-spinning');
-            }, 3000);
-        });
-
-        // Play coin sound when clicked during animation
-        portrait.addEventListener('click', function() {
-            if (this.classList.contains('portrait-spinning')) {
-                // Create coin ping sound using Web Audio API
-                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                const oscillator = audioContext.createOscillator();
-                const gainNode = audioContext.createGain();
-                
-                oscillator.connect(gainNode);
-                gainNode.connect(audioContext.destination);
-                
-                // Coin ping sound: high frequency with quick decay
-                oscillator.frequency.setValueAtTime(1000, audioContext.currentTime);
-                oscillator.frequency.exponentialRampToValueAtTime(2000, audioContext.currentTime + 0.05);
-                oscillator.frequency.exponentialRampToValueAtTime(800, audioContext.currentTime + 0.1);
-                
-                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
-                
-                oscillator.start(audioContext.currentTime);
-                oscillator.stop(audioContext.currentTime + 0.3);
-
-                // Visual feedback - golden flash
-                const flash = document.createElement('div');
-                flash.style.cssText = `
-                    position: fixed;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    font-size: 3rem;
-                    color: var(--gold-glow);
-                    text-shadow: 0 0 20px var(--gold-glow);
-                    pointer-events: none;
-                    z-index: 10000;
-                    animation: coinPing 0.5s ease-out;
-                `;
-                flash.innerHTML = '💰';
-                document.body.appendChild(flash);
-
-                setTimeout(() => flash.remove(), 500);
-            }
-        });
-    }
-
-    // Contact Tab Drop Animation
-    const contactTab = document.querySelector('[data-tab="contact"]');
-    if (contactTab) {
-        contactTab.addEventListener('click', function() {
-            const contactContent = document.getElementById('contact');
-
-            // Prevent multiple animations
-            if (contactContent.classList.contains('tab-dropping')) return;
-
-            // Add animation class
-            contactContent.classList.add('tab-dropping');
-
-            // Remove class after animation completes
-            setTimeout(() => {
-                contactContent.classList.remove('tab-dropping');
-            }, 2000);
-        });
-    }
-});
