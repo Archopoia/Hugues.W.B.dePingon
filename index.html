@@ -18,7 +18,7 @@
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://archopoia.github.io/Hugues.W.B.dePingon/" />
-    
+
     <!-- Favicon -->
     <link rel="icon" type="image/jpeg" href="Assets/Hugues/roundvignette.jpg">
     <link rel="shortcut icon" type="image/jpeg" href="Assets/Hugues/roundvignette.jpg">
@@ -171,7 +171,7 @@
       "email": "hugues.ii.w.b.depingon@gmail.com"
     }
     </script>
-    
+
     <!-- Additional Structured Data: Professional Profile -->
     <script type="application/ld+json">
     {
@@ -184,7 +184,7 @@
       "description": "Professional portfolio and biography of Hugues de Pingon, Lead Game Designer at OnceLost Games"
     }
     </script>
-    
+
     <!-- Structured Data: Creative Work - The Wayward Realms -->
     <script type="application/ld+json">
     {
@@ -218,7 +218,7 @@
       "url": "https://www.waywardrealms.com/"
     }
     </script>
-    
+
     <!-- Structured Data: Creative Work - The Discording Tales -->
     <script type="application/ld+json">
     {
@@ -242,7 +242,7 @@
       "datePublished": "2019"
     }
     </script>
-    
+
     <!-- Structured Data: Website with Search Action -->
     <script type="application/ld+json">
     {
@@ -259,7 +259,7 @@
       "inLanguage": "en"
     }
     </script>
-    
+
     <!-- Structured Data: Organization - OnceLost Games -->
     <script type="application/ld+json">
     {
@@ -285,7 +285,7 @@
       ]
     }
     </script>
-    
+
     <!-- Structured Data: Organization - Archopoetics -->
     <script type="application/ld+json">
     {
@@ -307,7 +307,7 @@
       ]
     }
     </script>
-    
+
     <!-- Structured Data: FAQ Schema -->
     <script type="application/ld+json">
     {
@@ -357,7 +357,7 @@
       ]
     }
     </script>
-    
+
     <!-- Structured Data: Breadcrumb Navigation -->
     <script type="application/ld+json">
     {
@@ -396,6 +396,14 @@
     <div class="character-sheet">
         <!-- Header with Character Name and Portrait -->
         <header class="character-header">
+            <!-- Language Switcher -->
+            <div class="language-switcher">
+                <button id="lang-toggle" class="lang-btn" onclick="toggleLanguage()" title="Switch Language / Changer de langue">
+                    <span class="lang-icon">🌐</span>
+                    <span class="lang-text" data-i18n="lang-name">EN</span>
+                </button>
+            </div>
+            
             <div class="portrait-frame">
                 <div class="portrait-placeholder">
                     <img src="Assets/Hugues/roundvignette.jpg" alt="Hugues de Pingon" class="portrait-image">
@@ -404,22 +412,22 @@
             </div>
             <div class="character-info">
                 <h1 class="character-name">Hugues William Brentone de Pingon</h1>
-                <p class="character-title">System designer, Worldbuilder & Philosopher</p>
+                <p class="character-title" data-i18n="subtitle">System designer, Worldbuilder & Philosopher</p>
                 <div class="character-stats">
                     <div class="stat-item">
-                        <span class="stat-label">Age</span>
+                        <span class="stat-label" data-i18n="age">Age</span>
                         <span class="stat-value">29</span>
         </div>
                     <div class="stat-item">
-                        <span class="stat-label">Current Role</span>
-                        <span class="stat-value">Lead Game Designer</span>
+                        <span class="stat-label" data-i18n="current-role">Current Role</span>
+                        <span class="stat-value" data-i18n="lead-game-designer">Lead Game Designer</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-label">Location</span>
+                        <span class="stat-label" data-i18n="location">Location</span>
                         <span class="stat-value">Tartu, Estonia</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-label">Origin</span>
+                        <span class="stat-label" data-i18n="origin">Origin</span>
                         <span class="stat-value">Switzerland</span>
                     </div>
                 </div>
@@ -430,31 +438,31 @@
         <nav class="sheet-tabs">
             <button class="tab-button active" data-tab="about">
                 <i class="fas fa-scroll"></i>
-                <span>About</span>
+                <span data-i18n="nav-about">About</span>
             </button>
             <button class="tab-button" data-tab="education">
                 <i class="fas fa-graduation-cap"></i>
-                <span>Education</span>
+                <span data-i18n="nav-education">Education</span>
             </button>
             <button class="tab-button" data-tab="academia">
                 <i class="fas fa-book"></i>
-                <span>Academia</span>
+                <span data-i18n="nav-academia">Academia</span>
             </button>
             <button class="tab-button" data-tab="experience">
                 <i class="fas fa-briefcase"></i>
-                <span>Experience</span>
+                <span data-i18n="nav-experience">Experience</span>
             </button>
             <button class="tab-button" data-tab="portfolio">
                 <i class="fas fa-gamepad"></i>
-                <span>Portfolio</span>
+                <span data-i18n="nav-portfolio">Portfolio</span>
             </button>
             <button class="tab-button" data-tab="skills">
                 <i class="fas fa-chart-bar"></i>
-                <span>Skills</span>
+                <span data-i18n="nav-skills">Skills</span>
             </button>
             <button class="tab-button" data-tab="contact">
                 <i class="fas fa-envelope"></i>
-                <span>Contact</span>
+                <span data-i18n="nav-contact">Contact</span>
             </button>
     </nav>
 
@@ -471,16 +479,16 @@
                 <div class="mission-statement">
                     <div class="mission-header">
                         <i class="fas fa-scroll"></i>
-                        <h3>Mission & Vision</h3>
+                        <h3 data-i18n="mission-vision">Mission & Vision</h3>
         </div>
                     <div class="mission-content">
-                        <p class="mission-text">
+                        <p class="mission-text" data-i18n="mission-text-1">
                             I identify the needs and expectations of diverse audiences—from business executives to neurodivergent children—and design systems and worlds that embody organizational vision through selective and rewarding processes.
                         </p>
-                        <p class="mission-text">
+                        <p class="mission-text" data-i18n="mission-text-2">
                             Specializing in integrating game AI (FSM/BT/Utility/GOAP) and LLMs into training systems, I create immersive experiences that enhance creativity and awareness of one's moral restraints through meaningful decision-making.
                         </p>
-                        <p class="mission-text">
+                        <p class="mission-text" data-i18n="mission-text-3">
                             With a background in experimental philosophy, epistemological ethnolinguistics, and evolutionary biopsychology, I explore how responsibilities and moralities influence foresight and innovation.
                         </p>
                 </div>
@@ -488,7 +496,7 @@
                     <!-- Mission Vision Image -->
                     <div class="mission-image">
                         <img src="Assets/Hugues/speakingatmicrophone.jpg" alt="Hugues speaking at microphone" class="mission-img">
-                        <p class="image-caption">Discussing the creation of new species with Ben Lamm at Brain Bar 2025 (CEO of Colossal, an American biotechnology and genetic engineering company working to de-extinct Mammoths, Dodos and Dire wolves)</p>
+                        <p class="image-caption" data-i18n="mission-image-caption">Discussing the creation of new species with Ben Lamm at Brain Bar 2025 (CEO of Colossal, an American biotechnology and genetic engineering company working to de-extinct Mammoths, Dodos and Dire wolves)</p>
             </div>
                         </div>
 
@@ -496,67 +504,67 @@
                 <div class="expertise-grid">
                     <div class="expertise-card theme-red">
                         <div class="expertise-icon"><i class="fas fa-crown"></i></div>
-                        <h4>Leadership & Direction</h4>
-                        <p>Team management, vision setting, and cross-department coordination for creative projects</p>
+                        <h4 data-i18n="expertise-leadership-title">Leadership & Direction</h4>
+                        <p data-i18n="expertise-leadership-desc">Team management, vision setting, and cross-department coordination for creative projects</p>
                         <div class="expertise-tags">
-                            <span>Team Lead</span>
-                            <span>Vision</span>
-                            <span>Coordination</span>
+                            <span data-i18n="tag-team-lead">Team Lead</span>
+                            <span data-i18n="tag-vision">Vision</span>
+                            <span data-i18n="tag-coordination">Coordination</span>
                     </div>
                 </div>
 
                     <div class="expertise-card theme-yellow">
                         <div class="expertise-icon"><i class="fas fa-gamepad"></i></div>
-                        <h4>Game Design</h4>
-                        <p>Systemic mechanics, UI/UX, worldbuilding, and player experience design for immersive games</p>
+                        <h4 data-i18n="expertise-gamedesign-title">Game Design</h4>
+                        <p data-i18n="expertise-gamedesign-desc">Systemic mechanics, UI/UX, worldbuilding, and player experience design for immersive games</p>
                         <div class="expertise-tags">
-                            <span>Mechanics</span>
-                            <span>Systems</span>
-                            <span>Worldbuilding</span>
+                            <span data-i18n="tag-mechanics">Mechanics</span>
+                            <span data-i18n="tag-systems">Systems</span>
+                            <span data-i18n="tag-worldbuilding">Worldbuilding</span>
             </div>
         </div>
 
                     <div class="expertise-card theme-green">
                         <div class="expertise-icon"><i class="fas fa-brain"></i></div>
-                        <h4>Philosophy & Ethics</h4>
-                        <p>Applied ethics, foresight studies, and moral frameworks in technology and creativity</p>
+                        <h4 data-i18n="expertise-philosophy-title">Philosophy & Ethics</h4>
+                        <p data-i18n="expertise-philosophy-desc">Applied ethics, foresight studies, and moral frameworks in technology and creativity</p>
                         <div class="expertise-tags">
-                            <span>Ethics</span>
-                            <span>Foresight</span>
-                            <span>Theory</span>
+                            <span data-i18n="tag-ethics">Ethics</span>
+                            <span data-i18n="tag-foresight">Foresight</span>
+                            <span data-i18n="tag-theory">Theory</span>
         </div>
         </div>
 
                     <div class="expertise-card theme-teal">
                         <div class="expertise-icon"><i class="fas fa-robot"></i></div>
-                        <h4>AI Systems</h4>
-                        <p>Game AI architectures, LLM integration, and intelligent NPC behavior systems</p>
+                        <h4 data-i18n="expertise-ai-title">AI Systems</h4>
+                        <p data-i18n="expertise-ai-desc">Game AI architectures, LLM integration, and intelligent NPC behavior systems</p>
                         <div class="expertise-tags">
-                            <span>GOAP</span>
-                            <span>Behavior Trees</span>
-                            <span>LLMs</span>
+                            <span data-i18n="tag-goap">GOAP</span>
+                            <span data-i18n="tag-behavior-trees">Behavior Trees</span>
+                            <span data-i18n="tag-llms">LLMs</span>
             </div>
                 </div>
 
                     <div class="expertise-card theme-purple">
                         <div class="expertise-icon"><i class="fas fa-globe-americas"></i></div>
-                        <h4>Worldbuilding</h4>
-                        <p>Extensive lore creation, cultural development, and narrative design for game universes</p>
+                        <h4 data-i18n="expertise-worldbuilding-title">Worldbuilding</h4>
+                        <p data-i18n="expertise-worldbuilding-desc">Extensive lore creation, cultural development, and narrative design for game universes</p>
                         <div class="expertise-tags">
-                            <span>Lore</span>
-                            <span>Culture</span>
-                            <span>Narrative</span>
+                            <span data-i18n="tag-lore">Lore</span>
+                            <span data-i18n="tag-culture">Culture</span>
+                            <span data-i18n="tag-narrative">Narrative</span>
                         </div>
                     </div>
 
                     <div class="expertise-card theme-orange">
                         <div class="expertise-icon"><i class="fas fa-palette"></i></div>
-                        <h4>Creative Direction</h4>
-                        <p>Visual design, graphic arts, and artistic direction for multimedia projects</p>
+                        <h4 data-i18n="expertise-creative-title">Creative Direction</h4>
+                        <p data-i18n="expertise-creative-desc">Visual design, graphic arts, and artistic direction for multimedia projects</p>
                         <div class="expertise-tags">
-                            <span>Photoshop</span>
-                            <span>InDesign</span>
-                            <span>Art Direction</span>
+                            <span data-i18n="tag-photoshop">Photoshop</span>
+                            <span data-i18n="tag-indesign">InDesign</span>
+                            <span data-i18n="tag-art-direction">Art Direction</span>
                         </div>
                     </div>
                         </div>
@@ -2697,6 +2705,7 @@
         </div>
     </div>
 
+    <script src="i18n.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
