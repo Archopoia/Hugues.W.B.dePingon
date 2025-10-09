@@ -1,11 +1,74 @@
 // Medieval Character Sheet Interactive Features
 document.addEventListener('DOMContentLoaded', function() {
-    // Hidden Minigame: Secret Code Quest
+    // Web Audio API - Medieval Sound Effects
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    
+    function playChime(frequency, duration = 0.15) {
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
+        
+        gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+        
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + duration);
+    }
+    
+    function playAscendingChime(index) {
+        const notes = [261.63, 329.63, 392.00, 523.25]; // C-E-G-C
+        playChime(notes[index], 0.2);
+    }
+    
+    function playDiscordantBuzz() {
+        for (let i = 0; i < 3; i++) {
+            setTimeout(() => {
+                playChime(110 + Math.random() * 50, 0.1);
+            }, i * 80);
+        }
+    }
+    
+    function playFanfare() {
+        const fanfare = [523.25, 659.25, 783.99, 1046.50]; // C-E-G-C (high octave)
+        fanfare.forEach((freq, i) => {
+            setTimeout(() => playChime(freq, 0.3), i * 200);
+        });
+    }
+    
+    function playGentleBell() {
+        playChime(523.25, 0.25); // Gentle C note
+    }
+
+    // Hidden Minigame: Secret Code Quest with Daily Randomization
     let secretSequence = [];
-    const correctSequence = ['age', 'origin', 'location', 'currentrole'];
+    
+    // Generate daily sequence (always starts with 'age')
+    const today = new Date().getDay();
+    const remainingStats = ['origin', 'location', 'currentrole'];
+    const dailySequences = [
+        ['age', 'origin', 'location', 'currentrole'],      // Sunday (default)
+        ['age', 'location', 'currentrole', 'origin'],      // Monday
+        ['age', 'currentrole', 'origin', 'location'],      // Tuesday
+        ['age', 'origin', 'currentrole', 'location'],      // Wednesday
+        ['age', 'location', 'origin', 'currentrole'],      // Thursday
+        ['age', 'currentrole', 'location', 'origin'],      // Friday
+        ['age', 'origin', 'location', 'currentrole'],      // Saturday (same as Sunday)
+    ];
+    const correctSequence = dailySequences[today];
+    
     let resetTimer = null;
     let achievementUnlocked = false;
     let lockedStats = [];
+    
+    // Konami-style Tab Code Easter Egg
+    let tabSequence = [];
+    const konamiTabCode = ['about', 'education', 'portfolio', 'skills', 'portfolio', 'education', 'about']; // A-E-P-S-P-E-A
+    let konamiUnlocked = false;
 
     function resetSequence() {
         secretSequence = [];
@@ -31,6 +94,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const failFlash = document.createElement('div');
         failFlash.className = 'fail-flash';
         document.body.appendChild(failFlash);
+        
+        // Play discordant buzz
+        playDiscordantBuzz();
 
         setTimeout(() => {
             sheet.classList.remove('shake-fail');
@@ -51,6 +117,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 <p class="achievement-subtext">You've uncovered the hidden sequence. Us designers see and make patterns everywhere.</p>
             `;
 
+            // Play triumphant fanfare
+            playFanfare();
+
             // Create particle effects
             for (let i = 0; i < 30; i++) {
                 setTimeout(() => createParticle(), i * 100);
@@ -61,6 +130,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 <h3>Code Confirmed</h3>
                 <p class="achievement-subtext">You remember the sequence well.</p>
             `;
+            
+            // Play simple chime
+            playChime(523.25, 0.3);
         }
 
         document.body.appendChild(achievement);
@@ -69,6 +141,44 @@ document.addEventListener('DOMContentLoaded', function() {
             achievement.style.animation = 'fadeOut 1s forwards';
             setTimeout(() => achievement.remove(), 1000);
         }, isFirstTime ? 5000 : 3000);
+    }
+    
+    function unlockKonamiSecret() {
+        const achievement = document.createElement('div');
+        achievement.className = 'konami-achievement';
+        achievement.innerHTML = `
+            <div class="achievement-glow"></div>
+            <i class="fas fa-star"></i>
+            <h3>Master Navigator!</h3>
+            <p>"The Seven Paths"</p>
+            <p class="achievement-subtext">You've mastered the sacred navigation sequence. About → Education → Portfolio → Skills → Portfolio → Education → About</p>
+        `;
+        document.body.appendChild(achievement);
+        
+        // Special rainbow particles
+        for (let i = 0; i < 50; i++) {
+            setTimeout(() => createRainbowParticle(), i * 60);
+        }
+        
+        // Play special fanfare
+        setTimeout(() => playFanfare(), 200);
+        setTimeout(() => playFanfare(), 600);
+
+        setTimeout(() => {
+            achievement.style.animation = 'fadeOut 1s forwards';
+            setTimeout(() => achievement.remove(), 1000);
+        }, 6000);
+    }
+    
+    function createRainbowParticle() {
+        const particle = document.createElement('div');
+        particle.className = 'rainbow-particle';
+        const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#6c5ce7', '#a29bfe'];
+        particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+        particle.style.left = Math.random() * 100 + 'vw';
+        particle.style.animationDelay = Math.random() * 2 + 's';
+        document.body.appendChild(particle);
+        setTimeout(() => particle.remove(), 3000);
     }
 
     function createParticle() {
@@ -87,42 +197,44 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add subtle hint to Age stat (first in sequence)
     let hintInterval;
     function startAgeHint() {
-        const ageStat = Array.from(stats).find(stat => 
+        const ageStat = Array.from(stats).find(stat =>
             stat.querySelector('.stat-label').textContent.toLowerCase().replace(/\s/g, '') === 'age'
         );
-        
+
         if (ageStat) {
             // Add periodic subtle pulse to Age stat (continues until achievement unlocked)
             hintInterval = setInterval(() => {
                 if (secretSequence.length === 0 && !ageStat.classList.contains('stat-locked') && !achievementUnlocked) {
                     ageStat.classList.add('stat-hint-pulse');
+                    playGentleBell(); // Play gentle bell on hint
                     setTimeout(() => ageStat.classList.remove('stat-hint-pulse'), 2000);
                 }
             }, 8000); // Pulse every 8 seconds
-            
+
             // Do first pulse immediately
-    setTimeout(() => {
+            setTimeout(() => {
                 if (secretSequence.length === 0 && !achievementUnlocked) {
                     ageStat.classList.add('stat-hint-pulse');
+                    playGentleBell(); // Play gentle bell on first hint
                     setTimeout(() => ageStat.classList.remove('stat-hint-pulse'), 2000);
                 }
             }, 2000); // First hint after 2 seconds on page
         }
     }
-    
+
     // Start the hint system
     startAgeHint();
 
     function updatePortraitFeedback() {
         const count = secretSequence.length;
-        
+
         // Remove all previous vibration classes
         portraitFrame.classList.remove('portrait-vibrate-1', 'portrait-vibrate-2', 'portrait-vibrate-3', 'portrait-vibrate-4');
-        
+
         if (count > 0 && count <= 4) {
             portraitFrame.classList.add(`portrait-vibrate-${count}`);
         }
-        
+
         // Age hint continues until achievement is unlocked (not just when sequence starts)
     }
 
@@ -139,6 +251,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 lockedStats.push(this);
 
                 secretSequence.push(label);
+                
+                // Play ascending chime based on position in sequence
+                playAscendingChime(secretSequence.length - 1);
 
                 // Update portrait feedback based on sequence length
                 updatePortraitFeedback();
@@ -225,6 +340,18 @@ document.addEventListener('DOMContentLoaded', function() {
     tabButtons.forEach(button => {
         button.addEventListener('click', function() {
             const targetTab = this.getAttribute('data-tab');
+
+            // Konami Tab Code Tracking
+            tabSequence.push(targetTab);
+            if (tabSequence.length > konamiTabCode.length) {
+                tabSequence.shift(); // Keep only last 7 tabs
+            }
+            
+            // Check if Konami code matched
+            if (tabSequence.join(',') === konamiTabCode.join(',') && !konamiUnlocked) {
+                konamiUnlocked = true;
+                unlockKonamiSecret();
+            }
 
             // Remove active class from all buttons and contents
             tabButtons.forEach(btn => btn.classList.remove('active'));
