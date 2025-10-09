@@ -2733,6 +2733,31 @@ body {
     color: var(--text-dark);
 }
 
+/* Project Videos */
+.project-video {
+    margin-top: 1rem;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid var(--border-tan);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.project-video-player {
+    width: 100%;
+    height: 200px;
+    display: block;
+    background: var(--parchment-dark);
+    border: none;
+    object-fit: cover;
+}
+
+/* Ribbon Current Style */
+.ribbon-current {
+    background: linear-gradient(135deg, var(--gold-glow) 0%, #b8860b 100%);
+    color: var(--text-dark);
+    font-weight: 700;
+}
+
 /* Responsive Portfolio */
 @media (max-width: 768px) {
     .project-card.hero-card {
