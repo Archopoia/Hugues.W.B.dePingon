@@ -18,6 +18,9 @@ body {
     /* Text Colors */
     --text-dark: #4d3000;
     --text-cream: #F3E2A9;
+
+    /* Prevent scroll bounce */
+    overscroll-behavior: none;
     --text-light: #fff6df;
 
     /* Attribute Theme Colors (from your analysis) */
@@ -2043,6 +2046,58 @@ body {
         0px 0px 10px 1px var(--focus-glow) inset;
 }
 
+/* Coming Soon Academic Card */
+.academic-card.coming-soon {
+    position: relative;
+    opacity: 0.9;
+}
+
+.academic-card.coming-soon:hover {
+    transform: none;
+    box-shadow: 0px 0px 10px 1px #421212 inset;
+}
+
+.work-preview-small.placeholder {
+    background: linear-gradient(135deg, var(--parchment-aged) 0%, var(--parchment-dark) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 150px;
+}
+
+.placeholder-content {
+    text-align: center;
+    color: var(--text-dark);
+    opacity: 0.6;
+}
+
+.placeholder-content i {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.placeholder-content p {
+    font-size: 1rem;
+    font-style: italic;
+    margin: 0;
+}
+
+.coming-soon-badge {
+    background: var(--red-theme);
+    color: var(--text-cream);
+    padding: 0.5rem 1rem;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
 .academic-card h4 {
     font-family: 'Quintessential', cursive;
     color: var(--text-dark);
@@ -3306,6 +3361,71 @@ body {
     margin-top: 0.1rem;
     color: var(--red-theme);
     font-family: 'Quintessential', cursive;
+}
+
+/* Mission Image */
+.mission-image {
+    width: 100%;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.mission-img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    border: 3px solid var(--border-tan);
+    box-shadow:
+        0 0 20px rgba(0, 0, 0, 0.1),
+        inset 0 0 0 2px var(--border-tan);
+    transition: all var(--transition-speed);
+}
+
+.mission-img:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.2),
+        0 0 20px var(--gold-glow),
+        inset 0 0 0 2px var(--border-tan);
+}
+
+.image-caption {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text-dark);
+    text-align: center;
+    font-style: italic;
+    margin-top: 1rem;
+    padding: 0 1rem;
+    opacity: 0.85;
+}
+
+/* Location Image */
+.location-image {
+    width: 100%;
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.location-img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    border: 3px solid var(--border-tan);
+    box-shadow:
+        0 0 20px rgba(0, 0, 0, 0.1),
+        inset 0 0 0 2px var(--border-tan);
+    transition: all var(--transition-speed);
+}
+
+.location-img:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.2),
+        0 0 20px var(--gold-glow),
+        inset 0 0 0 2px var(--border-tan);
 }
 
 /* Expertise Grid */

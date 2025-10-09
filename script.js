@@ -289,7 +289,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         document.head.appendChild(soundStyle);
 
-        feedback.innerHTML = '✨';
+        feedback.innerHTML = '';
         document.body.appendChild(feedback);
 
         setTimeout(() => {
