@@ -254,7 +254,7 @@ function applyLanguage(lang) {
             }
         }
     });
-    
+ 
     // Update language button text and flag icon
     const langText = document.querySelector('.lang-text');
     const flagIcon = document.querySelector('#flag-icon');
@@ -266,7 +266,7 @@ function applyLanguage(lang) {
     if (flagIcon) {
         flagIcon.textContent = lang === 'fr' ? '🇫🇷' : '🇬🇧';
     }
-    
+ 
     // Update document title
     if (lang === 'fr') {
         document.title = "Hugues de Pingon | Lead Game Designer, Philosophe & Concepteur de Systèmes";

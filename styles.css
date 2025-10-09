@@ -5037,7 +5037,12 @@ body {
     position: fixed;
     top: 1.5rem;
     right: 1.5rem;
-    z-index: 1000;
+    z-index: 999;
+    pointer-events: none; /* Allow clicks to pass through to content below */
+}
+
+.language-switcher .lang-btn {
+    pointer-events: auto; /* Re-enable clicks on the button itself */
 }
 
 .lang-btn {
@@ -5072,6 +5077,8 @@ body {
 .flag-icon {
     font-size: 1.25rem;
     filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.2));
+    min-width: 24px;
+    text-align: center;
 }
 
 .lang-text {
@@ -5087,16 +5094,16 @@ body {
         top: 1rem;
         right: 1rem;
     }
-    
+
     .lang-btn {
         padding: 0.6rem 1rem;
         font-size: 0.9rem;
     }
-    
+
     .flag-icon {
         font-size: 1.1rem;
     }
-    
+
     .lang-text {
         font-size: 0.85rem;
     }
@@ -5107,7 +5114,7 @@ body {
         top: 0.75rem;
         right: 0.75rem;
     }
-    
+
     .lang-btn {
         padding: 0.5rem 0.85rem;
     }
