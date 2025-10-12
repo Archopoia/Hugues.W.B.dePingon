@@ -349,6 +349,40 @@ const translations = {
         "coming-soon": "Coming Soon",
         "not-yet-available": "Not Yet Available",
 
+        // Months
+        "january": "January",
+        "february": "February",
+        "march": "March",
+        "april": "April",
+        "may": "May",
+        "june": "June",
+        "july": "July",
+        "august": "August",
+        "september": "September",
+        "october": "October",
+        "november": "November",
+        "december": "December",
+
+        // Abbreviated months
+        "jan": "Jan",
+        "feb": "Feb",
+        "mar": "Mar",
+        "apr": "Apr",
+        "may": "May",
+        "jun": "Jun",
+        "jul": "Jul",
+        "aug": "Aug",
+        "sep": "Sep",
+        "oct": "Oct",
+        "nov": "Nov",
+        "dec": "Dec",
+
+        // Seasons
+        "spring": "Spring",
+        "summer": "Summer",
+        "fall": "Fall",
+        "winter": "Winter",
+
         // Tech Tags
         "tech-game-design": "Game Design",
         "tech-rpg-systems": "RPG Systems",
@@ -731,6 +765,40 @@ const translations = {
         "cum-laude": "SUMMA CUM LAUDE",
         "coming-soon": "Bientôt disponible",
         "not-yet-available": "Pas encore disponible",
+
+        // Months
+        "january": "Janvier",
+        "february": "Février",
+        "march": "Mars",
+        "april": "Avril",
+        "may": "Mai",
+        "june": "Juin",
+        "july": "Juillet",
+        "august": "Août",
+        "september": "Septembre",
+        "october": "Octobre",
+        "november": "Novembre",
+        "december": "Décembre",
+
+        // Abbreviated months
+        "jan": "Jan",
+        "feb": "Fév",
+        "mar": "Mar",
+        "apr": "Avr",
+        "may": "Mai",
+        "jun": "Juin",
+        "jul": "Juil",
+        "aug": "Août",
+        "sep": "Sep",
+        "oct": "Oct",
+        "nov": "Nov",
+        "dec": "Déc",
+
+        // Seasons
+        "spring": "Printemps",
+        "summer": "Été",
+        "fall": "Automne",
+        "winter": "Hiver",
 
         // Tech Tags
         "tech-game-design": "Game Design",
