@@ -1,0 +1,108 @@
+/* ========================================
+   BASE STYLES
+   CSS Variables, Resets, and Global Styles
+   ======================================== */
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+:root {
+    /* Parchment Colors - Based on your character sheet analysis */
+    --parchment-bg: #9c8e72;
+    --parchment-light: #fffaec;
+    --parchment-aged: #e8dcc0;
+    --parchment-sublight: #fff5d3;
+    --parchment-dark: #d4c4a8;
+
+    /* Text Colors */
+    --text-dark: #4d3000;
+    --text-cream: #F3E2A9;
+
+    /* Prevent scroll bounce */
+    overscroll-behavior: none;
+    --text-light: #fff6df;
+
+    /* Attribute Theme Colors (from your analysis) */
+    --red-theme: #643030;
+    --red-theme-alpha: #643030b9;
+    --yellow-theme: #776c48;
+    --yellow-theme-alpha: #776c48b9;
+    --green-theme: #567251;
+    --green-theme-alpha: #567251b9;
+    --teal-theme: #517c78;
+    --teal-theme-alpha: #517c78b9;
+    --purple-theme: #6b5472;
+    --purple-theme-alpha: #6b5472b9;
+    --orange-theme: #8b6844;
+    --orange-theme-alpha: #8b6844b9;
+
+    /* Borders & Shadows */
+    --border-tan: #ceb68d;
+    --border-brown: #a18b64;
+    --border-dark: #674B1B;
+    --shadow-dark: #574b35;
+    --shadow-darker: #493f2e;
+
+    /* Interactive States */
+    --hover-bg: #fff6df;
+    --active-bg: #dfc79d;
+    --disabled-bg: #998663;
+    --focus-glow: #eacb66;
+
+    /* Highlight Colors */
+    --cyan-bright: #42ffd6;
+    --cyan-mint: rgb(104, 255, 222);
+    --gold-glow: #ffebc6;
+
+    /* Transitions */
+    --transition-speed: 0.4s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Quintessential', cursive;
+    background:
+        /* url('Assets/Background.jpg') center center / 80% 100% no-repeat, */ /* Hidden for now, might use later */
+        radial-gradient(#6100001f 3px, transparent 4px),
+        radial-gradient(#6100001f 3px, transparent 4px),
+        linear-gradient(var(--parchment-bg) 4px, transparent 0),
+        linear-gradient(45deg, transparent 74px, #78c9a3 75px, transparent 76px, transparent 109px),
+        linear-gradient(-45deg, transparent 75px, #78c9a3 76px, transparent 77px, transparent 109px),
+        var(--parchment-bg);
+    background-size: 109px 109px, 109px 109px, 100% 6px, 109px 109px, 109px 109px;
+    background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
+    color: var(--text-dark);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--burgundy-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gold);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gold-light);
+}
+

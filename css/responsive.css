@@ -1,0 +1,257 @@
+/* ========================================
+   RESPONSIVE DESIGN
+   All Media Queries for Different Screen Sizes
+   ======================================== */
+
+/* Tablets */
+@media (max-width: 1200px) {
+    .project-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Tablets and smaller */
+@media (max-width: 768px) {
+    .character-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .character-name {
+        font-size: 2rem;
+    }
+
+    .character-stats {
+        justify-content: center;
+    }
+
+    .profile-content {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-content {
+        grid-template-columns: 1fr;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .academic-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sheet-tabs {
+        flex-wrap: wrap;
+    }
+
+    .tab-button {
+        min-width: 100px;
+        padding: 0.8rem 0.3rem;
+    }
+
+    .tab-button span {
+        font-size: 0.8rem;
+    }
+
+    /* Portfolio Responsive */
+    .hero-cards-container {
+        grid-template-columns: 1fr;
+    }
+
+    .featured-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .portfolio-nav {
+        gap: 0.5rem;
+    }
+
+    .port-nav-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    /* Skills Responsive */
+    .skills-nav {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+    }
+
+    .skill-nav-btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.85rem;
+    }
+
+    .attributes-wheel {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .attribute-card-lg {
+        padding: 1rem;
+    }
+
+    .attr-level {
+        font-size: 2rem;
+    }
+
+    .skill-items-enhanced {
+        grid-template-columns: 1fr;
+    }
+
+    .languages-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* About Responsive */
+    .character-stats-panel {
+        grid-template-columns: 1fr;
+    }
+
+    .expertise-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .journey-node {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .journey-connector {
+        margin-left: auto;
+    }
+
+    .interests-cloud {
+        justify-content: flex-start;
+    }
+
+    /* Media Previews Responsive */
+    .project-video,
+    .pdf-preview {
+        height: 150px;
+    }
+
+    .modal-content {
+        max-width: 95vw;
+        max-height: 95vh;
+    }
+
+    .modal-video,
+    .modal-pdf {
+        height: calc(95vh - 80px);
+    }
+
+    .academic-works-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+
+    .work-preview-small {
+        height: 120px;
+    }
+
+    /* Contact Tab Responsive */
+    .contact-method-selector {
+        flex-direction: column;
+    }
+
+    .method-btn {
+        width: 100%;
+    }
+
+    .quest-options {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .quest-navigation {
+        flex-direction: column;
+    }
+
+    .quest-progress {
+        order: -1;
+        margin-bottom: 1rem;
+    }
+
+    .direct-contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .social-platforms-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 400px;
+    }
+
+    .community-callout {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem;
+    }
+
+    /* Language Switcher Responsive */
+    .language-switcher {
+        top: 1rem;
+        right: 1rem;
+    }
+
+    .lang-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .flag-icon {
+        width: 22px;
+        height: 11px;
+    }
+
+    .lang-text {
+        font-size: 0.85rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .character-sheet {
+        margin: 0;
+        border-radius: 0;
+        border: none;
+    }
+
+    .sheet-content {
+        padding: 1rem;
+    }
+
+    .character-name {
+        font-size: 1.8rem;
+    }
+
+    .content-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .academic-stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .academic-stat .stat-label {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+        min-width: 100px;
+    }
+
+    /* Language Switcher Mobile */
+    .language-switcher {
+        top: 0.75rem;
+        right: 0.75rem;
+    }
+
+    .lang-btn {
+        padding: 0.5rem 0.85rem;
+    }
+}

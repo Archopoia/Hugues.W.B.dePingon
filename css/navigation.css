@@ -1,0 +1,328 @@
+/* ========================================
+   NAVIGATION STYLES
+   Tab Navigation and All Nav Elements
+   ======================================== */
+
+/* Navigation Tabs - Crystal Chronicles Style */
+.sheet-tabs {
+    display: flex;
+    background: var(--parchment-light);
+    border-bottom: 3px solid var(--border-dark);
+    overflow-x: auto;
+    position: relative;
+    z-index: 10;
+    box-shadow: inset 0 0 0 2px var(--border-tan);
+}
+
+.sheet-tabs::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 15px,
+            rgba(184, 134, 11, 0.05) 15px,
+            rgba(184, 134, 11, 0.05) 16px
+        );
+    pointer-events: none;
+    z-index: 1;
+}
+
+.tab-button {
+    flex: 1;
+    background: var(--gold-glow);
+    border: 3px solid var(--border-dark);
+    border-bottom: none;
+    color: var(--text-dark);
+    padding: 1rem 0.5rem;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Quintessential', cursive;
+    font-weight: 600;
+    position: relative;
+    min-width: 120px;
+    box-shadow: 0px 0px 10px 1px #421212 inset;
+    z-index: 1;
+}
+
+.tab-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 30% 30%, rgba(184, 134, 11, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(184, 134, 11, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.tab-button:hover {
+    background: var(--hover-bg);
+    transform: scale(1.02, 1.02);
+    box-shadow:
+        0 0 15px 8px var(--gold-glow),
+        0 0 30px 15px #72522f75,
+        0px 0px 10px 1px var(--focus-glow) inset;
+    z-index: 999;
+}
+
+.tab-button.active {
+    background: var(--text-light);
+    box-shadow:
+        0px 0px 20px 5px var(--gold-glow),
+        0px 0px 10px 1px var(--focus-glow) inset;
+}
+
+.tab-button i {
+    font-size: 1.2rem;
+}
+
+.tab-button span {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Education Navigation */
+.education-nav {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.edu-nav-btn {
+    background: var(--parchment-light);
+    border: 3px solid var(--border-tan);
+    border-radius: 25px;
+    padding: 0.75rem 1.5rem;
+    font-family: 'Quintessential', cursive;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    position: relative;
+    overflow: hidden;
+}
+
+.edu-nav-btn:hover {
+    background: var(--hover-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.edu-nav-btn.active {
+    background: var(--red-theme);
+    color: var(--text-cream);
+    border-color: var(--red-theme);
+    box-shadow:
+        0 0 15px var(--red-theme),
+        inset 0 0 0 2px var(--text-cream);
+}
+
+/* Portfolio Navigation Pills */
+.portfolio-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.port-nav-btn {
+    background: var(--parchment-aged);
+    color: var(--text-dark);
+    border: 2px solid var(--border-dark);
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    font-family: 'Quintessential', cursive;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.port-nav-btn:hover {
+    background: var(--hover-bg);
+    transform: translateY(-3px);
+    box-shadow:
+        0 0 15px 5px var(--gold-glow),
+        0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.port-nav-btn.active {
+    background: var(--red-theme);
+    color: var(--text-cream);
+    box-shadow:
+        0 0 20px 5px var(--gold-glow),
+        0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.port-nav-btn i {
+    font-size: 1.1rem;
+}
+
+/* Skills Navigation */
+.skills-nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin: 2rem auto;
+    max-width: 800px;
+}
+
+.skill-nav-btn {
+    background: var(--parchment-aged);
+    color: var(--text-dark);
+    border: 2px solid var(--border-dark);
+    padding: 0.7rem 1.2rem;
+    border-radius: 20px;
+    font-family: 'Quintessential', cursive;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.skill-nav-btn:hover {
+    background: var(--hover-bg);
+    transform: translateY(-2px);
+    box-shadow:
+        0 0 12px 4px var(--gold-glow),
+        0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.skill-nav-btn.active {
+    background: var(--red-theme);
+    color: var(--text-cream);
+    box-shadow:
+        0 0 15px 5px var(--gold-glow),
+        0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Contact Method Selector */
+.contact-method-selector {
+    display: flex;
+    gap: 1rem;
+    margin: 2rem 0;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.method-btn {
+    background: var(--parchment-light);
+    border: 3px solid var(--border-dark);
+    border-radius: 15px;
+    padding: 1rem 2rem;
+    font-family: 'Quintessential', cursive;
+    font-size: 1rem;
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.method-btn i {
+    font-size: 1.5rem;
+}
+
+.method-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    border-color: var(--red-theme);
+}
+
+.method-btn.active {
+    background: var(--red-theme);
+    color: var(--text-cream);
+    border-color: var(--red-theme);
+    box-shadow: 0 0 20px rgba(139, 0, 0, 0.3);
+}
+
+/* Language Switcher */
+.language-switcher {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 999;
+    pointer-events: none;
+}
+
+.language-switcher .lang-btn {
+    pointer-events: auto;
+}
+
+.lang-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: var(--parchment-aged);
+    border: 2px solid var(--border-brown);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 1rem;
+}
+
+.lang-btn:hover {
+    background: var(--hover-bg);
+    border-color: var(--border-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.lang-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.flag-icon {
+    width: 24px;
+    height: 12px;
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.2));
+    border-radius: 2px;
+    object-fit: cover;
+}
+
+.lang-text {
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    min-width: 25px;
+    text-align: center;
+}
+
+.lang-btn.switching {
+    animation: langSwitch 0.3s ease;
+}
+
