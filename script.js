@@ -1059,7 +1059,7 @@ document.addEventListener('keydown', function(e) {
     // Alpine Education Card Video Hover-to-Play
     initializeAlpineEducationVideo();
 
-    console.log('Medieval Character Sheet with Interactive Portfolio loaded successfully! ⚔️');
+    console.log('Interactive Portfolio-Character Sheet loaded successfully!');
 });
 
 function initializeEducationNavigation() {
@@ -1313,10 +1313,21 @@ function openFullImage(imageSrc) {
             img.alt = 'Full size campaign photo';
             caption.textContent = 'ASUM Presidential Campaign - Spring 2018';
         }
+    } else if (imageSrc.includes('fullfashion')) {
+        // Vilnius photo - no title
+        modalTitle.style.display = 'none';
+        img.alt = 'Full size photo';
+        caption.textContent = '';
     } else {
-        modalTitle.textContent = 'Professional Photo';
-        img.alt = 'Full size professional photo';
-        caption.textContent = 'Professional photo snapped by @vincasalesius, Vilnius\' (LT) street photographer';
+        modalTitle.textContent = '';
+        modalTitle.style.display = 'none';
+        img.alt = 'Full size photo';
+        caption.textContent = '';
+    }
+
+    // Reset title display for ASUM images
+    if (imageSrc.includes('ASUM')) {
+        modalTitle.style.display = 'block';
     }
 
     container.appendChild(img);

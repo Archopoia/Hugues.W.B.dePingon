@@ -3306,11 +3306,11 @@ body {
 
 /* Skills Navigation */
 .skills-nav {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 0.75rem;
-    margin: 2rem 0;
-    flex-wrap: wrap;
+    margin: 2rem auto;
+    max-width: 800px;
 }
 
 .skill-nav-btn {
@@ -3368,7 +3368,7 @@ body {
 
 .attributes-wheel {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
     margin-top: 2rem;
 }
@@ -3745,6 +3745,7 @@ body {
 /* Responsive Skills */
 @media (max-width: 768px) {
     .skills-nav {
+        grid-template-columns: repeat(2, 1fr);
         gap: 0.5rem;
     }
 
@@ -3754,7 +3755,7 @@ body {
     }
 
     .attributes-wheel {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
     }
 
