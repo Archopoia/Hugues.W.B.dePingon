@@ -49,7 +49,15 @@ async function loadSection(sectionName) {
                 
                 // Reinitialize any section-specific features
                 if (sectionName === 'portfolio') {
+                    initializePortfolioNavigation();
                     initializeVideoHoverPlay();
+                }
+                if (sectionName === 'skills') {
+                    initializeSkillsNavigation();
+                    setTimeout(() => animateSkillBars(), 300);
+                }
+                if (sectionName === 'contact') {
+                    initializeContactMethods();
                 }
                 if (sectionName === 'education') {
                     initializeEducationNavigation();
@@ -1048,62 +1056,72 @@ document.addEventListener('keydown', function(e) {
         }
     };
 
-    // Portfolio Category Filtering
-    const portNavBtns = document.querySelectorAll('.port-nav-btn');
-    const portfolioCategories = document.querySelectorAll('.portfolio-category');
+    // Portfolio Category Filtering - Function for reinitialization
+    function initializePortfolioNavigation() {
+        const portNavBtns = document.querySelectorAll('.port-nav-btn');
+        const portfolioCategories = document.querySelectorAll('.portfolio-category');
 
-    portNavBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const category = this.getAttribute('data-category');
+        portNavBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const category = this.getAttribute('data-category');
 
-            // Update active button
-            portNavBtns.forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
+                // Update active button
+                portNavBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
 
-            // Show/hide categories with animation
-            portfolioCategories.forEach(cat => {
-                if (cat.getAttribute('data-category') === category) {
-                    cat.style.display = 'block';
-                    cat.style.animation = 'fadeIn 0.5s ease-in-out';
-                } else {
-                    cat.style.display = 'none';
-                }
+                // Show/hide categories with animation
+                portfolioCategories.forEach(cat => {
+                    if (cat.getAttribute('data-category') === category) {
+                        cat.style.display = 'block';
+                        cat.style.animation = 'fadeIn 0.5s ease-in-out';
+                    } else {
+                        cat.style.display = 'none';
+                    }
+                });
             });
         });
-    });
+    }
+    
+    // Initialize portfolio navigation on page load
+    initializePortfolioNavigation();
 
-    // Skills Category Filtering
-    const skillNavBtns = document.querySelectorAll('.skill-nav-btn');
-    const skillSections = document.querySelectorAll('.skill-section');
+    // Skills Category Filtering - Function for reinitialization
+    function initializeSkillsNavigation() {
+        const skillNavBtns = document.querySelectorAll('.skill-nav-btn');
+        const skillSections = document.querySelectorAll('.skill-section');
 
-    skillNavBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const category = this.getAttribute('data-skill-category');
+        skillNavBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const category = this.getAttribute('data-skill-category');
 
-            // Update active button
-            skillNavBtns.forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
+                // Update active button
+                skillNavBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
 
-            // Show/hide skill sections with animation
-            skillSections.forEach(section => {
-                if (section.getAttribute('data-skill-category') === category) {
-                    section.style.display = 'block';
-                    section.style.animation = 'fadeIn 0.5s ease-in-out';
+                // Show/hide skill sections with animation
+                skillSections.forEach(section => {
+                    if (section.getAttribute('data-skill-category') === category) {
+                        section.style.display = 'block';
+                        section.style.animation = 'fadeIn 0.5s ease-in-out';
 
-                    // Animate skill bars when section becomes visible
-                setTimeout(() => {
-                        const skillFills = section.querySelectorAll('.skill-fill');
-                        skillFills.forEach(fill => {
-                            const width = fill.getAttribute('data-width');
-                            fill.style.width = width + '%';
-                        });
-                }, 100);
-            } else {
-                    section.style.display = 'none';
-                }
+                        // Animate skill bars when section becomes visible
+                    setTimeout(() => {
+                            const skillFills = section.querySelectorAll('.skill-fill');
+                            skillFills.forEach(fill => {
+                                const width = fill.getAttribute('data-width');
+                                fill.style.width = width + '%';
+                            });
+                    }, 100);
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
             });
         });
-    });
+    }
+    
+    // Initialize skills navigation on page load
+    initializeSkillsNavigation();
 
     // Animate skill bars on initial load
                     setTimeout(() => {
@@ -1173,6 +1191,16 @@ function initializeVideoHoverPlay() {
             });
         }
     });
+}
+
+// Contact Method Switcher - Initialize function
+function initializeContactMethods() {
+    // Contact buttons use onclick in HTML, so just ensure everything is visible
+    // Make sure form section is visible by default
+    const formSection = document.getElementById('contact-form-section');
+    if (formSection) {
+        formSection.style.display = 'block';
+    }
 }
 
 // Contact Form Navigation
