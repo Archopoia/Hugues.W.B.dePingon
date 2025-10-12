@@ -15,7 +15,67 @@ function createElementSafe(tag, content, className) {
     return elem;
 }
 
+// Dynamic Section Loader - Load HTML sections on demand
+async function loadSection(sectionName) {
+    const sectionContainer = document.getElementById(sectionName);
+    
+    // If section is already loaded, skip
+    if (sectionContainer && sectionContainer.dataset.loaded === 'true') {
+        return;
+    }
+    
+    try {
+        const response = await fetch(`sections/${sectionName}.html`);
+        if (!response.ok) throw new Error(`Failed to load ${sectionName}`);
+        
+        const html = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const section = doc.querySelector('section');
+        
+        if (section && sectionContainer) {
+            // Replace placeholder with actual content
+            sectionContainer.outerHTML = section.outerHTML;
+            
+            // Mark as loaded
+            const loadedSection = document.getElementById(sectionName);
+            if (loadedSection) {
+                loadedSection.dataset.loaded = 'true';
+                
+                // Reapply translations if i18n is available
+                if (typeof applyLanguage === 'function' && typeof currentLang !== 'undefined') {
+                    applyLanguage(currentLang);
+                }
+                
+                // Reinitialize any section-specific features
+                if (sectionName === 'portfolio') {
+                    initializeVideoHoverPlay();
+                }
+                if (sectionName === 'education') {
+                    initializeEducationNavigation();
+                    initializeAlpineEducationVideo();
+                }
+            }
+        }
+    } catch (error) {
+        console.error(`Error loading section ${sectionName}:`, error);
+    }
+}
+
+// Preload sections for better UX
+function preloadAllSections() {
+    const sections = ['about', 'education', 'academia', 'experience', 'portfolio', 'skills', 'contact'];
+    sections.forEach(section => {
+        if (section !== 'about') { // About is loaded by default
+            loadSection(section);
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+    // Load About section immediately
+    loadSection('about');
+    
     // Web Audio API - Medieval Sound Effects
     const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
@@ -435,12 +495,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Tab switching functionality
+    // Tab switching functionality with dynamic loading
     const tabButtons = document.querySelectorAll('.tab-button');
     const tabContents = document.querySelectorAll('.tab-content');
 
     tabButtons.forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', async function() {
             const targetTab = this.getAttribute('data-tab');
 
             // Konami Tab Code Tracking
@@ -455,9 +515,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 unlockKonamiSecret();
             }
 
+            // Load section dynamically if not loaded
+            await loadSection(targetTab);
+
             // Remove active class from all buttons and contents
             tabButtons.forEach(btn => btn.classList.remove('active'));
-            tabContents.forEach(content => content.classList.remove('active'));
+            const allTabContents = document.querySelectorAll('.tab-content');
+            allTabContents.forEach(content => content.classList.remove('active'));
 
             // Add active class to clicked button and corresponding content
             this.classList.add('active');

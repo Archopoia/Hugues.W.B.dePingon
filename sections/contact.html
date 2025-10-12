@@ -1,0 +1,177 @@
+            <!-- Contact Tab -->
+            <section id="contact" class="tab-content">
+                <!-- <div class="content-header">
+                    <h2><i class="fas fa-envelope"></i> Let's Connect</h2>
+                    <p class="section-subtitle">Choose your path to collaboration</p>
+            </div> -->
+
+                <!-- Recent Appearances - Compact Version -->
+                <div class="contact-compact-image">
+                    <img src="Assets/Hugues/fullfashion.jpg" alt="Hugues in Tartu, Estonia" class="compact-img" onclick="openFullImage('Assets/Hugues/fullfashion.jpg')" style="cursor: pointer;">
+                    <p class="compact-caption"><span data-i18n="contact-photo-caption">Snapped by @vincasalesius, Vilnius' (LT) street photographer</span></p>
+                        </div>
+
+                <!-- Contact Method Selector -->
+                <div class="contact-method-selector">
+                    <button class="method-btn active" data-method="form" onclick="switchContactMethod('form')">
+                        <i class="fas fa-comment-dots"></i>
+                        <span data-i18n="contact-interactive">Interactive Form</span>
+                    </button>
+                    <button class="method-btn" data-method="direct" onclick="switchContactMethod('direct')">
+                        <i class="fas fa-address-card"></i>
+                        <span data-i18n="contact-direct">Direct Contact</span>
+                    </button>
+                    <button class="method-btn" data-method="social" onclick="switchContactMethod('social')">
+                        <i class="fas fa-share-alt"></i>
+                        <span data-i18n="contact-social">Social Networks</span>
+                    </button>
+                    </div>
+
+                <!-- Interactive Contact Form -->
+                <div class="contact-method-content" id="contact-form-section">
+                    <div class="contact-quest-intro">
+                        <h3><i class="fas fa-scroll"></i> <span data-i18n="contact-quest-title">Begin Your Quest</span></h3>
+                        <p data-i18n="contact-quest-subtitle">Answer a few questions to help me understand how I can best assist you. Your responses will guide our conversation.</p>
+                        </div>
+
+                    <form id="interactive-contact-form" class="contact-quest-form">
+                        <!-- Question 1: Purpose -->
+                        <div class="quest-question active" data-question="1">
+                            <div class="question-header">
+                                <span class="question-number">Quest 1/5</span>
+                                <h4 data-i18n="contact-q1">What brings you here today?</h4>
+                    </div>
+                            <div class="quest-options">
+                                <label class="quest-option">
+                                    <input type="radio" name="purpose" value="collaboration" required>
+                                    <div class="option-card">
+                                        <i class="fas fa-handshake"></i>
+                                        <span data-i18n="contact-q1-collab">Collaboration Opportunity</span>
+                                    </div>
+                                </label>
+                                <label class="quest-option">
+                                    <input type="radio" name="purpose" value="hiring" required>
+                                    <div class="option-card">
+                                        <i class="fas fa-briefcase"></i>
+                                        <span data-i18n="contact-q1-hiring">Job/Consulting Offer</span>
+                                    </div>
+                                </label>
+                                <label class="quest-option">
+                                    <input type="radio" name="purpose" value="academic" required>
+                                    <div class="option-card">
+                                        <i class="fas fa-graduation-cap"></i>
+                                        <span data-i18n="contact-q1-academic">Academic Inquiry</span>
+                                    </div>
+                                </label>
+                                <label class="quest-option">
+                                    <input type="radio" name="purpose" value="feedback" required>
+                                    <div class="option-card">
+                                        <i class="fas fa-comments"></i>
+                                        <span data-i18n="contact-q1-feedback">Feedback/Discussion</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Question 2: Project Type -->
+                        <div class="quest-question" data-question="2">
+                            <div class="question-header">
+                                <span class="question-number">Quest 2/5</span>
+                                <h4 data-i18n="contact-q2">Which area interests you most?</h4>
+                            </div>
+                            <div class="quest-options">
+                                <label class="quest-option">
+                                    <input type="radio" name="interest" value="game-design" required>
+                                    <div class="option-card">
+                                        <i class="fas fa-gamepad"></i>
+                                        <span data-i18n="contact-q2-gamedesign">Game Design & Development</span>
+                                    </div>
+                                </label>
+                                <label class="quest-option">
+                                    <input type="radio" name="interest" value="ai-ethics" required>
+                                    <div class="option-card">
+                                        <i class="fas fa-brain"></i>
+                                        <span data-i18n="contact-q2-ai">AI Ethics & Philosophy</span>
+                                    </div>
+                                </label>
+                                <label class="quest-option">
+                                    <input type="radio" name="interest" value="foresight" required>
+                                    <div class="option-card">
+                                        <i class="fas fa-crystal-ball"></i>
+                                        <span data-i18n="contact-q2-foresight">Strategic Foresight</span>
+                                    </div>
+                                </label>
+                                <label class="quest-option">
+                                    <input type="radio" name="interest" value="worldbuilding" required>
+                                    <div class="option-card">
+                                        <i class="fas fa-globe"></i>
+                                        <span data-i18n="contact-q2-worldbuilding">Worldbuilding & Design</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Question 3: Timeline -->
+                        <div class="quest-question" data-question="3">
+                            <div class="question-header">
+                                <span class="question-number">Quest 3/5</span>
+                                <h4 data-i18n="contact-q3">What's your timeline?</h4>
+                            </div>
+                            <div class="quest-options">
+                                <label class="quest-option">
+                                    <input type="radio" name="timeline" value="urgent" required>
+                                    <div class="option-card">
+                                        <i class="fas fa-bolt"></i>
+                                        <span data-i18n="contact-q3-urgent">Urgent (This Week)</span>
+                                    </div>
+                                </label>
+                                <label class="quest-option">
+                                    <input type="radio" name="timeline" value="soon" required>
+                                    <div class="option-card">
+                                        <i class="fas fa-hourglass-half"></i>
+                                        <span data-i18n="contact-q3-soon">Soon (This Month)</span>
+                                    </div>
+                                </label>
+                                <label class="quest-option">
+                                    <input type="radio" name="timeline" value="flexible" required>
+                                    <div class="option-card">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <span data-i18n="contact-q3-flexible">Flexible (Open Timeline)</span>
+                                    </div>
+                                </label>
+                                <label class="quest-option">
+                                    <input type="radio" name="timeline" value="exploring" required>
+                                    <div class="option-card">
+                                        <i class="fas fa-compass"></i>
+                                        <span data-i18n="contact-q3-exploring">Just Exploring</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Question 4: Details -->
+                        <div class="quest-question" data-question="4">
+                            <div class="question-header">
+                                <span class="question-number">Quest 4/5</span>
+                                <h4 data-i18n="contact-q4">Tell me about your project or inquiry</h4>
+                            </div>
+                            <div class="quest-text-input">
+                                <textarea
+                                    name="message"
+                                    rows="6"
+                                    data-i18n="contact-q4-placeholder"
+                                    placeholder="Share your vision, challenge, or question. The more details, the better I can help..."
+                                    required
+                                ></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Question 5: Contact Info -->
+                        <div class="quest-question" data-question="5">
+                            <div class="question-header">
+                                <span class="question-number">Quest 5/5</span>
+                                <h4 data-i18n="contact-q5">How should I reach you?</h4>
+                            </div>
+                            <div class="quest-contact-inputs">
+                                <div class="input-group">
+                                    <label><i class="fas fa-user"></i> <span data-i18n="contact-name">Your Name</span></label>

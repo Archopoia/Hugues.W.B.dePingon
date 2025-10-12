@@ -1,0 +1,2690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Site Verification -->
+    <meta name="google-site-verification" content="BkV6MxLHSJO_OfLDJFddsMQCCaNmx__osApXJFLsyPU" />
+
+    <!-- Primary Meta Tags -->
+    <title>Hugues de Pingon | Lead Game Designer, Philosopher & System Designer</title>
+    <meta name="title" content="Hugues de Pingon | Lead Game Designer, Philosopher & System Designer">
+    <meta name="description" content="Hugues William Brentone de Pingon - Lead Game Designer at OnceLost Games (The Wayward Realms). Expert in game AI, worldbuilding, applied ethics, and strategic foresight. PhD candidate in Applied Ethics with MBA in Foresight and Strategic Governance.">
+    <meta name="keywords" content="Hugues de Pingon, Hugues William Brentone de Pingon, Lead Game Designer, The Wayward Realms, OnceLost Games, Ted Peterson, Julian Lefay, Daggerfall successor, game AI systems, GOAP game design, Goal-Oriented Action Planning, Behavior Trees, Utility AI, FSM game AI, LLM integration games, NPC AI design, worldbuilding expert, applied ethics, AI ethics philosopher, system designer, game mechanics design, UI/UX game design, tabletop RPG designer, The Discording Tales, Archopoetics, strategic foresight, futures studies, game design philosophy, neuroscience game design, RPG worldbuilding, procedural generation, game design Estonia, game designer Switzerland, Tartu game development, philosophical game design, moral frameworks gaming, serious games, training simulations, educational game design, MBA foresight, MPhil applied ethics, game design consultant">
+    <meta name="author" content="Hugues William Brentone de Pingon">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://archopoia.github.io/Hugues.W.B.dePingon/" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="Assets/Hugues/roundvignette.jpg">
+    <link rel="shortcut icon" type="image/jpeg" href="Assets/Hugues/roundvignette.jpg">
+    <link rel="apple-touch-icon" href="Assets/Hugues/roundvignette.jpg">
+    <link rel="apple-touch-icon" sizes="180x180" href="Assets/Hugues/roundvignette.jpg">
+    <link rel="icon" type="image/jpeg" sizes="32x32" href="Assets/Hugues/roundvignette.jpg">
+    <link rel="icon" type="image/jpeg" sizes="16x16" href="Assets/Hugues/roundvignette.jpg">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://archopoia.github.io/Hugues.W.B.dePingon/">
+    <meta property="og:title" content="Hugues de Pingon | Lead Game Designer, Philosopher & System Designer">
+    <meta property="og:description" content="Lead Game Designer at OnceLost Games (The Wayward Realms). Expert in game AI, worldbuilding, applied ethics, and strategic foresight. Creating meaningful interactive experiences.">
+    <meta property="og:image" content="https://archopoia.github.io/Hugues.W.B.dePingon/Assets/Hugues/roundvignette.jpg">
+    <meta property="og:site_name" content="Hugues de Pingon Portfolio">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://archopoia.github.io/Hugues.W.B.dePingon/">
+    <meta property="twitter:title" content="Hugues de Pingon | Lead Game Designer & Philosopher">
+    <meta property="twitter:description" content="Lead Game Designer at OnceLost Games. Expert in game AI, worldbuilding, applied ethics, and strategic foresight.">
+    <meta property="twitter:image" content="https://archopoia.github.io/Hugues.W.B.dePingon/Assets/Hugues/roundvignette.jpg">
+    <meta property="twitter:creator" content="@DiscordingTales">
+
+    <!-- Additional Meta Tags -->
+    <meta name="theme-color" content="#8B1A1A">
+    <meta name="msapplication-TileColor" content="#8B1A1A">
+
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; media-src 'self'; frame-src 'self'; connect-src 'self';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quintessential&family=MedievalSharp&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <!-- Structured Data (Schema.org JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Hugues William Brentone de Pingon",
+      "alternateName": "Hugues de Pingon",
+      "url": "https://archopoia.github.io/Hugues.W.B.dePingon/",
+      "image": "https://archopoia.github.io/Hugues.W.B.dePingon/Assets/Hugues/roundvignette.jpg",
+      "jobTitle": "Lead Game Designer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "OnceLost Games"
+      },
+      "description": "Lead Game Designer at OnceLost Games (The Wayward Realms). Expert in game AI, worldbuilding, applied ethics, and strategic foresight. System designer, philosopher, and worldbuilder specializing in integrating AI into training systems.",
+      "birthPlace": {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "Switzerland"
+        }
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Tartu",
+        "addressCountry": "Estonia"
+      },
+      "alumniOf": [
+        {
+          "@type": "EducationalOrganization",
+          "name": "Linköping University",
+          "description": "MPhil in Applied Ethics"
+        },
+        {
+          "@type": "EducationalOrganization",
+          "name": "Kazimiero Simonaviciaus Universitetas",
+          "description": "MBA in Foresight and Strategic Governance"
+        },
+        {
+          "@type": "EducationalOrganization",
+          "name": "University of Montana",
+          "description": "B.S. Neuroscience, B.S. Biology, B.A. Anthropology"
+        }
+      ],
+      "knowsAbout": [
+        "Game Design",
+        "Game AI",
+        "GOAP (Goal-Oriented Action Planning)",
+        "Behavior Trees",
+        "LLM Integration",
+        "Worldbuilding",
+        "Applied Ethics",
+        "AI Ethics",
+        "Strategic Foresight",
+        "Philosophy",
+        "UI/UX Design",
+        "System Design",
+        "Neuroscience",
+        "Anthropology"
+      ],
+      "knowsLanguage": [
+        {
+          "@type": "Language",
+          "name": "French",
+          "alternateName": "fr"
+        },
+        {
+          "@type": "Language",
+          "name": "English",
+          "alternateName": "en"
+        },
+        {
+          "@type": "Language",
+          "name": "Italian",
+          "alternateName": "it"
+        },
+        {
+          "@type": "Language",
+          "name": "German",
+          "alternateName": "de"
+        },
+        {
+          "@type": "Language",
+          "name": "Lithuanian",
+          "alternateName": "lt"
+        },
+        {
+          "@type": "Language",
+          "name": "Estonian",
+          "alternateName": "et"
+        },
+        {
+          "@type": "Language",
+          "name": "Russian",
+          "alternateName": "ru"
+        },
+        {
+          "@type": "Language",
+          "name": "Swedish",
+          "alternateName": "sv"
+        }
+      ],
+      "sameAs": [
+        "https://www.linkedin.com/in/hugues-ii-w-b-de-pingon/",
+        "https://github.com/Archopoia",
+        "https://the-discording-tales.itch.io/",
+        "https://x.com/DiscordingTales",
+        "https://www.instagram.com/hugueswb_de_pingon",
+        "https://thediscordingtales.wordpress.com/"
+      ],
+      "email": "hugues.ii.w.b.depingon@gmail.com"
+    }
+    </script>
+
+    <!-- Additional Structured Data: Professional Profile -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Hugues de Pingon"
+      },
+      "description": "Professional portfolio and biography of Hugues de Pingon, Lead Game Designer at OnceLost Games"
+    }
+    </script>
+
+    <!-- Structured Data: Creative Work - The Wayward Realms -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoGame",
+      "name": "The Wayward Realms",
+      "description": "The spiritual successor to The Elder Scrolls II: Daggerfall, a vast procedurally generated fantasy RPG with deep simulation systems",
+      "genre": ["Role-Playing Game", "RPG", "Open World"],
+      "gamePlatform": "PC",
+      "publisher": {
+        "@type": "Organization",
+        "name": "OnceLost Games"
+      },
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Ted Peterson",
+          "jobTitle": "Co-Creator"
+        },
+        {
+          "@type": "Person",
+          "name": "Julian Lefay",
+          "jobTitle": "Co-Creator"
+        },
+        {
+          "@type": "Person",
+          "name": "Hugues de Pingon",
+          "jobTitle": "Lead Game Designer"
+        }
+      ],
+      "url": "https://www.waywardrealms.com/"
+    }
+    </script>
+
+    <!-- Structured Data: Creative Work - The Discording Tales -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Game",
+      "name": "The Discording Tales",
+      "alternateName": "Des Récits Discordants",
+      "description": "A 300-page ethno-science-fantasy tabletop RPG with automated character sheets, extensive worldbuilding, and unique mechanics",
+      "genre": ["Tabletop RPG", "Role-Playing Game", "Fantasy"],
+      "numberOfPages": 300,
+      "inLanguage": "fr",
+      "author": {
+        "@type": "Person",
+        "name": "Hugues de Pingon"
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "Archopoetics"
+      },
+      "url": "https://thediscordingtales.wordpress.com/",
+      "datePublished": "2019"
+    }
+    </script>
+
+    <!-- Structured Data: Website with Search Action -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Hugues de Pingon Portfolio",
+      "alternateName": "Hugues William Brentone de Pingon Professional Portfolio",
+      "url": "https://archopoia.github.io/Hugues.W.B.dePingon/",
+      "description": "Professional portfolio of Hugues de Pingon, Lead Game Designer, Philosopher, and System Designer",
+      "author": {
+        "@type": "Person",
+        "name": "Hugues de Pingon"
+      },
+      "inLanguage": "en"
+    }
+    </script>
+
+    <!-- Structured Data: Organization - OnceLost Games -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "OnceLost Games",
+      "description": "Game development studio creating The Wayward Realms",
+      "url": "https://www.waywardrealms.com/",
+      "employee": {
+        "@type": "Person",
+        "name": "Hugues de Pingon",
+        "jobTitle": "Lead Game Designer"
+      },
+      "founder": [
+        {
+          "@type": "Person",
+          "name": "Ted Peterson"
+        },
+        {
+          "@type": "Person",
+          "name": "Julian Lefay"
+        }
+      ]
+    }
+    </script>
+
+    <!-- Structured Data: Organization - Archopoetics -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Archopoetics",
+      "alternateName": "The Discording Tales",
+      "description": "Creative studio developing The Discording Tales tabletop RPG and related game projects",
+      "url": "https://thediscordingtales.wordpress.com/",
+      "founder": {
+        "@type": "Person",
+        "name": "Hugues de Pingon",
+        "jobTitle": "Lead Creative/Graphic/Game Designer"
+      },
+      "sameAs": [
+        "https://the-discording-tales.itch.io/",
+        "https://thediscordingtales.wordpress.com/",
+        "https://x.com/DiscordingTales"
+      ]
+    }
+    </script>
+
+    <!-- Structured Data: FAQ Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Who is Hugues de Pingon?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hugues William Brentone de Pingon is a Lead Game Designer at OnceLost Games, working on The Wayward Realms. He is a system designer, philosopher, and worldbuilder with expertise in game AI (GOAP, Behavior Trees, LLM integration), applied ethics, and strategic foresight. He holds an MPhil in Applied Ethics from Linköping University and an MBA in Foresight and Strategic Governance."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is Hugues de Pingon working on?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hugues de Pingon is currently the Lead Game Designer at OnceLost Games, working on The Wayward Realms - the spiritual successor to The Elder Scrolls II: Daggerfall. He also leads Archopoetics, developing The Discording Tales, a 300-page tabletop RPG."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is Hugues de Pingon's expertise?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hugues de Pingon specializes in game design, game AI systems (GOAP, Behavior Trees, Utility AI, FSM), LLM integration, worldbuilding, UI/UX design, applied ethics, AI ethics, strategic foresight, and philosophy. He has academic backgrounds in neuroscience, biology, anthropology, and applied ethics."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What games has Hugues de Pingon designed?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hugues de Pingon is currently designing The Wayward Realms at OnceLost Games. He also created The Discording Tales (300-page tabletop RPG), and worked on game projects including KALEVIPOEG (Estonian folklore tower defense), POYA (prize-winning contemplative clicker), and various AI prototypes and game jams."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where is Hugues de Pingon located?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hugues de Pingon is currently based in Tartu, Estonia, with ties to Lausanne, Switzerland. He is originally from Switzerland and is open to remote collaboration worldwide."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Structured Data: Breadcrumb Navigation -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://archopoia.github.io/Hugues.W.B.dePingon/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Portfolio",
+          "item": "https://archopoia.github.io/Hugues.W.B.dePingon/#portfolio"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Experience",
+          "item": "https://archopoia.github.io/Hugues.W.B.dePingon/#experience"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Education",
+          "item": "https://archopoia.github.io/Hugues.W.B.dePingon/#education"
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+    <!-- Language Switcher - Fixed Position Behind Character Sheet -->
+    <div class="language-switcher">
+        <button id="lang-toggle" class="lang-btn" onclick="toggleLanguage()" title="Switch Language / Changer de langue">
+            <img class="flag-icon" id="flag-icon" src="Assets/flags/gb.svg" alt="Flag" width="24" height="12">
+            <span class="lang-text" data-i18n="lang-name">EN</span>
+        </button>
+    </div>
+
+    <div class="character-sheet">
+        <!-- Header with Character Name and Portrait -->
+        <header class="character-header">
+            <div class="portrait-frame">
+                <div class="portrait-placeholder">
+                    <img src="Assets/Hugues/roundvignette.jpg" alt="Hugues de Pingon" class="portrait-image">
+            </div>
+                <div class="portrait-decoration"></div>
+            </div>
+            <div class="character-info">
+                <h1 class="character-name">Hugues William Brentone de Pingon</h1>
+                <p class="character-title" data-i18n="subtitle">System designer, Worldbuilder & Philosopher</p>
+                <div class="character-stats">
+                    <div class="stat-item">
+                        <span class="stat-label" data-i18n="age">Age</span>
+                        <span class="stat-value">29</span>
+        </div>
+                    <div class="stat-item">
+                        <span class="stat-label" data-i18n="current-role">Current Role</span>
+                        <span class="stat-value" data-i18n="lead-game-designer">Lead Game Designer</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label" data-i18n="location">Location</span>
+                        <span class="stat-value" data-i18n="location-value">Switzerland / Estonia</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label" data-i18n="origin">Origin</span>
+                        <span class="stat-value"><img src="Assets/flags/ch.svg" alt="Swiss Flag" width="24" height="16" style="vertical-align: middle; margin-right: 4px;"></span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="sheet-tabs">
+            <button class="tab-button active" data-tab="about">
+                <i class="fas fa-scroll"></i>
+                <span data-i18n="nav-about">About</span>
+            </button>
+            <button class="tab-button" data-tab="education">
+                <i class="fas fa-graduation-cap"></i>
+                <span data-i18n="nav-education">Education</span>
+            </button>
+            <button class="tab-button" data-tab="academia">
+                <i class="fas fa-book"></i>
+                <span data-i18n="nav-academia">Academia</span>
+            </button>
+            <button class="tab-button" data-tab="experience">
+                <i class="fas fa-briefcase"></i>
+                <span data-i18n="nav-experience">Experience</span>
+            </button>
+            <button class="tab-button" data-tab="portfolio">
+                <i class="fas fa-gamepad"></i>
+                <span data-i18n="nav-portfolio">Portfolio</span>
+            </button>
+            <button class="tab-button" data-tab="skills">
+                <i class="fas fa-chart-bar"></i>
+                <span data-i18n="nav-skills">Skills</span>
+            </button>
+            <button class="tab-button" data-tab="contact">
+                <i class="fas fa-envelope"></i>
+                <span data-i18n="nav-contact">Contact</span>
+            </button>
+    </nav>
+
+        <!-- Tab Content -->
+        <main class="sheet-content" id="main-content">
+            <!-- About Tab -->
+            <section id="about" class="tab-content active">
+                <!-- <div class="content-header">
+                    <h2><i class="fas fa-user-circle"></i> Character Profile</h2>
+                    <p class="header-subtitle">Game designer, philosopher, and multidisciplinary creator</p>
+            </div> -->
+
+                <!-- Profile Mission Statement -->
+                <div class="mission-statement">
+                    <div class="mission-header">
+                        <i class="fas fa-scroll"></i>
+                        <h3 data-i18n="mission-vision">Mission & Vision</h3>
+        </div>
+                    <div class="mission-content">
+                        <p class="mission-text" data-i18n="mission-text-1">
+                            I identify the needs and expectations of diverse audiences—from business executives to neurodivergent children—and design systems and worlds that embody organizational vision through selective and rewarding processes.
+                        </p>
+                        <p class="mission-text" data-i18n="mission-text-2">
+                            Specializing in integrating game AI (FSM/BT/Utility/GOAP) and LLMs into training systems, I create immersive experiences that enhance creativity and awareness of one's moral restraints through meaningful decision-making.
+                        </p>
+                        <p class="mission-text" data-i18n="mission-text-3">
+                            With a background in experimental philosophy, epistemological ethnolinguistics, and evolutionary biopsychology, I explore how responsibilities and moralities influence foresight and innovation.
+                        </p>
+                </div>
+
+                    <!-- Mission Vision Image -->
+                    <div class="mission-image">
+                        <img src="Assets/Hugues/speakingatmicrophone.jpg" alt="Hugues speaking at microphone" class="mission-img">
+                        <p class="image-caption" data-i18n="mission-image-caption">Discussing the creation of new species with Ben Lamm at Brain Bar 2025 (CEO of Colossal, an American biotechnology and genetic engineering company working to de-extinct Mammoths, Dodos and Dire wolves)</p>
+            </div>
+                        </div>
+
+                <!-- Expertise Areas -->
+                <div class="expertise-grid">
+                    <div class="expertise-card theme-red">
+                        <div class="expertise-icon"><i class="fas fa-crown"></i></div>
+                        <h4 data-i18n="expertise-leadership-title">Leadership & Direction</h4>
+                        <p data-i18n="expertise-leadership-desc">Team management, vision setting, and cross-department coordination for creative projects</p>
+                        <div class="expertise-tags">
+                            <span data-i18n="tag-team-lead">Team Lead</span>
+                            <span data-i18n="tag-vision">Vision</span>
+                            <span data-i18n="tag-coordination">Coordination</span>
+                    </div>
+                </div>
+
+                    <div class="expertise-card theme-yellow">
+                        <div class="expertise-icon"><i class="fas fa-gamepad"></i></div>
+                        <h4 data-i18n="expertise-gamedesign-title">Game Design</h4>
+                        <p data-i18n="expertise-gamedesign-desc">Systemic mechanics, UI/UX, worldbuilding, and player experience design for immersive games</p>
+                        <div class="expertise-tags">
+                            <span data-i18n="tag-mechanics">Mechanics</span>
+                            <span data-i18n="tag-systems">Systems</span>
+                            <span data-i18n="tag-worldbuilding">Worldbuilding</span>
+            </div>
+        </div>
+
+                    <div class="expertise-card theme-green">
+                        <div class="expertise-icon"><i class="fas fa-brain"></i></div>
+                        <h4 data-i18n="expertise-philosophy-title">Philosophy & Ethics</h4>
+                        <p data-i18n="expertise-philosophy-desc">Applied ethics, foresight studies, and moral frameworks in technology and creativity</p>
+                        <div class="expertise-tags">
+                            <span data-i18n="tag-ethics">Ethics</span>
+                            <span data-i18n="tag-foresight">Foresight</span>
+                            <span data-i18n="tag-theory">Theory</span>
+        </div>
+        </div>
+
+                    <div class="expertise-card theme-teal">
+                        <div class="expertise-icon"><i class="fas fa-robot"></i></div>
+                        <h4 data-i18n="expertise-ai-title">AI Systems</h4>
+                        <p data-i18n="expertise-ai-desc">Game AI architectures, LLM integration, and intelligent NPC behavior systems</p>
+                        <div class="expertise-tags">
+                            <span data-i18n="tag-goap">GOAP</span>
+                            <span data-i18n="tag-behavior-trees">Behavior Trees</span>
+                            <span data-i18n="tag-llms">LLMs</span>
+            </div>
+                </div>
+
+                    <div class="expertise-card theme-purple">
+                        <div class="expertise-icon"><i class="fas fa-globe-americas"></i></div>
+                        <h4 data-i18n="expertise-worldbuilding-title">Worldbuilding</h4>
+                        <p data-i18n="expertise-worldbuilding-desc">Extensive lore creation, cultural development, and narrative design for game universes</p>
+                        <div class="expertise-tags">
+                            <span data-i18n="tag-lore">Lore</span>
+                            <span data-i18n="tag-culture">Culture</span>
+                            <span data-i18n="tag-narrative">Narrative</span>
+                        </div>
+                    </div>
+
+                    <div class="expertise-card theme-orange">
+                        <div class="expertise-icon"><i class="fas fa-palette"></i></div>
+                        <h4 data-i18n="expertise-creative-title">Creative Direction</h4>
+                        <p data-i18n="expertise-creative-desc">Visual design, graphic arts, and artistic direction for multimedia projects</p>
+                        <div class="expertise-tags">
+                            <span data-i18n="tag-photoshop">Photoshop</span>
+                            <span data-i18n="tag-indesign">InDesign</span>
+                            <span data-i18n="tag-art-direction">Art Direction</span>
+                        </div>
+                    </div>
+                        </div>
+
+                <!-- Interdisciplinary Journey -->
+                <div class="journey-section">
+                    <div class="journey-header">
+                        <i class="fas fa-compass"></i>
+                        <h3 data-i18n="journey-title">Interdisciplinary Journey</h3>
+                    </div>
+                    <div class="journey-timeline">
+                        <div class="journey-node">
+                            <div class="node-icon theme-red"><i class="fas fa-flask"></i></div>
+                            <div class="node-content">
+                                <h4 data-i18n="journey-scientific-title">Scientific Foundation</h4>
+                                <p data-i18n="journey-scientific-desc">Started with neuroscience, biology, and anthropology to understand human cognition, evolution, and culture</p>
+                </div>
+                        </div>
+                        <div class="journey-connector"></div>
+                        <div class="journey-node">
+                            <div class="node-icon theme-yellow"><i class="fas fa-book"></i></div>
+                            <div class="node-content">
+                                <h4 data-i18n="journey-philosophical-title">Philosophical Exploration</h4>
+                                <p data-i18n="journey-philosophical-desc">Pursued philosophy and ethics to examine moral frameworks, foresight, and creative decision-making</p>
+                            </div>
+                        </div>
+                        <div class="journey-connector"></div>
+                        <div class="journey-node">
+                            <div class="node-icon theme-green"><i class="fas fa-eye"></i></div>
+                            <div class="node-content">
+                                <h4 data-i18n="journey-foresight-title">Strategic Foresight</h4>
+                                <p data-i18n="journey-foresight-desc">MBA in Future Foresight and Strategic Governance to combine vision with practical application</p>
+                            </div>
+                        </div>
+                        <div class="journey-connector"></div>
+                        <div class="journey-node">
+                            <div class="node-icon theme-teal"><i class="fas fa-gamepad"></i></div>
+                            <div class="node-content">
+                                <h4 data-i18n="journey-gamedev-title">Game Development</h4>
+                                <p data-i18n="journey-gamedev-desc">Synthesized everything into game design, creating meaningful interactive experiences with AI</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interests & Passions -->
+                <div class="interests-section">
+                    <div class="interests-header">
+                        <i class="fas fa-heart"></i>
+                        <h3 data-i18n="interests-title">Interests & Passions</h3>
+                    </div>
+                    <div class="interests-cloud">
+                        <span class="interest-tag large" data-i18n="interest-design">Design</span>
+                        <span class="interest-tag large" data-i18n="interest-philosophy">Philosophy</span>
+                        <span class="interest-tag large" data-i18n="interest-foresight">Foresight</span>
+                        <span class="interest-tag large" data-i18n="interest-anthropology">Anthropology</span>
+                        <span class="interest-tag medium" data-i18n="interest-worldbuilding">Worldbuilding</span>
+                        <span class="interest-tag small" data-i18n="interest-ethology">Ethology</span>
+                        <span class="interest-tag medium" data-i18n="interest-game-ai">Game AI</span>
+                        <span class="interest-tag small" data-i18n="interest-neuroscience">Neuroscience</span>
+                        <span class="interest-tag medium" data-i18n="interest-rpg">Role-playing Games</span>
+                        <span class="interest-tag small" data-i18n="interest-linguistics">Linguistics</span>
+                        <span class="interest-tag medium" data-i18n="interest-evolution">Evolution Theory</span>
+                        <span class="interest-tag medium" data-i18n="interest-strategy">Strategy</span>
+                        <span class="interest-tag small" data-i18n="interest-religion">Comparative Religion</span>
+                        <span class="interest-tag medium" data-i18n="interest-biomimicry">Biomimicry</span>
+                        <span class="interest-tag small" data-i18n="interest-governance">Governance</span>
+                        <span class="interest-tag medium" data-i18n="interest-folklore">Folklore Studies</span>
+                        <span class="interest-tag small" data-i18n="interest-martial">Dance & Martial Arts</span>
+                        <span class="interest-tag medium" data-i18n="interest-travel">Travel & Culture</span>
+                        <span class="interest-tag small" data-i18n="interest-alpine">Alpine Traditions</span>
+            </div>
+        </div>
+    </section>
+
+            <!-- Education Tab -->
+            <section id="education" class="tab-content">
+                <!-- <div class="content-header">
+                    <h2><i class="fas fa-graduation-cap"></i>Educational Achievements</h2>
+                </div> -->
+
+                <!-- Academic Stats Overview -->
+                <div class="academic-stats-grid">
+                    <div class="stat-card academic-stat theme-red">
+                        <div class="stat-icon"><i class="fas fa-university"></i></div>
+                        <div class="stat-content">
+                            <div class="stat-number">6</div>
+                            <div class="stat-label" data-i18n="edu-stats-institutions">Institutions</div>
+                        </div>
+                    </div>
+                    <div class="stat-card academic-stat theme-yellow">
+                        <div class="stat-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="stat-content">
+                            <div class="stat-number">7+</div>
+                            <div class="stat-label" data-i18n="edu-stats-diplomas">Diplomas</div>
+                        </div>
+                    </div>
+                    <div class="stat-card academic-stat theme-green">
+                        <div class="stat-icon"><i class="fas fa-globe"></i></div>
+                        <div class="stat-content">
+                            <div class="stat-number">5</div>
+                            <div class="stat-label" data-i18n="edu-stats-countries">Countries</div>
+                        </div>
+                    </div>
+                    <div class="stat-card academic-stat theme-teal">
+                        <div class="stat-icon"><i class="fas fa-award"></i></div>
+                        <div class="stat-content">
+                            <div class="stat-number">9.73</div>
+                            <div class="stat-label" data-i18n="edu-stats-summa">Summa cum laude</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Academic Navigation -->
+                <div class="education-nav">
+                    <button class="edu-nav-btn active" data-section="current"><span data-i18n="edu-current-studies">Current Studies</span></button>
+                    <button class="edu-nav-btn" data-section="graduate"><span data-i18n="edu-graduate-title">Graduate</span></button>
+                    <button class="edu-nav-btn" data-section="undergraduate"><span data-i18n="edu-undergraduate-title">Undergraduate</span></button>
+                    <button class="edu-nav-btn" data-section="specialized"><span data-i18n="edu-specialized-training">Specialized</span></button>
+                </div>
+
+                <!-- Current Studies Section -->
+                <div class="education-section active" id="current-studies">
+            <div class="section-header">
+                        <h3><i class="fas fa-rocket"></i> Current Academic Pursuits</h3>
+                        <!-- <p class="section-subtitle">Active learning and continuous development</p> -->
+            </div>
+
+                    <div class="education-card current-study">
+                        <div class="edu-card-header">
+                            <div class="degree-badge current" data-i18n="in-progress">IN PROGRESS</div>
+                            <div class="institution-logo">
+                                <i class="fas fa-code"></i>
+                </div>
+                        </div>
+                        <div class="edu-card-content">
+                            <h4 data-i18n="edu-fullstack-title">Full Stack Software Development, AI Specialization</h4>
+                            <div class="institution-info">
+                                <span class="institution-name">MTÜ Tuleviku Tehnoloogiaharidus</span>
+                                <span class="location"><i class="fas fa-map-marker-alt"></i> Kood/Jõhvi, Estonia</span>
+                    </div>
+                            <div class="study-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 65%"></div>
+                        </div>
+                                <span class="progress-text">65% <span data-i18n="edu-complete">Complete</span></span>
+                    </div>
+                            <div class="study-details">
+                                <div class="study-focus">
+                                    <h5 data-i18n="edu-focus-areas">Focus Areas:</h5>
+                                    <div class="focus-tags">
+                                        <span class="focus-tag">Machine Learning</span>
+                                        <span class="focus-tag">Web Development</span>
+                                        <span class="focus-tag">AI Integration</span>
+                        </div>
+                    </div>
+                                <div class="study-period">
+                                    <i class="fas fa-calendar"></i> May 2024 — <span data-i18n="present">Present</span>
+                </div>
+            </div>
+        </div>
+                    </div>
+
+                    <div class="education-card current-study">
+                        <div class="edu-card-header">
+                            <div class="degree-badge current">IN PROGRESS</div>
+                            <div class="institution-logo">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                        </div>
+                        <div class="edu-card-content">
+                            <h4 data-i18n="edu-mphil-title">MPhil – Applied Ethics</h4>
+                            <div class="institution-info">
+                                <span class="institution-name">Linköping University</span>
+                                <span class="location"><i class="fas fa-map-marker-alt"></i> Linköping, Sweden</span>
+                            </div>
+                            <div class="study-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 85%"></div>
+                                </div>
+                                <span class="progress-text">85% <span data-i18n="edu-complete">Complete</span></span>
+                            </div>
+                            <div class="study-details">
+                                <div class="study-focus">
+                                    <h5 data-i18n="edu-focus-areas">Focus Areas:</h5>
+                                    <div class="focus-tags">
+                                        <span class="focus-tag">AI Ethics</span>
+                                        <span class="focus-tag">Biotechnological Governance</span>
+                                        <span class="focus-tag">Applied Philosophy</span>
+                                    </div>
+                                </div>
+                                <div class="study-period">
+                                    <i class="fas fa-calendar"></i> September 2023 — August 2025
+                                </div>
+                            </div>
+                            <div class="thesis-info">
+                                <h5><i class="fas fa-scroll"></i> <span data-i18n="edu-masters-thesis">Master's Thesis:</span></h5>
+                                <p class="thesis-title" data-i18n="edu-mphil-thesis">"Biocracy: From Artificial Intelligence to Accelerated Independence"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Graduate Studies Section -->
+                <div class="education-section" id="graduate-studies">
+                    <div class="section-header">
+                        <h3><i class="fas fa-user-graduate"></i> <span data-i18n="edu-graduate-title">Graduate Education</span></h3>
+                        <p class="section-subtitle" data-i18n="edu-graduate-subtitle">Advanced research and specialized expertise</p>
+                    </div>
+
+                    <div class="education-card graduate-degree">
+                        <div class="edu-card-header">
+                            <div class="degree-badge completed laude" data-i18n="cum-laude">CUM LAUDE</div>
+                            <div class="institution-logo">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                        </div>
+                        <div class="edu-card-content">
+                            <h4 data-i18n="edu-mba-title">MBA - Foresight and Strategic Governance</h4>
+                            <div class="institution-info">
+                                <span class="institution-name">Kazimiero Simonaviciaus Universitetas</span>
+                                <span class="location"><i class="fas fa-map-marker-alt"></i> Vilnius, Lithuania</span>
+                            </div>
+                            <div class="grade-showcase">
+                                <div class="grade-display">
+                                    <span class="grade-number">9.73</span>
+                                    <span class="grade-max">/10</span>
+                        </div>
+                                <div class="thesis-grade">
+                                    <span class="thesis-score" data-i18n="edu-thesis-score">Thesis: 10/10</span>
+                            </div>
+                        </div>
+                            <div class="thesis-info">
+                                <h5><i class="fas fa-scroll"></i> <span data-i18n="edu-masters-thesis">Master's Thesis:</span></h5>
+                                <p class="thesis-title" data-i18n="edu-mba-thesis">"Evaluation of morality as a factor of creativity in foresight"</p>
+                            </div>
+                            <div class="study-period">
+                                <i class="fas fa-calendar"></i> September 2019 — January 2021
+                        </div>
+                            </div>
+                        </div>
+                            </div>
+
+                <!-- Undergraduate Studies Section -->
+                <div class="education-section" id="undergraduate-studies">
+                    <div class="section-header">
+                        <h3><i class="fas fa-book"></i> <span data-i18n="edu-undergraduate-title">Undergraduate Foundation</span></h3>
+                        <p class="section-subtitle" data-i18n="edu-undergraduate-subtitle">Multi-disciplinary academic foundation</p>
+                        </div>
+
+                    <div class="education-card undergraduate-multi">
+                        <div class="edu-card-header">
+                            <div class="degree-badge completed" data-i18n="completed">COMPLETED</div>
+                            <div class="institution-logo">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                        </div>
+                        <div class="edu-card-content">
+                            <h4 data-i18n="edu-um-title">University of Montana - Multiple Degrees</h4>
+                            <div class="institution-info">
+                                <span class="institution-name">University of Montana</span>
+                                <span class="location"><i class="fas fa-map-marker-alt"></i> Missoula, Montana, USA</span>
+                            </div>
+
+                            <div class="degrees-grid">
+                                <div class="degree-item">
+                                    <div class="degree-icon"><i class="fas fa-brain"></i></div>
+                                    <div class="degree-info">
+                                        <h5 data-i18n="edu-neuroscience">B.S. Neuroscience</h5>
+                                        <p data-i18n="edu-neuroscience-focus">Memory and Cognition</p>
+                        </div>
+                            </div>
+                                <div class="degree-item">
+                                    <div class="degree-icon"><i class="fas fa-leaf"></i></div>
+                                    <div class="degree-info">
+                                        <h5 data-i18n="edu-biology">B.S. Biology</h5>
+                                        <p data-i18n="edu-biology-focus">Ecology and Organisms</p>
+                        </div>
+                    </div>
+                                <div class="degree-item">
+                                    <div class="degree-icon"><i class="fas fa-users"></i></div>
+                                    <div class="degree-info">
+                                        <h5 data-i18n="edu-anthropology">B.A. Anthropology</h5>
+                                        <p>Forensics</p>
+                </div>
+                                </div>
+                                <div class="degree-item">
+                                    <div class="degree-icon"><i class="fas fa-book-open"></i></div>
+                                    <div class="degree-info">
+                                        <h5>Associate of Arts</h5>
+                                        <p>General Studies</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="study-period">
+                                <i class="fas fa-calendar"></i> January 2015 — May 2019
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="education-card high-school">
+                        <div class="edu-card-header">
+                            <div class="degree-badge completed">STUDIES</div>
+                            <div class="institution-logo">
+                                <i class="fas fa-school"></i>
+                            </div>
+                        </div>
+                        <div class="edu-card-content">
+                            <h4>Maturité</h4>
+                            <div class="institution-info">
+                                <span class="institution-name">Ecole Nouvelle de la Suisse Romande</span>
+                                <span class="location"><i class="fas fa-map-marker-alt"></i> Chailly, Switzerland</span>
+                            </div>
+                            <div class="focus-areas">
+                                <h5>Specialized Focus:</h5>
+                                <div class="focus-tags">
+                                    <span class="focus-tag philosophy">Philosophy</span>
+                                    <span class="focus-tag science">Biochemistry</span>
+                                    <span class="focus-tag math">Advanced Mathematics</span>
+                                </div>
+                            </div>
+                            <div class="study-period">
+                                <i class="fas fa-calendar"></i> September 2012 — August 2014
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Specialized Training Section -->
+                <div class="education-section" id="specialized-training">
+                    <div class="section-header">
+                        <h3><i class="fas fa-tools"></i> <span data-i18n="edu-specialized-training">Specialized Training</span> & Certifications</h3>
+                        <p class="section-subtitle" data-i18n="edu-specialized-subtitle">Practical skills and professional development</p>
+                    </div>
+
+                    <div class="education-card specialized-training alpine-card">
+                        <div class="edu-card-header">
+                            <div class="degree-badge completed" data-i18n="completed">COMPLETED</div>
+                            <div class="institution-logo">
+                                <i class="fas fa-mountain"></i>
+                            </div>
+                        </div>
+                        <div class="edu-card-content">
+                            <h4 data-i18n="edu-alpine-title">Diploma in Traditional Alpine Pasturing</h4>
+                            <div class="institution-info">
+                                <span class="institution-name">Agrilogy Granges-Verney</span>
+                                <span class="location"><i class="fas fa-map-marker-alt"></i> Moudon, Switzerland</span>
+                            </div>
+                            <div class="training-skills">
+                                <h5>Skills Acquired:</h5>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Sustainable Agriculture</span>
+                                    <span class="skill-tag">Environmental Management</span>
+                                    <span class="skill-tag">Rural Development</span>
+                        </div>
+                            </div>
+                            <div class="study-period">
+                                <i class="fas fa-calendar"></i> May 2020 — August 2020
+                        </div>
+                            <div class="video-container" style="margin-top: 1rem;">
+                                <video class="alpine-education-video" style="width: 100%; max-width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
+                                    <source src="Assets/Hugues/Hugues - 2020- RTS - Alpagisme.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                            </div>
+                        </div>
+
+                    <div class="certification-grid">
+                        <div class="cert-card">
+                            <div class="cert-icon"><i class="fas fa-gamepad"></i></div>
+                            <h5>Game Design Certificate</h5>
+                            <p>IFAGE, Geneva</p>
+                            <span class="cert-date">2023</span>
+                        </div>
+                        <div class="cert-card">
+                            <div class="cert-icon"><i class="fas fa-language"></i></div>
+                            <h5>Russian Language Course</h5>
+                            <p>LINGUA LITUANICA</p>
+                            <span class="cert-date">2019</span>
+                        </div>
+                        <div class="cert-card">
+                            <div class="cert-icon"><i class="fas fa-globe-europe"></i></div>
+                            <h5>Lithuanian Language</h5>
+                            <p>Vilnius University</p>
+                            <span class="cert-date">2019</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Academic Work Tab -->
+            <section id="academia" class="tab-content">
+                <!-- <div class="content-header">
+                    <h2><i class="fas fa-book"></i> Publications & Research</h2>
+                    </div> -->
+                <div class="academic-works-grid">
+                    <div class="academic-card coming-soon">
+                        <div class="work-preview-small placeholder">
+                            <div class="placeholder-content">
+                                <i class="fas fa-hourglass-half"></i>
+                                <p>Coming Soon</p>
+                                </div>
+                                    </div>
+                        <h4>BIOCRACY</h4>
+                        <p class="work-meta">2025 - Master's Thesis</p>
+                        <div class="coming-soon-badge"><i class="fas fa-clock"></i> Not Yet Available</div>
+                                </div>
+
+                    <div class="academic-card">
+                        <div class="work-preview-small">
+                            <iframe class="pdf-preview-small" src="Portfolio/Academia (Foresight, Ethics & Serious Games)/2021 - MASTER - Evaluation of Morality as a factor of Creativity in Futures Studies - Hugues W. B. de Pingon.pdf#toolbar=0&navpanes=0&scrollbar=0&page=1&view=FitH" frameborder="0"></iframe>
+                            </div>
+                        <h4>Morality & Creativity</h4>
+                        <p class="work-meta">2021 - Master's (10/10)</p>
+                        <button class="project-link compact" onclick="openFullPDF('morality')"><i class="fas fa-expand"></i> Read</button>
+                        </div>
+
+                    <div class="academic-card">
+                        <div class="work-preview-small">
+                            <iframe class="pdf-preview-small" src="Portfolio/Academia (Foresight, Ethics & Serious Games)/PhD Research Proposals/2021 - H.W.B. dePingon - Archolectics - Thesis Proposal - EN.pdf#toolbar=0&navpanes=0&scrollbar=0&page=1&view=FitH" frameborder="0"></iframe>
+                                </div>
+                        <h4>Archolectics</h4>
+                        <p class="work-meta">2021 - PhD Proposal</p>
+                        <button class="project-link compact" onclick="openFullPDF('archolectics')"><i class="fas fa-expand"></i> Read</button>
+                                    </div>
+
+                    <div class="academic-card">
+                        <div class="work-preview-small">
+                            <iframe class="pdf-preview-small" src="Portfolio/Academia (Foresight, Ethics & Serious Games)/PhD Research Proposals/2022 - H.W.B. de Pingon - Economie Ecologique Evolutive - Projet de recherche - FR.pdf#toolbar=0&navpanes=0&scrollbar=0&page=1&view=FitH" frameborder="0"></iframe>
+                                </div>
+                        <h4>Economie Ecologique</h4>
+                        <p class="work-meta">2022 - PhD Proposal</p>
+                        <button class="project-link compact" onclick="openFullPDF('economie')"><i class="fas fa-expand"></i> Read</button>
+                            </div>
+
+                    <div class="academic-card">
+                        <div class="work-preview-small">
+                            <iframe class="pdf-preview-small" src="Portfolio/Academia (Foresight, Ethics & Serious Games)/2023 - UNESCO - The Intrinsic Moral Conflicts, Hindrances & Benefits to Creativity in Future-Oriented Activities (FOA) - HWB de Pingon.pdf#toolbar=0&navpanes=0&scrollbar=0&page=1&view=FitH" frameborder="0"></iframe>
+                        </div>
+                        <h4>UNESCO Contribution</h4>
+                        <p class="work-meta">2023 - Article</p>
+                        <button class="project-link compact" onclick="openFullPDF('unesco')"><i class="fas fa-expand"></i> Read</button>
+                                </div>
+
+                    <div class="academic-card">
+                        <div class="work-preview-small">
+                            <iframe class="pdf-preview-small" src="Portfolio/Academia (Foresight, Ethics & Serious Games)/2023 - ARTICLE - Les Ateliers de Jeux de rôle Pratiques aujourd'hui.pdf#toolbar=0&navpanes=0&scrollbar=0&page=1&view=FitH" frameborder="0"></iframe>
+                                    </div>
+                        <h4>Ateliers de JdR</h4>
+                        <p class="work-meta">2023 - Article</p>
+                        <button class="project-link compact" onclick="openFullPDF('ateliers')"><i class="fas fa-expand"></i> Read</button>
+                                </div>
+                            </div>
+            </section>
+
+            <!-- Experience Tab -->
+            <section id="experience" class="tab-content">
+                <!-- <div class="content-header">
+                    <h2><i class="fas fa-briefcase"></i> Professional Journey</h2>
+                        </div> -->
+
+                <!-- Interactive Experience Cards -->
+                <div class="experience-cards">
+                    <!-- Current Role - Featured -->
+                    <div class="exp-card featured" onclick="toggleExpCard(this)">
+                        <div class="exp-header">
+                            <div class="exp-icon current"><i class="fas fa-crown"></i></div>
+                            <div class="exp-title">
+                                <h3 data-i18n="exp-oncelost-title">Lead Game Designer</h3>
+                                <p class="company" data-i18n="exp-oncelost-company">OnceLost Games — The Wayward Realms</p>
+                                </div>
+                            <div class="exp-badge current">Current</div>
+                            <div class="exp-toggle"><i class="fas fa-chevron-down"></i></div>
+                                    </div>
+                        <div class="exp-body">
+                            <div class="progression-timeline">
+                                <div class="prog-step featured">
+                                    <div class="prog-marker"><i class="fas fa-chess-king"></i></div>
+                                    <div class="prog-content">
+                                        <h4 data-i18n="exp-oncelost-lead-title">Lead Game Designer</h4>
+                                        <p class="period">Sep 2025 — <span data-i18n="present">Present</span></p>
+                                        <p class="desc" data-i18n="exp-oncelost-lead-desc">Applying game vision in all design matters. Leading team of designers, scheduling deadlines, streamlining production, ensuring cross-department alignment.</p>
+                                        <div class="skills-used">
+                                            <span class="skill-tag">Leadership</span>
+                                            <span class="skill-tag" data-i18n="tag-vision">Vision</span>
+                                            <span class="skill-tag">Team Management</span>
+                                    </div>
+                        </div>
+                            </div>
+                                <div class="prog-step">
+                                    <div class="prog-marker"><i class="fas fa-chess-queen"></i></div>
+                                    <div class="prog-content">
+                                        <h4 data-i18n="exp-oncelost-senior-title">Senior Game Designer</h4>
+                                        <p class="period">Aug 2025 — Sep 2025</p>
+                                        <p class="desc" data-i18n="exp-oncelost-senior-desc">Second-in-command to Design Lead. NPC-AI systems (LLM), key mechanics implementation, systemic gameplay, UI/UX, worldbuilding.</p>
+                                        <div class="skills-used">
+                                            <span class="skill-tag">AI Systems</span>
+                                            <span class="skill-tag">LLM Integration</span>
+                                            <span class="skill-tag">UI/UX</span>
+                        </div>
+                            </div>
+                        </div>
+                                <div class="prog-step">
+                                    <div class="prog-marker"><i class="fas fa-chess-rook"></i></div>
+                                    <div class="prog-content">
+                                        <h4 data-i18n="exp-oncelost-designer-title">Game Designer (UI/UX, Worldbuilder)</h4>
+                                        <p class="period">Oct 2024 — Aug 2025</p>
+                                        <p class="desc" data-i18n="exp-oncelost-designer-desc">Designing fundamental & systemic game mechanics, bridging to UI/UX and worldbuilding for upcoming RPG.</p>
+                                        <div class="skills-used">
+                                            <span class="skill-tag" data-i18n="tech-game-design">Game Design</span>
+                                            <span class="skill-tag" data-i18n="tag-worldbuilding">Worldbuilding</span>
+                                            <span class="skill-tag">Mechanics</span>
+                    </div>
+                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- The Discording Tales -->
+                    <div class="exp-card passion" onclick="toggleExpCard(this)">
+                        <div class="exp-header">
+                            <div class="exp-icon passion"><i class="fas fa-scroll"></i></div>
+                            <div class="exp-title">
+                                <h3 data-i18n="exp-archop-title">Lead Creative/Graphic/Game Designer</h3>
+                                <p class="company" data-i18n="exp-archop-company">Archopoetics — "The Discording Tales"</p>
+                    </div>
+                            <div class="exp-badge passion" data-i18n="exp-archop-badge">5 Years Solo</div>
+                            <div class="exp-toggle"><i class="fas fa-chevron-down"></i></div>
+                                </div>
+                        <div class="exp-body">
+                            <p class="period">Aug 2019 — <span data-i18n="present">Present</span></p>
+                            <p class="desc" data-i18n="exp-archop-desc">Lead Creative/Graphic/Game Designer. Startup with 3-10 members, evolved from solo tabletop RPG into extracting singular mechanics programmed into games featuring its intriguing setting.</p>
+                            <div class="skills-used">
+                                <span class="skill-tag" data-i18n="skill-creative-direction">Creative Direction</span>
+                                <span class="skill-tag" data-i18n="skill-worldbuilding">Worldbuilding</span>
+                                <span class="skill-tag" data-i18n="skill-solo-dev">Solo Development</span>
+                                <span class="skill-tag" data-i18n="skill-team-leadership">Team Leadership</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                    <!-- PsychoStratégie -->
+                    <div class="exp-card" onclick="toggleExpCard(this)">
+                        <div class="exp-header">
+                            <div class="exp-icon"><i class="fas fa-brain"></i></div>
+                            <div class="exp-title">
+                                <h3 data-i18n="exp-psycho-title">Product/Game Design & Management Intern</h3>
+                                <p class="company" data-i18n="exp-psycho-company">PsychoStratégie SA, Lausanne</p>
+                        </div>
+                            <div class="exp-badge">2022-2024</div>
+                            <div class="exp-toggle"><i class="fas fa-chevron-down"></i></div>
+                                </div>
+                        <div class="exp-body">
+                            <p class="period">Sep 2022 — Feb 2024</p>
+                            <p class="desc" data-i18n="exp-psycho-desc">Product/Game Design & Management internship. Identified customer & investor needs, designed game mechanics and worlds to assess and train specific psychologies and skills in workshops.</p>
+                            <div class="skills-used">
+                                <span class="skill-tag" data-i18n="skill-product-design">Product Design</span>
+                                <span class="skill-tag" data-i18n="skill-psychology">Psychology</span>
+                                <span class="skill-tag" data-i18n="skill-workshop-design">Workshop Design</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                    <!-- UNESCO -->
+                    <div class="exp-card" onclick="toggleExpCard(this)">
+                        <div class="exp-header">
+                            <div class="exp-icon"><i class="fas fa-globe"></i></div>
+                            <div class="exp-title">
+                                <h3 data-i18n="exp-unesco-title">Consultant and Collaborator</h3>
+                                <p class="company" data-i18n="exp-unesco-company">UNESCO Chair — Responsible Foresight, London</p>
+                        </div>
+                            <div class="exp-badge">2021</div>
+                            <div class="exp-toggle"><i class="fas fa-chevron-down"></i></div>
+                                </div>
+                        <div class="exp-body">
+                            <p class="period">Nov 2021</p>
+                            <p class="desc" data-i18n="exp-unesco-desc">Consultant and collaborator on practical and theoretical philosophy. Advocated for institutional transparency on moral frameworks and engagement with controversial moral perspectives through rational dissensus.</p>
+                            <div class="skills-used">
+                                <span class="skill-tag" data-i18n="skill-philosophy">Philosophy</span>
+                                <span class="skill-tag" data-i18n="skill-ethics">Ethics</span>
+                                <span class="skill-tag" data-i18n="skill-foresight">Foresight</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                    <!-- Alpine Pasturing -->
+                    <div class="exp-card" onclick="toggleExpCard(this)">
+                        <div class="exp-header">
+                            <div class="exp-icon"><i class="fas fa-mountain"></i></div>
+                            <div class="exp-title">
+                                <h3 data-i18n="exp-alpine-title">Alpine Pasturing Trainee</h3>
+                                <p class="company" data-i18n="exp-alpine-company">Agrilogie Granges-Verney, Switzerland</p>
+                        </div>
+                            <div class="exp-badge">2020</div>
+                            <div class="exp-toggle"><i class="fas fa-chevron-down"></i></div>
+                                </div>
+                        <div class="exp-body">
+                            <p class="period">May-Aug 2020</p>
+                            <p class="desc" data-i18n="exp-alpine-desc">Traditional Alpine pasturing training in the Swiss Alps. Managed livestock, learned sustainable agriculture practices, and experienced rural mountain life.</p>
+                            <div class="video-container" style="margin-top: 1rem;">
+                                <video id="alpine-video" controls style="width: 100%; max-width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
+                                    <source src="Assets/Hugues/Hugues - 2020- RTS - Alpagisme.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                            <div class="skills-used">
+                                <span class="skill-tag" data-i18n="skill-sustainable-ag">Sustainable Agriculture</span>
+                                <span class="skill-tag" data-i18n="skill-livestock">Livestock Management</span>
+                                <span class="skill-tag" data-i18n="skill-rural-dev">Rural Development</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                    <!-- Other Experiences -->
+                    <div class="exp-card minor" onclick="toggleExpCard(this)">
+                        <div class="exp-header">
+                            <div class="exp-icon"><i class="fas fa-ellipsis-h"></i></div>
+                            <div class="exp-title">
+                                <h3 data-i18n="exp-other-title">Other Experiences</h3>
+                                <p class="company" data-i18n="exp-other-company">Various Roles</p>
+                        </div>
+                            <div class="exp-badge">2017-2023</div>
+                            <div class="exp-toggle"><i class="fas fa-chevron-down"></i></div>
+                                </div>
+                        <div class="exp-body">
+                            <div class="minor-exp-list">
+                                <div class="minor-exp-item">
+                                    <h4><i class="fas fa-rocket"></i> <span data-i18n="exp-marketing">Marketing Manager, Web3</span></h4>
+                                    <p class="period">Aug-Oct 2023</p>
+                                    </div>
+                                <div class="minor-exp-item">
+                                    <h4><i class="fas fa-users"></i> <span data-i18n="exp-asum">ASUM Presidential Candidate</span></h4>
+                                    <p class="period">Spring 2018</p>
+                                    <p class="institution" data-i18n="exp-asum-institution">Associated Students of the University of Montana</p>
+                                    <p class="desc" data-i18n="exp-asum-desc">Ran for student body president with a bold platform focused on practical student concerns. Campaign promises included decongesting parking lots, resurrecting the Galloping Griz Truck to its "glorious burrito-bomb days," and establishing an honorable & vigorous student government. Led a dedicated campaign team through a competitive election, gaining valuable experience in leadership, public speaking, and democratic engagement.</p>
+                                    <div class="exp-images" style="margin-top: 0.5rem; display: flex; gap: 1rem; flex-wrap: nowrap;">
+                                        <img src="Assets/Hugues/ASUM.jpg" alt="ASUM Presidential Campaign" style="flex: 1; width: 50%; max-width: 400px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); cursor: pointer;" onclick="openFullImage('Assets/Hugues/ASUM.jpg')">
+                                        <img src="Assets/Hugues/ASUM poster.png" alt="ASUM Campaign Poster" style="flex: 1; width: 50%; max-width: 400px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); cursor: pointer;" onclick="openFullImage('Assets/Hugues/ASUM poster.png')">
+                                    </div>
+                                </div>
+                                <div class="minor-exp-item">
+                                    <h4><i class="fas fa-calendar-alt"></i> <span data-i18n="exp-event">Event Planner</span></h4>
+                                    <p class="period">May-Jul 2017</p>
+                                    <p class="institution" data-i18n="exp-event-institution">University Center, Missoula</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Portfolio Tab -->
+            <section id="portfolio" class="tab-content">
+                <!-- <div class="content-header">
+                    <h2><i class="fas fa-gamepad"></i> Creative Portfolio</h2>
+                    <p class="header-subtitle">A showcase of game development, design, and creative projects</p>
+            </div> -->
+
+                <!-- Portfolio Navigation Pills -->
+                <div class="portfolio-nav">
+                    <button class="port-nav-btn active" data-category="featured"><i class="fas fa-star"></i> <span data-i18n="port-featured">Featured</span></button>
+                    <button class="port-nav-btn" data-category="games"><i class="fas fa-gamepad"></i> <span data-i18n="port-games">Games</span></button>
+                    <button class="port-nav-btn" data-category="web"><i class="fas fa-code"></i> <span data-i18n="port-webdev">Web Dev</span></button>
+                    <button class="port-nav-btn" data-category="design"><i class="fas fa-palette"></i> <span data-i18n="port-design">Design</span></button>
+            </div>
+
+                <div class="portfolio-sections">
+                    <!-- Featured Projects Section -->
+                    <div class="portfolio-category" data-category="featured">
+                        <div class="category-header">
+                            <h3><i class="fas fa-star"></i> <span data-i18n="port-featured-title">Featured Projects</span></h3>
+                            <p class="category-desc" data-i18n="port-featured-desc">Highlights from my creative journey</p>
+                        </div>
+
+                        <!-- Hero Cards Container -->
+                        <div class="hero-cards-container">
+                            <!-- Hero Project Card - The Wayward Realms -->
+                            <div class="project-card hero-card featured">
+                            <div class="project-ribbon ribbon-current"><i class="fas fa-crown"></i> <span data-i18n="port-working-on">Working on</span></div>
+                            <div class="project-media">
+                                <div class="project-video">
+                                    <video controls class="project-video-player" poster="Assets/TWR/TWR1.jpg">
+                                        <source src="Assets/TWR/The Wayward Realms _ Life of An Adventurer - A Gameplay Trailer.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                                    </div>
+                                    <div class="project-content">
+                                <h4 data-i18n="port-twr-title">The Wayward Realms</h4>
+                                <p class="project-type" data-i18n="port-twr-type">Grand RPG — Lead Game Designer at OnceLost Games</p>
+                                <p class="project-description" data-i18n="port-twr-desc">
+                                    The spiritual successor to The Elder Scrolls II: Daggerfall, led by the original creators Ted Peterson and Julian Lefay. A vast, procedurally generated fantasy world with deep simulation systems.
+                                </p>
+                                <div class="project-meta">
+                                    <span class="meta-tag"><i class="fas fa-calendar"></i> <span data-i18n="port-twr-meta-date">2024 — Present</span></span>
+                                    <span class="meta-tag"><i class="fas fa-users"></i> <span data-i18n="port-twr-meta-team">OnceLost Games</span></span>
+                                    <span class="meta-tag"><i class="fas fa-crown"></i> <span data-i18n="port-twr-meta-role">Lead Designer</span></span>
+                                </div>
+                                        <div class="project-tech">
+                                            <span class="tech-tag" data-i18n="tech-game-design">Game Design</span>
+                                    <span class="tech-tag" data-i18n="tech-rpg-systems">RPG Systems</span>
+                                    <span class="tech-tag" data-i18n="tech-worldbuilding">Worldbuilding</span>
+                                    <span class="tech-tag" data-i18n="tech-ai-integration">AI Integration</span>
+                                        </div>
+                                        <div class="project-links">
+                                    <a href="https://www.waywardrealms.com/" target="_blank" class="project-link primary">
+                                        <i class="fas fa-external-link-alt"></i> <span data-i18n="port-twr-official">Official Website</span>
+                                    </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                        <!-- Hero Project Card - The Discording Tales -->
+                        <div class="project-card hero-card featured">
+                            <div class="project-ribbon"><i class="fas fa-trophy"></i> <span data-i18n="port-flagship">Flagship Project</span></div>
+                            <div class="project-media">
+                                <div class="work-preview-small">
+                                    <iframe class="pdf-preview-small" src="Portfolio/Game Development (Design, Worldbuilding, Graphic)/TTRPG - 300p - Des Récits Discordants (FR - The Discording Tales).pdf#toolbar=0&navpanes=0&scrollbar=0&page=1&view=FitH" frameborder="0"></iframe>
+                                </div>
+                                    </div>
+                                    <div class="project-content">
+                                <h4 data-i18n="port-tdt-title">The Discording Tales</h4>
+                                <p class="project-type" data-i18n="port-tdt-type">Tabletop RPG — 5 Years Solo Development</p>
+                                <p class="project-description" data-i18n="port-tdt-desc">
+                                    A 300-page ethno-science-fantasy tabletop RPG with automated character sheets, extensive worldbuilding, and unique mechanics.
+                                    An immersive game world where Morrowind's extremes meet a subterranean Star Wars.
+                                </p>
+                                <div class="project-meta">
+                                    <span class="meta-tag"><i class="fas fa-calendar"></i> <span data-i18n="port-tdt-meta-date">2019 — Present</span></span>
+                                    <span class="meta-tag"><i class="fas fa-users"></i> <span data-i18n="port-tdt-meta-team">Team: 3-10 members</span></span>
+                                    <span class="meta-tag"><i class="fas fa-file-pdf"></i> <span data-i18n="port-tdt-meta-pages">300 pages</span></span>
+                                </div>
+                                        <div class="project-tech">
+                                            <span class="tech-tag" data-i18n="tech-game-design">Game Design</span>
+                                    <span class="tech-tag" data-i18n="tech-worldbuilding">Worldbuilding</span>
+                                    <span class="tech-tag" data-i18n="tech-graphic-design">Graphic Design</span>
+                                    <span class="tech-tag" data-i18n="tech-creative-writing">Creative Writing</span>
+                                        </div>
+                                        <div class="project-links">
+                                    <a href="https://thediscordingtales.wordpress.com/" target="_blank" class="project-link primary"><i class="fas fa-external-link-alt"></i> <span data-i18n="port-tdt-visit">Visit Website</span></a>
+                                    <button class="project-link secondary" onclick="openFullPDF('ttrpg')"><i class="fas fa-book-open"></i> <span data-i18n="port-tdt-read">Read PDF</span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <!-- End Hero Cards Container -->
+
+                        <!-- Featured Grid -->
+                        <div class="featured-grid">
+                            <!-- KALEVIPOEG -->
+                            <div class="project-card featured games">
+                                <div class="project-ribbon ribbon-green"><i class="fas fa-gamepad"></i> <span data-i18n="port-latest">Latest</span></div>
+                                <div class="project-media">
+                                    <div class="project-video">
+                                        <video controls class="project-video-player" poster="Assets/KALEVIPOEG.png">
+                                            <source src="Portfolio/Game Development (Design, Worldbuilding, Graphic)/2) GameJams & Prototypes/2025 - KALEVIPOEG - 48H; GameJam as Tech Lead, Generative Tower Defense Estonian Folklore.mp4" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                    </div>
+                                    <div class="project-content">
+                                    <h4 data-i18n="port-kalev-title">KALEVIPOEG</h4>
+                                    <p class="project-type" data-i18n="port-kalev-type">Generative Tower Defense — Tech Lead</p>
+                                    <p class="project-description" data-i18n="port-kalev-desc">
+                                        Estonian folklore-inspired procedural tower defense. Gather resources, build fortifications, survive monsters, and explore endless procedural lands.
+                                    </p>
+                                        <div class="project-tech">
+                                        <span class="tech-tag" data-i18n="tech-unity">Unity/C#</span>
+                                        <span class="tech-tag" data-i18n="tech-procedural">Procedural Gen</span>
+                                        <span class="tech-tag" data-i18n="tech-gamejam">48H GameJam</span>
+                                        </div>
+                                        <div class="project-links">
+                                        <a href="https://the-discording-tales.itch.io/kalevipoeg" target="_blank" class="project-link primary"><i class="fas fa-play"></i> <span data-i18n="btn-play-game">Play Game</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <!-- POYA -->
+                            <div class="project-card featured games">
+                                <div class="project-ribbon ribbon-gold"><i class="fas fa-award"></i> <span data-i18n="port-winner">Winner</span></div>
+                                <div class="project-media">
+                                    <div class="project-video">
+                                        <video controls class="project-video-player" poster="Assets/POYA.png">
+                                            <source src="Portfolio/Game Development (Design, Worldbuilding, Graphic)/2) GameJams & Prototypes/2023 - POYA -48H; GameJam as Creative Director/POYA short trailer.mp4" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                            </div>
+                        </div>
+                                <div class="project-content">
+                                    <h4 data-i18n="port-poya-title">POYA</h4>
+                                    <p class="project-type" data-i18n="port-poya-type">Contemplative Clicker — Creative Director</p>
+                                    <p class="project-description" data-i18n="port-poya-desc">
+                                        Prize-winning contemplative clicker inspired by Swiss alpine folklore. Manage your alpine farm through meditative gameplay.
+                                    </p>
+                                        <div class="project-tech">
+                                            <span class="tech-tag" data-i18n="tech-game-design">Game Design</span>
+                                        <span class="tech-tag" data-i18n="tech-swiss-folklore">Swiss Folklore</span>
+                                        <span class="tech-tag" data-i18n="tech-gamejam">48H GameJam</span>
+                                        </div>
+                                        <div class="project-links">
+                                        <a href="https://hackfight.itch.io/poya" target="_blank" class="project-link primary"><i class="fas fa-play"></i> <span data-i18n="btn-play-game">Play Game</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <!-- WorkHub -->
+                            <div class="project-card featured web">
+                                <div class="project-ribbon ribbon-blue"><i class="fas fa-code"></i> <span data-i18n="port-webdev">Web Dev</span></div>
+                                <div class="project-media">
+                                    <div class="project-video">
+                                        <video controls class="project-video-player" poster="Assets/WorkHub.png">
+                                            <source src="Assets/WorkHub reel.mp4" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                    </div>
+                                    <div class="project-content">
+                                    <h4 data-i18n="port-workhub-title">WorkHub</h4>
+                                    <p class="project-type" data-i18n="port-workhub-type">Startup Pitch Website — Full Stack</p>
+                                    <p class="project-description" data-i18n="port-workhub-desc">
+                                        Complete web development for startup pitch presentation, showcasing modern web design and full-stack capabilities.
+                                    </p>
+                                        <div class="project-tech">
+                                        <span class="tech-tag" data-i18n="tech-html-css-js">HTML/CSS/JS</span>
+                                        <span class="tech-tag" data-i18n="tech-web-design">Web Design</span>
+                                        <span class="tech-tag" data-i18n="tech-responsive">Responsive</span>
+                                        </div>
+                                        <div class="project-links">
+                                        <a href="https://archopoia.github.io/WorkHub/" target="_blank" class="project-link primary"><i class="fas fa-external-link-alt"></i> <span data-i18n="btn-view-site">View Site</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    <!-- Games Category -->
+                    <div class="portfolio-category" data-category="games" style="display:none;">
+                        <div class="category-header">
+                            <h3><i class="fas fa-gamepad"></i> <span data-i18n="port-games-category">Game Development</span></h3>
+                            <p class="category-desc" data-i18n="port-games-desc">GameJams, prototypes, and interactive experiences</p>
+                        </div>
+
+                        <div class="project-grid">
+                            <!-- The Wayward Realms -->
+                            <div class="project-card games">
+                                <div class="project-ribbon ribbon-current"><i class="fas fa-crown"></i> Working on</div>
+                                <div class="project-media">
+                                    <div class="project-video">
+                                        <video controls class="project-video-player" poster="Assets/TWR/TWR1.jpg">
+                                            <source src="Assets/TWR/The Wayward Realms _ Life of An Adventurer - A Gameplay Trailer.mp4" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                    </div>
+                                    <div class="project-content">
+                                    <h4>The Wayward Realms</h4>
+                                    <p class="project-type">Grand RPG — Lead Game Designer</p>
+                                    <p class="project-description">The spiritual successor to The Elder Scrolls II: Daggerfall, led by Ted Peterson and Julian Lefay.</p>
+                                        <div class="project-tech">
+                                        <span class="tech-tag">Game Design</span>
+                                        <span class="tech-tag">RPG Systems</span>
+                                        <span class="tech-tag">Worldbuilding</span>
+                                        </div>
+                                        <div class="project-links">
+                                        <a href="https://www.waywardrealms.com/" target="_blank" class="project-link">
+                                            <i class="fas fa-external-link-alt"></i> Official Website
+                                        </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <!-- KALEVIPOEG -->
+                            <div class="project-card games">
+                                <div class="project-media">
+                                    <div class="project-video">
+                                        <video controls class="project-video-player" poster="Assets/KALEVIPOEG.png">
+                                            <source src="Portfolio/Game Development (Design, Worldbuilding, Graphic)/2) GameJams & Prototypes/2025 - KALEVIPOEG - 48H; GameJam as Tech Lead, Generative Tower Defense Estonian Folklore.mp4" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                    </div>
+                                    <div class="project-content">
+                                    <h4>KALEVIPOEG</h4>
+                                    <p class="project-type">Generative Tower Defense — Tech Lead</p>
+                                    <p class="project-description">Estonian folklore procedural tower defense with building, survival, and exploration mechanics.</p>
+                                    <div class="project-tech">
+                                        <span class="tech-tag">Unity</span>
+                                        <span class="tech-tag">C#</span>
+                                        <span class="tech-tag">Procedural</span>
+                                    </div>
+                                    <div class="project-links">
+                                        <a href="https://the-discording-tales.itch.io/kalevipoeg" target="_blank" class="project-link primary"><i class="fas fa-play"></i> Play Game</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- POYA -->
+                            <div class="project-card games">
+                                <div class="project-ribbon ribbon-gold"><i class="fas fa-trophy"></i> Winner</div>
+                                <div class="project-media">
+                                    <div class="project-video">
+                                        <video controls class="project-video-player" poster="Assets/POYA.png">
+                                            <source src="Portfolio/Game Development (Design, Worldbuilding, Graphic)/2) GameJams & Prototypes/2023 - POYA -48H; GameJam as Creative Director/POYA short trailer.mp4" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                </div>
+                                <div class="project-content">
+                                    <h4>POYA</h4>
+                                    <p class="project-type">Clicker — Creative Director</p>
+                                    <p class="project-description">Prize-winning contemplative clicker inspired by Swiss alpine culture and farming traditions.</p>
+                                    <div class="project-tech">
+                                        <span class="tech-tag">Game Design</span>
+                                        <span class="tech-tag">Swiss Folklore</span>
+                                    </div>
+                                    <div class="project-links">
+                                        <a href="https://hackfight.itch.io/poya" target="_blank" class="project-link primary"><i class="fas fa-play"></i> Play Game</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- SENS -->
+                            <div class="project-card games">
+                                <div class="project-media">
+                                    <div class="game-thumbnail">
+                                        <img src="Assets/SENS.jpg" alt="SENS">
+                                    </div>
+                                    </div>
+                                    <div class="project-content">
+                                    <h4>SENS</h4>
+                                    <p class="project-type">Sensory Game — Creative Director</p>
+                                    <p class="project-description">First GameJam as Creative Director. A sensory exploration game with unique atmospheric mechanics.</p>
+                                    <div class="project-tech">
+                                        <span class="tech-tag">Leadership</span>
+                                        <span class="tech-tag">48H GameJam</span>
+                                    </div>
+                                    <div class="project-links">
+                                        <a href="https://petitfiloue.itch.io/sens" target="_blank" class="project-link primary"><i class="fas fa-play"></i> Play Game</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Knowledge Clicker -->
+                            <div class="project-card games">
+                                <div class="project-media">
+                                    <div class="project-preview">
+                                        <video class="project-video" controls>
+                                            <source src="Portfolio/Game Development (Design, Worldbuilding, Graphic)/2) GameJams & Prototypes/2023 - WIP Knowledge-based Incremental Clicker project.mp4" type="video/mp4">
+                                        </video>
+                                    </div>
+                                    </div>
+                                    <div class="project-content">
+                                    <h4>Knowledge Clicker</h4>
+                                    <p class="project-type">Incremental Game — WIP</p>
+                                    <p class="project-description">Work-in-progress incremental game focused on knowledge acquisition and educational retention mechanics.</p>
+                                        <div class="project-tech">
+                                        <span class="tech-tag">Game Design</span>
+                                        <span class="tech-tag">Education</span>
+                                        </div>
+                                        <div class="project-links">
+                                        <button class="project-link primary" onclick="openFullVideo('clicker')"><i class="fas fa-expand"></i> Full Screen</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <!-- GOAP AI -->
+                            <div class="project-card games">
+                                <div class="project-media">
+                                    <div class="project-preview">
+                                        <video class="project-video" controls>
+                                            <source src="Portfolio/Game Development (Design, Worldbuilding, Graphic)/2) GameJams & Prototypes/2023 - WIP Multi-stepped GOAP-Utility AI (too early).mp4" type="video/mp4">
+                                        </video>
+                                    </div>
+                                    </div>
+                                    <div class="project-content">
+                                    <h4>GOAP-Utility AI</h4>
+                                    <p class="project-type">AI Prototype — WIP</p>
+                                    <p class="project-description">Advanced AI system combining Goal-Oriented Action Planning with Utility-based decision making.</p>
+                                        <div class="project-tech">
+                                            <span class="tech-tag">GOAP</span>
+                                            <span class="tech-tag">AI Systems</span>
+                                        <span class="tech-tag">Utility AI</span>
+                                        </div>
+                                        <div class="project-links">
+                                        <button class="project-link primary" onclick="openFullVideo('goap')"><i class="fas fa-expand"></i> Full Screen</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <!-- Evivrus -->
+                            <div class="project-card games">
+                                    <div class="project-content">
+                                    <h4>Evivrus</h4>
+                                    <p class="project-type">Sci-Fi Escape Room — Game Designer</p>
+                                    <p class="project-description">Immersive sci-fi escape room experience designed for team building and entertainment purposes.</p>
+                                        <div class="project-tech">
+                                            <span class="tech-tag">Escape Room</span>
+                                        <span class="tech-tag">Game Design</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- The Discording Tales -->
+                            <div class="project-card games">
+                                <div class="project-media">
+                                    <div class="work-preview-small">
+                                        <iframe class="pdf-preview-small" src="Portfolio/Game Development (Design, Worldbuilding, Graphic)/TTRPG - 300p - Des Récits Discordants (FR - The Discording Tales).pdf#toolbar=0&navpanes=0&scrollbar=0&page=1&view=FitH" frameborder="0"></iframe>
+                                    </div>
+                                </div>
+                                <div class="project-content">
+                                    <h4>The Discording Tales</h4>
+                                    <p class="project-type">Tabletop RPG — 5 Years Solo</p>
+                                    <p class="project-description">300-page ethno-science-fantasy TTRPG with automated character sheets and extensive worldbuilding.</p>
+                                    <div class="project-tech">
+                                        <span class="tech-tag">Game Design</span>
+                                        <span class="tech-tag">Worldbuilding</span>
+                                        <span class="tech-tag">TTRPG</span>
+                                        </div>
+                                        <div class="project-links">
+                                        <a href="https://thediscordingtales.wordpress.com/" target="_blank" class="project-link primary"><i class="fas fa-external-link-alt"></i> Website</a>
+                                        <button class="project-link secondary" onclick="openFullPDF('ttrpg')"><i class="fas fa-book"></i> Read PDF</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    <!-- Web Development Category -->
+                    <div class="portfolio-category" data-category="web" style="display:none;">
+                        <div class="category-header">
+                            <h3><i class="fas fa-code"></i> <span data-i18n="port-web-category">Web Development</span></h3>
+                            <p class="category-desc" data-i18n="port-web-desc">Full-stack projects and web applications</p>
+                        </div>
+
+                        <div class="project-grid">
+                            <div class="project-card web">
+                                <div class="project-media">
+                                    <div class="project-video">
+                                        <video controls class="project-video-player" poster="Assets/WorkHub.png">
+                                            <source src="Assets/WorkHub reel.mp4" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                            </div>
+                            <div class="project-content">
+                                    <h4>WorkHub</h4>
+                                    <p class="project-type">Startup Pitch Website</p>
+                                    <p class="project-description">Complete website development for startup pitch presentation, showcasing full-stack development skills and modern web design principles.</p>
+                                    <div class="project-tech">
+                                        <span class="tech-tag">HTML/CSS/JS</span>
+                                        <span class="tech-tag">Responsive</span>
+                                        <span class="tech-tag">Web Design</span>
+                                    </div>
+                                <div class="project-links">
+                                        <a href="https://archopoia.github.io/WorkHub/" target="_blank" class="project-link primary"><i class="fas fa-external-link-alt"></i> View Website</a>
+                                        <a href="https://github.com/Archopoia/WorkHub" target="_blank" class="project-link secondary"><i class="fab fa-github"></i> Source</a>
+                                </div>
+                            </div>
+                        </div>
+
+                            <!-- Portfolio Website -->
+                            <div class="project-card web">
+                                <div class="project-media">
+                                    <div class="game-thumbnail">
+                                        <img src="Assets/Portfolio.png" alt="Portfolio Website">
+                                    </div>
+                                </div>
+                                <div class="project-content">
+                                    <h4>Interactive Portfolio</h4>
+                                    <p class="project-type">Interactive Personal Website</p>
+                                    <p class="project-description">A unique portfolio website designed as an interactive gamified character sheet with peculiar aesthetics, featuring video integration, dynamic contact forms, and custom animations - as well as a secret hidden achievement to uncover.</p>
+                                    <div class="project-tech">
+                                        <span class="tech-tag">HTML/CSS/JS</span>
+                                        <span class="tech-tag">Responsive Design</span>
+                                        <span class="tech-tag">UX/UI</span>
+                                        <span class="tech-tag">Animation</span>
+                                    </div>
+                                    <div class="project-links">
+                                        <a href="https://archopoia.github.io/Hugues.W.B.dePingon/" target="_blank" class="project-link primary"><i class="fas fa-external-link-alt"></i> View Live Site</a>
+                                        <a href="https://github.com/Archopoia/Hugues.W.B.dePingon" target="_blank" class="project-link secondary"><i class="fab fa-github"></i> Source</a>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                    </div>
+
+                    <!-- Design Category -->
+                    <div class="portfolio-category" data-category="design" style="display:none;">
+                        <div class="category-header">
+                            <h3><i class="fas fa-palette"></i> Graphic Design</h3>
+                            <p class="category-desc">Visual design and creative commissions</p>
+                        </div>
+
+                        <div class="project-grid">
+                            <div class="project-card design">
+                            <div class="project-content">
+                                    <h4>Client Commissions</h4>
+                                    <p class="project-type">Various Design Projects</p>
+                                    <p class="project-description">
+                                        Professional graphic design work including album covers, book covers, association materials,
+                                        and student club designs. Adobe Photoshop and InDesign expertise.
+                                    </p>
+                                    <div class="project-tech">
+                                        <span class="tech-tag">Photoshop</span>
+                                        <span class="tech-tag">InDesign</span>
+                                        <span class="tech-tag">Illustration</span>
+                                </div>
+                                </div>
+                            </div>
+
+                            <div class="project-card design">
+                                <div class="project-content">
+                                    <h4>The Discording Tales — Worldbuilding</h4>
+                                    <p class="project-type">Concept Art & Design</p>
+                                    <p class="project-description">
+                                        Extensive worldbuilding, character design, creature design, and worldmaps for The Discording Tales TTRPG universe.
+                                    </p>
+                                    <div class="project-tech">
+                                        <span class="tech-tag">Concept Art</span>
+                                        <span class="tech-tag">Worldbuilding</span>
+                                        <span class="tech-tag">Character Design</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+            <!-- Skills Tab -->
+            <section id="skills" class="tab-content">
+                <!-- <div class="content-header">
+                    <h2><i class="fas fa-chart-bar"></i> Skills & Abilities</h2>
+                    <p class="header-subtitle">Competencies forged through years of multidisciplinary pursuit</p>
+            </div> -->
+
+                <!-- Skills Navigation -->
+                <div class="skills-nav">
+                    <button class="skill-nav-btn active" data-skill-category="overview"><i class="fas fa-th"></i> <span data-i18n="skills-overview">Overview</span></button>
+                    <button class="skill-nav-btn" data-skill-category="technical"><i class="fas fa-laptop-code"></i> <span data-i18n="skills-technical">Technical</span></button>
+                    <button class="skill-nav-btn" data-skill-category="creative"><i class="fas fa-palette"></i> <span data-i18n="skills-creative">Creative</span></button>
+                    <button class="skill-nav-btn" data-skill-category="leadership"><i class="fas fa-users"></i> <span data-i18n="skills-leadership">Leadership</span></button>
+                    <button class="skill-nav-btn" data-skill-category="academic"><i class="fas fa-graduation-cap"></i> <span data-i18n="skills-academic">Academic</span></button>
+                    <button class="skill-nav-btn" data-skill-category="languages"><i class="fas fa-language"></i> <span data-i18n="skills-languages">Languages</span></button>
+                    </div>
+
+                <!-- Overview - Attribute Wheel -->
+                <div class="skill-section" data-skill-category="overview">
+                    <div class="skill-wheel-container">
+                        <h3 class="section-title" data-i18n="skills-core">Core Competencies</h3>
+                        <div class="attributes-wheel">
+                            <div class="attribute-card-lg theme-red" data-skill="Leadership">
+                                <div class="attr-icon"><i class="fas fa-crown"></i></div>
+                                <h4 data-i18n="skills-leadership-title">Leadership</h4>
+                                <p class="attr-desc" data-i18n="skills-leadership-desc">Team direction & vision</p>
+                </div>
+                            <div class="attribute-card-lg theme-yellow" data-skill="Game Design">
+                                <div class="attr-icon"><i class="fas fa-gamepad"></i></div>
+                                <h4 data-i18n="skills-gamedesign-title">Game Design</h4>
+                                <p class="attr-desc" data-i18n="skills-gamedesign-desc">Mechanics & systems</p>
+                    </div>
+                            <div class="attribute-card-lg theme-green" data-skill="Philosophy">
+                                <div class="attr-icon"><i class="fas fa-brain"></i></div>
+                                <h4 data-i18n="skills-philosophy-title">Philosophy</h4>
+                                <p class="attr-desc" data-i18n="skills-philosophy-desc">Ethics & theory</p>
+                </div>
+                            <div class="attribute-card-lg theme-teal" data-skill="AI Systems">
+                                <div class="attr-icon"><i class="fas fa-robot"></i></div>
+                                <h4 data-i18n="skills-ai-title">AI Systems</h4>
+                                <p class="attr-desc" data-i18n="skills-ai-desc">GOAP, BT, Utility</p>
+                    </div>
+                            <div class="attribute-card-lg theme-purple" data-skill="Worldbuilding">
+                                <div class="attr-icon"><i class="fas fa-globe-americas"></i></div>
+                                <h4 data-i18n="skills-worldbuilding-title">Worldbuilding</h4>
+                                <p class="attr-desc" data-i18n="skills-worldbuilding-desc">Narrative & lore</p>
+                </div>
+                            <div class="attribute-card-lg theme-orange" data-skill="Design">
+                                <div class="attr-icon"><i class="fas fa-paint-brush"></i></div>
+                                <h4 data-i18n="skills-visual-title">Visual Design</h4>
+                                <p class="attr-desc" data-i18n="skills-visual-desc">Graphics & UX</p>
+                    </div>
+                </div>
+                    </div>
+                </div>
+
+                <!-- Technical Skills -->
+                <div class="skill-section" data-skill-category="technical" style="display:none;">
+                    <div class="category-header">
+                        <h3><i class="fas fa-laptop-code"></i> <span data-i18n="skills-technical-title">Technical Proficiencies</span></h3>
+                    </div>
+
+                    <div class="skill-categories-detailed">
+                        <!-- Programming Languages -->
+                        <div class="skill-group">
+                            <h4 class="skill-group-title"><i class="fas fa-code"></i> <span data-i18n="skills-programming">Programming Languages</span></h4>
+                            <div class="skill-items-enhanced">
+                                <div class="skill-card">
+                                    <div class="skill-card-header">
+                                        <span class="skill-name">Python</span>
+                                        <span class="skill-level" data-i18n="skills-proficient">Proficient</span>
+                </div>
+                                    <div class="skill-bar-enhanced">
+                                        <div class="skill-fill" data-width="50" style="width: 0%"></div>
+                    </div>
+                                    <div class="skill-details">
+                                        <span class="detail-tag">Scripting</span>
+                                        <span class="detail-tag">Data Analysis</span>
+                                        <span class="detail-tag">Automation</span>
+                                    </div>
+                                </div>
+                                <div class="skill-card">
+                                    <div class="skill-card-header">
+                                        <span class="skill-name">JavaScript</span>
+                                        <span class="skill-level" data-i18n="skills-competent">Competent</span>
+                                    </div>
+                                    <div class="skill-bar-enhanced">
+                                        <div class="skill-fill" data-width="40" style="width: 0%"></div>
+                                    </div>
+                                    <div class="skill-details">
+                                        <span class="detail-tag">Web Dev</span>
+                                        <span class="detail-tag">Interactive UI</span>
+                                    </div>
+                                </div>
+                                <div class="skill-card">
+                                    <div class="skill-card-header">
+                                        <span class="skill-name">Golang</span>
+                                        <span class="skill-level" data-i18n="skills-novice">Novice</span>
+                                    </div>
+                                    <div class="skill-bar-enhanced">
+                                        <div class="skill-fill" data-width="10" style="width: 0%"></div>
+                                    </div>
+                                    <div class="skill-details">
+                                        <span class="detail-tag">Backend</span>
+                                        <span class="detail-tag">In Progress</span>
+                                    </div>
+                                </div>
+                                <div class="skill-card">
+                                    <div class="skill-card-header">
+                                        <span class="skill-name">C#</span>
+                                        <span class="skill-level" data-i18n="skills-competent">Competent</span>
+                                    </div>
+                                    <div class="skill-bar-enhanced">
+                                        <div class="skill-fill" data-width="40" style="width: 0%"></div>
+                                    </div>
+                                    <div class="skill-details">
+                                        <span class="detail-tag">Unity</span>
+                                        <span class="detail-tag">Game Development</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Game Engines -->
+                        <div class="skill-group">
+                            <h4 class="skill-group-title"><i class="fas fa-cubes"></i> <span data-i18n="skills-engines">Game Engines & Tools</span></h4>
+                            <div class="skill-items-enhanced">
+                                <div class="skill-card">
+                                    <div class="skill-card-header">
+                                        <span class="skill-name">Unity</span>
+                                        <span class="skill-level" data-i18n="skills-proficient">Proficient</span>
+                                    </div>
+                                    <div class="skill-bar-enhanced">
+                                        <div class="skill-fill" data-width="50" style="width: 0%"></div>
+                                    </div>
+                                    <div class="skill-details">
+                                        <span class="detail-tag">3D/2D</span>
+                                        <span class="detail-tag">AI Systems</span>
+                                    </div>
+                                </div>
+                                <div class="skill-card">
+                                    <div class="skill-card-header">
+                                        <span class="skill-name">Godot</span>
+                                        <span class="skill-level" data-i18n="skills-competent">Competent</span>
+                                    </div>
+                                    <div class="skill-bar-enhanced">
+                                        <div class="skill-fill" data-width="40" style="width: 0%"></div>
+                                    </div>
+                                    <div class="skill-details">
+                                        <span class="detail-tag">GDScript</span>
+                                        <span class="detail-tag">2D Games</span>
+                                    </div>
+                                </div>
+                                <div class="skill-card">
+                                    <div class="skill-card-header">
+                                        <span class="skill-name">Unreal Engine</span>
+                                        <span class="skill-level" data-i18n="skills-beginner">Beginner</span>
+                                    </div>
+                                    <div class="skill-bar-enhanced">
+                                        <div class="skill-fill" data-width="20" style="width: 0%"></div>
+                                    </div>
+                                    <div class="skill-details">
+                                        <span class="detail-tag">Blueprints</span>
+                                        <span class="detail-tag">Exploring</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Design Tools -->
+                        <div class="skill-group">
+                            <h4 class="skill-group-title"><i class="fas fa-tools"></i> <span data-i18n="skills-design-creative">Design & Creative Software</span></h4>
+                            <div class="skill-items-enhanced">
+                                <div class="skill-card">
+                                    <div class="skill-card-header">
+                                        <span class="skill-name">Adobe Photoshop</span>
+                                        <span class="skill-level" data-i18n="skills-proficient">Proficient</span>
+                                    </div>
+                                    <div class="skill-bar-enhanced">
+                                        <div class="skill-fill" data-width="50" style="width: 0%"></div>
+                                    </div>
+                                    <div class="skill-details">
+                                        <span class="detail-tag">Photo Editing</span>
+                                        <span class="detail-tag">Digital Art</span>
+                                    </div>
+                                </div>
+                                <div class="skill-card">
+                                    <div class="skill-card-header">
+                                        <span class="skill-name">Adobe InDesign</span>
+                                        <span class="skill-level" data-i18n="skills-proficient">Proficient</span>
+                                    </div>
+                                    <div class="skill-bar-enhanced">
+                                        <div class="skill-fill" data-width="50" style="width: 0%"></div>
+                                    </div>
+                                    <div class="skill-details">
+                                        <span class="detail-tag">Layout</span>
+                                        <span class="detail-tag">Publishing</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- AI & Systems -->
+                        <div class="skill-group">
+                            <h4 class="skill-group-title"><i class="fas fa-robot"></i> <span data-i18n="skills-game-ai">Game AI Architecture</span></h4>
+                            <div class="skill-items-enhanced">
+                                <div class="skill-card">
+                                    <div class="skill-card-header">
+                                        <span class="skill-name">GOAP (Goal-Oriented Action Planning)</span>
+                                        <span class="skill-level" data-i18n="skills-competent">Competent</span>
+                                    </div>
+                                    <div class="skill-bar-enhanced">
+                                        <div class="skill-fill" data-width="40" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-card">
+                                    <div class="skill-card-header">
+                                        <span class="skill-name">Behavior Trees</span>
+                                        <span class="skill-level">Competent</span>
+                                    </div>
+                                    <div class="skill-bar-enhanced">
+                                        <div class="skill-fill" data-width="40" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-card">
+                                    <div class="skill-card-header">
+                                        <span class="skill-name">Utility AI</span>
+                                        <span class="skill-level">Intermediate</span>
+                                    </div>
+                                    <div class="skill-bar-enhanced">
+                                        <div class="skill-fill" data-width="30" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-card">
+                                    <div class="skill-card-header">
+                                        <span class="skill-name">FSM (Finite State Machines)</span>
+                                        <span class="skill-level">Competent</span>
+                                    </div>
+                                    <div class="skill-bar-enhanced">
+                                        <div class="skill-fill" data-width="40" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-card">
+                                    <div class="skill-card-header">
+                                        <span class="skill-name">LLM Integration</span>
+                                        <span class="skill-level">Beginner</span>
+                                    </div>
+                                    <div class="skill-bar-enhanced">
+                                        <div class="skill-fill" data-width="20" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Creative Skills -->
+                <div class="skill-section" data-skill-category="creative" style="display:none;">
+                    <div class="category-header">
+                        <h3><i class="fas fa-palette"></i> Creative Mastery</h3>
+                    </div>
+
+                    <div class="skill-categories-detailed">
+                        <div class="skill-group">
+                            <h4 class="skill-group-title"><i class="fas fa-gamepad"></i> Game Design Specializations</h4>
+                            <div class="skill-items-enhanced">
+                                <div class="skill-card">
+                                    <div class="skill-card-header">
+                                        <span class="skill-name">Game Design</span>
+                                        <span class="skill-level">Advanced</span>
+                                    </div>
+                                    <div class="skill-bar-enhanced">
+                                        <div class="skill-fill" data-width="60" style="width: 0%"></div>
+                                    </div>
+                                    <div class="skill-details">
+                                        <span class="detail-tag">Mechanics</span>
+                                        <span class="detail-tag">Systems</span>
+                                        <span class="detail-tag">Balance</span>
+                                    </div>
+                                </div>
+                                <div class="skill-card">
+                                    <div class="skill-card-header">
+                                        <span class="skill-name">Worldbuilding</span>
+                                        <span class="skill-level">Advanced</span>
+                                    </div>
+                                    <div class="skill-bar-enhanced">
+                                        <div class="skill-fill" data-width="60" style="width: 0%"></div>
+                                    </div>
+                                    <div class="skill-details">
+                                        <span class="detail-tag">Lore</span>
+                                        <span class="detail-tag">Culture</span>
+                                        <span class="detail-tag">History</span>
+                                    </div>
+                                </div>
+                                <div class="skill-card">
+                                    <div class="skill-card-header">
+                                        <span class="skill-name">UI/UX Design</span>
+                                        <span class="skill-level">Competent</span>
+                                    </div>
+                                    <div class="skill-bar-enhanced">
+                                        <div class="skill-fill" data-width="40" style="width: 0%"></div>
+                                    </div>
+                                    <div class="skill-details">
+                                        <span class="detail-tag">User Flow</span>
+                                        <span class="detail-tag">Interfaces</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="skill-group">
+                            <h4 class="skill-group-title"><i class="fas fa-pen-fancy"></i> Artistic Skills</h4>
+                            <div class="skill-items-enhanced">
+                                <div class="skill-card">
+                                    <div class="skill-card-header">
+                                        <span class="skill-name">Creative Writing</span>
+                                        <span class="skill-level">Proficient</span>
+                                    </div>
+                                    <div class="skill-bar-enhanced">
+                                        <div class="skill-fill" data-width="50" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-card">
+                                    <div class="skill-card-header">
+                                        <span class="skill-name">Concept Art</span>
+                                        <span class="skill-level">Intermediate</span>
+                                    </div>
+                                    <div class="skill-bar-enhanced">
+                                        <div class="skill-fill" data-width="30" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-card">
+                                    <div class="skill-card-header">
+                                        <span class="skill-name">Graphic Design</span>
+                                        <span class="skill-level">Proficient</span>
+                                    </div>
+                                    <div class="skill-bar-enhanced">
+                                        <div class="skill-fill" data-width="50" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leadership Skills -->
+                <div class="skill-section" data-skill-category="leadership" style="display:none;">
+                    <div class="category-header">
+                        <h3><i class="fas fa-users"></i> Leadership & Management</h3>
+                    </div>
+
+                    <div class="skill-categories-detailed">
+                        <div class="skill-group">
+                            <div class="skill-items-enhanced">
+                                <div class="skill-card">
+                                    <div class="skill-card-header">
+                                        <span class="skill-name">Team Leadership</span>
+                                        <span class="skill-level">Advanced</span>
+                                    </div>
+                                    <div class="skill-bar-enhanced">
+                                        <div class="skill-fill" data-width="60" style="width: 0%"></div>
+                                    </div>
+                                    <div class="skill-details">
+                                        <span class="detail-tag">Vision Setting</span>
+                                        <span class="detail-tag">Team Management</span>
+                                    </div>
+                                </div>
+                                <div class="skill-card">
+                                    <div class="skill-card-header">
+                                        <span class="skill-name">Project Management</span>
+                                        <span class="skill-level">Proficient</span>
+                                    </div>
+                                    <div class="skill-bar-enhanced">
+                                        <div class="skill-fill" data-width="50" style="width: 0%"></div>
+                                    </div>
+                                    <div class="skill-details">
+                                        <span class="detail-tag">Scheduling</span>
+                                        <span class="detail-tag">Coordination</span>
+                                    </div>
+                                </div>
+                                <div class="skill-card">
+                                    <div class="skill-card-header">
+                                        <span class="skill-name">Communication</span>
+                                        <span class="skill-level">Advanced</span>
+                                    </div>
+                                    <div class="skill-bar-enhanced">
+                                        <div class="skill-fill" data-width="60" style="width: 0%"></div>
+                                    </div>
+                                    <div class="skill-details">
+                                        <span class="detail-tag">Cross-team</span>
+                                        <span class="detail-tag">Presentations</span>
+                                    </div>
+                                </div>
+                                <div class="skill-card">
+                                    <div class="skill-card-header">
+                                        <span class="skill-name">Strategic Thinking</span>
+                                        <span class="skill-level">Intermediate</span>
+                                    </div>
+                                    <div class="skill-bar-enhanced">
+                                        <div class="skill-fill" data-width="30" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-card">
+                                    <div class="skill-card-header">
+                                        <span class="skill-name">Problem Solving</span>
+                                        <span class="skill-level">Advanced</span>
+                                    </div>
+                                    <div class="skill-bar-enhanced">
+                                        <div class="skill-fill" data-width="60" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-card">
+                                    <div class="skill-card-header">
+                                        <span class="skill-name">Adaptability</span>
+                                        <span class="skill-level">Advanced</span>
+                                    </div>
+                                    <div class="skill-bar-enhanced">
+                                        <div class="skill-fill" data-width="60" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-card">
+                                    <div class="skill-card-header">
+                                        <span class="skill-name">Analytical Thinking</span>
+                                        <span class="skill-level">Proficient</span>
+                                    </div>
+                                    <div class="skill-bar-enhanced">
+                                        <div class="skill-fill" data-width="50" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Academic Skills -->
+                <div class="skill-section" data-skill-category="academic" style="display:none;">
+
+
+                    <div class="skill-categories-detailed">
+                        <div class="skill-group">
+                            <div class="skill-items-enhanced">
+                                <div class="skill-card">
+                                    <div class="skill-card-header">
+                                        <span class="skill-name">Applied Ethics</span>
+                                        <span class="skill-level">MPhil</span>
+                                    </div>
+                                    <div class="skill-bar-enhanced">
+                                        <div class="skill-fill" data-width="80" style="width: 0%"></div>
+                                    </div>
+                                    <div class="skill-details">
+                                        <span class="detail-tag">Morality</span>
+                                        <span class="detail-tag">Foresight</span>
+                                    </div>
+                                </div>
+                                <div class="skill-card">
+                                    <div class="skill-card-header">
+                                        <span class="skill-name">Philosophy</span>
+                                        <span class="skill-level">MPhil</span>
+                                    </div>
+                                    <div class="skill-bar-enhanced">
+                                        <div class="skill-fill" data-width="80" style="width: 0%"></div>
+                                    </div>
+                                    <div class="skill-details">
+                                        <span class="detail-tag">Ethics</span>
+                                        <span class="detail-tag">Theory</span>
+                                    </div>
+                                </div>
+                                <div class="skill-card">
+                                    <div class="skill-card-header">
+                                        <span class="skill-name">Neuroscience</span>
+                                        <span class="skill-level">B.S.</span>
+                                    </div>
+                                    <div class="skill-bar-enhanced">
+                                        <div class="skill-fill" data-width="60" style="width: 0%"></div>
+                                    </div>
+                                    <div class="skill-details">
+                                        <span class="detail-tag">Cognition</span>
+                                        <span class="detail-tag">Memory</span>
+                                    </div>
+                                </div>
+                                <div class="skill-card">
+                                    <div class="skill-card-header">
+                                        <span class="skill-name">Anthropology</span>
+                                        <span class="skill-level">B.A.</span>
+                                    </div>
+                                    <div class="skill-bar-enhanced">
+                                        <div class="skill-fill" data-width="60" style="width: 0%"></div>
+                                    </div>
+                                    <div class="skill-details">
+                                        <span class="detail-tag">Cultural</span>
+                                        <span class="detail-tag">Ethnology</span>
+                                    </div>
+                                </div>
+                                <div class="skill-card">
+                                    <div class="skill-card-header">
+                                        <span class="skill-name">Biology & Ecology</span>
+                                        <span class="skill-level">B.S.</span>
+                                    </div>
+                                    <div class="skill-bar-enhanced">
+                                        <div class="skill-fill" data-width="60" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-card">
+                                    <div class="skill-card-header">
+                                        <span class="skill-name">Futures Studies</span>
+                                        <span class="skill-level">MBA</span>
+                                    </div>
+                                    <div class="skill-bar-enhanced">
+                                        <div class="skill-fill" data-width="70" style="width: 0%"></div>
+                                    </div>
+                                    <div class="skill-details">
+                                        <span class="detail-tag">Scenario Planning</span>
+                                        <span class="detail-tag">Governance</span>
+                                    </div>
+                                </div>
+                                <div class="skill-card">
+                                    <div class="skill-card-header">
+                                        <span class="skill-name">Research Methods</span>
+                                        <span class="skill-level">Graduate</span>
+                                    </div>
+                                    <div class="skill-bar-enhanced">
+                                        <div class="skill-fill" data-width="70" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Languages Section (new) -->
+                <div class="skill-section" data-skill-category="languages" style="display:none;">
+                    <div class="category-header">
+                        <h3><i class="fas fa-language"></i> <span data-i18n="skills-languages-title">Language Proficiencies</span></h3>
+                    </div>
+
+                    <div class="languages-grid">
+                        <div class="language-card native">
+                            <div class="lang-flag"><i class="fas fa-star"></i></div>
+                            <h4>French</h4>
+                            <p class="lang-level" data-i18n="skills-lang-native">Native</p>
+                            <div class="lang-proficiency">
+                                <div class="lang-skill"><span data-i18n="skills-lang-speaking">Speaking</span><div class="mini-bar"><div class="mini-fill" style="width: 100%"></div></div></div>
+                                <div class="lang-skill"><span data-i18n="skills-lang-writing">Writing</span><div class="mini-bar"><div class="mini-fill" style="width: 100%"></div></div></div>
+                                <div class="lang-skill"><span data-i18n="skills-lang-reading">Reading</span><div class="mini-bar"><div class="mini-fill" style="width: 100%"></div></div></div>
+                            </div>
+                        </div>
+
+                        <div class="language-card fluent">
+                            <div class="lang-flag"><i class="fas fa-star"></i></div>
+                            <h4>English</h4>
+                            <p class="lang-level" data-i18n="skills-lang-fluent">Fluent</p>
+                            <div class="lang-proficiency">
+                                <div class="lang-skill"><span data-i18n="skills-lang-speaking">Speaking</span><div class="mini-bar"><div class="mini-fill" style="width: 98%"></div></div></div>
+                                <div class="lang-skill"><span data-i18n="skills-lang-writing">Writing</span><div class="mini-bar"><div class="mini-fill" style="width: 98%"></div></div></div>
+                                <div class="lang-skill"><span data-i18n="skills-lang-reading">Reading</span><div class="mini-bar"><div class="mini-fill" style="width: 100%"></div></div></div>
+                            </div>
+                        </div>
+
+                        <div class="language-card">
+                            <h4>Italian</h4>
+                            <p class="lang-level" data-i18n="skills-lang-basic">Basic</p>
+                            <div class="lang-proficiency">
+                                <div class="lang-skill"><span data-i18n="skills-lang-speaking">Speaking</span><div class="mini-bar"><div class="mini-fill" style="width: 25%"></div></div></div>
+                                <div class="lang-skill"><span data-i18n="skills-lang-writing">Writing</span><div class="mini-bar"><div class="mini-fill" style="width: 20%"></div></div></div>
+                                <div class="lang-skill"><span data-i18n="skills-lang-reading">Reading</span><div class="mini-bar"><div class="mini-fill" style="width: 30%"></div></div></div>
+                            </div>
+                        </div>
+
+                        <div class="language-card">
+                            <h4>German</h4>
+                            <p class="lang-level" data-i18n="skills-lang-basic">Basic</p>
+                            <div class="lang-proficiency">
+                                <div class="lang-skill"><span data-i18n="skills-lang-speaking">Speaking</span><div class="mini-bar"><div class="mini-fill" style="width: 25%"></div></div></div>
+                                <div class="lang-skill"><span data-i18n="skills-lang-writing">Writing</span><div class="mini-bar"><div class="mini-fill" style="width: 20%"></div></div></div>
+                                <div class="lang-skill"><span data-i18n="skills-lang-reading">Reading</span><div class="mini-bar"><div class="mini-fill" style="width: 30%"></div></div></div>
+                            </div>
+                        </div>
+
+                        <div class="language-card">
+                            <h4>Lithuanian</h4>
+                            <p class="lang-level" data-i18n="skills-lang-basic">Basic</p>
+                            <div class="lang-proficiency">
+                                <div class="lang-skill"><span data-i18n="skills-lang-speaking">Speaking</span><div class="mini-bar"><div class="mini-fill" style="width: 25%"></div></div></div>
+                                <div class="lang-skill"><span data-i18n="skills-lang-writing">Writing</span><div class="mini-bar"><div class="mini-fill" style="width: 20%"></div></div></div>
+                                <div class="lang-skill"><span data-i18n="skills-lang-reading">Reading</span><div class="mini-bar"><div class="mini-fill" style="width: 30%"></div></div></div>
+                            </div>
+                        </div>
+
+                        <div class="language-card">
+                            <h4>Estonian</h4>
+                            <p class="lang-level" data-i18n="skills-lang-basic">Basic</p>
+                            <div class="lang-proficiency">
+                                <div class="lang-skill"><span data-i18n="skills-lang-speaking">Speaking</span><div class="mini-bar"><div class="mini-fill" style="width: 25%"></div></div></div>
+                                <div class="lang-skill"><span data-i18n="skills-lang-writing">Writing</span><div class="mini-bar"><div class="mini-fill" style="width: 20%"></div></div></div>
+                                <div class="lang-skill"><span data-i18n="skills-lang-reading">Reading</span><div class="mini-bar"><div class="mini-fill" style="width: 30%"></div></div></div>
+                            </div>
+                        </div>
+
+                        <div class="language-card">
+                            <h4>Russian</h4>
+                            <p class="lang-level" data-i18n="skills-lang-basic">Basic</p>
+                            <div class="lang-proficiency">
+                                <div class="lang-skill"><span data-i18n="skills-lang-speaking">Speaking</span><div class="mini-bar"><div class="mini-fill" style="width: 25%"></div></div></div>
+                                <div class="lang-skill"><span data-i18n="skills-lang-writing">Writing</span><div class="mini-bar"><div class="mini-fill" style="width: 20%"></div></div></div>
+                                <div class="lang-skill"><span data-i18n="skills-lang-reading">Reading</span><div class="mini-bar"><div class="mini-fill" style="width: 30%"></div></div></div>
+                            </div>
+                        </div>
+
+                        <div class="language-card">
+                            <h4>Swedish</h4>
+                            <p class="lang-level" data-i18n="skills-lang-basic">Basic</p>
+                            <div class="lang-proficiency">
+                                <div class="lang-skill"><span data-i18n="skills-lang-speaking">Speaking</span><div class="mini-bar"><div class="mini-fill" style="width: 25%"></div></div></div>
+                                <div class="lang-skill"><span data-i18n="skills-lang-writing">Writing</span><div class="mini-bar"><div class="mini-fill" style="width: 20%"></div></div></div>
+                                <div class="lang-skill"><span data-i18n="skills-lang-reading">Reading</span><div class="mini-bar"><div class="mini-fill" style="width: 30%"></div></div></div>
+                            </div>
+                        </div>
+
+                        <div class="language-card classical">
+                            <h4>Latin & Ancient Greek</h4>
+                            <p class="lang-level" data-i18n="skills-lang-classical">Classical Studies</p>
+                            <div class="lang-proficiency">
+                                <div class="lang-skill"><span data-i18n="skills-lang-reading">Reading</span><div class="mini-bar"><div class="mini-fill" style="width: 60%"></div></div></div>
+                                <div class="lang-skill"><span data-i18n="skills-lang-translation">Translation</span><div class="mini-bar"><div class="mini-fill" style="width: 55%"></div></div></div>
+                            </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+            <!-- Contact Tab -->
+            <section id="contact" class="tab-content">
+                <!-- <div class="content-header">
+                    <h2><i class="fas fa-envelope"></i> Let's Connect</h2>
+                    <p class="section-subtitle">Choose your path to collaboration</p>
+            </div> -->
+
+                <!-- Recent Appearances - Compact Version -->
+                <div class="contact-compact-image">
+                    <img src="Assets/Hugues/fullfashion.jpg" alt="Hugues in Tartu, Estonia" class="compact-img" onclick="openFullImage('Assets/Hugues/fullfashion.jpg')" style="cursor: pointer;">
+                    <p class="compact-caption"><span data-i18n="contact-photo-caption">Snapped by @vincasalesius, Vilnius' (LT) street photographer</span></p>
+                        </div>
+
+                <!-- Contact Method Selector -->
+                <div class="contact-method-selector">
+                    <button class="method-btn active" data-method="form" onclick="switchContactMethod('form')">
+                        <i class="fas fa-comment-dots"></i>
+                        <span data-i18n="contact-interactive">Interactive Form</span>
+                    </button>
+                    <button class="method-btn" data-method="direct" onclick="switchContactMethod('direct')">
+                        <i class="fas fa-address-card"></i>
+                        <span data-i18n="contact-direct">Direct Contact</span>
+                    </button>
+                    <button class="method-btn" data-method="social" onclick="switchContactMethod('social')">
+                        <i class="fas fa-share-alt"></i>
+                        <span data-i18n="contact-social">Social Networks</span>
+                    </button>
+                    </div>
+
+                <!-- Interactive Contact Form -->
+                <div class="contact-method-content" id="contact-form-section">
+                    <div class="contact-quest-intro">
+                        <h3><i class="fas fa-scroll"></i> <span data-i18n="contact-quest-title">Begin Your Quest</span></h3>
+                        <p data-i18n="contact-quest-subtitle">Answer a few questions to help me understand how I can best assist you. Your responses will guide our conversation.</p>
+                        </div>
+
+                    <form id="interactive-contact-form" class="contact-quest-form">
+                        <!-- Question 1: Purpose -->
+                        <div class="quest-question active" data-question="1">
+                            <div class="question-header">
+                                <span class="question-number">Quest 1/5</span>
+                                <h4 data-i18n="contact-q1">What brings you here today?</h4>
+                    </div>
+                            <div class="quest-options">
+                                <label class="quest-option">
+                                    <input type="radio" name="purpose" value="collaboration" required>
+                                    <div class="option-card">
+                                        <i class="fas fa-handshake"></i>
+                                        <span data-i18n="contact-q1-collab">Collaboration Opportunity</span>
+                                    </div>
+                                </label>
+                                <label class="quest-option">
+                                    <input type="radio" name="purpose" value="hiring" required>
+                                    <div class="option-card">
+                                        <i class="fas fa-briefcase"></i>
+                                        <span data-i18n="contact-q1-hiring">Job/Consulting Offer</span>
+                                    </div>
+                                </label>
+                                <label class="quest-option">
+                                    <input type="radio" name="purpose" value="academic" required>
+                                    <div class="option-card">
+                                        <i class="fas fa-graduation-cap"></i>
+                                        <span data-i18n="contact-q1-academic">Academic Inquiry</span>
+                                    </div>
+                                </label>
+                                <label class="quest-option">
+                                    <input type="radio" name="purpose" value="feedback" required>
+                                    <div class="option-card">
+                                        <i class="fas fa-comments"></i>
+                                        <span data-i18n="contact-q1-feedback">Feedback/Discussion</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Question 2: Project Type -->
+                        <div class="quest-question" data-question="2">
+                            <div class="question-header">
+                                <span class="question-number">Quest 2/5</span>
+                                <h4 data-i18n="contact-q2">Which area interests you most?</h4>
+                            </div>
+                            <div class="quest-options">
+                                <label class="quest-option">
+                                    <input type="radio" name="interest" value="game-design" required>
+                                    <div class="option-card">
+                                        <i class="fas fa-gamepad"></i>
+                                        <span data-i18n="contact-q2-gamedesign">Game Design & Development</span>
+                                    </div>
+                                </label>
+                                <label class="quest-option">
+                                    <input type="radio" name="interest" value="ai-ethics" required>
+                                    <div class="option-card">
+                                        <i class="fas fa-brain"></i>
+                                        <span data-i18n="contact-q2-ai">AI Ethics & Philosophy</span>
+                                    </div>
+                                </label>
+                                <label class="quest-option">
+                                    <input type="radio" name="interest" value="foresight" required>
+                                    <div class="option-card">
+                                        <i class="fas fa-crystal-ball"></i>
+                                        <span data-i18n="contact-q2-foresight">Strategic Foresight</span>
+                                    </div>
+                                </label>
+                                <label class="quest-option">
+                                    <input type="radio" name="interest" value="worldbuilding" required>
+                                    <div class="option-card">
+                                        <i class="fas fa-globe"></i>
+                                        <span data-i18n="contact-q2-worldbuilding">Worldbuilding & Design</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Question 3: Timeline -->
+                        <div class="quest-question" data-question="3">
+                            <div class="question-header">
+                                <span class="question-number">Quest 3/5</span>
+                                <h4 data-i18n="contact-q3">What's your timeline?</h4>
+                            </div>
+                            <div class="quest-options">
+                                <label class="quest-option">
+                                    <input type="radio" name="timeline" value="urgent" required>
+                                    <div class="option-card">
+                                        <i class="fas fa-bolt"></i>
+                                        <span data-i18n="contact-q3-urgent">Urgent (This Week)</span>
+                                    </div>
+                                </label>
+                                <label class="quest-option">
+                                    <input type="radio" name="timeline" value="soon" required>
+                                    <div class="option-card">
+                                        <i class="fas fa-hourglass-half"></i>
+                                        <span data-i18n="contact-q3-soon">Soon (This Month)</span>
+                                    </div>
+                                </label>
+                                <label class="quest-option">
+                                    <input type="radio" name="timeline" value="flexible" required>
+                                    <div class="option-card">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <span data-i18n="contact-q3-flexible">Flexible (Open Timeline)</span>
+                                    </div>
+                                </label>
+                                <label class="quest-option">
+                                    <input type="radio" name="timeline" value="exploring" required>
+                                    <div class="option-card">
+                                        <i class="fas fa-compass"></i>
+                                        <span data-i18n="contact-q3-exploring">Just Exploring</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Question 4: Details -->
+                        <div class="quest-question" data-question="4">
+                            <div class="question-header">
+                                <span class="question-number">Quest 4/5</span>
+                                <h4 data-i18n="contact-q4">Tell me about your project or inquiry</h4>
+                            </div>
+                            <div class="quest-text-input">
+                                <textarea
+                                    name="message"
+                                    rows="6"
+                                    data-i18n="contact-q4-placeholder"
+                                    placeholder="Share your vision, challenge, or question. The more details, the better I can help..."
+                                    required
+                                ></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Question 5: Contact Info -->
+                        <div class="quest-question" data-question="5">
+                            <div class="question-header">
+                                <span class="question-number">Quest 5/5</span>
+                                <h4 data-i18n="contact-q5">How should I reach you?</h4>
+                            </div>
+                            <div class="quest-contact-inputs">
+                                <div class="input-group">
+                                    <label><i class="fas fa-user"></i> <span data-i18n="contact-name">Your Name</span></label>
+                                    <input type="text" name="name" data-i18n="contact-name-placeholder" placeholder="Enter your name" required>
+                                </div>
+                                <div class="input-group">
+                                    <label><i class="fas fa-envelope"></i> <span data-i18n="contact-email">Email Address</span></label>
+                                    <input type="email" name="email" data-i18n="contact-email-placeholder" placeholder="your.email@example.com" required>
+                                </div>
+                                <div class="input-group">
+                                    <label><i class="fas fa-building"></i> <span data-i18n="contact-org">Organization (Optional)</span></label>
+                                    <input type="text" name="organization" data-i18n="contact-org-placeholder" placeholder="Company or institution">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Navigation -->
+                        <div class="quest-navigation">
+                            <button type="button" class="quest-btn secondary" id="prev-btn" onclick="previousQuestion()" disabled>
+                                <i class="fas fa-arrow-left"></i> <span data-i18n="btn-previous">Previous</span>
+                            </button>
+                            <div class="quest-progress">
+                                <div class="progress-dots">
+                                    <span class="dot active"></span>
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                </div>
+                            </div>
+                            <button type="button" class="quest-btn primary" id="next-btn" onclick="nextQuestion()">
+                                <span data-i18n="btn-next">Next</span> <i class="fas fa-arrow-right"></i>
+                            </button>
+                            <button type="submit" class="quest-btn submit" id="submit-btn" style="display:none;">
+                                <i class="fas fa-paper-plane"></i> <span data-i18n="btn-submit">Send Quest</span>
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Form Success Message -->
+                    <div class="quest-success" id="form-success" style="display:none;">
+                        <div class="success-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h3>Quest Accepted!</h3>
+                        <p>Thank you for reaching out. I'll review your message and respond within 48 hours.</p>
+                        <button class="quest-btn primary" onclick="resetContactForm()">
+                            <i class="fas fa-redo"></i> Start New Quest
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Direct Contact Section -->
+                <div class="contact-method-content" id="contact-direct-section" style="display:none;">
+                    <div class="direct-contact-grid">
+                        <div class="contact-card primary">
+                            <div class="card-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h3>Email</h3>
+                            <p class="contact-value">hugues.ii.w.b.depingon@gmail.com</p>
+                            <a href="mailto:hugues.ii.w.b.depingon@gmail.com" class="contact-action-btn">
+                                <i class="fas fa-paper-plane"></i> <span data-i18n="btn-send-email">Send Email</span>
+                            </a>
+                            <p class="contact-note">Best for detailed inquiries and proposals</p>
+                        </div>
+
+                        <div class="contact-card">
+                            <div class="card-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <h3 data-i18n="location">Location</h3>
+                            <p class="contact-value" data-i18n="location-value">Switzerland / Estonia</p>
+                            <p class="contact-note">Open to remote collaboration worldwide</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Networks Section -->
+                <div class="contact-method-content" id="contact-social-section" style="display:none;">
+                    <div class="social-platforms-intro">
+                        <h3><i class="fas fa-users"></i> Join the Community</h3>
+                        <p>Follow my work, projects, and thoughts across various platforms</p>
+                    </div>
+
+                    <div class="social-platforms-grid">
+                        <a href="https://www.linkedin.com/in/hugues-ii-w-b-de-pingon/" target="_blank" rel="noopener noreferrer" class="social-platform-card linkedin">
+                            <div class="platform-header">
+                                    <i class="fab fa-linkedin"></i>
+                                <span class="platform-name">LinkedIn</span>
+                            </div>
+                            <p class="platform-desc">Professional updates, articles, and industry insights</p>
+                            <div class="platform-stats">
+                                <span><i class="fas fa-briefcase"></i> Professional Network</span>
+                            </div>
+                        </a>
+
+                        <a href="https://github.com/Archopoia" target="_blank" rel="noopener noreferrer" class="social-platform-card github">
+                            <div class="platform-header">
+                                <i class="fab fa-github"></i>
+                                <span class="platform-name">GitHub</span>
+                            </div>
+                            <p class="platform-desc">Open source projects, code repositories, and development work</p>
+                            <div class="platform-stats">
+                                <span><i class="fas fa-code"></i> 3 Public Repositories</span>
+                            </div>
+                        </a>
+
+                        <a href="https://the-discording-tales.itch.io/" target="_blank" rel="noopener noreferrer" class="social-platform-card itch">
+                            <div class="platform-header">
+                                <i class="fab fa-itch-io"></i>
+                                <span class="platform-name">Itch.io</span>
+                            </div>
+                            <p class="platform-desc">Game projects, prototypes, and interactive experiences</p>
+                            <div class="platform-stats">
+                                <span><i class="fas fa-gamepad"></i> The Discording Tales</span>
+                            </div>
+                        </a>
+
+                        <a href="https://x.com/DiscordingTales" target="_blank" rel="noopener noreferrer" class="social-platform-card twitter">
+                            <div class="platform-header">
+                                    <i class="fab fa-twitter"></i>
+                                <span class="platform-name">X (Twitter)</span>
+                            </div>
+                            <p class="platform-desc">Quick updates, thoughts, and project announcements</p>
+                            <div class="platform-stats">
+                                <span><i class="fas fa-comments"></i> @DiscordingTales</span>
+                            </div>
+                        </a>
+
+                        <a href="https://www.instagram.com/hugueswb_de_pingon" target="_blank" rel="noopener noreferrer" class="social-platform-card instagram">
+                            <div class="platform-header">
+                                    <i class="fab fa-instagram"></i>
+                                <span class="platform-name">Instagram</span>
+                            </div>
+                            <p class="platform-desc">Visual content, behind-the-scenes, and personal moments</p>
+                            <div class="platform-stats">
+                                <span><i class="fas fa-camera"></i> @hugueswb_de_pingon</span>
+                            </div>
+                        </a>
+
+                        <a href="https://thediscordingtales.wordpress.com/" target="_blank" rel="noopener noreferrer" class="social-platform-card wordpress">
+                            <div class="platform-header">
+                                <i class="fab fa-wordpress"></i>
+                                <span class="platform-name">WordPress Blog</span>
+                            </div>
+                            <p class="platform-desc">Deep dives into worldbuilding, lore, and game design philosophy</p>
+                            <div class="platform-stats">
+                                <span><i class="fas fa-book-open"></i> The Discording Tales</span>
+                            </div>
+                                </a>
+                            </div>
+
+                    <!-- Discord Community -->
+                    <div class="community-callout">
+                        <div class="callout-icon">
+                            <i class="fab fa-discord"></i>
+                        </div>
+                        <div class="callout-content">
+                            <h3>Join Our Discord Community</h3>
+                            <p>Connect with fellow game designers, worldbuilders, and creative thinkers. Share ideas, get feedback, and collaborate on projects.</p>
+                            <a href="https://discord.gg/3RY6g7sWNM" target="_blank" rel="noopener noreferrer" class="discord-btn">
+                                <i class="fab fa-discord"></i> Join Discord Server
+                            </a>
+                        </div>
+            </div>
+        </div>
+    </section>
+        </main>
+        </div>
+
+    <!-- Full Screen Modal -->
+    <div id="modal-overlay" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title">Title</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Content will be inserted here -->
+        </div>
+        </div>
+    </div>
+
+    <script src="i18n.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
