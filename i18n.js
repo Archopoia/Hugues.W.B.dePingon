@@ -109,7 +109,7 @@ const translations = {
         "edu-stats-diplomas": "Diplomas",
         "edu-stats-countries": "Countries",
         "edu-stats-summa": "S.C.L.",
-        "summa-full": "summa cum laude",
+        "summa-full": "Summa Cum Laude",
         "inst-linkoping": "Linköping University",
         "inst-montana": "University of Montana",
         "inst-ensr": "ENSR Switzerland",
