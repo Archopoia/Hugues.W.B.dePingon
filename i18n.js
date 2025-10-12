@@ -108,7 +108,7 @@ const translations = {
         "edu-stats-institutions": "Institutions",
         "edu-stats-diplomas": "Diplomas",
         "edu-stats-countries": "Countries",
-        "edu-stats-summa": "Summa cum laude",
+        "edu-stats-summa": "S.C.L.",
         "edu-current-studies": "Current Studies",
         "edu-current-subtitle": "Ongoing academic pursuits and professional development",
         "edu-fullstack-title": "Full Stack Software Development, AI Specialization",
@@ -475,7 +475,7 @@ const translations = {
         "edu-stats-institutions": "Institutions",
         "edu-stats-diplomas": "Diplômes",
         "edu-stats-countries": "Pays",
-        "edu-stats-summa": "Summa cum laude",
+        "edu-stats-summa": "S.C.L.",
         "edu-current-studies": "Études Actuelles",
         "edu-current-subtitle": "Poursuites académiques en cours et développement professionnel",
         "edu-fullstack-title": "Développement Logiciel Full Stack, Spécialisation IA",
@@ -768,11 +768,19 @@ function applyLanguage(lang) {
     elements.forEach(element => {
         const key = element.getAttribute('data-i18n');
         if (translations[lang] && translations[lang][key]) {
+            // Store the original title attribute before translation
+            const originalTitle = element.getAttribute('title');
+
             // Check if element has a placeholder attribute
             if (element.placeholder !== undefined) {
                 element.placeholder = translations[lang][key];
             } else {
                 element.textContent = translations[lang][key];
+            }
+
+            // Restore the title attribute if it existed
+            if (originalTitle) {
+                element.setAttribute('title', originalTitle);
             }
         }
     });

@@ -744,6 +744,15 @@ body {
     color: var(--text-cream);
 }
 
+/* S.C.L. hover effect */
+.stat-label.scl-hover::before {
+    content: 'S.C.L.';
+}
+
+.academic-stat.theme-teal:hover .stat-label.scl-hover::before {
+    content: 'summa cum laude';
+}
+
 /* Education Navigation */
 .education-nav {
     display: flex;
