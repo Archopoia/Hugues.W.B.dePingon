@@ -701,6 +701,8 @@ body {
     border-radius: 15px;
     display: inline-block;
     min-width: 120px;
+    white-space: nowrap;
+    transition: all 0.3s ease;
 }
 
 /* Theme-specific styling for academic stats */
@@ -744,13 +746,116 @@ body {
     color: var(--text-cream);
 }
 
-/* S.C.L. hover effect */
+/* Stat card hover effect - hide default, show list */
+.stat-default {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: opacity 0.3s ease;
+}
+
+.stat-hover-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+    border-radius: 15px;
+    padding: 1rem;
+}
+
+.academic-stat:hover .stat-default {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.academic-stat:hover .stat-hover-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+
+/* Label styles */
 .stat-label.scl-hover::before {
     content: 'S.C.L.';
 }
 
-.academic-stat.theme-teal:hover .stat-label.scl-hover::before {
-    content: 'summa cum laude';
+.stat-label.institutions-hover::before {
+    content: 'Institutions';
+}
+
+.stat-label.diplomas-hover::before {
+    content: 'Diplomas';
+}
+
+html[lang="fr"] .stat-label.diplomas-hover::before {
+    content: 'Diplômes';
+}
+
+.stat-label.countries-hover::before {
+    content: 'Countries';
+}
+
+html[lang="fr"] .stat-label.countries-hover::before {
+    content: 'Pays';
+}
+
+/* Hover content styling */
+.stat-hover-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.stat-hover-content li {
+    font-size: 0.95rem;
+    color: var(--text-cream);
+    margin: 0.35rem 0;
+    position: relative;
+    padding-left: 1.2rem;
+}
+
+.stat-hover-content li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.stat-hover-content p {
+    font-size: 1.1rem;
+    color: var(--text-cream);
+    font-weight: 600;
+    text-align: center;
+    margin: 0;
+}
+
+/* Theme-specific hover backgrounds */
+.academic-stat.theme-red:hover {
+    background: var(--red-theme);
+    transform: scale(1);
+}
+
+.academic-stat.theme-yellow:hover {
+    background: var(--yellow-theme);
+    transform: scale(1);
+}
+
+.academic-stat.theme-green:hover {
+    background: var(--green-theme);
+    transform: scale(1);
+}
+
+.academic-stat.theme-teal:hover {
+    background: var(--teal-theme);
+    transform: scale(1);
 }
 
 /* Education Navigation */
