@@ -329,7 +329,7 @@ const translations = {
         "present": "Present",
         "completed": "COMPLETED",
         "in-progress": "IN PROGRESS",
-        "cum-laude": "CUM LAUDE",
+        "cum-laude": "SUMMA CUM LAUDE",
         "coming-soon": "Coming Soon",
         "not-yet-available": "Not Yet Available",
 
@@ -696,7 +696,7 @@ const translations = {
         "present": "Présent",
         "completed": "TERMINÉ",
         "in-progress": "EN COURS",
-        "cum-laude": "AVEC FÉLICITATIONS",
+        "cum-laude": "SUMMA CUM LAUDE",
         "coming-soon": "Bientôt disponible",
         "not-yet-available": "Pas encore disponible",
 

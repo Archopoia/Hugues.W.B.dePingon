@@ -18,56 +18,119 @@ function createElementSafe(tag, content, className) {
 // Dynamic Section Loader - Load HTML sections on demand
 async function loadSection(sectionName) {
     const sectionContainer = document.getElementById(sectionName);
-    
+
     // If section is already loaded, skip
     if (sectionContainer && sectionContainer.dataset.loaded === 'true') {
         return;
     }
-    
+
     try {
         const response = await fetch(`sections/${sectionName}.html`);
         if (!response.ok) throw new Error(`Failed to load ${sectionName}`);
-        
+
         const html = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
         const section = doc.querySelector('section');
-        
+
         if (section && sectionContainer) {
             // Replace placeholder with actual content
             sectionContainer.outerHTML = section.outerHTML;
-            
+
             // Mark as loaded
             const loadedSection = document.getElementById(sectionName);
             if (loadedSection) {
                 loadedSection.dataset.loaded = 'true';
-                
+
                 // Reapply translations if i18n is available
                 if (typeof applyLanguage === 'function' && typeof currentLang !== 'undefined') {
                     applyLanguage(currentLang);
                 }
-                
-                // Reinitialize any section-specific features
-                if (sectionName === 'portfolio') {
-                    initializePortfolioNavigation();
-                    initializeVideoHoverPlay();
-                }
-                if (sectionName === 'skills') {
-                    initializeSkillsNavigation();
-                    setTimeout(() => animateSkillBars(), 300);
-                }
-                if (sectionName === 'contact') {
-                    initializeContactMethods();
-                }
-                if (sectionName === 'education') {
-                    initializeEducationNavigation();
-                    initializeAlpineEducationVideo();
-                }
+
+                // Reinitialize any section-specific features with a delay
+                setTimeout(() => {
+                    if (sectionName === 'portfolio') {
+                        initializePortfolioNavigation();
+                        initializeVideoHoverPlay();
+                    }
+                    if (sectionName === 'skills') {
+                        initializeSkillsNavigation();
+                        setTimeout(() => animateSkillBars(), 200);
+                    }
+                    if (sectionName === 'contact') {
+                        initializeContactMethods();
+                    }
+                    if (sectionName === 'education') {
+                        initializeEducationNavigation();
+                        initializeAlpineEducationVideo();
+                    }
+                }, 150);
             }
         }
     } catch (error) {
         console.error(`Error loading section ${sectionName}:`, error);
     }
+}
+
+// Portfolio Category Filtering - Function for reinitialization
+function initializePortfolioNavigation() {
+    const portNavBtns = document.querySelectorAll('.port-nav-btn');
+    const portfolioCategories = document.querySelectorAll('.portfolio-category');
+
+    portNavBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const category = this.getAttribute('data-category');
+
+            // Update active button
+            portNavBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+
+            // Show/hide categories with animation
+            portfolioCategories.forEach(cat => {
+                if (cat.getAttribute('data-category') === category) {
+                    cat.style.display = 'block';
+                    cat.style.animation = 'fadeIn 0.5s ease-in-out';
+                } else {
+                    cat.style.display = 'none';
+                }
+            });
+        });
+    });
+}
+
+// Skills Category Filtering - Function for reinitialization
+function initializeSkillsNavigation() {
+    const skillNavBtns = document.querySelectorAll('.skill-nav-btn');
+    const skillSections = document.querySelectorAll('.skill-section');
+
+    skillNavBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const category = this.getAttribute('data-skill-category');
+
+            // Update active button
+            skillNavBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+
+            // Show/hide skill sections with animation
+            skillSections.forEach(section => {
+                if (section.getAttribute('data-skill-category') === category) {
+                    section.style.display = 'block';
+                    section.style.animation = 'fadeIn 0.5s ease-in-out';
+
+                    // Animate skill bars when section becomes visible
+                    setTimeout(() => {
+                        const skillFills = section.querySelectorAll('.skill-fill');
+                        skillFills.forEach(fill => {
+                            const width = fill.getAttribute('data-width');
+                            fill.style.width = width + '%';
+                        });
+                    }, 100);
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        });
+    });
 }
 
 // Preload sections for better UX
@@ -83,7 +146,7 @@ function preloadAllSections() {
 document.addEventListener('DOMContentLoaded', function() {
     // Load About section immediately
     loadSection('about');
-    
+
     // Web Audio API - Medieval Sound Effects
     const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
@@ -1056,72 +1119,12 @@ document.addEventListener('keydown', function(e) {
         }
     };
 
-    // Portfolio Category Filtering - Function for reinitialization
-    function initializePortfolioNavigation() {
-        const portNavBtns = document.querySelectorAll('.port-nav-btn');
-        const portfolioCategories = document.querySelectorAll('.portfolio-category');
 
-        portNavBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                const category = this.getAttribute('data-category');
-
-                // Update active button
-                portNavBtns.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-
-                // Show/hide categories with animation
-                portfolioCategories.forEach(cat => {
-                    if (cat.getAttribute('data-category') === category) {
-                        cat.style.display = 'block';
-                        cat.style.animation = 'fadeIn 0.5s ease-in-out';
-                    } else {
-                        cat.style.display = 'none';
-                    }
-                });
-            });
-        });
-    }
-    
-    // Initialize portfolio navigation on page load
-    initializePortfolioNavigation();
+    // Portfolio navigation will be initialized when the portfolio section is loaded
 
     // Skills Category Filtering - Function for reinitialization
-    function initializeSkillsNavigation() {
-        const skillNavBtns = document.querySelectorAll('.skill-nav-btn');
-        const skillSections = document.querySelectorAll('.skill-section');
 
-        skillNavBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                const category = this.getAttribute('data-skill-category');
-
-                // Update active button
-                skillNavBtns.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-
-                // Show/hide skill sections with animation
-                skillSections.forEach(section => {
-                    if (section.getAttribute('data-skill-category') === category) {
-                        section.style.display = 'block';
-                        section.style.animation = 'fadeIn 0.5s ease-in-out';
-
-                        // Animate skill bars when section becomes visible
-                    setTimeout(() => {
-                            const skillFills = section.querySelectorAll('.skill-fill');
-                            skillFills.forEach(fill => {
-                                const width = fill.getAttribute('data-width');
-                                fill.style.width = width + '%';
-                            });
-                    }, 100);
-                    } else {
-                        section.style.display = 'none';
-                    }
-                });
-            });
-        });
-    }
-    
-    // Initialize skills navigation on page load
-    initializeSkillsNavigation();
+    // Skills navigation will be initialized when the skills section is loaded
 
     // Animate skill bars on initial load
                     setTimeout(() => {
@@ -1132,8 +1135,7 @@ document.addEventListener('keydown', function(e) {
         });
     }, 500);
 
-    // Initialize Education Navigation
-    initializeEducationNavigation();
+    // Education navigation will be initialized when the education section is loaded
 
     // Video Hover-to-Play Functionality
     initializeVideoHoverPlay();
