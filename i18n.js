@@ -29,7 +29,7 @@ const translations = {
 
         // About Section
         "mission-vision": "Mission & Vision",
-        "mission-text-1": "I identify the needs and expectations of diverse audiences—from business executives to neurodivergent children—and design systems and worlds that embody organizational vision through selective and rewarding processes.",
+        "mission-text-1": "I identify the needs and expectations of diverse audiences - from business executives to neurodivergent children - and design systems and worlds that embody organizational vision through selective and rewarding processes.",
         "mission-text-2": "Specializing in integrating game AI (FSM/BT/Utility/GOAP) and LLMs into training systems, I create immersive experiences that enhance creativity and awareness of one's moral restraints through meaningful decision-making.",
         "mission-text-3": "With a background in experimental philosophy, epistemological ethnolinguistics, and evolutionary biopsychology, I explore how responsibilities and moralities influence foresight and innovation.",
         "mission-image-caption": "Discussing the creation of new species with Ben Lamm at Brain Bar 2025 (CEO of Colossal, an American biotechnology and genetic engineering company working to de-extinct Mammoths, Dodos and Dire wolves)",
@@ -446,7 +446,7 @@ const translations = {
 
         // About Section
         "mission-vision": "Mission & Vision",
-        "mission-text-1": "J'identifie les besoins et les attentes de publics diversifiés—des cadres dirigeants aux enfants neuroatypiques—et conçois des systèmes et des mondes qui incarnent la vision organisationnelle à travers des processus sélectifs et gratifiants.",
+        "mission-text-1": "J'identifie les besoins et les attentes de publics diversifiés - des cadres dirigeants aux enfants neuroatypiques - et conçois des systèmes et des mondes qui incarnent la vision organisationnelle à travers des processus sélectifs et gratifiants.",
         "mission-text-2": "Spécialisé dans l'intégration de l'IA de jeu (FSM/BT/Utility/GOAP) et des LLM dans les systèmes de formation, je crée des expériences immersives qui stimulent la créativité et la conscience de ses propres contraintes morales à travers des prises de décision significatives.",
         "mission-text-3": "Avec une formation en philosophie expérimentale, ethnolinguistique épistémologique et biopsychologie évolutive, j'explore comment les responsabilités et les moralités influencent la prospective et l'innovation.",
         "mission-image-caption": "Discussion sur la création de nouvelles espèces avec Ben Lamm au Brain Bar 2025 (PDG de Colossal, une entreprise américaine de biotechnologie et de génie génétique travaillant à la dé-extinction des mammouths, des dodos et des loups terribles)",

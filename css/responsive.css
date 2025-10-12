@@ -8,6 +8,10 @@
     .project-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .expertise-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 /* Tablets and smaller */

@@ -255,53 +255,115 @@
 /* Expertise Grid */
 .expertise-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
     margin: 2rem 0;
+    perspective: 1000px;
 }
 
 .expertise-card {
+    position: relative;
+    cursor: pointer;
+    min-height: 220px;
+    perspective: 1000px;
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
     background: var(--parchment-light);
     border: 3px solid var(--border-dark);
     border-radius: 15px;
     padding: 1.5rem;
-    transition: all var(--transition-speed) ease;
+    transition: all 0.6s ease;
     box-shadow:
         0 4px 8px rgba(0, 0, 0, 0.2),
         inset 0 0 0 2px var(--border-tan);
     position: relative;
-    overflow: hidden;
+    transform-style: preserve-3d;
+    min-height: 220px;
 }
 
-.expertise-card::before {
-    content: '';
+.expertise-card:hover .card-inner {
+    transform: rotateY(180deg) scale(1.05);
+    box-shadow:
+        0 0 25px rgba(0, 0, 0, 0.2),
+        0 0 15px var(--gold-glow),
+        inset 0 0 0 2px var(--border-tan);
+}
+
+/* Card Front and Back Faces */
+.card-front {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+    backface-visibility: hidden;
+    transform: rotateY(0deg);
+}
+
+.card-back {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
-    background: var(--red-theme);
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     opacity: 0;
-    transition: opacity var(--transition-speed);
+    transition: opacity 0.3s ease;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    border-radius: 15px;
+    padding: 1.5rem;
 }
 
-.expertise-card.theme-red::before { background: var(--red-theme); }
-.expertise-card.theme-yellow::before { background: var(--yellow-theme); }
-.expertise-card.theme-green::before { background: var(--green-theme); }
-.expertise-card.theme-teal::before { background: var(--teal-theme); }
-.expertise-card.theme-purple::before { background: #9370DB; }
-.expertise-card.theme-orange::before { background: #FF8C00; }
-
-.expertise-card:hover {
-    transform: translateY(-5px);
-    box-shadow:
-        0 0 20px 8px var(--gold-glow),
-        0 8px 16px rgba(0, 0, 0, 0.3),
-        inset 0 0 0 3px var(--focus-glow);
+.expertise-card:hover .card-front {
+    opacity: 0;
 }
 
-.expertise-card:hover::before {
+.expertise-card:hover .card-back {
     opacity: 1;
+}
+
+/* Theme-specific hover backgrounds */
+.expertise-card.theme-red:hover .card-inner {
+    background: var(--red-theme);
+    transform: rotateY(180deg) scale(1.05);
+    border-radius: 15px;
+}
+
+.expertise-card.theme-yellow:hover .card-inner {
+    background: var(--yellow-theme);
+    transform: rotateY(180deg) scale(1.05);
+    border-radius: 15px;
+}
+
+.expertise-card.theme-green:hover .card-inner {
+    background: var(--green-theme);
+    transform: rotateY(180deg) scale(1.05);
+    border-radius: 15px;
+}
+
+.expertise-card.theme-teal:hover .card-inner {
+    background: var(--teal-theme);
+    transform: rotateY(180deg) scale(1.05);
+    border-radius: 15px;
+}
+
+.expertise-card.theme-purple:hover .card-inner {
+    background: var(--purple-theme);
+    transform: rotateY(180deg) scale(1.05);
+    border-radius: 15px;
+}
+
+.expertise-card.theme-orange:hover .card-inner {
+    background: var(--orange-theme);
+    transform: rotateY(180deg) scale(1.05);
+    border-radius: 15px;
 }
 
 .expertise-icon {
@@ -324,8 +386,8 @@
 .expertise-card.theme-yellow .expertise-icon { background: var(--yellow-theme); }
 .expertise-card.theme-green .expertise-icon { background: var(--green-theme); }
 .expertise-card.theme-teal .expertise-icon { background: var(--teal-theme); }
-.expertise-card.theme-purple .expertise-icon { background: #9370DB; }
-.expertise-card.theme-orange .expertise-icon { background: #FF8C00; }
+.expertise-card.theme-purple .expertise-icon { background: var(--purple-theme); }
+.expertise-card.theme-orange .expertise-icon { background: var(--orange-theme); }
 
 .expertise-card h4 {
     font-family: 'Quintessential', cursive;
@@ -342,6 +404,12 @@
     color: var(--text-dark);
     margin: 0 0 1rem 0;
     text-align: center;
+}
+
+.card-back p {
+    color: var(--text-cream);
+    font-size: 1rem;
+    font-weight: 500;
 }
 
 .expertise-tags {
@@ -368,6 +436,19 @@
     background: var(--yellow-theme);
     color: var(--text-dark);
     transform: scale(1.1);
+}
+
+/* Tags on flipped card-back */
+.card-back .expertise-tags span {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid var(--text-cream);
+    color: var(--text-cream);
+    backdrop-filter: blur(5px);
+}
+
+.card-back .expertise-tags span:hover {
+    background: var(--text-cream);
+    color: var(--text-dark);
 }
 
 /* Journey Section */

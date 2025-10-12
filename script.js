@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function() {
         playChime(523.25, 0.25); // Gentle C note
     }
 
-    // Hidden Minigame: Secret Code Quest with Daily Randomization
+    // Mini-jeu caché : Quête du Code Secret avec Randomisation Quotidienne
     let secretSequence = [];
 
     // Generate daily sequence (always starts with 'age')
@@ -291,12 +291,12 @@ document.addEventListener('DOMContentLoaded', function() {
             achievement.appendChild(icon);
 
             const title = document.createElement('h3');
-            title.textContent = 'Code Confirmed';
+            title.textContent = 'Code Confirmé';
             achievement.appendChild(title);
 
             const text = document.createElement('p');
             text.className = 'achievement-subtext';
-            text.textContent = 'You remember the sequence well.';
+            text.textContent = 'Tu te souviens bien de la séquence.';
             achievement.appendChild(text);
 
             // Play simple chime

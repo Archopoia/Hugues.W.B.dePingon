@@ -70,11 +70,11 @@
 }
 
 .attribute-card-lg.theme-purple {
-    border-color: #9370DB;
+    border-color: var(--purple-theme);
 }
 
 .attribute-card-lg.theme-orange {
-    border-color: #FF8C00;
+    border-color: var(--orange-theme);
 }
 
 .attr-icon {
@@ -107,11 +107,11 @@
 }
 
 .attribute-card-lg.theme-purple .attr-icon {
-    background: #9370DB;
+    background: var(--purple-theme);
 }
 
 .attribute-card-lg.theme-orange .attr-icon {
-    background: #FF8C00;
+    background: var(--orange-theme);
 }
 
 .attribute-card-lg h4 {
