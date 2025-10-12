@@ -266,16 +266,16 @@ document.addEventListener('DOMContentLoaded', function() {
             achievement.appendChild(icon);
 
             const title = document.createElement('h3');
-            title.textContent = 'Secret Discovered!';
+            title.textContent = 'Secret Découvert !';
             achievement.appendChild(title);
 
             const subtitle = document.createElement('p');
-            subtitle.textContent = '"The Designer\'s Code"';
+            subtitle.textContent = '"Le Code du Designer"';
             achievement.appendChild(subtitle);
 
             const text = document.createElement('p');
             text.className = 'achievement-subtext';
-            text.textContent = 'You\'ve uncovered the hidden sequence. Us designers see and make patterns everywhere.';
+            text.textContent = 'Tu as découvert la séquence cachée. Nous, les designers, voyons et créons des motifs partout.';
             achievement.appendChild(text);
 
             // Play triumphant fanfare
