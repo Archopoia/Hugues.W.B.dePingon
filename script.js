@@ -135,7 +135,7 @@ function initializeSkillsNavigation() {
 
 // Preload sections for better UX
 function preloadAllSections() {
-    const sections = ['about', 'education', 'academia', 'experience', 'portfolio', 'skills', 'contact'];
+    const sections = ['about', 'education', 'experience', 'portfolio', 'skills', 'contact'];
     sections.forEach(section => {
         if (section !== 'about') { // About is loaded by default
             loadSection(section);
@@ -195,16 +195,17 @@ document.addEventListener('DOMContentLoaded', function() {
     let secretSequence = [];
 
     // Generate daily sequence (always starts with 'age')
+    // Using data-i18n values which are language-independent
     const today = new Date().getDay();
-    const remainingStats = ['origin', 'location', 'currentrole'];
+    const remainingStats = ['origin', 'location', 'current-role'];
     const dailySequences = [
-        ['age', 'origin', 'location', 'currentrole'],      // Sunday (default)
-        ['age', 'location', 'currentrole', 'origin'],      // Monday
-        ['age', 'currentrole', 'origin', 'location'],      // Tuesday
-        ['age', 'origin', 'currentrole', 'location'],      // Wednesday
-        ['age', 'location', 'origin', 'currentrole'],      // Thursday
-        ['age', 'currentrole', 'location', 'origin'],      // Friday
-        ['age', 'origin', 'location', 'currentrole'],      // Saturday (same as Sunday)
+        ['age', 'origin', 'location', 'current-role'],      // Sunday (default)
+        ['age', 'location', 'current-role', 'origin'],      // Monday
+        ['age', 'current-role', 'origin', 'location'],      // Tuesday
+        ['age', 'origin', 'current-role', 'location'],      // Wednesday
+        ['age', 'location', 'origin', 'current-role'],      // Thursday
+        ['age', 'current-role', 'location', 'origin'],      // Friday
+        ['age', 'origin', 'location', 'current-role'],      // Saturday (same as Sunday)
     ];
     const correctSequence = dailySequences[today];
 
@@ -383,7 +384,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let hintInterval;
     function startAgeHint() {
         const ageStat = Array.from(stats).find(stat =>
-            stat.querySelector('.stat-label').textContent.toLowerCase().replace(/\s/g, '') === 'age'
+            stat.querySelector('.stat-label').getAttribute('data-i18n') === 'age'
         );
 
         if (ageStat) {
@@ -424,7 +425,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     stats.forEach(stat => {
-        const label = stat.querySelector('.stat-label').textContent.toLowerCase().replace(/\s/g, '');
+        // Use data-i18n attribute which is language-independent
+        const label = stat.querySelector('.stat-label').getAttribute('data-i18n');
         stat.addEventListener('click', function() {
             // Only add if not already locked
             if (!this.classList.contains('stat-locked')) {
@@ -543,7 +545,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 showFailAnimation();
 
                 const ageStat = Array.from(stats).find(stat =>
-                    stat.querySelector('.stat-label').textContent.toLowerCase().replace(/\s/g, '') === 'age'
+                    stat.querySelector('.stat-label').getAttribute('data-i18n') === 'age'
                 );
 
                 if (ageStat) {
@@ -1075,6 +1077,116 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    window.openImageGallery = function(galleryType) {
+        const modal = document.getElementById('modal-overlay');
+        const modalTitle = document.getElementById('modal-title');
+        const modalBody = document.getElementById('modal-body');
+
+        const galleries = {
+            'worldmaps': {
+                title: 'Worldmaps & Cartography - The Discording Tales',
+                images: [
+                    { src: 'Assets/Worldmaps/2021 - WorldMap.jpg', caption: 'Award-Winning Worldmap (Shadyversity 2020 Tourney Winner)' },
+                    { src: 'Assets/Worldmaps/2021 - GeocosmosENG_empty.jpg', caption: 'Geocosmos - Cosmological Map of the Universe' }
+                ]
+            },
+            'characters': {
+                title: 'Character Design - The Discording Tales',
+                images: [
+                    { src: 'Assets/Character Design/Aristese.jpg', caption: 'Aristese - Character Portrait' },
+                    { src: 'Assets/Character Design/Ylf.jpg', caption: 'Ylf - Character Portrait' },
+                    { src: 'Assets/Character Design/Meridians.jpg', caption: 'Meridians - Character Portrait' }
+                ]
+            },
+            'creatures': {
+                title: 'Creature Design - The Discording Tales',
+                images: [
+                    { src: 'Assets/Creature Design/iguana-shrimp-macaque.png', caption: 'Iguana-Shrimp-Macaque Hybrid' },
+                    { src: 'Assets/Creature Design/hedgehog-pufferfish-siphonophore.png', caption: 'Hedgehog-Pufferfish-Siphonophore' },
+                    { src: 'Assets/Creature Design/beetle-squirrel-siphonophore.png', caption: 'Beetle-Squirrel-Siphonophore' },
+                    { src: 'Assets/Creature Design/slug-wasp-mole.jpg', caption: 'Slug-Wasp-Mole Creature' },
+                    { src: 'Assets/Creature Design/sloth-wale-caterpillar.jpg', caption: 'Sloth-Whale-Caterpillar' },
+                    { src: 'Assets/Creature Design/honeypotant-lemur.jpg', caption: 'Honeypot Ant-Lemur Hybrid' },
+                    { src: 'Assets/Creature Design/cat-jellyfish.png', caption: 'Cat-Jellyfish Creature' },
+                    { src: 'Assets/Creature Design/silkworm-mole-feasant.png', caption: 'Silkworm-Mole-Pheasant' }
+                ]
+            },
+            'commissions': {
+                title: 'Client Commissions - Professional Work',
+                images: [
+                    { src: 'Assets/Commissions/BookCover 2021.jpg', caption: 'Book Cover Design (2021)' },
+                    { src: 'Assets/Commissions/2020 - ArtPoster.jpg', caption: 'Art Poster Design (2020)' },
+                    { src: 'Assets/Commissions/2016 - Forthright Forum Poster A2 - Copy.jpg', caption: 'Forum Poster A2 (2016)' },
+                    { src: 'Assets/Commissions/2024 - URsymbol.png', caption: 'UR Symbol Branding (2024)' }
+                ],
+                videos: [
+                    { src: 'Assets/Commissions/2018 - CharacterSheet animation.mp4', caption: 'Character Sheet Animation (2018)' }
+                ]
+            }
+        };
+
+        const gallery = galleries[galleryType];
+        if (gallery) {
+            modalTitle.textContent = gallery.title;
+
+            // Create gallery container
+            const galleryContainer = document.createElement('div');
+            galleryContainer.className = 'image-gallery';
+            galleryContainer.style.cssText = 'display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 20px; max-height: 70vh; overflow-y: auto;';
+
+            // Add images
+            if (gallery.images) {
+                gallery.images.forEach(item => {
+                    const imgWrapper = document.createElement('div');
+                    imgWrapper.style.cssText = 'text-align: center;';
+
+                    const img = document.createElement('img');
+                    img.src = item.src;
+                    img.alt = item.caption;
+                    img.style.cssText = 'width: 100%; height: auto; border-radius: 8px; cursor: pointer; transition: transform 0.3s;';
+                    img.onmouseover = () => img.style.transform = 'scale(1.05)';
+                    img.onmouseout = () => img.style.transform = 'scale(1)';
+                    img.onclick = () => window.open(item.src, '_blank');
+
+                    const caption = document.createElement('p');
+                    caption.textContent = item.caption;
+                    caption.style.cssText = 'margin-top: 10px; font-size: 14px; color: #8B7355;';
+
+                    imgWrapper.appendChild(img);
+                    imgWrapper.appendChild(caption);
+                    galleryContainer.appendChild(imgWrapper);
+                });
+            }
+
+            // Add videos if present
+            if (gallery.videos) {
+                gallery.videos.forEach(item => {
+                    const videoWrapper = document.createElement('div');
+                    videoWrapper.style.cssText = 'text-align: center;';
+
+                    const video = document.createElement('video');
+                    video.src = item.src;
+                    video.controls = true;
+                    video.style.cssText = 'width: 100%; height: auto; border-radius: 8px;';
+
+                    const caption = document.createElement('p');
+                    caption.textContent = item.caption;
+                    caption.style.cssText = 'margin-top: 10px; font-size: 14px; color: #8B7355;';
+
+                    videoWrapper.appendChild(video);
+                    videoWrapper.appendChild(caption);
+                    galleryContainer.appendChild(videoWrapper);
+                });
+            }
+
+            modalBody.innerHTML = '';
+            modalBody.appendChild(galleryContainer);
+
+            modal.style.display = 'flex';
+            modal.style.animation = 'fadeIn 0.3s ease-in-out';
+        }
+    }
+
     window.closeModal = function() {
         const modal = document.getElementById('modal-overlay');
         modal.style.animation = 'fadeOut 0.3s ease-in-out';
@@ -1392,6 +1504,9 @@ function openFullImage(imageSrc) {
     const img = document.createElement('img');
     img.className = 'full-image';
     img.src = imageSrc;
+    img.style.cursor = 'pointer';
+    img.title = 'Click to open in new tab for zooming';
+    img.onclick = () => window.open(imageSrc, '_blank');
 
     const caption = document.createElement('p');
     caption.className = 'full-image-caption';

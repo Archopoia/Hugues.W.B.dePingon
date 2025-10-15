@@ -8,6 +8,7 @@
                 <div class="portfolio-nav">
                     <button class="port-nav-btn active" data-category="featured"><i class="fas fa-star"></i> <span data-i18n="port-featured">Featured</span></button>
                     <button class="port-nav-btn" data-category="games"><i class="fas fa-gamepad"></i> <span data-i18n="port-games">Games</span></button>
+                    <button class="port-nav-btn" data-category="academia"><i class="fas fa-book"></i> <span data-i18n="port-academia">Academia</span></button>
                     <button class="port-nav-btn" data-category="web"><i class="fas fa-code"></i> <span data-i18n="port-webdev">Web Dev</span></button>
                     <button class="port-nav-btn" data-category="design"><i class="fas fa-palette"></i> <span data-i18n="port-design">Design</span></button>
             </div>
@@ -178,6 +179,32 @@
                                         </div>
                                     </div>
                                 </div>
+
+                            <!-- Worldmap - Award Winner -->
+                            <div class="project-card featured design" style="cursor: pointer;" onclick="event.target === this && openImageGallery('worldmaps')">
+                                <div class="project-ribbon ribbon-gold"><i class="fas fa-award"></i> <span data-i18n="port-winner">Winner</span></div>
+                                <div class="project-media" onclick="event.stopPropagation(); openFullImage('Assets/Worldmaps/2021 - WorldMap.jpg')">
+                                    <div class="game-thumbnail" style="cursor: pointer;">
+                                        <img src="Assets/Worldmaps/2021 - WorldMap.jpg" alt="Award-Winning Worldmap">
+                                    </div>
+                                </div>
+                                <div class="project-content" onclick="event.stopPropagation()">
+                                    <h4 data-i18n="port-worldmap-featured-title">Award-Winning Worldmap</h4>
+                                    <p class="project-type" data-i18n="port-worldmap-featured-type">Fantasy Cartography — 2020 Competition Winner</p>
+                                    <p class="project-description" data-i18n="port-worldmap-featured-desc">
+                                        Winner of the 2020 Tourney contest on Shadiversity's channel (1M+ followers). Detailed fantasy worldmap for The Discording Tales universe.
+                                    </p>
+                                    <div class="project-tech">
+                                        <span class="tech-tag" data-i18n="tech-cartography">Cartography</span>
+                                        <span class="tech-tag" data-i18n="tech-worldbuilding">Worldbuilding</span>
+                                        <span class="tech-tag" data-i18n="tech-illustration">Illustration</span>
+                                    </div>
+                                    <div class="project-links">
+                                        <button class="project-link primary" onclick="openImageGallery('worldmaps')"><i class="fas fa-images"></i> <span data-i18n="btn-view-gallery">View Gallery</span></button>
+                                        <a href="https://www.youtube.com/channel/UCkmMACUKpQeIxN9D9ARli1Q" target="_blank" class="project-link secondary"><i class="fab fa-youtube"></i> <span data-i18n="btn-shadiversity">Shadiversity Channel</span></a>
+                                    </div>
+                                </div>
+                            </div>
                             </div>
                         </div>
 
@@ -372,6 +399,73 @@
                             </div>
                         </div>
 
+                    <!-- Academia Category -->
+                    <div class="portfolio-category" data-category="academia" style="display:none;">
+                        <div class="category-header">
+                            <h3><i class="fas fa-book"></i> <span data-i18n="port-academia-category">Academia</span></h3>
+                            <p class="category-desc" data-i18n="port-academia-desc">Academic publications, research, and scholarly work</p>
+                        </div>
+
+                        <div class="academic-works-grid">
+                            <div class="academic-card coming-soon">
+                                <div class="work-preview-small placeholder">
+                                    <div class="placeholder-content">
+                                        <i class="fas fa-hourglass-half"></i>
+                                        <p>Coming Soon</p>
+                                    </div>
+                                </div>
+                                <h4>BIOCRACY</h4>
+                                <p class="work-meta">2025 - Master's Thesis</p>
+                                <div class="coming-soon-badge"><i class="fas fa-clock"></i> Not Yet Available</div>
+                            </div>
+
+                            <div class="academic-card">
+                                <div class="work-preview-small">
+                                    <iframe class="pdf-preview-small" src="Portfolio/Academia (Foresight, Ethics & Serious Games)/2021 - MASTER - Evaluation of Morality as a factor of Creativity in Futures Studies - Hugues W. B. de Pingon.pdf#toolbar=0&navpanes=0&scrollbar=0&page=1&view=FitH" frameborder="0"></iframe>
+                                </div>
+                                <h4>Morality & Creativity</h4>
+                                <p class="work-meta">2021 - Master's (10/10)</p>
+                                <button class="project-link compact" onclick="openFullPDF('morality')"><i class="fas fa-expand"></i> Read</button>
+                            </div>
+
+                            <div class="academic-card">
+                                <div class="work-preview-small">
+                                    <iframe class="pdf-preview-small" src="Portfolio/Academia (Foresight, Ethics & Serious Games)/PhD Research Proposals/2021 - H.W.B. dePingon - Archolectics - Thesis Proposal - EN.pdf#toolbar=0&navpanes=0&scrollbar=0&page=1&view=FitH" frameborder="0"></iframe>
+                                </div>
+                                <h4>Archolectics</h4>
+                                <p class="work-meta">2021 - PhD Proposal</p>
+                                <button class="project-link compact" onclick="openFullPDF('archolectics')"><i class="fas fa-expand"></i> Read</button>
+                            </div>
+
+                            <div class="academic-card">
+                                <div class="work-preview-small">
+                                    <iframe class="pdf-preview-small" src="Portfolio/Academia (Foresight, Ethics & Serious Games)/PhD Research Proposals/2022 - H.W.B. de Pingon - Economie Ecologique Evolutive - Projet de recherche - FR.pdf#toolbar=0&navpanes=0&scrollbar=0&page=1&view=FitH" frameborder="0"></iframe>
+                                </div>
+                                <h4>Economie Ecologique</h4>
+                                <p class="work-meta">2022 - PhD Proposal</p>
+                                <button class="project-link compact" onclick="openFullPDF('economie')"><i class="fas fa-expand"></i> Read</button>
+                            </div>
+
+                            <div class="academic-card">
+                                <div class="work-preview-small">
+                                    <iframe class="pdf-preview-small" src="Portfolio/Academia (Foresight, Ethics & Serious Games)/2023 - UNESCO - The Intrinsic Moral Conflicts, Hindrances & Benefits to Creativity in Future-Oriented Activities (FOA) - HWB de Pingon.pdf#toolbar=0&navpanes=0&scrollbar=0&page=1&view=FitH" frameborder="0"></iframe>
+                                </div>
+                                <h4>UNESCO Contribution</h4>
+                                <p class="work-meta">2023 - Article</p>
+                                <button class="project-link compact" onclick="openFullPDF('unesco')"><i class="fas fa-expand"></i> Read</button>
+                            </div>
+
+                            <div class="academic-card">
+                                <div class="work-preview-small">
+                                    <iframe class="pdf-preview-small" src="Portfolio/Academia (Foresight, Ethics & Serious Games)/2023 - ARTICLE - Les Ateliers de Jeux de rôle Pratiques aujourd'hui.pdf#toolbar=0&navpanes=0&scrollbar=0&page=1&view=FitH" frameborder="0"></iframe>
+                                </div>
+                                <h4>Ateliers de JdR</h4>
+                                <p class="work-meta">2023 - Article</p>
+                                <button class="project-link compact" onclick="openFullPDF('ateliers')"><i class="fas fa-expand"></i> Read</button>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Web Development Category -->
                     <div class="portfolio-category" data-category="web" style="display:none;">
                         <div class="category-header">
@@ -390,17 +484,17 @@
                                     </div>
                             </div>
                             <div class="project-content">
-                                    <h4>WorkHub</h4>
-                                    <p class="project-type">Startup Pitch Website</p>
-                                    <p class="project-description">Complete website development for startup pitch presentation, showcasing full-stack development skills and modern web design principles.</p>
+                                    <h4 data-i18n="port-workhub-title">WorkHub</h4>
+                                    <p class="project-type" data-i18n="port-workhub-type">Startup Pitch Website</p>
+                                    <p class="project-description" data-i18n="port-workhub-desc">Complete website development for startup pitch presentation, showcasing full-stack development skills and modern web design principles.</p>
                                     <div class="project-tech">
-                                        <span class="tech-tag">HTML/CSS/JS</span>
-                                        <span class="tech-tag">Responsive</span>
-                                        <span class="tech-tag">Web Design</span>
+                                        <span class="tech-tag" data-i18n="tech-html-css-js">HTML/CSS/JS</span>
+                                        <span class="tech-tag" data-i18n="tech-responsive">Responsive</span>
+                                        <span class="tech-tag" data-i18n="tech-web-design">Web Design</span>
                                     </div>
                                 <div class="project-links">
-                                        <a href="https://archopoia.github.io/WorkHub/" target="_blank" class="project-link primary"><i class="fas fa-external-link-alt"></i> View Website</a>
-                                        <a href="https://github.com/Archopoia/WorkHub" target="_blank" class="project-link secondary"><i class="fab fa-github"></i> Source</a>
+                                        <a href="https://archopoia.github.io/WorkHub/" target="_blank" class="project-link primary"><i class="fas fa-external-link-alt"></i> <span data-i18n="btn-view-website">View Website</span></a>
+                                        <a href="https://github.com/Archopoia/WorkHub" target="_blank" class="project-link secondary"><i class="fab fa-github"></i> <span data-i18n="btn-source">Source</span></a>
                                 </div>
                             </div>
                         </div>
@@ -413,18 +507,18 @@
                                     </div>
                                 </div>
                                 <div class="project-content">
-                                    <h4>Interactive Portfolio</h4>
-                                    <p class="project-type">Interactive Personal Website</p>
-                                    <p class="project-description">A unique portfolio website designed as an interactive gamified character sheet with peculiar aesthetics, featuring video integration, dynamic contact forms, and custom animations - as well as a secret hidden achievement to uncover.</p>
+                                    <h4 data-i18n="port-portfolio-title">Interactive Portfolio</h4>
+                                    <p class="project-type" data-i18n="port-portfolio-type">Interactive Personal Website</p>
+                                    <p class="project-description" data-i18n="port-portfolio-desc">A unique portfolio website designed as an interactive gamified character sheet with peculiar aesthetics, featuring video integration, dynamic contact forms, and custom animations - as well as a secret hidden achievement to uncover.</p>
                                     <div class="project-tech">
-                                        <span class="tech-tag">HTML/CSS/JS</span>
-                                        <span class="tech-tag">Responsive Design</span>
-                                        <span class="tech-tag">UX/UI</span>
-                                        <span class="tech-tag">Animation</span>
+                                        <span class="tech-tag" data-i18n="tech-html-css-js">HTML/CSS/JS</span>
+                                        <span class="tech-tag" data-i18n="tech-responsive-design">Responsive Design</span>
+                                        <span class="tech-tag" data-i18n="tech-ux-ui">UX/UI</span>
+                                        <span class="tech-tag" data-i18n="tech-animation">Animation</span>
                                     </div>
                                     <div class="project-links">
-                                        <a href="https://archopoia.github.io/Hugues.W.B.dePingon/" target="_blank" class="project-link primary"><i class="fas fa-external-link-alt"></i> View Live Site</a>
-                                        <a href="https://github.com/Archopoia/Hugues.W.B.dePingon" target="_blank" class="project-link secondary"><i class="fab fa-github"></i> Source</a>
+                                        <a href="https://archopoia.github.io/Hugues.W.B.dePingon/" target="_blank" class="project-link primary"><i class="fas fa-external-link-alt"></i> <span data-i18n="btn-view-live-site">View Live Site</span></a>
+                                        <a href="https://github.com/Archopoia/Hugues.W.B.dePingon" target="_blank" class="project-link secondary"><i class="fab fa-github"></i> <span data-i18n="btn-source">Source</span></a>
                                     </div>
                                 </div>
                             </div>
@@ -439,36 +533,137 @@
                         </div>
 
                         <div class="project-grid">
+                            <!-- The Discording Tales - Main Card -->
                             <div class="project-card design">
-                            <div class="project-content">
-                                    <h4>Client Commissions</h4>
-                                    <p class="project-type">Various Design Projects</p>
-                                    <p class="project-description">
-                                        Professional graphic design work including album covers, book covers, association materials,
-                                        and student club designs. Adobe Photoshop and InDesign expertise.
+                                <div class="project-ribbon"><i class="fas fa-trophy"></i> <span data-i18n="port-flagship">Flagship Project</span></div>
+                                <div class="project-media">
+                                    <div class="work-preview-small">
+                                        <iframe class="pdf-preview-small" src="Portfolio/Game Development (Design, Worldbuilding, Graphic)/TTRPG - 300p - Des Récits Discordants (FR - The Discording Tales).pdf#toolbar=0&navpanes=0&scrollbar=0&page=1&view=FitH" frameborder="0"></iframe>
+                                    </div>
+                                </div>
+                                <div class="project-content">
+                                    <h4 data-i18n="port-tdt-title">The Discording Tales</h4>
+                                    <p class="project-type" data-i18n="port-tdt-type">Tabletop RPG — 5 Years Solo Development</p>
+                                    <p class="project-description" data-i18n="port-tdt-desc">
+                                        A 300-page ethno-science-fantasy tabletop RPG with automated character sheets, extensive worldbuilding, and unique mechanics.
+                                        An immersive game world where Morrowind's extremes meet a subterranean Star Wars.
+                                    </p>
+                                    <div class="project-meta">
+                                        <span class="meta-tag"><i class="fas fa-calendar"></i> 2019 — <span data-i18n="present">Present</span></span>
+                                        <span class="meta-tag"><i class="fas fa-users"></i> <span data-i18n="port-tdt-meta-team">Team: 3-10 members</span></span>
+                                        <span class="meta-tag"><i class="fas fa-file-pdf"></i> <span data-i18n="port-tdt-meta-pages">300 pages</span></span>
+                                    </div>
+                                    <div class="project-tech">
+                                        <span class="tech-tag" data-i18n="tech-game-design">Game Design</span>
+                                        <span class="tech-tag" data-i18n="tech-worldbuilding">Worldbuilding</span>
+                                        <span class="tech-tag" data-i18n="tech-graphic-design">Graphic Design</span>
+                                        <span class="tech-tag" data-i18n="tech-creative-writing">Creative Writing</span>
+                                    </div>
+                                    <div class="project-links">
+                                        <a href="https://thediscordingtales.wordpress.com/" target="_blank" class="project-link primary"><i class="fas fa-external-link-alt"></i> <span data-i18n="port-tdt-visit">Visit Website</span></a>
+                                        <button class="project-link secondary" onclick="openFullPDF('ttrpg')"><i class="fas fa-book-open"></i> <span data-i18n="port-tdt-read">Read PDF</span></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Worldmaps for The Discording Tales -->
+                            <div class="project-card design" style="cursor: pointer;" onclick="event.target === this && openImageGallery('worldmaps')">
+                                <div class="project-ribbon ribbon-gold"><i class="fas fa-award"></i> <span data-i18n="port-winner">Winner</span></div>
+                                <div class="project-media" onclick="event.stopPropagation(); openFullImage('Assets/Worldmaps/2021 - WorldMap.jpg')">
+                                    <div class="game-thumbnail" style="cursor: pointer;">
+                                        <img src="Assets/Worldmaps/2021 - WorldMap.jpg" alt="The Discording Tales Worldmap">
+                                    </div>
+                                </div>
+                                <div class="project-content" onclick="event.stopPropagation()">
+                                    <h4 data-i18n="port-worldmaps-title">Worldmaps & Cartography</h4>
+                                    <p class="project-type" data-i18n="port-worldmaps-type">The Discording Tales — Fantasy Cartography</p>
+                                    <p class="project-description" data-i18n="port-worldmaps-desc">
+                                        Winner of the 2020 Tourney contest on Shadiversity's channel (1M+ followers). Award-winning worldmap designs for The Discording Tales universe.
+                                    </p>
+                                    <div class="project-tech">
+                                        <span class="tech-tag" data-i18n="tech-cartography">Cartography</span>
+                                        <span class="tech-tag" data-i18n="tech-worldbuilding">Worldbuilding</span>
+                                        <span class="tech-tag" data-i18n="tech-illustration">Illustration</span>
+                                    </div>
+                                    <div class="project-links">
+                                        <button class="project-link primary" onclick="openImageGallery('worldmaps')"><i class="fas fa-images"></i> <span data-i18n="btn-view-gallery">View Gallery</span></button>
+                                        <a href="https://www.youtube.com/channel/UCkmMACUKpQeIxN9D9ARli1Q" target="_blank" class="project-link secondary"><i class="fab fa-youtube"></i> <span data-i18n="btn-shadiversity">Shadiversity Channel</span></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Character Design for The Discording Tales -->
+                            <div class="project-card design" style="cursor: pointer;" onclick="event.target === this && openImageGallery('characters')">
+                                <div class="project-media" onclick="event.stopPropagation(); openFullImage('Assets/Character Design/Aristese.jpg')">
+                                    <div class="game-thumbnail" style="cursor: pointer;">
+                                        <img src="Assets/Character Design/Aristese.jpg" alt="Character Design - Aristese">
+                                    </div>
+                                </div>
+                                <div class="project-content" onclick="event.stopPropagation()">
+                                    <h4 data-i18n="port-characters-title">Character Design</h4>
+                                    <p class="project-type" data-i18n="port-characters-type">The Discording Tales — Character Art</p>
+                                    <p class="project-description" data-i18n="port-characters-desc">
+                                        Original character designs for The Discording Tales universe. Detailed character illustrations showcasing unique species, cultures, and narrative depth of the ethno-science-fantasy world.
+                                    </p>
+                                    <div class="project-tech">
+                                        <span class="tech-tag" data-i18n="tech-character-design">Character Design</span>
+                                        <span class="tech-tag" data-i18n="tech-concept-art">Concept Art</span>
+                                        <span class="tech-tag" data-i18n="tech-illustration">Illustration</span>
+                                    </div>
+                                    <div class="project-links">
+                                        <button class="project-link primary" onclick="openImageGallery('characters')"><i class="fas fa-images"></i> <span data-i18n="btn-view-gallery">View Gallery</span></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Creature Design for The Discording Tales -->
+                            <div class="project-card design" style="cursor: pointer;" onclick="event.target === this && openImageGallery('creatures')">
+                                <div class="project-media" onclick="event.stopPropagation(); openFullImage('Assets/Creature Design/iguana-shrimp-macaque.png')">
+                                    <div class="game-thumbnail" style="cursor: pointer;">
+                                        <img src="Assets/Creature Design/iguana-shrimp-macaque.png" alt="Creature Design">
+                                    </div>
+                                </div>
+                                <div class="project-content" onclick="event.stopPropagation()">
+                                    <h4 data-i18n="port-creatures-title">Creature Design</h4>
+                                    <p class="project-type" data-i18n="port-creatures-type">The Discording Tales — Speculative Biology</p>
+                                    <p class="project-description" data-i18n="port-creatures-desc">
+                                        Original creature designs combining real-world biology with fantasy elements. Hybrid species created through biomimicry and evolutionary thinking for The Discording Tales universe.
+                                    </p>
+                                    <div class="project-tech">
+                                        <span class="tech-tag" data-i18n="tech-creature-design">Creature Design</span>
+                                        <span class="tech-tag" data-i18n="tech-concept-art">Concept Art</span>
+                                        <span class="tech-tag" data-i18n="tech-speculative-biology">Speculative Biology</span>
+                                    </div>
+                                    <div class="project-links">
+                                        <button class="project-link primary" onclick="openImageGallery('creatures')"><i class="fas fa-images"></i> <span data-i18n="btn-view-gallery">View Gallery</span></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Client Commissions -->
+                            <div class="project-card design" style="cursor: pointer;" onclick="event.target === this && openImageGallery('commissions')">
+                                <div class="project-media" onclick="event.stopPropagation(); openFullImage('Assets/Commissions/BookCover 2021.jpg')">
+                                    <div class="game-thumbnail" style="cursor: pointer;">
+                                        <img src="Assets/Commissions/BookCover 2021.jpg" alt="Book Cover Commission">
+                                    </div>
+                                </div>
+                                <div class="project-content" onclick="event.stopPropagation()">
+                                    <h4 data-i18n="port-commissions-title">Client Commissions</h4>
+                                    <p class="project-type" data-i18n="port-commissions-type">Professional Graphic Design</p>
+                                    <p class="project-description" data-i18n="port-commissions-desc">
+                                        Professional graphic design work including book covers, posters, branding materials, character sheet animations, and association designs. Adobe Photoshop and InDesign expertise.
                                     </p>
                                     <div class="project-tech">
                                         <span class="tech-tag">Photoshop</span>
                                         <span class="tech-tag">InDesign</span>
-                                        <span class="tech-tag">Illustration</span>
-                                </div>
+                                        <span class="tech-tag" data-i18n="tech-illustration">Illustration</span>
+                                        <span class="tech-tag" data-i18n="tech-branding">Branding</span>
+                                    </div>
+                                    <div class="project-links">
+                                        <button class="project-link primary" onclick="openImageGallery('commissions')"><i class="fas fa-images"></i> <span data-i18n="btn-view-gallery">View Gallery</span></button>
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="project-card design">
-                                <div class="project-content">
-                                    <h4>The Discording Tales — Worldbuilding</h4>
-                                    <p class="project-type">Concept Art & Design</p>
-                                    <p class="project-description">
-                                        Extensive worldbuilding, character design, creature design, and worldmaps for The Discording Tales TTRPG universe.
-                                    </p>
-                                    <div class="project-tech">
-                                        <span class="tech-tag">Concept Art</span>
-                                        <span class="tech-tag">Worldbuilding</span>
-                                        <span class="tech-tag">Character Design</span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
