@@ -726,7 +726,7 @@
     background: var(--gold-glow);
     color: var(--red-theme);
     border: 3px solid var(--red-theme);
-    border-radius: 50px;
+    border-radius: 0;
     padding: 1.2rem 3rem;
     font-family: 'Quintessential', cursive;
     font-size: 1.2rem;

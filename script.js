@@ -166,6 +166,40 @@ function initializeFlipSounds() {
         card.removeEventListener('mouseenter', playFlipSoundOnHover);
         // Add hover listener for flip sound
         card.addEventListener('mouseenter', playFlipSoundOnHover);
+
+        // Add flip lock behavior for all flipping cards with 2-second delay
+        let isFlipping = false;
+        let flipTimeout = null;
+        let unflipTimeout = null;
+
+        card.addEventListener('mouseenter', function() {
+            // Clear any pending unflip timeout
+            if (unflipTimeout) {
+                clearTimeout(unflipTimeout);
+                unflipTimeout = null;
+            }
+
+            if (!isFlipping && !this.classList.contains('flipped')) {
+                isFlipping = true;
+                this.classList.add('flipped');
+
+                // Lock the flip for the duration of the animation (600ms)
+                flipTimeout = setTimeout(() => {
+                    isFlipping = false;
+                }, 600);
+            }
+        });
+
+        card.addEventListener('mouseleave', function() {
+            // Wait 2 seconds before unflipping
+            unflipTimeout = setTimeout(() => {
+                if (!this.matches(':hover')) {
+                    this.classList.remove('flipped');
+                    isFlipping = false;
+                    if (flipTimeout) clearTimeout(flipTimeout);
+                }
+            }, 2000); // 2 second delay
+        });
     });
 }
 
@@ -535,7 +569,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.style.animation = 'shake 0.5s';
                 setTimeout(() => this.style.animation = '', 500);
             } else {
-                // No sequence attempted - show fail animation and give hint by highlighting Age stat twice
+                // No sequence attempted - show fail animation and give hint with color reversal
                 showFailAnimation();
 
                 const ageStat = Array.from(stats).find(stat =>
@@ -543,16 +577,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 );
 
                 if (ageStat) {
-                    // First pulse (white highlight like when clicking)
-                    ageStat.style.animation = 'pulse 0.3s';
+                    // Add strong hint with color reversal (2 second animation)
+                    ageStat.classList.add('stat-hint-click');
                     setTimeout(() => {
-                        ageStat.style.animation = '';
-                        // Second pulse after a brief pause
-                        setTimeout(() => {
-                            ageStat.style.animation = 'pulse 0.3s';
-                            setTimeout(() => ageStat.style.animation = '', 300);
-                        }, 400);
-                    }, 300);
+                        ageStat.classList.remove('stat-hint-click');
+                    }, 2000);
                 }
 
                 // Portrait shakes as feedback
@@ -580,17 +609,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Toggle workshop background on sheet-content
         const sheetContent = document.querySelector('.sheet-content');
+        const workshopSealBtn = document.querySelector('.workshop-seal-button');
         if (targetTab === 'workshop') {
             sheetContent.classList.add('workshop-active');
+            // Hide the pulsating glow when on workshop tab
+            if (workshopSealBtn) workshopSealBtn.classList.add('on-workshop-tab');
         } else {
             sheetContent.classList.remove('workshop-active');
+            // Show the pulsating glow when NOT on workshop tab
+            if (workshopSealBtn) workshopSealBtn.classList.remove('on-workshop-tab');
         }
 
-        // Add fade in animation
+        // Add page flip animation
         const activeContent = document.getElementById(targetTab);
         activeContent.style.animation = 'none';
         setTimeout(() => {
-            activeContent.style.animation = 'fadeIn 1s cubic-bezier(.39, .575, .565, 1.000) both';
+            activeContent.style.animation = 'swing-in-top-bck 0.6s cubic-bezier(0.175, 0.885, 0.320, 1.275) both';
         }, 10);
 
         // Animate skill bars when skills tab is opened
@@ -876,9 +910,11 @@ document.addEventListener('DOMContentLoaded', function() {
         button.appendChild(circle);
     }
 
-    // Add ripple effect to tab buttons
+    // Add ripple effect to tab buttons (exclude workshop seal button)
     tabButtons.forEach(button => {
-        button.addEventListener('click', createRipple);
+        if (!button.classList.contains('workshop-seal-button')) {
+            button.addEventListener('click', createRipple);
+        }
     });
 
     // Add CSS for ripple effect

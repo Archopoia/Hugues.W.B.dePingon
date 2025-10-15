@@ -284,7 +284,8 @@
     min-height: 220px;
 }
 
-.expertise-card:hover .card-inner {
+.expertise-card:hover .card-inner,
+.expertise-card.flipped .card-inner {
     transform: rotateY(180deg) scale(1.05);
     box-shadow:
         0 0 25px rgba(0, 0, 0, 0.2),
@@ -321,46 +322,54 @@
     padding: 1.5rem;
 }
 
-.expertise-card:hover .card-front {
+.expertise-card:hover .card-front,
+.expertise-card.flipped .card-front {
     opacity: 0;
 }
 
-.expertise-card:hover .card-back {
+.expertise-card:hover .card-back,
+.expertise-card.flipped .card-back {
     opacity: 1;
 }
 
 /* Theme-specific hover backgrounds */
-.expertise-card.theme-red:hover .card-inner {
+.expertise-card.theme-red:hover .card-inner,
+.expertise-card.theme-red.flipped .card-inner {
     background: var(--red-theme);
     transform: rotateY(180deg) scale(1.05);
     border-radius: 15px;
 }
 
-.expertise-card.theme-yellow:hover .card-inner {
+.expertise-card.theme-yellow:hover .card-inner,
+.expertise-card.theme-yellow.flipped .card-inner {
     background: var(--yellow-theme);
     transform: rotateY(180deg) scale(1.05);
     border-radius: 15px;
 }
 
-.expertise-card.theme-green:hover .card-inner {
+.expertise-card.theme-green:hover .card-inner,
+.expertise-card.theme-green.flipped .card-inner {
     background: var(--green-theme);
     transform: rotateY(180deg) scale(1.05);
     border-radius: 15px;
 }
 
-.expertise-card.theme-teal:hover .card-inner {
+.expertise-card.theme-teal:hover .card-inner,
+.expertise-card.theme-teal.flipped .card-inner {
     background: var(--teal-theme);
     transform: rotateY(180deg) scale(1.05);
     border-radius: 15px;
 }
 
-.expertise-card.theme-purple:hover .card-inner {
+.expertise-card.theme-purple:hover .card-inner,
+.expertise-card.theme-purple.flipped .card-inner {
     background: var(--purple-theme);
     transform: rotateY(180deg) scale(1.05);
     border-radius: 15px;
 }
 
-.expertise-card.theme-orange:hover .card-inner {
+.expertise-card.theme-orange:hover .card-inner,
+.expertise-card.theme-orange.flipped .card-inner {
     background: var(--orange-theme);
     transform: rotateY(180deg) scale(1.05);
     border-radius: 15px;
@@ -393,9 +402,19 @@
     font-family: 'Quintessential', cursive;
     color: var(--text-dark);
     font-size: 1.3rem;
-    margin: 0 0 0.75rem 0;
+    margin: 0 0 0.3rem 0;
     text-align: center;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.expertise-subtitle {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--text-dark);
+    opacity: 0.8;
+    margin: 0 0 0.5rem 0;
+    text-align: center;
+    line-height: 1.4;
 }
 
 .expertise-card p {

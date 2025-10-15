@@ -3,9 +3,88 @@
    Secret Achievement Popups and Particles
    ======================================== */
 
-/* Subtle hint for Age stat */
+/* Subtle hint for Age stat - normal pulsating glow */
 .stat-item.stat-hint-pulse {
     animation: hintPulse 2s ease-in-out;
+}
+
+/* Strong hint with color reversal - only when clicking portrait with no sequence */
+.stat-item.stat-hint-click {
+    animation: hintPulseClick 2s ease-in-out;
+}
+
+.stat-item.stat-hint-click .stat-label {
+    animation: hintClickLabelColor 2s ease-in-out;
+}
+
+.stat-item.stat-hint-click .stat-value {
+    animation: hintClickValueColor 2s ease-in-out;
+}
+
+@keyframes hintPulseClick {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: none;
+        background: rgba(212, 175, 55, 0);
+        filter: brightness(1);
+    }
+    15% {
+        transform: scale(1.08);
+        box-shadow:
+            0 0 20px rgba(255, 255, 255, 0.8),
+            inset 0 0 15px rgba(255, 255, 255, 0.5);
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.2) 100%);
+        border: 2px solid rgba(255, 255, 255, 0.9);
+        filter: brightness(1.2);
+    }
+    30% {
+        transform: scale(1);
+        box-shadow: none;
+        background: rgba(212, 175, 55, 0);
+        filter: brightness(1);
+    }
+    45% {
+        transform: scale(1.08);
+        box-shadow:
+            0 0 20px rgba(255, 255, 255, 0.8),
+            inset 0 0 15px rgba(255, 255, 255, 0.5);
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.2) 100%);
+        border: 2px solid rgba(255, 255, 255, 0.9);
+        filter: brightness(1.2);
+    }
+    60% {
+        transform: scale(1);
+        box-shadow: none;
+        background: rgba(212, 175, 55, 0);
+        filter: brightness(1);
+    }
+}
+
+@keyframes hintClickLabelColor {
+    0%, 100% {
+        background: var(--red-theme);
+        color: var(--text-cream);
+    }
+    15%, 45% {
+        background: rgba(255, 255, 255, 0.9);
+        color: var(--red-theme);
+    }
+    30%, 60% {
+        background: var(--red-theme);
+        color: var(--text-cream);
+    }
+}
+
+@keyframes hintClickValueColor {
+    0%, 100% {
+        color: var(--gold-light);
+    }
+    15%, 45% {
+        color: var(--text-dark);
+    }
+    30%, 60% {
+        color: var(--gold-light);
+    }
 }
 
 /* Secret Achievement Popup */
