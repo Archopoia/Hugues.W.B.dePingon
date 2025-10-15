@@ -19,11 +19,13 @@
     margin: 2rem 0 2.5rem 0;
     padding: 1.5rem;
     background: linear-gradient(135deg, var(--parchment-bg) 0%, var(--parchment-light) 100%);
-    border: 3px solid var(--border-dark);
+    border: 2px solid var(--gold-glow);
     border-radius: 15px;
     box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 2px var(--gold-glow),
         0 4px 8px rgba(0, 0, 0, 0.2),
-        inset 0 0 0 2px var(--border-tan);
+        inset 0 0 0 1px var(--border-tan);
 }
 
 .category-header h3 {
@@ -66,12 +68,15 @@
 }
 
 .project-card {
-    background: var(--beige-paper);
-    border: 2px solid var(--beige-dark);
+    background: var(--parchment-light);
+    border: 2px solid var(--gold-glow);
     border-radius: 10px;
     padding: 1.5rem;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 4px var(--shadow);
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 2px var(--gold-glow),
+        0 2px 4px rgba(0, 0, 0, 0.2);
     position: relative;
     overflow: hidden;
 }
@@ -87,8 +92,13 @@
 }
 
 .project-card:hover {
-    border-color: var(--gold);
-    box-shadow: 0 8px 16px var(--shadow);
+    border-color: var(--gold-glow);
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 3px var(--gold-glow),
+        0 0 0 4px var(--red-theme),
+        0 0 15px 5px var(--gold-glow),
+        0 8px 16px rgba(0, 0, 0, 0.3);
     transform: translateY(-5px);
 }
 
@@ -152,12 +162,15 @@
     gap: 1.5rem;
     padding: 1.5rem;
     background: var(--parchment-light);
-    border: 4px solid var(--red-theme);
+    border: 3px solid var(--gold-glow);
     border-radius: 20px;
     box-shadow:
-        0 0 30px 10px var(--gold-glow),
+        0 0 0 1px var(--red-theme),
+        0 0 0 3px var(--gold-glow),
+        0 0 0 4px var(--red-theme),
+        0 0 20px 8px var(--gold-glow),
         0 8px 16px rgba(0, 0, 0, 0.3),
-        inset 0 0 0 3px var(--border-tan);
+        inset 0 0 0 2px var(--border-tan);
     position: relative;
     overflow: visible;
 }
@@ -341,10 +354,12 @@
 /* Game Thumbnail Styles */
 .game-thumbnail {
     margin: 1rem 0;
-    border: 3px solid var(--border-dark);
+    border: 2px solid var(--gold-glow);
     border-radius: 10px;
     overflow: hidden;
     box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 2px var(--gold-glow),
         0px 0px 10px 1px #421212 inset,
         0 4px 8px rgba(0, 0, 0, 0.2);
     background: var(--parchment-light);
@@ -354,6 +369,9 @@
 .game-thumbnail:hover {
     transform: scale(1.05);
     box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 3px var(--gold-glow),
+        0 0 0 4px var(--red-theme),
         0 0 15px 8px var(--gold-glow),
         0px 0px 10px 1px var(--focus-glow) inset;
 }
@@ -499,7 +517,7 @@
 
 .modal-close {
     background: var(--red-theme);
-    border: 2px solid var(--border-dark);
+    border: 2px solid var(--gold-glow);
     border-radius: 50%;
     width: 40px;
     height: 40px;
@@ -510,13 +528,20 @@
     font-size: 1.2rem;
     color: var(--text-cream);
     transition: all var(--transition-speed) ease;
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 2px var(--gold-glow),
+        0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .modal-close:hover {
     background: var(--hover-bg);
     transform: scale(1.1);
     box-shadow:
-        0 0 15px 8px var(--gold-glow),
+        0 0 0 1px var(--red-theme),
+        0 0 0 3px var(--gold-glow),
+        0 0 0 4px var(--red-theme),
+        0 0 10px 5px var(--gold-glow),
         0px 0px 10px 1px var(--focus-glow) inset;
 }
 

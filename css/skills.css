@@ -33,23 +33,28 @@
 /* Large Attribute Cards */
 .attribute-card-lg {
     background: var(--parchment-light);
-    border: 3px solid var(--border-dark);
+    border: 2px solid var(--gold-glow);
     border-radius: 15px;
     padding: 1.5rem;
     text-align: center;
     transition: all var(--transition-speed) ease;
     box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 2px var(--gold-glow),
         0 4px 8px rgba(0, 0, 0, 0.2),
-        inset 0 0 0 2px var(--border-tan);
+        inset 0 0 0 1px var(--border-tan);
     cursor: pointer;
 }
 
 .attribute-card-lg:hover {
     transform: translateY(-5px) scale(1.03);
     box-shadow:
-        0 0 25px 10px var(--gold-glow),
+        0 0 0 1px var(--red-theme),
+        0 0 0 3px var(--gold-glow),
+        0 0 0 4px var(--red-theme),
+        0 0 15px 8px var(--gold-glow),
         0 8px 16px rgba(0, 0, 0, 0.3),
-        inset 0 0 0 3px var(--focus-glow);
+        inset 0 0 0 2px var(--focus-glow);
     z-index: 10;
 }
 
@@ -81,7 +86,7 @@
     width: 60px;
     height: 60px;
     background: var(--red-theme);
-    border: 3px solid var(--border-dark);
+    border: 2px solid var(--gold-glow);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -90,7 +95,9 @@
     color: var(--text-cream);
     margin: 0 auto 1rem auto;
     box-shadow:
-        0 0 10px var(--gold-glow),
+        0 0 0 1px var(--red-theme),
+        0 0 0 2px var(--gold-glow),
+        0 0 8px var(--gold-glow),
         inset 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -160,12 +167,14 @@
 
 .skill-group {
     background: var(--parchment-light);
-    border: 3px solid var(--border-dark);
+    border: 2px solid var(--gold-glow);
     border-radius: 15px;
     padding: 1.5rem;
     box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 2px var(--gold-glow),
         0 4px 8px rgba(0, 0, 0, 0.2),
-        inset 0 0 0 2px var(--border-tan);
+        inset 0 0 0 1px var(--border-tan);
 }
 
 .skill-group-title {
@@ -359,22 +368,27 @@
 
 .language-card {
     background: var(--parchment-light);
-    border: 3px solid var(--border-dark);
+    border: 2px solid var(--gold-glow);
     border-radius: 15px;
     padding: 1.5rem;
     transition: all var(--transition-speed) ease;
     box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 2px var(--gold-glow),
         0 4px 8px rgba(0, 0, 0, 0.2),
-        inset 0 0 0 2px var(--border-tan);
+        inset 0 0 0 1px var(--border-tan);
     position: relative;
 }
 
 .language-card:hover {
     transform: translateY(-5px);
     box-shadow:
-        0 0 20px 8px var(--gold-glow),
+        0 0 0 1px var(--red-theme),
+        0 0 0 3px var(--gold-glow),
+        0 0 0 4px var(--red-theme),
+        0 0 15px 8px var(--gold-glow),
         0 8px 16px rgba(0, 0, 0, 0.3),
-        inset 0 0 0 3px var(--focus-glow);
+        inset 0 0 0 2px var(--focus-glow);
 }
 
 .language-card.native,
@@ -394,14 +408,17 @@
     width: 40px;
     height: 40px;
     background: var(--red-theme);
-    border: 2px solid var(--border-dark);
+    border: 2px solid var(--gold-glow);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--text-cream);
     font-size: 1.2rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 2px var(--gold-glow),
+        0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .language-card h4 {

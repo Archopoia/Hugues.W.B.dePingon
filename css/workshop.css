@@ -202,11 +202,15 @@
     height: 80px;
     margin: 0 auto 1rem;
     background: var(--gold-glow);
+    border: 2px solid var(--red-theme);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 20px rgba(184, 134, 11, 0.5);
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 2px var(--gold-glow),
+        0 0 15px rgba(184, 134, 11, 0.5);
     position: relative;
     z-index: 1;
 }
@@ -238,11 +242,14 @@
 /* Workshop Mission */
 .workshop-mission {
     background: linear-gradient(135deg, rgba(74, 16, 16, 0.4) 0%, rgba(90, 20, 20, 0.5) 100%);
-    border: 3px solid var(--gold-glow);
+    border: 2px solid var(--gold-glow);
     border-radius: 12px;
     padding: 2rem;
     margin-bottom: 2.5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 2px var(--gold-glow),
+        0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .workshop-mission h3 {
@@ -283,11 +290,14 @@
 /* Workshop Formats */
 .workshop-formats {
     background: linear-gradient(135deg, rgba(74, 16, 16, 0.4) 0%, rgba(90, 20, 20, 0.5) 100%);
-    border: 3px solid var(--gold-glow);
+    border: 2px solid var(--gold-glow);
     border-radius: 12px;
     padding: 2rem;
     margin-bottom: 2.5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 2px var(--gold-glow),
+        0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .workshop-formats h3 {
@@ -345,11 +355,16 @@
     width: 50px;
     height: 50px;
     background: var(--gold-glow);
+    border: 2px solid var(--red-theme);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 2px var(--gold-glow),
+        0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .format-icon i {
@@ -419,11 +434,14 @@
 /* Workshop Values */
 .workshop-values {
     background: linear-gradient(135deg, rgba(74, 16, 16, 0.4) 0%, rgba(90, 20, 20, 0.5) 100%);
-    border: 3px solid var(--gold-glow);
+    border: 2px solid var(--gold-glow);
     border-radius: 12px;
     padding: 2rem;
     margin-bottom: 2.5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 2px var(--gold-glow),
+        0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .workshop-values h3 {
@@ -459,10 +477,15 @@
     width: 60px;
     height: 60px;
     margin: 0 auto 1rem;
+    border: 2px solid var(--red-theme);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 2px var(--gold-glow),
+        0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .value-icon.theme-red { background: var(--gold-glow); }
@@ -493,11 +516,14 @@
 /* Workshop Structure Timeline */
 .workshop-structure {
     background: linear-gradient(135deg, rgba(74, 16, 16, 0.4) 0%, rgba(90, 20, 20, 0.5) 100%);
-    border: 3px solid var(--gold-glow);
+    border: 2px solid var(--gold-glow);
     border-radius: 12px;
     padding: 2rem;
     margin-bottom: 2.5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 2px var(--gold-glow),
+        0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .workshop-structure h3 {
@@ -524,7 +550,7 @@
     width: 50px;
     height: 50px;
     background: var(--gold-glow);
-    border: 3px solid var(--red-theme);
+    border: 2px solid var(--red-theme);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -533,7 +559,10 @@
     font-size: 1.5rem;
     color: var(--red-theme);
     flex-shrink: 0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 2px var(--gold-glow),
+        0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .timeline-content {
@@ -561,10 +590,14 @@
 /* Workshop Tools */
 .workshop-tools {
     background: linear-gradient(135deg, rgba(74, 16, 16, 0.4) 0%, rgba(90, 20, 20, 0.5) 100%);
-    border: 3px solid var(--gold-glow);
+    border: 2px solid var(--gold-glow);
     border-radius: 12px;
     padding: 2rem;
     margin-bottom: 2rem;
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 2px var(--gold-glow),
+        0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .workshop-tools h3 {
@@ -608,10 +641,14 @@
 /* Premium Options */
 .workshop-premium {
     background: linear-gradient(135deg, rgba(74, 16, 16, 0.4) 0%, rgba(90, 20, 20, 0.5) 100%);
-    border: 3px solid var(--gold-glow);
+    border: 2px solid var(--gold-glow);
     border-radius: 12px;
     padding: 2rem;
     margin-bottom: 2rem;
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 2px var(--gold-glow),
+        0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .workshop-premium h3 {
@@ -661,11 +698,14 @@
 .workshop-cta {
     text-align: center;
     background: linear-gradient(135deg, rgba(74, 16, 16, 0.4) 0%, rgba(90, 20, 20, 0.5) 100%);
-    border: 3px solid var(--gold-glow);
+    border: 2px solid var(--gold-glow);
     border-radius: 12px;
     padding: 3rem 2rem;
     margin-top: 3rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 2px var(--gold-glow),
+        0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .workshop-cta h3 {

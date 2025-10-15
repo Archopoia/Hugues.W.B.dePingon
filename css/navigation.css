@@ -80,8 +80,12 @@
 
 .tab-button.active {
     background: var(--text-light);
+    border-color: var(--gold-glow);
     box-shadow:
-        0px 0px 20px 5px var(--gold-glow),
+        0 0 0 1px var(--red-theme),
+        0 0 0 3px var(--gold-glow),
+        0 0 0 4px var(--red-theme),
+        0px 0px 15px 5px var(--gold-glow),
         0px 0px 10px 1px var(--focus-glow) inset;
 }
 
@@ -128,10 +132,12 @@
 .edu-nav-btn.active {
     background: var(--red-theme);
     color: var(--text-cream);
-    border-color: var(--red-theme);
+    border: 2px solid var(--gold-glow);
     box-shadow:
-        0 0 15px var(--red-theme),
-        inset 0 0 0 2px var(--text-cream);
+        0 0 0 1px var(--red-theme),
+        0 0 0 2px var(--gold-glow),
+        0 0 12px var(--gold-glow),
+        inset 0 0 0 1px var(--text-cream);
 }
 
 /* Portfolio Navigation Pills */
@@ -171,8 +177,12 @@
 .port-nav-btn.active {
     background: var(--red-theme);
     color: var(--text-cream);
+    border: 2px solid var(--gold-glow);
     box-shadow:
-        0 0 20px 5px var(--gold-glow),
+        0 0 0 1px var(--red-theme),
+        0 0 0 3px var(--gold-glow),
+        0 0 0 4px var(--red-theme),
+        0 0 15px 5px var(--gold-glow),
         0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
@@ -217,8 +227,12 @@
 .skill-nav-btn.active {
     background: var(--red-theme);
     color: var(--text-cream);
+    border: 2px solid var(--gold-glow);
     box-shadow:
-        0 0 15px 5px var(--gold-glow),
+        0 0 0 1px var(--red-theme),
+        0 0 0 3px var(--gold-glow),
+        0 0 0 4px var(--red-theme),
+        0 0 12px 5px var(--gold-glow),
         0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
@@ -261,8 +275,12 @@
 .method-btn.active {
     background: var(--red-theme);
     color: var(--text-cream);
-    border-color: var(--red-theme);
-    box-shadow: 0 0 20px rgba(139, 0, 0, 0.3);
+    border: 2px solid var(--gold-glow);
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 3px var(--gold-glow),
+        0 0 0 4px var(--red-theme),
+        0 0 15px var(--gold-glow);
 }
 
 /* Language Switcher */
