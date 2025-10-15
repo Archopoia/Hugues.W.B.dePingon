@@ -70,7 +70,7 @@
 
 .tab-button:hover {
     background: var(--hover-bg);
-    transform: scale(1.02, 1.02);
+    transform: translateY(-2px);
     box-shadow:
         0 0 15px 8px var(--gold-glow),
         0 0 30px 15px #72522f75,
