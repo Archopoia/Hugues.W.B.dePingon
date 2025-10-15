@@ -64,11 +64,14 @@ async function loadSection(sectionName) {
                         initializeEducationNavigation();
                         initializeAlpineEducationVideo();
                     }
+
+                    // Initialize flip sounds for any flippable cards in this section
+                    initializeFlipSounds();
                 }, 150);
             }
         }
     } catch (error) {
-        console.error(`Error loading section ${sectionName}:`, error);
+        // Section failed to load - silently continue
     }
 }
 
@@ -133,6 +136,16 @@ function initializeSkillsNavigation() {
     });
 }
 
+// Skill bar animation
+function animateSkillBars() {
+    const skillBars = document.querySelectorAll('.skill-progress');
+    skillBars.forEach(bar => {
+        const width = bar.getAttribute('data-width');
+        bar.style.width = width + '%';
+        bar.classList.add('animate');
+    });
+}
+
 // Preload sections for better UX
 function preloadAllSections() {
     const sections = ['about', 'workshop', 'education', 'experience', 'portfolio', 'skills', 'contact'];
@@ -143,53 +156,31 @@ function preloadAllSections() {
     });
 }
 
+// Initialize flip sound effects for cards
+function initializeFlipSounds() {
+    // Find all expertise cards and academic stat cards
+    const flipCards = document.querySelectorAll('.expertise-card, .academic-stat');
+
+    flipCards.forEach(card => {
+        // Remove any existing flip sound listener to avoid duplicates
+        card.removeEventListener('mouseenter', playFlipSoundOnHover);
+        // Add hover listener for flip sound
+        card.addEventListener('mouseenter', playFlipSoundOnHover);
+    });
+}
+
+function playFlipSoundOnHover() {
+    if (window.soundManager) {
+        window.soundManager.playRandomFlipSound();
+    }
+}
+
+// Note: Static loader is in HTML and stays visible until soundManager.js handles it
+// Animation keyframes are defined in soundManager.js
+
 document.addEventListener('DOMContentLoaded', function() {
     // Load About section immediately
     loadSection('about');
-
-    // Web Audio API - Medieval Sound Effects
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-
-    function playChime(frequency, duration = 0.15) {
-        const oscillator = audioContext.createOscillator();
-        const gainNode = audioContext.createGain();
-
-        oscillator.connect(gainNode);
-        gainNode.connect(audioContext.destination);
-
-        oscillator.type = 'sine';
-        oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
-
-        gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
-
-        oscillator.start(audioContext.currentTime);
-        oscillator.stop(audioContext.currentTime + duration);
-    }
-
-    function playAscendingChime(index) {
-        const notes = [261.63, 329.63, 392.00, 523.25]; // C-E-G-C
-        playChime(notes[index], 0.2);
-    }
-
-    function playDiscordantBuzz() {
-        for (let i = 0; i < 3; i++) {
-    setTimeout(() => {
-                playChime(110 + Math.random() * 50, 0.1);
-            }, i * 80);
-        }
-    }
-
-    function playFanfare() {
-        const fanfare = [523.25, 659.25, 783.99, 1046.50]; // C-E-G-C (high octave)
-        fanfare.forEach((freq, i) => {
-            setTimeout(() => playChime(freq, 0.3), i * 200);
-        });
-    }
-
-    function playGentleBell() {
-        playChime(523.25, 0.25); // Gentle C note
-    }
 
     // Mini-jeu caché : Quête du Code Secret avec Randomisation Quotidienne
     let secretSequence = [];
@@ -243,8 +234,10 @@ document.addEventListener('DOMContentLoaded', function() {
         failFlash.className = 'fail-flash';
         document.body.appendChild(failFlash);
 
-        // Play discordant buzz
-        playDiscordantBuzz();
+        // Play react fail sound
+        if (window.soundManager) {
+            window.soundManager.playReactFail();
+        }
 
                 setTimeout(() => {
             sheet.classList.remove('shake-fail');
@@ -279,9 +272,6 @@ document.addEventListener('DOMContentLoaded', function() {
             text.textContent = 'Tu as découvert la séquence cachée. Nous, les designers, voyons et créons des motifs partout.';
             achievement.appendChild(text);
 
-            // Play triumphant fanfare
-            playFanfare();
-
             // Create particle effects
             for (let i = 0; i < 30; i++) {
                 setTimeout(() => createParticle(), i * 100);
@@ -299,9 +289,6 @@ document.addEventListener('DOMContentLoaded', function() {
             text.className = 'achievement-subtext';
             text.textContent = 'Tu te souviens bien de la séquence.';
             achievement.appendChild(text);
-
-            // Play simple chime
-            playChime(523.25, 0.3);
         }
 
         document.body.appendChild(achievement);
@@ -344,10 +331,6 @@ document.addEventListener('DOMContentLoaded', function() {
         for (let i = 0; i < 50; i++) {
             setTimeout(() => createRainbowParticle(), i * 60);
         }
-
-        // Play special fanfare
-        setTimeout(() => playFanfare(), 200);
-        setTimeout(() => playFanfare(), 600);
 
         setTimeout(() => {
             achievement.style.animation = 'fadeOut 1s forwards';
@@ -427,7 +410,10 @@ document.addEventListener('DOMContentLoaded', function() {
     stats.forEach(stat => {
         // Use data-i18n attribute which is language-independent
         const label = stat.querySelector('.stat-label').getAttribute('data-i18n');
-        stat.addEventListener('click', function() {
+        stat.addEventListener('click', function(e) {
+            // Stop event from bubbling to portrait
+            e.stopPropagation();
+
             // Only add if not already locked
             if (!this.classList.contains('stat-locked')) {
                 this.style.animation = 'pulse 0.3s';
@@ -439,14 +425,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 secretSequence.push(label);
 
-                // Play chime based on this stat's position in the CORRECT sequence
-                // This way, players can hear if they're on the right track!
-                const correctIndex = correctSequence.indexOf(label);
-                if (correctIndex !== -1) {
-                    playAscendingChime(correctIndex);
-                } else {
-                    // This shouldn't happen, but play middle note if somehow it does
-                    playChime(329.63, 0.2);
+                // Play bell sound based on this stat's position in the CORRECT sequence
+                // This way, each stat always plays the same bell (as a hint)
+                // Position 0 in correct sequence = bell4, 1 = bell3, 2 = bell2, 3 = bell1
+                const positionInCorrectSequence = correctSequence.indexOf(label);
+                if (window.soundManager && positionInCorrectSequence >= 0) {
+                    window.soundManager.playBellForSequence(positionInCorrectSequence);
                 }
 
                 // Update portrait feedback based on sequence length
@@ -471,7 +455,7 @@ document.addEventListener('DOMContentLoaded', function() {
             portraitImage.src = 'Assets/Hugues/funnysmiling.PNG';
         }
 
-        portraitImage.addEventListener('click', function() {
+        portraitImage.addEventListener('click', function(e) {
             // Check if sequence is correct
             const current = secretSequence.join(',');
             const correct = correctSequence.join(',');
@@ -482,6 +466,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     // First time discovery
                     achievementUnlocked = true;
                     this.classList.add('portrait-spinning');
+
+                    // Play success sound (first time - flagflow + react01)
+                    if (window.soundManager) {
+                        window.soundManager.playReactSuccess(true);
+                    }
 
                     // Change portrait 3 seconds in (1 second before animation ends)
                     setTimeout(() => {
@@ -508,6 +497,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     // Already discovered, do the same toggle with spinning
                     this.classList.add('portrait-spinning');
+
+                    // Play success sound (subsequent - react02)
+                    if (window.soundManager) {
+                        window.soundManager.playReactSuccess(false);
+                    }
 
                     // Change portrait 3 seconds in (1 second before animation ends)
                     setTimeout(() => {
@@ -634,6 +628,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add pressing class for pulse effect
         workshopSealButton.classList.add('pressing');
 
+        // Play pull sound
+        if (window.soundManager) {
+            window.soundManager.startPull();
+        }
+
         // Start rotation animation using requestAnimationFrame for smoother performance
         function animate() {
             const pressDuration = (Date.now() - pressStartTime) / 1000; // in seconds
@@ -679,6 +678,12 @@ document.addEventListener('DOMContentLoaded', function() {
             cancelAnimationFrame(rotationInterval);
         }
 
+        // Stop pull sound with fade out and play release sound
+        if (window.soundManager) {
+            window.soundManager.stopPull();
+            window.soundManager.playRelease();
+        }
+
         const pressDuration = (Date.now() - pressStartTime) / 1000;
         const launchScale = Math.min(1 + (pressDuration * 0.5), 2.5); // Max 2.5x scale
         const launchDuration = Math.min(pressDuration * 200, 800); // Max 800ms
@@ -713,6 +718,11 @@ document.addEventListener('DOMContentLoaded', function() {
             rotationInterval = null;
         }
 
+        // Stop pull sound with fade out (no release sound on cancel)
+        if (window.soundManager) {
+            window.soundManager.stopPull();
+        }
+
         if (workshopSealButton) {
             workshopSealButton.style.transition = 'transform 0.3s ease';
             workshopSealButton.style.transform = 'scale(1) rotate(0deg)';
@@ -745,6 +755,11 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', async function() {
             const targetTab = this.getAttribute('data-tab');
 
+            // Play random page sound for any tab except workshop
+            if (targetTab !== 'workshop' && window.soundManager) {
+                window.soundManager.playRandomPageSound();
+            }
+
             // Konami Tab Code Tracking
             tabSequence.push(targetTab);
             if (tabSequence.length > konamiTabCode.length) {
@@ -761,16 +776,6 @@ document.addEventListener('DOMContentLoaded', function() {
             await switchTab(targetTab);
         });
     });
-
-    // Skill bar animation
-    function animateSkillBars() {
-        const skillBars = document.querySelectorAll('.skill-progress');
-        skillBars.forEach(bar => {
-            const width = bar.getAttribute('data-width');
-            bar.style.width = width + '%';
-            bar.classList.add('animate');
-        });
-    }
 
     // Parallax effect for background - DISABLED (was causing scroll issues)
     // window.addEventListener('scroll', function() {
@@ -974,101 +979,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize particles
     createParticles();
-
-    // Add medieval sound effects (optional)
-    function playSound(soundType) {
-        // This would require audio files, but we can add visual feedback instead
-        const feedback = document.createElement('div');
-        feedback.style.cssText = `
-            position: fixed;
-            top: 50%;
-                    left: 50%;
-            transform: translate(-50%, -50%);
-            color: var(--gold);
-            font-size: 2rem;
-            pointer-events: none;
-            z-index: 1000;
-            animation: soundFeedback 0.5s ease-out;
-        `;
-
-        const soundStyle = document.createElement('style');
-        soundStyle.textContent = `
-            @keyframes soundFeedback {
-                0% {
-                    opacity: 0;
-                    transform: translate(-50%, -50%) scale(0.5);
-                }
-                50% {
-                    opacity: 1;
-                    transform: translate(-50%, -50%) scale(1.2);
-                }
-                100% {
-                    opacity: 0;
-                    transform: translate(-50%, -50%) scale(1);
-                }
-            }
-        `;
-        document.head.appendChild(soundStyle);
-
-        feedback.textContent = '';
-        document.body.appendChild(feedback);
-
-                setTimeout(() => {
-            feedback.remove();
-        }, 500);
-            }
-
-    // Add sound feedback to tab switches
-    tabButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            playSound('tab');
-        });
-    });
-
-    // Add loading animation
-    window.addEventListener('load', function() {
-        const loader = document.createElement('div');
-        loader.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--burgundy-dark);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            animation: fadeOut 1s ease-out 2s forwards;
-        `;
-
-        const loadingText = document.createElement('div');
-        loadingText.style.cssText = `
-            color: var(--gold);
-            font-family: 'Cinzel', serif;
-            font-size: 2rem;
-            text-align: center;
-        `;
-        loadingText.textContent = 'Loading Portfolio...';
-        loader.appendChild(loadingText);
-
-        const loadingStyle = document.createElement('style');
-        loadingStyle.textContent = `
-            @keyframes fadeOut {
-                to {
-                    opacity: 0;
-                    visibility: hidden;
-                }
-            }
-        `;
-        document.head.appendChild(loadingStyle);
-
-        document.body.appendChild(loader);
-
-        setTimeout(() => {
-            loader.remove();
-        }, 3000);
-    });
 
     // Add keyboard navigation
     document.addEventListener('keydown', function(e) {
@@ -1366,9 +1276,7 @@ document.addEventListener('keydown', function(e) {
         if (video) {
             if (card.classList.contains('expanded')) {
                 // Card is expanding - play the video
-                video.play().catch(error => {
-                    console.log('Video autoplay prevented:', error);
-                });
+                video.play().catch(() => {});
             } else {
                 // Card is collapsing - pause and reset the video
                 video.pause();
@@ -1401,7 +1309,10 @@ document.addEventListener('keydown', function(e) {
     // Alpine Education Card Video Hover-to-Play
     initializeAlpineEducationVideo();
 
-    console.log('Interactive Portfolio-Character Sheet loaded successfully!');
+    // Initialize flip sounds for cards (about section loads immediately)
+    setTimeout(() => {
+        initializeFlipSounds();
+    }, 300);
 });
 
 function initializeEducationNavigation() {
@@ -1439,9 +1350,8 @@ function initializeVideoHoverPlay() {
         if (video) {
             // Play video when hovering over the entire card
             card.addEventListener('mouseenter', function() {
-                video.play().catch(error => {
+                video.play().catch(() => {
                     // Handle autoplay restrictions gracefully
-                    console.log('Video autoplay prevented:', error);
                 });
             });
 
@@ -1701,9 +1611,7 @@ function initializeAlpineEducationVideo() {
     if (alpineCard && alpineVideo) {
         // Play video when hovering over the entire card
         alpineCard.addEventListener('mouseenter', function() {
-            alpineVideo.play().catch(error => {
-                console.log('Video autoplay prevented:', error);
-            });
+            alpineVideo.play().catch(() => {});
         });
 
         // Pause video when mouse leaves the card

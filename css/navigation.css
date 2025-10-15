@@ -301,23 +301,25 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.75rem 1.25rem;
-    background: var(--parchment-aged);
-    border: 2px solid var(--border-brown);
+    background: var(--red-theme);
+    border: 2px solid var(--gold-glow);
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     font-family: 'Cinzel', serif;
     font-weight: 600;
-    color: var(--text-dark);
+    color: var(--text-cream);
     font-size: 1rem;
 }
 
 .lang-btn:hover {
-    background: var(--hover-bg);
-    border-color: var(--border-dark);
+    background: #754040;
+    border-color: var(--gold-glow);
     transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    box-shadow:
+        0 0 15px var(--gold-glow),
+        0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 .lang-btn:active {
