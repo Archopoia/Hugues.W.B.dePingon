@@ -135,7 +135,7 @@ function initializeSkillsNavigation() {
 
 // Preload sections for better UX
 function preloadAllSections() {
-    const sections = ['about', 'education', 'experience', 'portfolio', 'skills', 'contact'];
+    const sections = ['about', 'workshop', 'education', 'experience', 'portfolio', 'skills', 'contact'];
     sections.forEach(section => {
         if (section !== 'about') { // About is loaded by default
             loadSection(section);
@@ -568,11 +568,180 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Tab switching function (can be called programmatically)
+    async function switchTab(targetTab) {
+        // Load section dynamically if not loaded
+        await loadSection(targetTab);
+
+        // Remove active class from all buttons and contents
+        const allTabButtons = document.querySelectorAll('.tab-button, .workshop-seal-button');
+        allTabButtons.forEach(btn => btn.classList.remove('active'));
+        const allTabContents = document.querySelectorAll('.tab-content');
+        allTabContents.forEach(content => content.classList.remove('active'));
+
+        // Add active class to target button and content
+        const targetButton = document.querySelector(`[data-tab="${targetTab}"]`);
+        if (targetButton) targetButton.classList.add('active');
+        document.getElementById(targetTab).classList.add('active');
+
+        // Toggle workshop background on sheet-content
+        const sheetContent = document.querySelector('.sheet-content');
+        if (targetTab === 'workshop') {
+            sheetContent.classList.add('workshop-active');
+        } else {
+            sheetContent.classList.remove('workshop-active');
+        }
+
+        // Add fade in animation
+        const activeContent = document.getElementById(targetTab);
+        activeContent.style.animation = 'none';
+        setTimeout(() => {
+            activeContent.style.animation = 'fadeIn 1s cubic-bezier(.39, .575, .565, 1.000) both';
+        }, 10);
+
+        // Animate skill bars when skills tab is opened
+        if (targetTab === 'skills') {
+            setTimeout(() => {
+                animateSkillBars();
+            }, 300);
+        }
+    }
+
+    // Make switchTab globally available
+    window.switchTab = switchTab;
+
     // Tab switching functionality with dynamic loading
-    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabButtons = document.querySelectorAll('.tab-button, .workshop-seal-button');
     const tabContents = document.querySelectorAll('.tab-content');
 
+    // Special handling for workshop seal button press-and-hold
+    const workshopSealButton = document.querySelector('.workshop-seal-button');
+    let pressTimer = null;
+    let pressStartTime = 0;
+    let rotationInterval = null;
+    let currentRotation = 0;
+    let rotationSpeed = 0;
+
+    function startPress(e) {
+        e.preventDefault();
+        pressStartTime = Date.now();
+        currentRotation = 0;
+        rotationSpeed = 0;
+
+        // Disable transition during rotation
+        workshopSealButton.style.transition = 'none';
+
+        // Add pressing class for pulse effect
+        workshopSealButton.classList.add('pressing');
+
+        // Start rotation animation using requestAnimationFrame for smoother performance
+        function animate() {
+            const pressDuration = (Date.now() - pressStartTime) / 1000; // in seconds
+
+            // Accelerating rotation: starts fast and accelerates dramatically
+            // Base speed + exponential acceleration
+            const baseSpeed = 200; // Start at 200 deg/s immediately
+            const acceleration = Math.pow(pressDuration + 0.5, 2.5) * 300; // Steep curve
+            rotationSpeed = Math.min(baseSpeed + acceleration, 3000); // Max 3000 deg/s
+
+            // Increment rotation
+            currentRotation += rotationSpeed / 60; // 60 fps
+
+            // Apply transform
+            workshopSealButton.style.transform = `rotate(${currentRotation}deg)`;
+
+            // Update pulse effect based on press duration
+            const pulseSpeed = Math.max(0.2, 1 - (pressDuration * 0.3)); // Faster as you hold (min 0.2s)
+            const pulseScale = Math.min(1.5 + (pressDuration * 0.5), 3); // Larger as you hold (max 3x)
+            const pulseOpacity = Math.min(0.6 + (pressDuration * 0.1), 0.9); // Brighter as you hold
+
+            workshopSealButton.style.setProperty('--pulse-speed', `${pulseSpeed}s`);
+            workshopSealButton.style.setProperty('--pulse-scale', pulseScale);
+            workshopSealButton.style.setProperty('--pulse-opacity', pulseOpacity);
+
+            // Continue animation
+            if (pressStartTime > 0) {
+                rotationInterval = requestAnimationFrame(animate);
+            }
+        }
+
+        rotationInterval = requestAnimationFrame(animate);
+    }
+
+    function endPress(e) {
+        e.preventDefault();
+
+        // Remove pressing class
+        workshopSealButton.classList.remove('pressing');
+
+        // Stop animation loop
+        if (rotationInterval) {
+            cancelAnimationFrame(rotationInterval);
+        }
+
+        const pressDuration = (Date.now() - pressStartTime) / 1000;
+        const launchScale = Math.min(1 + (pressDuration * 0.5), 2.5); // Max 2.5x scale
+        const launchDuration = Math.min(pressDuration * 200, 800); // Max 800ms
+
+        // Launch animation
+        workshopSealButton.style.transition = `transform ${launchDuration}ms cubic-bezier(0.34, 1.56, 0.64, 1)`;
+        workshopSealButton.style.transform = `scale(${launchScale}) rotate(${currentRotation}deg)`;
+
+        // Trigger tab switch after launch
+        setTimeout(async () => {
+            // Reset button
+            workshopSealButton.style.transition = 'transform 0.3s ease';
+            workshopSealButton.style.transform = 'scale(1) rotate(0deg)';
+
+            // Switch to workshop tab
+            const targetTab = workshopSealButton.getAttribute('data-tab');
+            await switchTab(targetTab);
+        }, launchDuration);
+
+        pressStartTime = 0;
+        rotationSpeed = 0;
+        rotationInterval = null;
+    }
+
+    function cancelPress() {
+        // Remove pressing class
+        workshopSealButton.classList.remove('pressing');
+
+        // Stop animation loop
+        if (rotationInterval) {
+            cancelAnimationFrame(rotationInterval);
+            rotationInterval = null;
+        }
+
+        if (workshopSealButton) {
+            workshopSealButton.style.transition = 'transform 0.3s ease';
+            workshopSealButton.style.transform = 'scale(1) rotate(0deg)';
+        }
+
+        pressStartTime = 0;
+        rotationSpeed = 0;
+        currentRotation = 0;
+    }
+
+    if (workshopSealButton) {
+        workshopSealButton.addEventListener('mousedown', startPress);
+        workshopSealButton.addEventListener('mouseup', endPress);
+        workshopSealButton.addEventListener('mouseleave', cancelPress);
+        workshopSealButton.addEventListener('touchstart', startPress);
+        workshopSealButton.addEventListener('touchend', endPress);
+        workshopSealButton.addEventListener('touchcancel', cancelPress);
+
+        // Prevent click event from firing (we handle it manually)
+        workshopSealButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+    }
+
     tabButtons.forEach(button => {
+        // Skip workshop seal button as it has custom handling
+        if (button.classList.contains('workshop-seal-button')) return;
+
         button.addEventListener('click', async function() {
             const targetTab = this.getAttribute('data-tab');
 
@@ -588,31 +757,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 unlockKonamiSecret();
             }
 
-            // Load section dynamically if not loaded
-            await loadSection(targetTab);
-
-            // Remove active class from all buttons and contents
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            const allTabContents = document.querySelectorAll('.tab-content');
-            allTabContents.forEach(content => content.classList.remove('active'));
-
-            // Add active class to clicked button and corresponding content
-            this.classList.add('active');
-            document.getElementById(targetTab).classList.add('active');
-
-            // Add fade in animation
-            const activeContent = document.getElementById(targetTab);
-            activeContent.style.animation = 'none';
-    setTimeout(() => {
-                activeContent.style.animation = 'fadeIn 1s cubic-bezier(.39, .575, .565, 1.000) both';
-            }, 10);
-
-            // Animate skill bars when skills tab is opened
-            if (targetTab === 'skills') {
-                setTimeout(() => {
-                    animateSkillBars();
-                }, 300);
-            }
+            // Use the switchTab function
+            await switchTab(targetTab);
         });
     });
 

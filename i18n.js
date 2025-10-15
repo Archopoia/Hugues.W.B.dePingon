@@ -26,6 +26,113 @@ const translations = {
         "nav-portfolio": "Portfolio",
         "nav-skills": "Skills",
         "nav-contact": "Contact",
+        "nav-workshop": "Workshop",
+        "nav-workshop-seal": "Game Dev Workshop",
+        "nav-workshop-line1": "Game Dev",
+        "nav-workshop-line2": "Workshop",
+
+        // Workshop Section
+        "workshop-main-title": "Game Development Workshop",
+        "workshop-subtitle": "Transform your passion into professional skills",
+        "workshop-why-title": "Why This Workshop?",
+        "workshop-benefit-1": "Create a complete and playable video game in just a few weeks",
+        "workshop-benefit-2": "Learn the skills sought after in the video game industry",
+        "workshop-benefit-3": "Develop essential soft skills: collaboration, project management, creativity",
+        "workshop-benefit-4": "Build a concrete portfolio for your studies or career",
+
+        "workshop-formats-title": "🧩 Available Formats",
+
+        "format-objective-label": "Objective:",
+        "format-format-label": "Format:",
+        "format-participants-label": "Participants:",
+        "format-deliverable-label": "Deliverable:",
+
+        "format-gamejam-title": "Extended Game Jam Workshop",
+        "format-gamejam-duration": "6–8 weeks",
+        "format-gamejam-objective": "Create a complete game as a team, on an imposed theme.",
+        "format-gamejam-format": "1–2 sessions per week (2h to 3h), over 6 to 8 weeks.",
+        "format-gamejam-participants": "Teens (12–18 years) or adults (separated by level).",
+        "format-gamejam-deliverable": "A playable game + itch.io page + trailer.",
+        "price-group": "Group (5–8 people)",
+        "price-private": "Private (1–2 people)",
+
+        "format-tutoring-title": "Private Tutoring",
+        "format-tutoring-type": "Remote / In-Person",
+        "format-tutoring-desc": "Custom courses: game design, AI, worldbuilding, Unreal/Godot, portfolio.",
+        "format-tutoring-target": "For passionate youth or professionals in career transition.",
+        "price-tutoring": "Tutoring",
+
+        "format-school-title": "School / Extracurricular Workshop",
+        "format-school-duration": "1 semester",
+        "format-school-desc": "Courses offered directly to a school, gymnasium or cultural center.",
+        "format-school-format": "1h30–2h weekly during one semester.",
+        "price-school": "For the school",
+        "price-students": "For students",
+
+        "format-intensive-title": "Intensive Workshop",
+        "format-intensive-duration": "3–5 days",
+        "format-intensive-desc": "3 to 5 days to produce a complete game in a group.",
+        "format-intensive-option": "Option: collaboration with a school, FabLab, or museum.",
+        "price-intensive": "Per participant",
+
+        "workshop-values-title": "What You Get",
+
+        "value-concrete-title": "Publishable Game",
+        "value-concrete-desc": "A complete and functional video game, published on itch.io with your name in the credits.",
+
+        "value-transversal-title": "Technical Skills",
+        "value-transversal-desc": "Programming, game design, artistic and sound creation with professional tools.",
+
+        "value-teamwork-title": "Collaborative Skills",
+        "value-teamwork-desc": "Project management, team communication, collective problem solving.",
+
+        "value-professional-title": "Professional Portfolio",
+        "value-professional-desc": "A concrete achievement that impresses recruiters, schools and universities.",
+
+        "value-method-title": "Industry Methods",
+        "value-method-desc": "Learning professional workflows (Scrum, iteration, playtesting).",
+
+        "value-personal-title": "Discover Your Talents",
+        "value-personal-desc": "Identify your strengths: artist, designer, programmer, project manager.",
+
+        "workshop-structure-title": "⚙️ Workshop Structure (6 weeks)",
+
+        "week1-title": "Introduction / Idea / Theme",
+        "week1-desc": "Theme discovery, brainstorming, team formation",
+
+        "week2-title": "Game Design & Roles",
+        "week2-desc": "Gameplay design, paper prototypes",
+
+        "week3-title": "Programming & Art",
+        "week3-desc": "Engine setup (Godot, Unity...)",
+
+        "week4-title": "Systems & Feedback",
+        "week4-desc": "Adding game elements and internal testing",
+
+        "week5-title": "UX / Polish / Audio",
+        "week5-desc": "Game finalization",
+
+        "week6-title": "Showcase",
+        "week6-desc": "Public presentation / online publication",
+
+        "workshop-tools-title": "What's Included",
+        "tools-software": "Professional software: Godot or Unity",
+        "tools-guidance": "Personalized guidance throughout the project",
+        "tools-resources": "Educational resources and starter templates",
+        "tools-publishing": "Game publication on itch.io with presentation page",
+        "tools-equipment": "Required: Laptop with mouse",
+
+        "workshop-premium-title": "Specialized Workshops",
+        "premium-ai": "AI in Video Games",
+        "premium-storytelling": "Interactive Storytelling",
+        "premium-sound": "Sound and Music Design",
+        "premium-art": "Art and Art Direction",
+        "premium-corporate": "Corporate Team-Building",
+        "premium-family": "Parent-Child Workshop",
+
+        "workshop-cta-title": "Ready to create your first video game?",
+        "workshop-cta-desc": "Contact me to discuss your needs and book your workshop.",
+        "workshop-cta-button": "Contact Me",
 
         // About Section
         "mission-vision": "Mission & Vision",
@@ -478,6 +585,113 @@ const translations = {
         "nav-portfolio": "Portfolio",
         "nav-skills": "Compétences",
         "nav-contact": "Contact",
+        "nav-workshop": "Atelier",
+        "nav-workshop-seal": "Atelier Jeu Vidéo",
+        "nav-workshop-line1": "Atelier",
+        "nav-workshop-line2": "Jeu Vidéo",
+
+        // Workshop Section
+        "workshop-main-title": "Atelier de Création de Jeu Vidéo",
+        "workshop-subtitle": "Transformez votre passion en compétences professionnelles",
+        "workshop-why-title": "Pourquoi Cet Atelier ?",
+        "workshop-benefit-1": "Créez un jeu vidéo complet et jouable en quelques semaines",
+        "workshop-benefit-2": "Apprenez les compétences recherchées dans l'industrie du jeu vidéo",
+        "workshop-benefit-3": "Développez des soft skills essentiels : collaboration, gestion de projet, créativité",
+        "workshop-benefit-4": "Obtenez un portfolio concret pour vos études ou votre carrière",
+
+        "workshop-formats-title": "🧩 Formats Disponibles",
+
+        "format-objective-label": "Objectif:",
+        "format-format-label": "Format:",
+        "format-participants-label": "Participants:",
+        "format-deliverable-label": "Livrable:",
+
+        "format-gamejam-title": "Atelier \"Game Jam Étendue\"",
+        "format-gamejam-duration": "6–8 semaines",
+        "format-gamejam-objective": "Créer un jeu complet en équipe, sur un thème imposé.",
+        "format-gamejam-format": "1–2 sessions par semaine (2h à 3h), sur 6 à 8 semaines.",
+        "format-gamejam-participants": "Ados (12–18 ans) ou adultes (séparés par niveau).",
+        "format-gamejam-deliverable": "Un jeu jouable + page itch.io + bande-annonce.",
+        "price-group": "Groupe (5–8 pers.)",
+        "price-private": "Privé (1–2 pers.)",
+
+        "format-tutoring-title": "Tutorat Privé",
+        "format-tutoring-type": "Distanciel / Présentiel",
+        "format-tutoring-desc": "Cours sur mesure : game design, IA, worldbuilding, Unreal/Godot, portfolio.",
+        "format-tutoring-target": "Pour jeunes passionnés ou professionnels en reconversion.",
+        "price-tutoring": "Tutorat",
+
+        "format-school-title": "Atelier Scolaire / Extrascolaire",
+        "format-school-duration": "1 semestre",
+        "format-school-desc": "Cours proposés directement à une école, gymnase ou centre culturel.",
+        "format-school-format": "1h30–2h hebdo pendant un semestre.",
+        "price-school": "Pour l'école",
+        "price-students": "Pour les élèves",
+
+        "format-intensive-title": "Stage Intensif",
+        "format-intensive-duration": "3–5 jours",
+        "format-intensive-desc": "3 à 5 jours pour produire un jeu complet en groupe.",
+        "format-intensive-option": "Option : collaboration avec une école, un FabLab, ou un musée.",
+        "price-intensive": "Par participant",
+
+        "workshop-values-title": "Ce Que Vous Obtenez",
+
+        "value-concrete-title": "Jeu Publiable",
+        "value-concrete-desc": "Un jeu vidéo complet et fonctionnel, publié sur itch.io avec votre nom au générique.",
+
+        "value-transversal-title": "Compétences Techniques",
+        "value-transversal-desc": "Programmation, game design, création artistique et sonore avec des outils professionnels.",
+
+        "value-teamwork-title": "Compétences Collaboratives",
+        "value-teamwork-desc": "Gestion de projet, communication d'équipe, résolution de problèmes collectifs.",
+
+        "value-professional-title": "Portfolio Professionnel",
+        "value-professional-desc": "Une réalisation concrète qui impressionne recruteurs, écoles et universités.",
+
+        "value-method-title": "Méthodes de l'Industrie",
+        "value-method-desc": "Apprentissage des workflows professionnels (Scrum, itération, playtesting).",
+
+        "value-personal-title": "Découverte de Vos Talents",
+        "value-personal-desc": "Identifiez vos forces : artiste, designer, programmeur, chef de projet.",
+
+        "workshop-structure-title": "⚙️ Structure d'un Atelier (6 semaines)",
+
+        "week1-title": "Introduction / Idée / Thème",
+        "week1-desc": "Découverte du thème, brainstorming, formation des équipes",
+
+        "week2-title": "Game Design & Rôles",
+        "week2-desc": "Conception du gameplay, prototypes papier",
+
+        "week3-title": "Programmation & Art",
+        "week3-desc": "Mise en place du moteur (Godot, Unity...)",
+
+        "week4-title": "Systèmes & Feedback",
+        "week4-desc": "Ajout d'éléments de jeu et tests internes",
+
+        "week5-title": "UX / Polish / Audio",
+        "week5-desc": "Finalisation du jeu",
+
+        "week6-title": "Showcase",
+        "week6-desc": "Présentation publique / mise en ligne",
+
+        "workshop-tools-title": "Ce Qui Est Fourni",
+        "tools-software": "Logiciels professionnels : Godot ou Unity",
+        "tools-guidance": "Accompagnement personnalisé tout au long du projet",
+        "tools-resources": "Ressources pédagogiques et templates de démarrage",
+        "tools-publishing": "Publication du jeu sur itch.io et page de présentation",
+        "tools-equipment": "À prévoir : PC portable avec souris",
+
+        "workshop-premium-title": "Ateliers Spécialisés",
+        "premium-ai": "IA dans le Jeu Vidéo",
+        "premium-storytelling": "Narration Interactive",
+        "premium-sound": "Design Sonore et Musical",
+        "premium-art": "Art et Direction Artistique",
+        "premium-corporate": "Team-Building Entreprise",
+        "premium-family": "Atelier Parent-Enfant",
+
+        "workshop-cta-title": "Prêt à créer votre premier jeu vidéo ?",
+        "workshop-cta-desc": "Contactez-moi pour discuter de vos besoins et réserver votre atelier.",
+        "workshop-cta-button": "Me Contacter",
 
         // About Section
         "mission-vision": "Mission & Vision",

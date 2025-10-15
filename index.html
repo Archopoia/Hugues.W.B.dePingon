@@ -402,6 +402,19 @@
     </div>
 
     <div class="character-sheet">
+        <!-- Workshop Seal Button - Moves with Character Sheet -->
+        <button class="workshop-seal-button" data-tab="workshop" title="Atelier de Création de Jeu Vidéo / Game Development Workshop">
+            <div class="seal-inner">
+                <div class="seal-icon">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <div class="seal-text">
+                    <span class="seal-line1" data-i18n="nav-workshop-line1">Atelier</span>
+                    <span class="seal-line2" data-i18n="nav-workshop-line2">Jeu Vidéo</span>
+                </div>
+            </div>
+            <div class="seal-ribbon"></div>
+        </button>
         <!-- Header with Character Name and Portrait -->
         <header class="character-header">
             <div class="portrait-frame">
@@ -466,6 +479,7 @@
         <main class="sheet-content" id="main-content">
             <!-- Sections load dynamically -->
             <section id="about" class="tab-content active"></section>
+            <section id="workshop" class="tab-content"></section>
             <section id="education" class="tab-content"></section>
             <section id="experience" class="tab-content"></section>
             <section id="portfolio" class="tab-content"></section>

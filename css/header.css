@@ -56,15 +56,17 @@
     position: relative;
     width: 140px;
     height: 140px;
-    border: 6px solid var(--gold-ink);
+    border: 4px solid var(--gold-glow);
     border-radius: 50%;
     background: var(--parchment);
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow:
-        0 0 15px rgba(0, 0, 0, 0.4),
-        inset 0 0 0 2px rgba(184, 134, 11, 0.3);
+        0 0 0 1px var(--red-theme),
+        0 0 0 3px var(--gold-glow),
+        0 0 0 4px var(--red-theme),
+        0 4px 12px rgba(0, 0, 0, 0.4);
     z-index: 3;
     transform: rotate(0deg);
     transition: transform 0.3s ease;
@@ -77,25 +79,26 @@
 .portrait-frame::before {
     content: '';
     position: absolute;
-    top: -3px;
-    left: -3px;
-    right: -3px;
-    bottom: -3px;
-    border: 2px solid var(--gold-bright);
-    background:
-        radial-gradient(circle at 30% 30%, rgba(184, 134, 11, 0.2) 0%, transparent 50%),
-        radial-gradient(circle at 70% 70%, rgba(184, 134, 11, 0.2) 0%, transparent 50%);
+    top: -12px;
+    left: -12px;
+    right: -12px;
+    bottom: -12px;
+    border: 2px solid var(--gold-glow);
+    border-radius: 50%;
+    box-shadow:
+        0 0 0 2px var(--red-theme),
+        0 0 15px rgba(255, 235, 198, 0.5);
     z-index: -1;
 }
 
 .portrait-frame::after {
     content: '';
     position: absolute;
-    top: 5px;
-    left: 5px;
-    right: 5px;
-    bottom: 5px;
-    border: 1px solid var(--gold-faded);
+    top: 6px;
+    left: 6px;
+    right: 6px;
+    bottom: 6px;
+    border: 1px solid var(--red-theme);
     border-radius: 50%;
     z-index: 1;
 }
@@ -122,19 +125,18 @@
     border-radius: 50%;
 }
 
-.portrait-decoration {
+/* .portrait-decoration {
     position: absolute;
-    top: -12px;
-    left: -12px;
-    right: -12px;
-    bottom: -12px;
-    border: 3px solid var(--gold-bright);
+    top: -18px;
+    left: -18px;
+    right: -18px;
+    bottom: -18px;
+    border: 2px solid var(--red-theme);
     border-radius: 50%;
-    background:
-        radial-gradient(circle at 25% 25%, rgba(184, 134, 11, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 75% 75%, rgba(184, 134, 11, 0.1) 0%, transparent 50%);
+    box-shadow:
+        0 0 0 2px var(--gold-glow);
     z-index: -2;
-}
+} */
 
 .character-info {
     flex: 1;
