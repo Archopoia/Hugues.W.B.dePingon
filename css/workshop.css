@@ -479,7 +479,7 @@
 .format-card {
     position: relative;
     cursor: pointer;
-    min-height: 320px;
+    min-height: 400px;
     perspective: 1000px;
 }
 
@@ -497,7 +497,7 @@
         inset 0 0 0 2px var(--border-tan);
     position: relative;
     transform-style: preserve-3d;
-    min-height: 320px;
+    min-height: 400px;
 }
 
 /* Theme-specific backgrounds for unflipped format cards */
@@ -578,9 +578,8 @@
 }
 
 .format-card .card-front .format-icon {
-    background: rgba(255, 255, 255, 0.2);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(10px);
+    background: var(--text-cream);
+    border: 3px solid var(--border-dark);
 }
 
 .format-card .card-front .format-badge {
@@ -607,30 +606,11 @@
     position: absolute;
     left: 0;
     top: 0;
-    color: var(--gold-glow);
+    color: var(--red-theme);
     font-size: 0.8rem;
     font-weight: bold;
 }
 
-.format-card .card-back strong {
-    display: inline-block;
-    background: linear-gradient(135deg, var(--gold-glow) 0%, rgba(184, 134, 11, 0.8) 100%);
-    color: var(--text-dark);
-    font-family: 'Quintessential', cursive;
-    font-size: 0.9rem;
-    font-weight: 600;
-    padding: 0.3rem 0.8rem;
-    border-radius: 12px;
-    border: 2px solid var(--border-dark);
-    box-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    margin-bottom: 0.5rem;
-    margin-right: 0.5rem;
-    margin-top: 0.2rem;
-    position: relative;
-    z-index: 1;
-}
 
 .format-card .card-back .format-details {
     background: linear-gradient(135deg, rgba(184, 134, 11, 0.1), rgba(139, 105, 20, 0.05));
@@ -640,42 +620,127 @@
     margin-top: 0.5rem;
 }
 
+/* Format tags - matching about tab expertise-tags */
+.format-tags {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.format-tags span {
+    background: var(--red-theme);
+    color: var(--gold-glow);
+    padding: 0.3rem 0.7rem;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border: 2px solid var(--border-dark);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all var(--transition-speed);
+}
+
+.format-tags span:hover {
+    background: var(--yellow-theme);
+    color: var(--text-dark);
+    transform: scale(1.1);
+}
+
+/* Tags on flipped card-back */
+.card-back .format-tags span {
+    background: var(--red-theme);
+    border: 2px solid var(--border-dark);
+    color: var(--gold-glow);
+    backdrop-filter: blur(5px);
+}
+
+.card-back .format-tags span:hover {
+    background: var(--text-cream);
+    color: var(--text-dark);
+}
+
+/* Format pricing styling */
+.format-pricing {
+    margin-top: 1rem;
+    padding: 0.8rem;
+    background: linear-gradient(135deg, rgba(184, 134, 11, 0.15), rgba(139, 105, 20, 0.1));
+    border: 2px solid var(--gold-glow);
+    border-radius: 8px;
+    text-align: center;
+    font-family: 'Quintessential', cursive;
+}
+
+.format-pricing strong {
+    color: var(--red-theme);
+    font-size: 1rem;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 0.3rem;
+}
+
+.format-pricing span {
+    color: var(--text-dark);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
 .format-card h4 {
     font-family: 'Quintessential', cursive;
-    font-size: 1.2rem;
-    color: var(--text-dark);
-    margin: 0.8rem 0;
+    font-size: 1.8rem;
+    color: var(--text-cream);
+    margin: 1.2rem 0;
+    text-align: center;
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .format-card .format-icon {
-    width: 60px;
-    height: 60px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.8rem;
+    font-size: 3rem;
     color: var(--text-cream);
-    margin: 0 auto 1rem auto;
-    box-shadow:
-        0 0 15px var(--gold-glow),
-        inset 0 0 10px rgba(0, 0, 0, 0.3);
+    margin: 0 auto 1.5rem auto;
+    background: var(--text-cream);
+    border: 3px solid var(--border-dark);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 
 .format-card .format-icon i {
-    font-size: 1.3rem;
+    font-size: 2.5rem;
+}
+
+/* Theme-specific icon colors */
+.format-card.theme-red .format-icon i {
+    color: var(--red-theme);
+}
+
+.format-card.theme-yellow .format-icon i {
+    color: var(--yellow-theme);
+}
+
+.format-card.theme-green .format-icon i {
+    color: var(--green-theme);
+}
+
+.format-card.theme-teal .format-icon i {
+    color: var(--teal-theme);
 }
 
 .format-card .format-badge {
     display: inline-block;
     color: var(--text-cream);
-    padding: 0.4rem 1rem;
+    padding: 0.6rem 1.5rem;
     border-radius: 15px;
     font-family: 'Quintessential', cursive;
-    font-size: 0.85rem;
+    font-size: 1.1rem;
     font-weight: 600;
-    margin-top: 0.8rem;
+    margin-top: 1rem;
     border: 2px solid var(--border-dark);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -1233,11 +1298,11 @@
     }
 
     .format-card {
-        min-height: 280px;
+        min-height: 360px;
     }
 
     .format-card .card-inner {
-        min-height: 280px;
+        min-height: 360px;
     }
 
     .values-grid {
