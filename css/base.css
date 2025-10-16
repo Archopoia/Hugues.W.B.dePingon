@@ -70,6 +70,15 @@ body {
     box-sizing: border-box;
 }
 
+/* Performance: Optimize rendering and scrolling */
+*,
+*::before,
+*::after {
+    /* Prevent font smoothing issues during animations */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
 body {
     font-family: 'Quintessential', cursive;
     background:

@@ -1172,6 +1172,19 @@ function toggleLanguage() {
     }
 }
 
+// Get translation for a specific key
+function getTranslation(key) {
+    if (translations[currentLang] && translations[currentLang][key]) {
+        return translations[currentLang][key];
+    }
+    // Fallback to English if translation not found
+    if (translations['en'] && translations['en'][key]) {
+        return translations['en'][key];
+    }
+    // Return the key itself if no translation found
+    return key;
+}
+
 // Apply language to all elements with data-i18n attribute
 function applyLanguage(lang) {
     const elements = document.querySelectorAll('[data-i18n]');
@@ -1216,7 +1229,10 @@ function applyLanguage(lang) {
     }
 }
 
+// Make getTranslation globally available
+window.getTranslation = getTranslation;
+
 // Export for use in other scripts
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { translations, toggleLanguage, applyLanguage };
+    module.exports = { translations, toggleLanguage, applyLanguage, getTranslation };
 }

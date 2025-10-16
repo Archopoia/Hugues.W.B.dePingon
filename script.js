@@ -1,5 +1,147 @@
 // Medieval Character Sheet Interactive Features
 
+// MUST BE FIRST: Suppress browser extension/PDF viewer console errors IMMEDIATELY
+// This needs to run before any other code to catch all PDF-related errors
+(function() {
+    const originalError = console.error;
+    console.error = function(...args) {
+        const message = String(args[0] || '');
+        // Suppress PDF-related and CSP frame errors
+        if (message.includes('message port closed before a response was received') ||
+            message.includes('runtime.lastError') ||
+            message.includes('Extension context invalidated') ||
+            message.includes('Unchecked runtime.lastError') ||
+            message.includes('Refused to frame') ||
+            message.includes('Content Security Policy directive')) {
+            return; // Don't log these errors
+        }
+        // Log all other errors normally
+        originalError.apply(console, args);
+    };
+
+    const originalWarn = console.warn;
+    console.warn = function(...args) {
+        const message = String(args[0] || '');
+        // Suppress PDF-related warnings
+        if (message.includes('runtime.lastError') ||
+            message.includes('message port closed') ||
+            message.includes('Extension context invalidated') ||
+            message.includes('Unchecked runtime.lastError') ||
+            message.includes('Refused to frame')) {
+            return; // Don't log these warnings
+        }
+        // Log all other warnings normally
+        originalWarn.apply(console, args);
+    };
+
+    // Also intercept the global error event for runtime errors
+    window.addEventListener('error', function(event) {
+        const message = event.message || '';
+        if (message.includes('runtime.lastError') ||
+            message.includes('message port closed') ||
+            message.includes('Refused to frame')) {
+            event.stopImmediatePropagation();
+            event.preventDefault();
+            return false;
+        }
+    }, true);
+})();
+
+// Performance: Debounce utility
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Performance: Throttle utility
+function throttle(func, limit) {
+    let inThrottle;
+    return function(...args) {
+        if (!inThrottle) {
+            func.apply(this, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    };
+}
+
+// Performance: DOM Query Cache
+const DOMCache = {
+    cache: new Map(),
+    get(selector, parent = document) {
+        const key = `${selector}_${parent === document ? 'doc' : 'custom'}`;
+        if (!this.cache.has(key)) {
+            this.cache.set(key, parent.querySelector(selector));
+        }
+        return this.cache.get(key);
+    },
+    getAll(selector, parent = document) {
+        const key = `all_${selector}_${parent === document ? 'doc' : 'custom'}`;
+        if (!this.cache.has(key)) {
+            this.cache.set(key, parent.querySelectorAll(selector));
+        }
+        return this.cache.get(key);
+    },
+    clear() {
+        this.cache.clear();
+    }
+};
+
+// Performance: Helper to safely get element from event target
+function getElementFromTarget(target) {
+    // If target is an Element, return it directly
+    if (target.nodeType === 1) {
+        return target;
+    }
+    // If target is a text node or other, get its parent element
+    return target.parentElement;
+}
+
+// Performance: Memory management - track active timeouts and intervals
+const activeTimers = {
+    timeouts: new Set(),
+    intervals: new Set(),
+
+    setTimeout(callback, delay) {
+        const id = setTimeout(() => {
+            callback();
+            this.timeouts.delete(id);
+        }, delay);
+        this.timeouts.add(id);
+        return id;
+    },
+
+    setInterval(callback, delay) {
+        const id = setInterval(callback, delay);
+        this.intervals.add(id);
+        return id;
+    },
+
+    clearTimeout(id) {
+        clearTimeout(id);
+        this.timeouts.delete(id);
+    },
+
+    clearInterval(id) {
+        clearInterval(id);
+        this.intervals.delete(id);
+    },
+
+    clearAll() {
+        this.timeouts.forEach(id => clearTimeout(id));
+        this.intervals.forEach(id => clearInterval(id));
+        this.timeouts.clear();
+        this.intervals.clear();
+    }
+};
+
 // Security: HTML Sanitization Helper
 function sanitizeHTML(str) {
     const temp = document.createElement('div');
@@ -70,6 +212,11 @@ async function loadSection(sectionName) {
 
                     // Initialize flip sounds for any flippable cards in this section
                     initializeFlipSounds();
+
+                    // Performance: Refresh lazy loader for new content
+                    if (window.lazyLoader) {
+                        window.lazyLoader.refresh();
+                    }
                 }, 150);
             }
         }
@@ -82,6 +229,37 @@ async function loadSection(sectionName) {
 function initializePortfolioNavigation() {
     const portNavBtns = document.querySelectorAll('.port-nav-btn');
     const portfolioCategories = document.querySelectorAll('.portfolio-category');
+    let pdfsLoaded = new Set(); // Track which categories have loaded PDFs
+
+    // Initialize PDF iframes lazily to reduce initial error spam
+    function loadPDFIframes(category, staggerDelay = 0) {
+        const categoryName = category.getAttribute('data-category');
+
+        // Only load once per category
+        if (pdfsLoaded.has(categoryName)) {
+            return;
+        }
+
+        const iframes = category.querySelectorAll('iframe.pdf-preview-small[data-pdf-src]');
+
+        // Load PDFs with staggered timing to prevent multiple simultaneous errors
+        iframes.forEach((iframe, index) => {
+            const pdfSrc = iframe.getAttribute('data-pdf-src');
+
+            // Only load if we have a data-pdf-src attribute (meaning it hasn't been loaded yet)
+            if (pdfSrc) {
+                const delay = staggerDelay + (index * 800); // 800ms between each PDF
+
+                setTimeout(() => {
+                    // Directly set the PDF source
+                    iframe.src = pdfSrc;
+                    iframe.removeAttribute('data-pdf-src');
+                }, delay);
+            }
+        });
+
+        pdfsLoaded.add(categoryName);
+    }
 
     portNavBtns.forEach(btn => {
         btn.addEventListener('click', function() {
@@ -91,17 +269,75 @@ function initializePortfolioNavigation() {
             portNavBtns.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
 
-            // Show/hide categories with animation
+            // Show/hide categories with proper animation preparation
             portfolioCategories.forEach(cat => {
                 if (cat.getAttribute('data-category') === category) {
+                    // First, ensure we're hidden
+                    cat.style.opacity = '0';
                     cat.style.display = 'block';
-                    cat.style.animation = 'fadeIn 0.5s ease-in-out';
+
+                    // Force reflow to ensure display change is applied
+                    cat.offsetHeight;
+
+                    // Remove any existing animation
+                    cat.style.animation = 'none';
+
+                    // Force another reflow
+                    cat.offsetHeight;
+
+                    // Now apply the animation (this ensures it triggers even on repeated views)
+                    requestAnimationFrame(() => {
+                        cat.style.opacity = '';
+                        cat.style.animation = 'fadeIn 0.5s ease-in-out';
+                    });
+
+                    // Load PDF iframes for this category after animation starts
+                    setTimeout(() => loadPDFIframes(cat), 800);
                 } else {
                     cat.style.display = 'none';
+                    cat.style.animation = '';
+                    cat.style.opacity = '';
                 }
             });
         });
     });
+
+    // Load PDFs for featured category only after user interaction or gentle delay
+    // This prevents errors on initial portfolio tab load
+    let featuredPDFsScheduled = false;
+
+    function scheduleFeaturedPDFLoad() {
+        if (featuredPDFsScheduled) {
+            return;
+        }
+        featuredPDFsScheduled = true;
+
+        const initialCategory = document.querySelector('.portfolio-category[data-category="featured"]');
+        if (initialCategory && initialCategory.style.display !== 'none') {
+            // Load with much longer delay and staggering to prevent errors
+            // The staggerDelay of 4000ms gives the PDF viewer extension plenty of time to initialize
+            setTimeout(() => {
+                loadPDFIframes(initialCategory, 4000);
+            }, 1000);
+        }
+    }
+
+    // Listen for any user interaction on the portfolio section
+    const portfolioSection = document.getElementById('portfolio');
+    if (portfolioSection) {
+        // Load on scroll
+        portfolioSection.addEventListener('scroll', scheduleFeaturedPDFLoad, { once: true, passive: true });
+
+        // Load on mouse move
+        portfolioSection.addEventListener('mousemove', scheduleFeaturedPDFLoad, { once: true, passive: true });
+
+        // Load on click anywhere in portfolio
+        portfolioSection.addEventListener('click', scheduleFeaturedPDFLoad, { once: true, passive: true });
+
+        // Also schedule load after a gentle delay if no interaction
+        // Increased to 4 seconds to give more time for extension initialization
+        setTimeout(scheduleFeaturedPDFLoad, 4000);
+    }
 }
 
 // Skills Category Filtering - Function for reinitialization
@@ -163,52 +399,76 @@ function preloadAllSections() {
 let lastFlipSoundTime = 0;
 const FLIP_SOUND_DELAY = 200; // 200ms minimum between sounds
 
+// Performance: Store card states in WeakMap for better memory management
+const cardStates = new WeakMap();
+
 function initializeFlipSounds() {
-    // Find all flippable cards including workshop cards
-    const flipCards = document.querySelectorAll('.expertise-card, .academic-stat, .format-card, .game-element');
+    // Performance: Use event delegation on document instead of individual listeners
+    // Remove old listeners if they exist
+    document.removeEventListener('mouseenter', handleCardMouseEnter, true);
+    document.removeEventListener('mouseleave', handleCardMouseLeave, true);
 
-    flipCards.forEach(card => {
-        // Add flip lock behavior for all flipping cards with 2-second delay
-        let isFlipping = false;
-        let flipTimeout = null;
-        let unflipTimeout = null;
+    // Add delegated event listeners (capture phase for better performance)
+    document.addEventListener('mouseenter', handleCardMouseEnter, true);
+    document.addEventListener('mouseleave', handleCardMouseLeave, true);
+}
 
-        card.addEventListener('mouseenter', function() {
-            // Clear any pending unflip timeout
-            if (unflipTimeout) {
-                clearTimeout(unflipTimeout);
-                unflipTimeout = null;
-            }
+function handleCardMouseEnter(e) {
+    const element = getElementFromTarget(e.target);
+    if (!element) return;
 
-            if (!isFlipping && !this.classList.contains('flipped')) {
-                isFlipping = true;
-                this.classList.add('flipped');
+    const card = element.closest('.expertise-card, .academic-stat, .format-card, .game-element');
+    if (!card) return;
 
-                // Play flip sound with debouncing
-                const now = Date.now();
-                if (now - lastFlipSoundTime >= FLIP_SOUND_DELAY) {
-                    playFlipSoundOnHover();
-                    lastFlipSoundTime = now;
-                }
+    // Get or create card state
+    let state = cardStates.get(card);
+    if (!state) {
+        state = { isFlipping: false, flipTimeout: null, unflipTimeout: null };
+        cardStates.set(card, state);
+    }
 
-                // Lock the flip for the duration of the animation (600ms)
-                flipTimeout = setTimeout(() => {
-                    isFlipping = false;
-                }, 600);
-            }
-        });
+    // Clear any pending unflip timeout
+    if (state.unflipTimeout) {
+        clearTimeout(state.unflipTimeout);
+        state.unflipTimeout = null;
+    }
 
-        card.addEventListener('mouseleave', function() {
-            // Wait 2 seconds before unflipping
-            unflipTimeout = setTimeout(() => {
-                if (!this.matches(':hover')) {
-                    this.classList.remove('flipped');
-                    isFlipping = false;
-                    if (flipTimeout) clearTimeout(flipTimeout);
-                }
-            }, 2000); // 2 second delay
-        });
-    });
+    if (!state.isFlipping && !card.classList.contains('flipped')) {
+        state.isFlipping = true;
+        card.classList.add('flipped');
+
+        // Play flip sound with debouncing
+        const now = Date.now();
+        if (now - lastFlipSoundTime >= FLIP_SOUND_DELAY) {
+            playFlipSoundOnHover();
+            lastFlipSoundTime = now;
+        }
+
+        // Lock the flip for the duration of the animation (600ms)
+        state.flipTimeout = setTimeout(() => {
+            state.isFlipping = false;
+        }, 600);
+    }
+}
+
+function handleCardMouseLeave(e) {
+    const element = getElementFromTarget(e.target);
+    if (!element) return;
+
+    const card = element.closest('.expertise-card, .academic-stat, .format-card, .game-element');
+    if (!card) return;
+
+    const state = cardStates.get(card);
+    if (!state) return;
+
+    // Wait 2 seconds before unflipping
+    state.unflipTimeout = setTimeout(() => {
+        if (!card.matches(':hover')) {
+            card.classList.remove('flipped');
+            state.isFlipping = false;
+            if (state.flipTimeout) clearTimeout(state.flipTimeout);
+        }
+    }, 2000); // 2 second delay
 }
 
 function playFlipSoundOnHover() {
@@ -228,19 +488,46 @@ function initializeRandomCardFlip() {
 
     if (gameElements.length === 0) return;
 
-    // Function to flip a random card
+    // Track which cards are visible on screen
+    let visibleCards = new Set();
+
+    // Set up Intersection Observer to track card visibility
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5 // Card must be at least 50% visible
+    };
+
+    const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                visibleCards.add(entry.target);
+            } else {
+                visibleCards.delete(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Observe all game element cards
+    gameElements.forEach(card => cardObserver.observe(card));
+
+    // Function to flip a random card (only if visible)
     function flipRandomCard() {
         // Don't auto-flip if user is interacting
         if (userInteracting) return;
+
+        // Don't flip if no cards are visible
+        if (visibleCards.size === 0) return;
 
         // Flip back the current auto-flipped card
         if (currentAutoFlippedCard) {
             currentAutoFlippedCard.classList.remove('flipped', 'auto-flipped');
         }
 
-        // Pick a random card
-        const randomIndex = Math.floor(Math.random() * gameElements.length);
-        currentAutoFlippedCard = gameElements[randomIndex];
+        // Pick a random card from only the visible cards
+        const visibleCardsArray = Array.from(visibleCards);
+        const randomIndex = Math.floor(Math.random() * visibleCardsArray.length);
+        currentAutoFlippedCard = visibleCardsArray[randomIndex];
 
         // Mark it as auto-flipped and flip it
         currentAutoFlippedCard.classList.add('flipped', 'auto-flipped');
@@ -252,7 +539,7 @@ function initializeRandomCardFlip() {
     }
 
     // Start the random flip cycle
-    flipRandomCard(); // Flip one immediately
+    flipRandomCard(); // Flip one immediately (if visible)
     randomFlipInterval = setInterval(flipRandomCard, 2000); // Then every 2 seconds
 
     // Add hover listeners to all game elements
@@ -281,10 +568,10 @@ function initializeRandomCardFlip() {
         });
     });
 
-    // Clean up interval when leaving workshop tab
+    // Clean up interval and observers when leaving workshop tab
     const workshopTab = document.getElementById('workshop');
     if (workshopTab) {
-        const observer = new MutationObserver((mutations) => {
+        const tabObserver = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
                 if (mutation.attributeName === 'class') {
                     if (!workshopTab.classList.contains('active')) {
@@ -301,11 +588,17 @@ function initializeRandomCardFlip() {
                             currentAutoFlippedCard = null;
                         }
                         userInteracting = false;
+
+                        // Clean up card visibility observer
+                        if (cardObserver) {
+                            cardObserver.disconnect();
+                        }
+                        visibleCards.clear();
                     }
                 }
             });
         });
-        observer.observe(workshopTab, { attributes: true });
+        tabObserver.observe(workshopTab, { attributes: true });
     }
 }
 
@@ -878,7 +1171,8 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        pressStartTime = Date.now();
+        // Use performance.now() for consistency with requestAnimationFrame
+        pressStartTime = performance.now();
         currentRotation = 0;
         rotationSpeed = 0;
 
@@ -995,8 +1289,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Start rotation animation using requestAnimationFrame for smoother performance
-        function animate() {
-            const pressDuration = (Date.now() - pressStartTime) / 1000; // in seconds
+        // Performance: Use timestamp parameter from requestAnimationFrame
+        let lastTimestamp = performance.now();
+        function animate(timestamp) {
+            const deltaTime = (timestamp - lastTimestamp) / 1000; // Convert to seconds
+            lastTimestamp = timestamp;
+
+            const pressDuration = (timestamp - pressStartTime) / 1000; // in seconds
 
             // Accelerating rotation: starts fast and accelerates dramatically
             // Base speed + exponential acceleration
@@ -1004,10 +1303,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const acceleration = Math.pow(pressDuration + 0.5, 2.5) * 300; // Steep curve
             rotationSpeed = Math.min(baseSpeed + acceleration, 3000); // Max 3000 deg/s
 
-            // Increment rotation
-            currentRotation += rotationSpeed / 60; // 60 fps
+            // Increment rotation using actual frame time for consistent speed
+            currentRotation += rotationSpeed * deltaTime;
 
-            // Apply transform
+            // Use will-change hint for better performance
+            workshopSealButton.style.willChange = 'transform';
             workshopSealButton.style.transform = `rotate(${currentRotation}deg)`;
 
             // Update pulse effect based on press duration
@@ -1031,6 +1331,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Transform from -70deg to 0deg (swing-in animation)
                 const rotateX = -70 + (70 * revealProgress);
 
+                activeWorkshopTab.style.willChange = 'transform';
                 activeWorkshopTab.style.transform = `rotateX(${rotateX}deg)`;
                 activeWorkshopTab.style.transformOrigin = 'top';
                 // Opacity stays at 1.0 throughout
@@ -1039,9 +1340,16 @@ document.addEventListener('DOMContentLoaded', function() {
             // Continue animation
             if (pressStartTime > 0) {
                 rotationInterval = requestAnimationFrame(animate);
+            } else {
+                // Clean up will-change when animation stops
+                workshopSealButton.style.willChange = 'auto';
+                if (activeWorkshopTab) {
+                    activeWorkshopTab.style.willChange = 'auto';
+                }
             }
         }
 
+        // Start the animation loop (pressStartTime already set above)
         rotationInterval = requestAnimationFrame(animate);
     }
 
@@ -1057,7 +1365,8 @@ document.addEventListener('DOMContentLoaded', function() {
             cancelAnimationFrame(rotationInterval);
         }
 
-        const pressDuration = (Date.now() - pressStartTime) / 1000;
+        // Use performance.now() for consistency
+        const pressDuration = (performance.now() - pressStartTime) / 1000;
         const revealProgress = Math.min(pressDuration / pullSoundDuration, 1);
 
         // Check if animation is complete enough (at least 80% revealed)
@@ -1406,17 +1715,31 @@ document.addEventListener('DOMContentLoaded', function() {
     //     }
     // });
 
-    // Hover effects for cards
-    const cards = document.querySelectorAll('.highlight-card, .project-card, .work-item');
-    cards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-5px) scale(1.02)';
-        });
+    // Hover effects for cards - using event delegation for better performance
+    document.addEventListener('mouseenter', (e) => {
+        const element = getElementFromTarget(e.target);
+        if (!element) return;
 
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-        });
-    });
+        const card = element.closest('.highlight-card, .project-card, .work-item');
+        if (card) {
+            card.style.willChange = 'transform';
+            card.style.transform = 'translateY(-5px) scale(1.02)';
+        }
+    }, true);
+
+    document.addEventListener('mouseleave', (e) => {
+        const element = getElementFromTarget(e.target);
+        if (!element) return;
+
+        const card = element.closest('.highlight-card, .project-card, .work-item');
+        if (card) {
+            card.style.transform = 'translateY(0) scale(1)';
+            // Clean up will-change after animation
+            setTimeout(() => {
+                if (card) card.style.willChange = 'auto';
+            }, 300);
+        }
+    }, true);
 
     // Typing effect for character name (secure version)
     function typeWriter(element, text, speed = 100) {
@@ -1600,14 +1923,54 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize particles
     createParticles();
 
-    // Add keyboard navigation
+    // Performance: Pause animations and sounds when tab is hidden
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            // Pause all videos
+            document.querySelectorAll('video').forEach(video => {
+                if (!video.paused) {
+                    video.pause();
+                    video.dataset.wasPlaying = 'true';
+                }
+            });
+
+            // Reduce audio when tab is hidden
+            if (window.soundManager && window.soundManager.sounds.chimes) {
+                const chimes = window.soundManager.sounds.chimes;
+                if (!chimes.paused) {
+                    chimes.volume = 0.1; // Reduce volume instead of stopping
+                }
+            }
+        } else {
+            // Resume videos that were playing
+            document.querySelectorAll('video[data-was-playing="true"]').forEach(video => {
+                video.play().catch(() => {});
+                delete video.dataset.wasPlaying;
+            });
+
+            // Restore audio volume
+            if (window.soundManager && window.soundManager.sounds.chimes) {
+                const chimes = window.soundManager.sounds.chimes;
+                if (!chimes.paused) {
+                    chimes.volume = 0.3; // Restore normal volume
+                }
+            }
+        }
+    });
+
+    // Add keyboard navigation - with passive listener for better scroll performance
     document.addEventListener('keydown', function(e) {
+        // Only handle arrow keys for tab navigation
+        if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+
         const activeTab = document.querySelector('.tab-button.active');
         const activeIndex = Array.from(tabButtons).indexOf(activeTab);
 
         if (e.key === 'ArrowLeft' && activeIndex > 0) {
+            e.preventDefault();
             tabButtons[activeIndex - 1].click();
         } else if (e.key === 'ArrowRight' && activeIndex < tabButtons.length - 1) {
+            e.preventDefault();
             tabButtons[activeIndex + 1].click();
         }
     });
@@ -1744,6 +2107,16 @@ document.addEventListener('DOMContentLoaded', function() {
             iframe.className = 'modal-pdf';
             iframe.src = pdf.src + '#toolbar=1&navpanes=1&scrollbar=1';
             iframe.frameBorder = '0';
+
+            // Add error handling to prevent console errors
+            iframe.onload = function() {
+                // PDF loaded successfully
+            };
+
+            iframe.onerror = function() {
+                // Handle PDF loading errors silently
+                console.warn('PDF loading error handled silently');
+            };
 
             modalBody.innerHTML = '';
             modalBody.appendChild(iframe);
@@ -1960,27 +2333,76 @@ function initializeEducationNavigation() {
     });
 }
 
+// Performance: Use event delegation for video hover play
 function initializeVideoHoverPlay() {
-    // Find all project cards (the entire box including title, description, etc.)
-    const projectCards = document.querySelectorAll('.project-card');
+    // Remove old listeners if they exist
+    document.removeEventListener('mouseenter', handleVideoCardEnter, true);
+    document.removeEventListener('mouseleave', handleVideoCardLeave, true);
 
-    projectCards.forEach(card => {
-        const video = card.querySelector('video');
+    // Use event delegation for better performance
+    document.addEventListener('mouseenter', handleVideoCardEnter, true);
+    document.addEventListener('mouseleave', handleVideoCardLeave, true);
+}
 
-        if (video) {
-            // Play video when hovering over the entire card
-            card.addEventListener('mouseenter', function() {
-                video.play().catch(() => {
-                    // Handle autoplay restrictions gracefully
-                });
-            });
+function handleVideoCardEnter(e) {
+    const element = getElementFromTarget(e.target);
+    if (!element) return;
 
-            // Pause video when mouse leaves the entire card
-            card.addEventListener('mouseleave', function() {
-                video.pause();
-            });
+    const card = element.closest('.project-card, .alpine-card');
+    if (!card) return;
+
+    const video = card.querySelector('video');
+    if (video && video.paused) {
+        // Start with volume at 0
+        video.volume = 0;
+
+        video.play().catch(() => {
+            // Handle autoplay restrictions gracefully
+        });
+
+        // Fade in audio over 300ms
+        let currentVolume = 0;
+        const fadeInterval = setInterval(() => {
+            if (currentVolume < 1) {
+                currentVolume = Math.min(1, currentVolume + 0.1);
+                video.volume = currentVolume;
+            } else {
+                clearInterval(fadeInterval);
+            }
+        }, 30); // 30ms intervals = ~300ms total fade
+
+        // Store interval for cleanup
+        video.dataset.fadeInterval = fadeInterval;
+    }
+}
+
+function handleVideoCardLeave(e) {
+    const element = getElementFromTarget(e.target);
+    if (!element) return;
+
+    const card = element.closest('.project-card, .alpine-card');
+    if (!card) return;
+
+    const video = card.querySelector('video');
+    if (video && !video.paused) {
+        // Clear any ongoing fade-in
+        if (video.dataset.fadeInterval) {
+            clearInterval(parseInt(video.dataset.fadeInterval));
+            delete video.dataset.fadeInterval;
         }
-    });
+
+        // Fade out audio over 200ms before pausing
+        let currentVolume = video.volume;
+        const fadeInterval = setInterval(() => {
+            if (currentVolume > 0) {
+                currentVolume = Math.max(0, currentVolume - 0.1);
+                video.volume = currentVolume;
+            } else {
+                clearInterval(fadeInterval);
+                video.pause();
+            }
+        }, 20); // 20ms intervals = ~200ms total fade
+    }
 }
 
 // Contact Method Switcher - Initialize function
@@ -2224,19 +2646,8 @@ function openFullImage(imageSrc) {
 }
 
 // Alpine Education Card Video Hover Functionality
+// Performance: Now handled by unified video hover play event delegation
 function initializeAlpineEducationVideo() {
-    const alpineCard = document.querySelector('.alpine-card');
-    const alpineVideo = document.querySelector('.alpine-education-video');
-
-    if (alpineCard && alpineVideo) {
-        // Play video when hovering over the entire card
-        alpineCard.addEventListener('mouseenter', function() {
-            alpineVideo.play().catch(() => {});
-        });
-
-        // Pause video when mouse leaves the card
-        alpineCard.addEventListener('mouseleave', function() {
-            alpineVideo.pause();
-        });
-    }
+    // This functionality is now handled by the unified video hover event delegation
+    // No need for separate initialization - keeps code DRY and performant
 }

@@ -40,11 +40,11 @@ class SoundManager {
     }
 
     initializeSounds() {
-        // Door unlock sound (plays once on page load)
-        this.sounds.doorUnlock = this.createPreloadedAudio('Assets/Sounds/door_unlock.wav', 0.7);
+        // Door unlock sound (plays once on page load) - needs full preload
+        this.sounds.doorUnlock = this.createFullyPreloadedAudio('Assets/Sounds/door_unlock.wav', 0.7);
 
-        // Chimes (looping background)
-        this.sounds.chimes = this.createPreloadedAudio('Assets/Sounds/Chimes.wav', 0.3);
+        // Chimes (looping background) - needs full preload
+        this.sounds.chimes = this.createFullyPreloadedAudio('Assets/Sounds/Chimes.wav', 0.3);
         this.sounds.chimes.loop = false; // We'll handle looping manually for fade effect
 
         // Create audio pools for click sounds (frequently used)
@@ -61,11 +61,11 @@ class SoundManager {
         // Keep one reference as main clickfail sound
         this.sounds.clickfail = this.clickfailPool[0];
 
-        // Pull sound (for workshop button press)
-        this.sounds.pull = this.createPreloadedAudio('Assets/Sounds/Pull.wav', 0.6);
+        // Pull sound (for workshop button press) - needs full preload for immediate playback
+        this.sounds.pull = this.createFullyPreloadedAudio('Assets/Sounds/Pull.wav', 0.6);
 
-        // Release sound (for workshop button release)
-        this.sounds.release = this.createPreloadedAudio('Assets/Sounds/Release.wav', 0.6);
+        // Release sound (for workshop button release) - needs full preload
+        this.sounds.release = this.createFullyPreloadedAudio('Assets/Sounds/Release.wav', 0.6);
 
         // Page sounds (for tab switching and flip effects) - page1 to page4
         for (let i = 1; i <= 4; i++) {
@@ -75,17 +75,17 @@ class SoundManager {
         // Store indices 0-3 (page1, page2, page3, page4)
         this.pagesSoundPool = [0, 1, 2, 3];
 
-        // Bell sounds (for secret code game) - bell4 to bell1
+        // Bell sounds (for secret code game) - bell4 to bell1 - need full preload for immediate playback
         for (let i = 4; i >= 1; i--) {
-            const bellSound = this.createPreloadedAudio(`Assets/Sounds/bells/bell${i}.wav`, 0.6);
+            const bellSound = this.createFullyPreloadedAudio(`Assets/Sounds/bells/bell${i}.wav`, 0.6);
             this.sounds.bells.push(bellSound);
         }
 
-        // React/Feedback sounds for portrait game
-        this.sounds.reactFail = this.createPreloadedAudio('Assets/Sounds/reactFail.wav', 0.6);
-        this.sounds.react01 = this.createPreloadedAudio('Assets/Sounds/react01.wav', 0.6);
-        this.sounds.react02 = this.createPreloadedAudio('Assets/Sounds/react02.wav', 0.6);
-        this.sounds.flagflow = this.createPreloadedAudio('Assets/Sounds/flagflow.wav', 0.5);
+        // React/Feedback sounds for portrait game - need full preload for immediate playback
+        this.sounds.reactFail = this.createFullyPreloadedAudio('Assets/Sounds/reactFail.wav', 0.6);
+        this.sounds.react01 = this.createFullyPreloadedAudio('Assets/Sounds/react01.wav', 0.6);
+        this.sounds.react02 = this.createFullyPreloadedAudio('Assets/Sounds/react02.wav', 0.6);
+        this.sounds.flagflow = this.createFullyPreloadedAudio('Assets/Sounds/flagflow.wav', 0.5);
 
         // Initialize available page sounds
         this.resetPageSoundPool();
@@ -97,13 +97,38 @@ class SoundManager {
         }, 100);
     }
 
-    // Helper to create preloaded audio with proper settings
-    createPreloadedAudio(src, volume) {
+    // Helper to create fully preloaded audio (for critical sounds that must play immediately)
+    createFullyPreloadedAudio(src, volume) {
         const audio = new Audio();
         audio.preload = 'auto';
         audio.volume = volume;
         audio.src = src;
         // Load the audio immediately
+        audio.load();
+        return audio;
+    }
+
+    // Helper to create preloaded audio with proper settings
+    // Performance: Use metadata preload for faster initial load (for non-critical sounds)
+    createPreloadedAudio(src, volume) {
+        const audio = new Audio();
+        // Performance: Only preload metadata initially to reduce bandwidth
+        audio.preload = 'metadata';
+        audio.volume = volume;
+        audio.src = src;
+
+        // Performance: Load full audio on first interaction
+        const loadFullAudio = () => {
+            if (audio.preload === 'metadata') {
+                audio.preload = 'auto';
+                audio.load();
+            }
+        };
+
+        // Load full audio on first play attempt
+        audio.addEventListener('play', loadFullAudio, { once: true });
+
+        // Load the metadata immediately
         audio.load();
         return audio;
     }
@@ -207,6 +232,38 @@ class SoundManager {
                 chimes.currentTime = 0;
             }
         }, 50);
+    }
+
+    // Performance: Clean up audio resources when not needed
+    cleanup() {
+        // Pause all sounds
+        this.stopChimesLoop();
+
+        // Pause and reset all audio elements
+        Object.values(this.sounds).forEach(sound => {
+            if (sound && sound.pause) {
+                sound.pause();
+                sound.currentTime = 0;
+            } else if (Array.isArray(sound)) {
+                sound.forEach(s => {
+                    if (s && s.pause) {
+                        s.pause();
+                        s.currentTime = 0;
+                    }
+                });
+            }
+        });
+
+        // Clean up pools
+        this.clickPool.forEach(audio => {
+            audio.pause();
+            audio.currentTime = 0;
+        });
+
+        this.clickfailPool.forEach(audio => {
+            audio.pause();
+            audio.currentTime = 0;
+        });
     }
 
     // Play click sound (for any mouse click) - uses pool for better performance

@@ -54,6 +54,9 @@
 /* Achievements - Secret Achievements and Easter Eggs */
 @import url('css/achievements.css');
 
+/* Lazy Loading - Performance optimizations for media */
+@import url('css/lazy-load.css');
+
 /* Responsive - All Media Queries for Different Screen Sizes */
 @import url('css/responsive.css');
 
