@@ -66,7 +66,7 @@ function handleCardMouseLeave(e) {
 }
 
 function playFlipSoundOnHover() {
-    if (window.soundManager) {
+    if (window.soundManager && window.soundManager.audioReady) {
         window.soundManager.playRandomFlipSound();
     }
 }

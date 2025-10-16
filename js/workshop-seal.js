@@ -85,13 +85,13 @@ async function startPress(e) {
 
     // Check if on smaller screen - add mobile preview animation
     const isMobileView = window.innerWidth <= 968;
-    
+
     if (isMobileView) {
         // Immediately scroll to navigation tabs on press
         const sheetTabs = document.querySelector('.sheet-tabs');
         if (sheetTabs) {
-            sheetTabs.scrollIntoView({ 
-                behavior: 'smooth', 
+            sheetTabs.scrollIntoView({
+                behavior: 'smooth',
                 block: 'start'
             });
         }
@@ -428,7 +428,7 @@ async function endPress(e) {
 
         // Check if animation is complete enough (at least 80% revealed)
         const revealProgress = Math.min(pressDuration / pullSoundDuration, 1);
-        
+
         if (revealProgress < 0.8) {
             // Reset button with quick spring-back
             workshopSealButton.style.transition = 'transform 0.3s ease';
@@ -445,6 +445,11 @@ async function endPress(e) {
             rotationSpeed = 0;
             currentRotation = 0;
             return;
+        }
+
+        // Play release sound on successful completion
+        if (window.soundManager) {
+            window.soundManager.playRelease();
         }
 
 
@@ -517,6 +522,7 @@ async function endPress(e) {
     // Stop pull sound and play release sound
     if (window.soundManager) {
         window.soundManager.stopPull(true);
+        // Play release sound immediately
         window.soundManager.playRelease();
     }
 
@@ -609,21 +615,21 @@ function cleanupWorkshopPreview(workshopTab, keepVisible) {
         // Check if this is mobile (scale) or desktop (rotateX) animation
         const currentTransform = workshopTab.style.transform;
         const isMobileAnimation = currentTransform.includes('scale');
-        
+
         if (isMobileAnimation) {
             // Mobile cleanup - fade out with scale
             const currentScaleMatch = currentTransform.match(/scale\(([^)]+)\)/);
             const currentScale = currentScaleMatch ? parseFloat(currentScaleMatch[1]) : 1;
             const currentOpacity = parseFloat(workshopTab.style.opacity) || 1;
-            
+
             // Step 1: Freeze current position
             workshopTab.style.transition = 'none';
             workshopTab.style.transform = `scale(${currentScale})`;
             workshopTab.style.opacity = currentOpacity;
-            
+
             // Step 2: Force reflow
             workshopTab.offsetHeight;
-            
+
             // Step 3: Animate back to hidden state
             requestAnimationFrame(() => {
                 workshopTab.style.transition = 'transform 0.5s cubic-bezier(0.680, -0.275, 0.825, 0.115), opacity 0.5s cubic-bezier(0.680, -0.275, 0.825, 0.115)';

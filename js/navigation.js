@@ -63,6 +63,12 @@ export async function loadSection(sectionName) {
                     if (sectionName === 'workshop') {
                         initializeRandomCardFlip();
                         initializeWorkshopAchievements();
+                        // Ensure flip sounds are initialized for workshop cards
+                        initializeFlipSounds();
+                        // Reset flip sound pool to ensure sounds are available
+                        if (window.soundManager) {
+                            window.soundManager.resetFlipSoundPool();
+                        }
                     }
 
                     // Initialize flip sounds for any flippable cards in this section

@@ -67,9 +67,9 @@ class SoundManager {
         // Release sound (for workshop button release) - needs full preload
         this.sounds.release = this.createFullyPreloadedAudio('Assets/Sounds/Release.wav', 0.6);
 
-        // Page sounds (for tab switching and flip effects) - page1 to page4
+        // Page sounds (for tab switching and flip effects) - page1 to page4 - need full preload for immediate playback
         for (let i = 1; i <= 4; i++) {
-            const pageSound = this.createPreloadedAudio(`Assets/Sounds/pages/page${i}.wav`, 0.5);
+            const pageSound = this.createFullyPreloadedAudio(`Assets/Sounds/pages/page${i}.wav`, 0.5);
             this.sounds.pages.push(pageSound);
         }
         // Store indices 0-3 (page1, page2, page3, page4)
@@ -91,10 +91,11 @@ class SoundManager {
         this.resetPageSoundPool();
         this.resetFlipSoundPool();
 
-        // Mark audio as ready after a short delay
+        // Mark audio as ready after page sounds are loaded
+        // Wait a bit longer to ensure all sounds are properly loaded
         setTimeout(() => {
             this.audioReady = true;
-        }, 100);
+        }, 500);
     }
 
     // Helper to create fully preloaded audio (for critical sounds that must play immediately)
@@ -320,10 +321,21 @@ class SoundManager {
         // Remove this sound from available pool
         this.availablePageSounds.splice(randomIndex, 1);
 
-        // Play the sound
+        // Play the sound (reset if already playing)
         const pageSound = this.sounds.pages[soundIndex];
-        pageSound.currentTime = 0;
-        pageSound.play().catch(() => {});
+        if (!pageSound.paused) {
+            pageSound.currentTime = 0;
+        }
+        
+        // Ensure the sound is ready to play
+        if (pageSound.readyState >= 2) { // HAVE_CURRENT_DATA or higher
+            pageSound.play().catch(() => {});
+        } else {
+            // If not ready, wait a bit and try again
+            setTimeout(() => {
+                pageSound.play().catch(() => {});
+            }, 50);
+        }
     }
 
     // Play a random page sound for flip effects (separate pool)
@@ -347,7 +359,16 @@ class SoundManager {
         if (!pageSound.paused) {
             pageSound.currentTime = 0;
         }
-        pageSound.play().catch(() => {});
+        
+        // Ensure the sound is ready to play
+        if (pageSound.readyState >= 2) { // HAVE_CURRENT_DATA or higher
+            pageSound.play().catch(() => {});
+        } else {
+            // If not ready, wait a bit and try again
+            setTimeout(() => {
+                pageSound.play().catch(() => {});
+            }, 50);
+        }
     }
 
     // Play bell sound for secret code sequence (bell4→bell3→bell2→bell1)
@@ -639,6 +660,17 @@ window.addEventListener('DOMContentLoaded', () => {
         });
 
         soundManager.clickfailPool.forEach(audio => {
+            const promise = audio.play()
+                .then(() => {
+                    audio.pause();
+                    audio.currentTime = 0;
+                })
+                .catch(() => {});
+            unlockPromises.push(promise);
+        });
+
+        // Also unlock page sounds for immediate playback
+        soundManager.sounds.pages.forEach(audio => {
             const promise = audio.play()
                 .then(() => {
                     audio.pause();
