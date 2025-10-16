@@ -87,7 +87,7 @@
     border: none;
     border-radius: 50%;
     cursor: pointer;
-    z-index: 999;
+    z-index: 10000; /* Above vignette effect (9999) */
     pointer-events: auto;
     user-select: none;
     -webkit-user-select: none;
@@ -104,8 +104,9 @@
     height: 100%;
     background: url('../Assets/sceal.png') center center / cover no-repeat;
     border-radius: 50%;
-    filter: brightness(1.0) saturate(0.5);
+    filter: brightness(1.0) saturate(0.5) drop-shadow(0 8px 12px rgba(0, 0, 0, 0.6)) drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));
     z-index: -1;
+    transition: filter 0.3s ease-out; /* Smooth shadow transition */
 }
 
 
@@ -165,6 +166,11 @@
     filter: brightness(0.95);
 }
 
+/* Remove shadow when pressing */
+.workshop-seal-button.pressing::before {
+    filter: brightness(1.0) saturate(0.5) !important; /* Remove drop-shadow during press */
+}
+
 /* Disable button when on workshop tab (invisible and unclickable) */
 .workshop-seal-button.on-workshop-tab {
     pointer-events: none !important;
@@ -180,10 +186,10 @@
     width: 120%;
     height: 120%;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, rgba(255, 215, 0, 0.2) 40%, rgba(255, 255, 255, 0) 70%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, rgba(245, 235, 220, 0.3) 40%, rgba(255, 255, 255, 0) 70%);
     animation: constantGlowPulse var(--glow-speed, 2s) ease-in-out infinite;
     pointer-events: none;
-    z-index: -1;
+    z-index: -2; /* Behind the PNG image (which is at -1) */
 }
 
 @keyframes constantGlowPulse {
@@ -1299,7 +1305,7 @@
         /* transform: none !important; */ /* REMOVED - was blocking rotation animation */
         width: 140px !important; /* Keep original size */
         height: 140px !important; /* Keep original size */
-        z-index: 999 !important;
+        z-index: 10000 !important; /* Above vignette effect (9999) on mobile */
     }
 
     .seal-icon {

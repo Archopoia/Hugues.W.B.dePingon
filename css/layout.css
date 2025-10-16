@@ -40,6 +40,7 @@
         margin: 0; /* Full width on mobile */
         border-left: none;
         border-right: none;
+        z-index: auto !important; /* Remove z-index to break stacking context, allowing workshop button's z-index to work */
     }
 
     .character-sheet:hover {

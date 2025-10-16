@@ -410,3 +410,75 @@
     border: none !important;
 }
 
+/* ========================================
+   RESPONSIVE DESIGN - MOBILE NAVIGATION
+   ======================================== */
+
+/* Mobile devices - Adjust navigation button sizes */
+@media screen and (max-width: 768px) {
+    .education-nav {
+        gap: 0.4rem;
+        margin: 1.5rem 0;
+    }
+
+    .edu-nav-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .edu-nav-btn i {
+        font-size: 0.85rem;
+    }
+
+    .portfolio-nav {
+        gap: 0.5rem;
+        margin: 1.5rem 0;
+    }
+
+    .port-nav-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .skill-nav-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Very small mobile devices */
+@media screen and (max-width: 480px) {
+    .education-nav {
+        gap: 0.3rem;
+        margin: 1rem 0;
+    }
+
+    .edu-nav-btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.85rem;
+    }
+
+    .edu-nav-btn span {
+        display: none;
+    }
+
+    .edu-nav-btn i {
+        margin-right: 0 !important;
+        font-size: 1rem;
+    }
+
+    .portfolio-nav {
+        gap: 0.3rem;
+    }
+
+    .port-nav-btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.85rem;
+    }
+
+    .skill-nav-btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.85rem;
+    }
+}
+

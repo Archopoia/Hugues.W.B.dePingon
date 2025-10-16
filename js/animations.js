@@ -56,14 +56,14 @@ function handleCardMouseLeave(e) {
     const state = cardStates.get(card);
     if (!state) return;
 
-    // Wait 2 seconds before unflipping
+    // Wait 3 seconds before unflipping
     state.unflipTimeout = setTimeout(() => {
         if (!card.matches(':hover')) {
             card.classList.remove('flipped');
             state.isFlipping = false;
             if (state.flipTimeout) clearTimeout(state.flipTimeout);
         }
-    }, 2000); // 2 second delay
+    }, 3000); // 3 second delay
 }
 
 function playFlipSoundOnHover() {
@@ -178,8 +178,8 @@ function flipCard(card) {
             state.isFlipping = false;
         }, 600);
 
-        // Auto-unflip delay (2 seconds for desktop, 3 seconds for mobile)
-        const unflipDelay = window.innerWidth <= 768 ? 3000 : 2000;
+        // Auto-unflip delay (3 seconds for both desktop and mobile)
+        const unflipDelay = 3000;
         state.unflipTimeout = setTimeout(() => {
             if (!card.matches(':hover')) {
                 card.classList.remove('flipped');
@@ -224,45 +224,6 @@ export function initializeRandomCardFlip() {
     // Observe all game element cards
     gameElements.forEach(card => cardObserver.observe(card));
 
-    // Function to flip multiple cards in sequence with delays
-    function flipCardsInSequence(cards, delay = 500) {
-        // Don't auto-flip if user is interacting
-        if (userInteracting) return;
-
-        // Don't flip if no cards are visible
-        if (visibleCards.size === 0) return;
-
-        // Clear any existing auto-flipped cards first
-        if (currentAutoFlippedCard) {
-            currentAutoFlippedCard.classList.remove('flipped', 'auto-flipped');
-        }
-
-        // Filter cards to only include visible ones
-        const visibleCardsArray = Array.from(visibleCards);
-        const cardsToFlip = cards.filter(card => visibleCardsArray.includes(card));
-
-        if (cardsToFlip.length === 0) return;
-
-        // Flip each card with a delay
-        cardsToFlip.forEach((card, index) => {
-            setTimeout(() => {
-                // Don't flip if user started interacting during the sequence
-                if (userInteracting) return;
-
-                // Mark it as auto-flipped and flip it
-                card.classList.add('flipped', 'auto-flipped');
-
-                // Set as current auto-flipped card (for cleanup purposes)
-                currentAutoFlippedCard = card;
-
-                // Play flip sound
-                if (window.soundManager) {
-                    window.soundManager.playRandomFlipSound();
-                }
-            }, index * delay);
-        });
-    }
-
     // Function to flip a random card (only if visible)
     function flipRandomCard() {
         // Don't auto-flip if user is interacting
@@ -290,40 +251,9 @@ export function initializeRandomCardFlip() {
         }
     }
 
-    // Enhanced random flip function that sometimes flips multiple cards
-    function enhancedRandomFlip() {
-        // Don't auto-flip if user is interacting
-        if (userInteracting) return;
-
-        // Don't flip if no cards are visible
-        if (visibleCards.size === 0) return;
-
-        // Clear any existing auto-flipped cards first
-        if (currentAutoFlippedCard) {
-            currentAutoFlippedCard.classList.remove('flipped', 'auto-flipped');
-        }
-
-        const visibleCardsArray = Array.from(visibleCards);
-
-        // 30% chance to flip multiple cards (2-4 cards), 70% chance for single card
-        const shouldFlipMultiple = Math.random() < 0.3;
-
-        if (shouldFlipMultiple && visibleCardsArray.length >= 2) {
-            // Flip 2-4 random cards with 0.5s delay between each
-            const numCards = Math.min(Math.floor(Math.random() * 3) + 2, visibleCardsArray.length);
-            const shuffledCards = [...visibleCardsArray].sort(() => Math.random() - 0.5);
-            const cardsToFlip = shuffledCards.slice(0, numCards);
-
-            flipCardsInSequence(cardsToFlip, 500); // 0.5s delay
-        } else {
-            // Single card flip (original behavior)
-            flipRandomCard();
-        }
-    }
-
     // Start the random flip cycle
-    enhancedRandomFlip(); // Flip immediately (if visible)
-    randomFlipInterval = setInterval(enhancedRandomFlip, 3000); // Then every 3 seconds
+    flipRandomCard(); // Flip one immediately (if visible)
+    randomFlipInterval = setInterval(flipRandomCard, 2000); // Then every 2 seconds
 
     // Add hover listeners to all game elements
     gameElements.forEach(card => {
@@ -405,26 +335,6 @@ export function createRainbowParticle() {
     particle.style.animationDelay = Math.random() * 2 + 's';
     document.body.appendChild(particle);
     setTimeout(() => particle.remove(), 3000);
-}
-
-// Export the flipCardsInSequence function for external use
-export function flipCardsInSequence(cards, delay = 500) {
-    // This is a simplified version that can be called externally
-    // It will work with any array of card elements
-    if (!cards || cards.length === 0) return;
-
-    cards.forEach((card, index) => {
-        setTimeout(() => {
-            if (card && card.classList) {
-                card.classList.add('flipped', 'auto-flipped');
-
-                // Play flip sound
-                if (window.soundManager) {
-                    window.soundManager.playRandomFlipSound();
-                }
-            }
-        }, index * delay);
-    });
 }
 
 // Add particle effect background

@@ -7,6 +7,12 @@ export function initializePortfolioNavigation() {
     const portfolioCategories = document.querySelectorAll('.portfolio-category');
     let pdfsLoaded = new Set(); // Track which categories have loaded PDFs
 
+    // Detect mobile devices
+    function isMobileDevice() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+               (navigator.maxTouchPoints && navigator.maxTouchPoints > 2 && /MacIntel/.test(navigator.platform));
+    }
+
     // Initialize PDF iframes lazily to reduce initial error spam
     function loadPDFIframes(category, staggerDelay = 0) {
         const categoryName = category.getAttribute('data-category');
@@ -27,15 +33,39 @@ export function initializePortfolioNavigation() {
                 const delay = staggerDelay + (index * 800); // 800ms between each PDF
 
                 setTimeout(() => {
-                    // Create iframe dynamically to avoid CSP errors on page load
-                    const iframe = document.createElement('iframe');
-                    iframe.className = 'pdf-preview-small';
-                    iframe.src = pdfSrc;
-                    iframe.frameBorder = '0';
-
-                    // Clear container and add iframe
+                    // Clear container first
                     container.innerHTML = '';
-                    container.appendChild(iframe);
+
+                    if (isMobileDevice()) {
+                        // For mobile: Create a clickable link with preview message
+                        const link = document.createElement('a');
+                        link.href = pdfSrc.split('#')[0]; // Remove hash parameters for direct link
+                        link.target = '_blank';
+                        link.rel = 'noopener noreferrer';
+                        link.className = 'pdf-mobile-link';
+                        link.style.cssText = 'display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; background: linear-gradient(135deg, #2c2416 0%, #1a1410 100%); color: #d4af37; text-decoration: none; font-size: 14px; padding: 20px; text-align: center; border: 2px solid #d4af37; border-radius: 8px; transition: all 0.3s;';
+                        link.innerHTML = '<i class="fas fa-file-pdf" style="margin-right: 8px;"></i> Tap to Open PDF';
+
+                        // Add hover effect
+                        link.addEventListener('mouseenter', () => {
+                            link.style.background = 'linear-gradient(135deg, #3a2f1e 0%, #221a14 100%)';
+                            link.style.transform = 'scale(1.05)';
+                        });
+                        link.addEventListener('mouseleave', () => {
+                            link.style.background = 'linear-gradient(135deg, #2c2416 0%, #1a1410 100%)';
+                            link.style.transform = 'scale(1)';
+                        });
+
+                        container.appendChild(link);
+                    } else {
+                        // For desktop: Create iframe dynamically to avoid CSP errors on page load
+                        const iframe = document.createElement('iframe');
+                        iframe.className = 'pdf-preview-small';
+                        iframe.src = pdfSrc;
+                        iframe.frameBorder = '0';
+                        container.appendChild(iframe);
+                    }
+
                     container.removeAttribute('data-pdf-src');
                 }, delay);
             }
