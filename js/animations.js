@@ -30,6 +30,7 @@ export function initializeFlipSounds() {
 
     // Add touch event listeners for mobile card flipping
     document.addEventListener('touchstart', handleCardTouchStart, { passive: true });
+    document.addEventListener('touchmove', handleCardTouchMove, { passive: true });
     document.addEventListener('touchend', handleCardTouchEnd, { passive: true });
     document.addEventListener('touchcancel', handleCardTouchCancel, { passive: true });
 }
@@ -72,6 +73,11 @@ function playFlipSoundOnHover() {
 }
 
 // Touch event handlers for mobile card flipping
+let touchStartX = 0;
+let touchStartY = 0;
+let isDragging = false;
+let draggedCards = new Set();
+
 function handleCardTouchStart(e) {
     const element = getElementFromTarget(e.target);
     if (!element) return;
@@ -82,6 +88,38 @@ function handleCardTouchStart(e) {
     // Store touch start info
     touchStartTime = Date.now();
     touchStartCard = card;
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    isDragging = false;
+    draggedCards.clear();
+}
+
+function handleCardTouchMove(e) {
+    if (!touchStartCard) return;
+
+    const touchX = e.touches[0].clientX;
+    const touchY = e.touches[0].clientY;
+
+    const deltaX = Math.abs(touchX - touchStartX);
+    const deltaY = Math.abs(touchY - touchStartY);
+    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+    // Start dragging if finger moves more than 10px
+    if (distance > 10 && !isDragging) {
+        isDragging = true;
+    }
+
+    if (isDragging) {
+        // Find all cards under the current touch position
+        const elementBelow = document.elementFromPoint(touchX, touchY);
+        if (elementBelow) {
+            const cardBelow = elementBelow.closest('.expertise-card, .academic-stat, .format-card, .game-element');
+            if (cardBelow && !draggedCards.has(cardBelow)) {
+                flipCard(cardBelow);
+                draggedCards.add(cardBelow);
+            }
+        }
+    }
 }
 
 function handleCardTouchEnd(e) {
@@ -89,20 +127,24 @@ function handleCardTouchEnd(e) {
 
     const touchDuration = Date.now() - touchStartTime;
 
-    // Only flip if touch was long enough (prevents accidental flips during scrolling)
-    if (touchDuration >= TOUCH_DELAY) {
+    // Only flip if touch was long enough and not dragging (prevents accidental flips during scrolling)
+    if (touchDuration >= TOUCH_DELAY && !isDragging) {
         flipCard(touchStartCard);
     }
 
     // Reset touch state
     touchStartTime = 0;
     touchStartCard = null;
+    isDragging = false;
+    draggedCards.clear();
 }
 
 function handleCardTouchCancel(e) {
     // Reset touch state on cancel
     touchStartTime = 0;
     touchStartCard = null;
+    isDragging = false;
+    draggedCards.clear();
 }
 
 // Unified card flipping function

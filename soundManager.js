@@ -399,12 +399,28 @@ class SoundManager {
     // Play success sound for portrait game
     playReactSuccess(isFirstTime = true) {
         if (!this.audioReady) return;
-        // Always play flagflow with fade out
+        // Always play flagflow starting at 1 second with fade-in
         const flagflow = this.sounds.flagflow;
-        flagflow.currentTime = 0;
-        flagflow.volume = 0.5;
+        flagflow.currentTime = 1.0; // Start at 1 second
+        flagflow.volume = 0; // Start silent for fade-in
 
         flagflow.play().catch(() => {});
+
+        // Fade in flagflow over 1 second
+        const fadeInDuration = 1.0; // seconds
+        const targetVolume = 0.5;
+        let fadeInStartTime = performance.now();
+
+        const fadeInInterval = setInterval(() => {
+            const elapsed = (performance.now() - fadeInStartTime) / 1000;
+            const fadeProgress = Math.min(elapsed / fadeInDuration, 1);
+
+            flagflow.volume = fadeProgress * targetVolume;
+
+            if (fadeProgress >= 1) {
+                clearInterval(fadeInInterval);
+            }
+        }, 50);
 
         // Fade out flagflow near the end (if duration is available)
         const fadeOutDuration = 1.5; // seconds

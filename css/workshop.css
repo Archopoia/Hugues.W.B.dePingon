@@ -514,7 +514,7 @@
 .format-card .card-inner {
     width: 100%;
     height: 100%;
-    background: var(--parchment-light);
+    background: var(--parchment-aged);
     border: 3px solid var(--border-dark);
     border-radius: 15px;
     padding: 1.5rem;
@@ -554,7 +554,7 @@
 .format-card:hover .card-inner,
 .format-card.flipped .card-inner {
     transform: rotateY(180deg) scale(1.05);
-    background: var(--parchment-light);
+    background: var(--parchment-aged);
     border-color: var(--border-dark);
     box-shadow:
         0 0 25px rgba(0, 0, 0, 0.2),
@@ -590,6 +590,7 @@
     backface-visibility: hidden;
     transform: rotateY(180deg);
     border-radius: 15px;
+    background: var(--parchment-aged);
 }
 
 .format-card:hover .card-front,
@@ -918,7 +919,7 @@
 .game-element .card-inner {
     width: 100%;
     height: 100%;
-    background: var(--parchment-light);
+    background: var(--parchment-aged);
     border: 2px solid var(--border-dark);
     border-radius: 12px;
     padding: 1.5rem;
