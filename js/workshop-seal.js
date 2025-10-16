@@ -83,6 +83,59 @@ async function startPress(e) {
     // Preload workshop content if not loaded
     await loadSection('workshop');
 
+    // Check if on smaller screen - skip complex preview animation on mobile
+    const isMobileView = window.innerWidth <= 968;
+    if (isMobileView) {
+        // Immediately scroll to navigation tabs on press
+        const sheetTabs = document.querySelector('.sheet-tabs');
+        if (sheetTabs) {
+            sheetTabs.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // Just do simple rotation, skip the 3D preview
+        let lastTimestamp = performance.now();
+        function animateMobile(timestamp) {
+            const deltaTime = (timestamp - lastTimestamp) / 1000;
+            lastTimestamp = timestamp;
+
+            const pressDuration = (timestamp - pressStartTime) / 1000;
+
+            // Simple rotation animation
+            const baseSpeed = 200;
+            const acceleration = Math.pow(pressDuration + 0.5, 2.5) * 300;
+            rotationSpeed = Math.min(baseSpeed + acceleration, 3000);
+
+            currentRotation += rotationSpeed * deltaTime;
+
+            workshopSealButton.style.willChange = 'transform';
+            workshopSealButton.style.transform = `rotate(${currentRotation}deg)`;
+
+            // Update pulse effect
+            const pulseSpeed = Math.max(0.2, 1 - (pressDuration * 0.3));
+            const pulseScale = Math.min(1.5 + (pressDuration * 0.5), 3);
+            const pulseOpacity = Math.min(0.6 + (pressDuration * 0.1), 0.9);
+
+            workshopSealButton.style.setProperty('--pulse-speed', `${pulseSpeed}s`);
+            workshopSealButton.style.setProperty('--pulse-scale', pulseScale);
+            workshopSealButton.style.setProperty('--pulse-opacity', pulseOpacity);
+
+            const glowSpeed = Math.max(0.3, 2 - (pressDuration * 0.8));
+            workshopSealButton.style.setProperty('--glow-speed', `${glowSpeed}s`);
+
+            if (pressStartTime > 0) {
+                rotationInterval = requestAnimationFrame(animateMobile);
+            } else {
+                workshopSealButton.style.willChange = 'auto';
+            }
+        }
+
+        rotationInterval = requestAnimationFrame(animateMobile);
+        return; // Skip desktop preview animation
+    }
+
     // Re-get the workshop tab reference after loading (in case DOM was modified)
     activeWorkshopTab = document.getElementById('workshop');
 
@@ -249,7 +302,39 @@ async function endPress(e) {
     const pressDuration = (performance.now() - pressStartTime) / 1000;
     const revealProgress = Math.min(pressDuration / pullSoundDuration, 1);
 
-    // Check if animation is complete enough (at least 80% revealed)
+    // Check if on smaller screen (mobile/tablet)
+    const isMobileView = window.innerWidth <= 968;
+
+    // On mobile, just switch to tab (scroll already happened on press)
+    if (isMobileView) {
+        // Stop pull sound
+        if (window.soundManager) {
+            window.soundManager.stopPull(true);
+        }
+
+        // Reset button with quick spring-back
+        workshopSealButton.style.transition = 'transform 0.3s ease';
+        workshopSealButton.style.transform = 'scale(1) rotate(0deg)';
+        workshopSealButton.style.setProperty('--glow-speed', '2s');
+
+        // Clean up workshop preview
+        if (activeWorkshopTab && !activeWorkshopTab.classList.contains('active')) {
+            cleanupWorkshopPreview(activeWorkshopTab, false);
+        }
+
+        // Reset state
+        pressStartTime = 0;
+        rotationSpeed = 0;
+        currentRotation = 0;
+
+        // Switch to workshop tab
+        const targetTab = workshopSealButton.getAttribute('data-tab');
+        await switchTab(targetTab);
+
+        return;
+    }
+
+    // Check if animation is complete enough (at least 80% revealed) - DESKTOP ONLY
     if (revealProgress < 0.8) {
         // Stop pull sound and play in reverse
         let pullStoppedAt = 0;

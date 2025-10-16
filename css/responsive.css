@@ -27,7 +27,12 @@
     }
 
     .character-stats {
-        justify-content: center;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 1rem;
+        max-width: 400px;
+        margin: 0 auto;
     }
 
     .profile-content {
@@ -198,9 +203,10 @@
         padding: 2rem;
     }
 
-    /* Language Switcher Responsive */
+    /* Language Switcher Responsive - Move to bottom-right on smaller screens */
     .language-switcher {
-        top: 1rem;
+        top: auto;
+        bottom: 1rem;
         right: 1rem;
     }
 
@@ -249,9 +255,29 @@
         min-width: 100px;
     }
 
-    /* Language Switcher Mobile */
+    /* Character stats mobile optimization */
+    .character-stats {
+        max-width: 350px;
+        gap: 0.8rem;
+    }
+
+    .stat-item {
+        padding: 0.4rem 0.8rem;
+    }
+
+    .stat-label {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+    }
+
+    .stat-value {
+        font-size: 1rem;
+    }
+
+    /* Language Switcher Mobile - Keep at bottom-right on mobile */
     .language-switcher {
-        top: 0.75rem;
+        top: auto;
+        bottom: 0.75rem;
         right: 0.75rem;
     }
 
