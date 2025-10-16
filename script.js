@@ -64,6 +64,9 @@ async function loadSection(sectionName) {
                         initializeEducationNavigation();
                         initializeAlpineEducationVideo();
                     }
+                    if (sectionName === 'workshop') {
+                        initializeRandomCardFlip();
+                    }
 
                     // Initialize flip sounds for any flippable cards in this section
                     initializeFlipSounds();
@@ -156,17 +159,15 @@ function preloadAllSections() {
     });
 }
 
-// Initialize flip sound effects for cards
+// Initialize flip sound effects for cards with debouncing
+let lastFlipSoundTime = 0;
+const FLIP_SOUND_DELAY = 200; // 200ms minimum between sounds
+
 function initializeFlipSounds() {
-    // Find all expertise cards and academic stat cards
-    const flipCards = document.querySelectorAll('.expertise-card, .academic-stat');
+    // Find all flippable cards including workshop cards
+    const flipCards = document.querySelectorAll('.expertise-card, .academic-stat, .format-card, .game-element');
 
     flipCards.forEach(card => {
-        // Remove any existing flip sound listener to avoid duplicates
-        card.removeEventListener('mouseenter', playFlipSoundOnHover);
-        // Add hover listener for flip sound
-        card.addEventListener('mouseenter', playFlipSoundOnHover);
-
         // Add flip lock behavior for all flipping cards with 2-second delay
         let isFlipping = false;
         let flipTimeout = null;
@@ -182,6 +183,13 @@ function initializeFlipSounds() {
             if (!isFlipping && !this.classList.contains('flipped')) {
                 isFlipping = true;
                 this.classList.add('flipped');
+
+                // Play flip sound with debouncing
+                const now = Date.now();
+                if (now - lastFlipSoundTime >= FLIP_SOUND_DELAY) {
+                    playFlipSoundOnHover();
+                    lastFlipSoundTime = now;
+                }
 
                 // Lock the flip for the duration of the animation (600ms)
                 flipTimeout = setTimeout(() => {
@@ -206,6 +214,98 @@ function initializeFlipSounds() {
 function playFlipSoundOnHover() {
     if (window.soundManager) {
         window.soundManager.playRandomFlipSound();
+    }
+}
+
+// Random card flip for workshop game elements
+let randomFlipInterval = null;
+let currentAutoFlippedCard = null;
+let userInteracting = false;
+let interactionTimeout = null;
+
+function initializeRandomCardFlip() {
+    const gameElements = document.querySelectorAll('.game-element');
+
+    if (gameElements.length === 0) return;
+
+    // Function to flip a random card
+    function flipRandomCard() {
+        // Don't auto-flip if user is interacting
+        if (userInteracting) return;
+
+        // Flip back the current auto-flipped card
+        if (currentAutoFlippedCard) {
+            currentAutoFlippedCard.classList.remove('flipped', 'auto-flipped');
+        }
+
+        // Pick a random card
+        const randomIndex = Math.floor(Math.random() * gameElements.length);
+        currentAutoFlippedCard = gameElements[randomIndex];
+
+        // Mark it as auto-flipped and flip it
+        currentAutoFlippedCard.classList.add('flipped', 'auto-flipped');
+
+        // Play flip sound
+        if (window.soundManager) {
+            window.soundManager.playRandomFlipSound();
+        }
+    }
+
+    // Start the random flip cycle
+    flipRandomCard(); // Flip one immediately
+    randomFlipInterval = setInterval(flipRandomCard, 2000); // Then every 2 seconds
+
+    // Add hover listeners to all game elements
+    gameElements.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            // Set user interaction flag
+            userInteracting = true;
+
+            // Clear any existing timeout
+            if (interactionTimeout) {
+                clearTimeout(interactionTimeout);
+            }
+
+            // If there's an auto-flipped card, flip it back
+            if (currentAutoFlippedCard && currentAutoFlippedCard.classList.contains('auto-flipped')) {
+                currentAutoFlippedCard.classList.remove('flipped', 'auto-flipped');
+                currentAutoFlippedCard = null;
+            }
+        });
+
+        card.addEventListener('mouseleave', function() {
+            // Set timeout to resume auto-flip after 2 seconds of no interaction
+            interactionTimeout = setTimeout(() => {
+                userInteracting = false;
+            }, 2000);
+        });
+    });
+
+    // Clean up interval when leaving workshop tab
+    const workshopTab = document.getElementById('workshop');
+    if (workshopTab) {
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName === 'class') {
+                    if (!workshopTab.classList.contains('active')) {
+                        if (randomFlipInterval) {
+                            clearInterval(randomFlipInterval);
+                            randomFlipInterval = null;
+                        }
+                        if (interactionTimeout) {
+                            clearTimeout(interactionTimeout);
+                            interactionTimeout = null;
+                        }
+                        if (currentAutoFlippedCard) {
+                            currentAutoFlippedCard.classList.remove('flipped', 'auto-flipped');
+                            currentAutoFlippedCard = null;
+                        }
+                        userInteracting = false;
+                    }
+                }
+            });
+        });
+        observer.observe(workshopTab, { attributes: true });
     }
 }
 
