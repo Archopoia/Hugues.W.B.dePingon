@@ -360,12 +360,19 @@ class SoundManager {
         }
     }
 
+    // Get pull sound duration
+    getPullDuration() {
+        if (!this.audioReady || !this.sounds.pull) return 2.0; // Default fallback
+        return this.sounds.pull.duration || 2.0;
+    }
+
     // Start playing pull sound (workshop button press and hold)
     startPull() {
         if (!this.audioReady) return;
         if (this.pullPlaying) return;
 
         this.pullPlaying = true;
+        this.pullStartTime = Date.now();
         const pull = this.sounds.pull;
         pull.currentTime = 0;
         pull.play().catch(() => {});
@@ -376,17 +383,27 @@ class SoundManager {
         };
     }
 
-    // Stop pull sound with fade out (when button released early)
+    // Stop pull sound and return the playback position
     stopPull(immediate = false) {
-        if (!this.pullPlaying) return;
+        if (!this.pullPlaying) {
+            return 0;
+        }
 
         this.pullPlaying = false;
         const pull = this.sounds.pull;
+        const stoppedAt = pull.currentTime;
 
-        if (immediate || pull.currentTime < 0.1) {
-            // Stop immediately if just started
+        if (immediate) {
+            // Stop immediately without fade
+            pull.pause();
+            const returnValue = stoppedAt;
+            // Don't reset currentTime yet - we need it for reverse playback
+            return returnValue;
+        } else if (pull.currentTime < 0.1) {
+            // Just started, stop immediately
             pull.pause();
             pull.currentTime = 0;
+            return 0;
         } else {
             // Fade out over 200ms
             const fadeOutDuration = 200;
@@ -406,7 +423,87 @@ class SoundManager {
                     pull.volume = startVolume * (1 - progress);
                 }
             }, 10);
+
+            return stoppedAt;
         }
+    }
+
+    // Play pull sound in reverse from a specific position
+    playPullReverse(fromTime) {
+        if (!this.audioReady) return;
+
+        const pull = this.sounds.pull;
+
+        // Reset playback rate first
+        pull.playbackRate = 1.0;
+        pull.currentTime = fromTime;
+
+        // Try setting negative playback rate
+        try {
+            pull.playbackRate = -1.0;
+        } catch (e) {
+            this.simulateReversePull(fromTime);
+            return;
+        }
+
+        pull.play().then(() => {
+            // Listen for when it reaches the beginning
+            pull.ontimeupdate = () => {
+                if (pull.currentTime <= 0) {
+                    pull.pause();
+                    pull.currentTime = 0;
+                    pull.playbackRate = 1.0;
+                    pull.ontimeupdate = null;
+                }
+            };
+        }).catch((error) => {
+            // If browser doesn't support negative playback rate, simulate it
+            pull.playbackRate = 1.0; // Reset
+            this.simulateReversePull(fromTime);
+        });
+    }
+
+    // Simulate reverse playback by playing backwards manually
+    simulateReversePull(fromTime) {
+        const pull = this.sounds.pull;
+        let currentTime = fromTime;
+
+        pull.playbackRate = 1; // Reset to normal playback rate
+        pull.currentTime = fromTime;
+
+        // Start with low volume for fade-in
+        const originalVolume = pull.volume;
+        pull.volume = 0;
+
+        pull.play().catch(() => {});
+
+        // Fade in over 50ms
+        const fadeInDuration = 50;
+        const fadeInStart = Date.now();
+        let reverseDuration = 0;
+
+        const reverseInterval = setInterval(() => {
+            const elapsed = Date.now() - fadeInStart;
+            reverseDuration = elapsed;
+
+            // Fade in volume
+            if (elapsed < fadeInDuration) {
+                pull.volume = originalVolume * (elapsed / fadeInDuration);
+            } else {
+                pull.volume = originalVolume;
+            }
+
+            currentTime -= 0.016; // ~60fps
+
+            if (currentTime <= 0) {
+                pull.pause();
+                pull.currentTime = 0;
+                pull.volume = originalVolume;
+                clearInterval(reverseInterval);
+            } else {
+                pull.currentTime = currentTime;
+            }
+        }, 16);
     }
 
     // Play release sound (workshop button release)

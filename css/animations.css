@@ -27,6 +27,32 @@
     }
 }
 
+@keyframes swing-in-top-fwd {
+    0% {
+        transform: rotateX(70deg);
+        transform-origin: top;
+        opacity: 0;
+    }
+    100% {
+        transform: rotateX(0deg);
+        transform-origin: top;
+        opacity: 1;
+    }
+}
+
+@keyframes puff-out-center {
+    0% {
+        transform: scale(1) rotate(var(--button-rotation, 0deg));
+        filter: blur(0px);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2) rotate(var(--button-rotation, 0deg));
+        filter: blur(4px);
+        opacity: 0;
+    }
+}
+
 @keyframes fadeOut {
     0% {
         opacity: 1;

@@ -602,6 +602,28 @@ document.addEventListener('DOMContentLoaded', function() {
         const allTabContents = document.querySelectorAll('.tab-content');
         allTabContents.forEach(content => content.classList.remove('active'));
 
+        // Clean up workshop tab preview styles if switching away from it
+        const workshopTabElement = document.getElementById('workshop');
+        if (targetTab !== 'workshop' && workshopTabElement) {
+            // Force hide the workshop tab
+            workshopTabElement.style.display = 'none';
+            workshopTabElement.style.position = '';
+            workshopTabElement.style.top = '';
+            workshopTabElement.style.left = '';
+            workshopTabElement.style.width = '';
+            workshopTabElement.style.zIndex = '';
+            workshopTabElement.style.transform = '';
+            workshopTabElement.style.transformOrigin = '';
+            workshopTabElement.style.opacity = '';
+            workshopTabElement.style.transformStyle = '';
+            workshopTabElement.style.backfaceVisibility = '';
+            workshopTabElement.style.minHeight = '';
+            workshopTabElement.style.pointerEvents = '';
+            // Remove animation override so normal animation works next time
+            workshopTabElement.style.removeProperty('animation');
+            workshopTabElement.style.transition = '';
+        }
+
         // Add active class to target button and content
         const targetButton = document.querySelector(`[data-tab="${targetTab}"]`);
         if (targetButton) targetButton.classList.add('active');
@@ -610,22 +632,98 @@ document.addEventListener('DOMContentLoaded', function() {
         // Toggle workshop background on sheet-content
         const sheetContent = document.querySelector('.sheet-content');
         const workshopSealBtn = document.querySelector('.workshop-seal-button');
+        const characterSheet = document.querySelector('.character-sheet');
+
         if (targetTab === 'workshop') {
             sheetContent.classList.add('workshop-active');
-            // Hide the pulsating glow when on workshop tab
-            if (workshopSealBtn) workshopSealBtn.classList.add('on-workshop-tab');
+
+            // Animate the workshop seal button (puff out) and change colors gradually
+            if (workshopSealBtn) {
+                // Clear any conflicting styles and set rotation CSS variable
+                workshopSealBtn.style.transition = 'none';
+                workshopSealBtn.style.transform = '';
+                workshopSealBtn.style.filter = '';
+                workshopSealBtn.style.opacity = '';
+                workshopSealBtn.style.setProperty('--button-rotation', `${finalRotation}deg`);
+
+                // Force a reflow to ensure styles are applied
+                workshopSealBtn.offsetHeight;
+
+                workshopSealBtn.classList.add('on-workshop-tab');
+
+                // Use requestAnimationFrame to ensure animation starts
+                requestAnimationFrame(() => {
+                    // Apply animation with rotation via CSS variable
+                    workshopSealBtn.style.animation = 'puff-out-center 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) both';
+
+                    // After animation completes, lock in the final state with rotation
+                    setTimeout(() => {
+                        // Lock the final state explicitly with rotation preserved
+                        workshopSealBtn.style.transform = `scale(2) rotate(${finalRotation}deg)`;
+                        workshopSealBtn.style.filter = 'blur(4px)';
+                        workshopSealBtn.style.opacity = '0';
+                        workshopSealBtn.style.animation = '';
+                    }, 1000);
+                });
+            }
+
+            // Ensure workshop tab display is reset to normal
+            if (workshopTabElement) {
+                workshopTabElement.style.display = '';
+            }
         } else {
             sheetContent.classList.remove('workshop-active');
-            // Show the pulsating glow when NOT on workshop tab
-            if (workshopSealBtn) workshopSealBtn.classList.remove('on-workshop-tab');
+
+            // Animate the workshop seal button back (puff in reverse)
+            if (workshopSealBtn && workshopSealBtn.classList.contains('on-workshop-tab')) {
+                // Reset rotation to 0 before puff-in animation
+                workshopSealBtn.style.setProperty('--button-rotation', '0deg');
+                workshopSealBtn.style.transform = 'scale(2) rotate(0deg)'; // Reset rotation but keep scale
+
+                // Force reflow
+                workshopSealBtn.offsetHeight;
+
+                // The button is currently at scale(2) rotate(0) blur(4px) opacity(0)
+                // Start from the locked final state and animate back
+                workshopSealBtn.style.animation = 'puff-out-center 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) reverse both';
+
+                // After reverse animation completes, restore normal state
+                setTimeout(() => {
+                    workshopSealBtn.classList.remove('on-workshop-tab');
+                    workshopSealBtn.style.animation = '';
+                    workshopSealBtn.style.transform = '';
+                    workshopSealBtn.style.filter = '';
+                    workshopSealBtn.style.opacity = '';
+                    workshopSealBtn.style.removeProperty('--button-rotation');
+                    finalRotation = 0; // Reset rotation for next time
+                }, 1000);
+            } else if (workshopSealBtn) {
+                workshopSealBtn.classList.remove('on-workshop-tab');
+                workshopSealBtn.style.removeProperty('--button-rotation');
+                finalRotation = 0; // Reset rotation
+            }
+
+            // Clean up any perspective and height changes from preview
+            if (sheetContent) {
+                sheetContent.style.perspective = '';
+                sheetContent.style.perspectiveOrigin = '';
+                sheetContent.style.minHeight = '';
+            }
+            if (characterSheet) {
+                characterSheet.style.minHeight = '';
+            }
         }
 
-        // Add page flip animation
+        // Add page flip animation (skip for workshop if coming from progressive reveal)
         const activeContent = document.getElementById(targetTab);
-        activeContent.style.animation = 'none';
-        setTimeout(() => {
-            activeContent.style.animation = 'swing-in-top-bck 0.6s cubic-bezier(0.175, 0.885, 0.320, 1.275) both';
-        }, 10);
+        if (targetTab === 'workshop' && skipWorkshopAnimation) {
+            skipWorkshopAnimation = false; // Reset flag
+        } else {
+            activeContent.style.animation = 'none';
+            setTimeout(() => {
+                activeContent.style.animation = 'swing-in-top-fwd 1s cubic-bezier(0.175, 0.885, 0.320, 1.275) both';
+            }, 10);
+        }
 
         // Animate skill bars when skills tab is opened
         if (targetTab === 'skills') {
@@ -644,14 +742,42 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Special handling for workshop seal button press-and-hold
     const workshopSealButton = document.querySelector('.workshop-seal-button');
+    const workshopTab = document.getElementById('workshop');
+    let activeWorkshopTab = null; // Will hold the current workshop tab reference after loading
+    let skipWorkshopAnimation = false; // Flag to skip default animation after progressive reveal
+
+    // Get the pull sound duration to sync animation
+    let pullSoundDuration = 2.0; // Default
+    if (window.soundManager) {
+        // Wait a moment for audio to load, then get duration
+        setTimeout(() => {
+            pullSoundDuration = window.soundManager.getPullDuration();
+        }, 500);
+    }
+
+    // Create and add the pulsating glow element
+    if (workshopSealButton) {
+        const glowElement = document.createElement('div');
+        glowElement.className = 'workshop-glow';
+        workshopSealButton.appendChild(glowElement);
+    }
+
     let pressTimer = null;
     let pressStartTime = 0;
     let rotationInterval = null;
     let currentRotation = 0;
     let rotationSpeed = 0;
+    let finalRotation = 0; // Store the final rotation when button is released
 
-    function startPress(e) {
+    async function startPress(e) {
         e.preventDefault();
+        e.stopPropagation();
+
+        // Don't allow pressing if already on workshop tab
+        if (workshopSealButton.classList.contains('on-workshop-tab')) {
+            return;
+        }
+
         pressStartTime = Date.now();
         currentRotation = 0;
         rotationSpeed = 0;
@@ -665,6 +791,107 @@ document.addEventListener('DOMContentLoaded', function() {
         // Play pull sound
         if (window.soundManager) {
             window.soundManager.startPull();
+        }
+
+        // Preload workshop content if not loaded
+        await loadSection('workshop');
+
+        // Re-get the workshop tab reference after loading (in case DOM was modified)
+        activeWorkshopTab = document.getElementById('workshop');
+
+        // Show workshop tab for preview (but not as active yet)
+        if (activeWorkshopTab) {
+
+            // Get the parent container and add perspective
+            const sheetContent = document.querySelector('.sheet-content');
+            const characterSheet = document.querySelector('.character-sheet');
+            if (sheetContent) {
+                sheetContent.style.perspective = '2000px';
+                sheetContent.style.perspectiveOrigin = 'center top';
+            }
+
+            // Store original height to restore later
+            if (sheetContent && !sheetContent.dataset.originalMinHeight) {
+                sheetContent.dataset.originalMinHeight = window.getComputedStyle(sheetContent).minHeight;
+            }
+            if (characterSheet && !characterSheet.dataset.originalMinHeight) {
+                characterSheet.dataset.originalMinHeight = window.getComputedStyle(characterSheet).minHeight;
+            }
+
+            // Hide all other tabs temporarily
+            const allTabs = document.querySelectorAll('.tab-content');
+            allTabs.forEach(tab => {
+                if (tab !== activeWorkshopTab && tab.classList.contains('active')) {
+                    tab.style.opacity = '0.3';
+                    tab.style.pointerEvents = 'none';
+                }
+            });
+
+            activeWorkshopTab.style.display = 'block';
+            activeWorkshopTab.style.pointerEvents = 'none'; // Disable interactions during preview
+            activeWorkshopTab.style.animation = 'none'; // Disable automatic animation
+            activeWorkshopTab.style.position = 'absolute';
+            activeWorkshopTab.style.top = '0';
+            activeWorkshopTab.style.left = '0';
+            activeWorkshopTab.style.width = '100%';
+            activeWorkshopTab.style.zIndex = '10';
+            activeWorkshopTab.style.transformStyle = 'preserve-3d'; // Ensure 3D transforms are preserved
+            activeWorkshopTab.style.minHeight = '500px'; // Ensure it has some height
+
+            // Apply workshop burgundy background with patterns to the tab itself (matching character-header)
+            // Add a solid base layer to ensure full opacity
+            activeWorkshopTab.style.background = `
+                radial-gradient(circle at 20% 20%, rgba(100, 48, 48, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(100, 48, 48, 0.3) 0%, transparent 50%),
+                linear-gradient(135deg, var(--red-theme-alpha) 0%, var(--red-theme) 50%)
+            `;
+            activeWorkshopTab.style.backgroundColor = 'var(--parchment-light)'; // Solid fallback matching sheet-content
+            activeWorkshopTab.style.boxShadow = 'inset 0 0 0 2px var(--border-tan)';
+
+            // Add the diagonal hatched lines pattern as an overlay
+            const workshopOverlay = document.createElement('div');
+            workshopOverlay.id = 'workshop-preview-overlay';
+            workshopOverlay.style.cssText = `
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 20px,
+                    rgba(184, 134, 11, 0.1) 20px,
+                    rgba(184, 134, 11, 0.1) 21px
+                );
+                pointer-events: none;
+                z-index: 0;
+            `;
+            activeWorkshopTab.insertBefore(workshopOverlay, activeWorkshopTab.firstChild);
+
+            // Ensure all content inside has proper z-index to appear above the overlay
+            const contentChildren = activeWorkshopTab.children;
+            for (let i = 0; i < contentChildren.length; i++) {
+                if (contentChildren[i].id !== 'workshop-preview-overlay') {
+                    contentChildren[i].style.position = 'relative';
+                    contentChildren[i].style.zIndex = '2';
+                }
+            }
+
+            // Start with fully hidden state
+            activeWorkshopTab.style.transform = 'rotateX(-70deg)';
+            activeWorkshopTab.style.transformOrigin = 'top';
+            activeWorkshopTab.style.opacity = '1'; // Keep full opacity throughout
+            activeWorkshopTab.style.backfaceVisibility = 'hidden';
+
+            // Expand the parent containers to fit the workshop tab's height
+            const workshopHeight = activeWorkshopTab.offsetHeight;
+            if (sheetContent && workshopHeight > 0) {
+                sheetContent.style.minHeight = workshopHeight + 'px';
+            }
+            if (characterSheet && workshopHeight > 0) {
+                characterSheet.style.minHeight = (workshopHeight + 64) + 'px'; // +64 for padding
+            }
         }
 
         // Start rotation animation using requestAnimationFrame for smoother performance
@@ -692,6 +919,23 @@ document.addEventListener('DOMContentLoaded', function() {
             workshopSealButton.style.setProperty('--pulse-scale', pulseScale);
             workshopSealButton.style.setProperty('--pulse-opacity', pulseOpacity);
 
+            // Update glow pulsation speed (faster as you hold)
+            const glowSpeed = Math.max(0.3, 2 - (pressDuration * 0.8)); // Starts at 2s, goes down to 0.3s
+            workshopSealButton.style.setProperty('--glow-speed', `${glowSpeed}s`);
+
+            // Progressive reveal of workshop tab (sync with pull sound duration)
+            if (activeWorkshopTab && activeWorkshopTab.parentElement) {
+                // Progress from 0 to 1 over the pull sound duration
+                const revealProgress = Math.min(pressDuration / pullSoundDuration, 1);
+
+                // Transform from -70deg to 0deg (swing-in animation)
+                const rotateX = -70 + (70 * revealProgress);
+
+                activeWorkshopTab.style.transform = `rotateX(${rotateX}deg)`;
+                activeWorkshopTab.style.transformOrigin = 'top';
+                // Opacity stays at 1.0 throughout
+            }
+
             // Continue animation
             if (pressStartTime > 0) {
                 rotationInterval = requestAnimationFrame(animate);
@@ -701,8 +945,9 @@ document.addEventListener('DOMContentLoaded', function() {
         rotationInterval = requestAnimationFrame(animate);
     }
 
-    function endPress(e) {
+    async function endPress(e) {
         e.preventDefault();
+        e.stopPropagation();
 
         // Remove pressing class
         workshopSealButton.classList.remove('pressing');
@@ -712,30 +957,201 @@ document.addEventListener('DOMContentLoaded', function() {
             cancelAnimationFrame(rotationInterval);
         }
 
-        // Stop pull sound with fade out and play release sound
+        const pressDuration = (Date.now() - pressStartTime) / 1000;
+        const revealProgress = Math.min(pressDuration / pullSoundDuration, 1);
+
+        // Check if animation is complete enough (at least 80% revealed)
+        if (revealProgress < 0.8) {
+            // Stop pull sound and play in reverse from the stopped position
+            let pullStoppedAt = 0;
+            if (window.soundManager) {
+                pullStoppedAt = window.soundManager.stopPull(true); // Stop immediately
+                if (pullStoppedAt > 0) {
+                    window.soundManager.playPullReverse(pullStoppedAt);
+                }
+            }
+
+            // Reset button with spring-back
+            workshopSealButton.style.transition = 'transform 0.3s ease';
+            workshopSealButton.style.transform = 'scale(1) rotate(0deg)';
+            workshopSealButton.style.setProperty('--glow-speed', '2s'); // Reset glow speed
+
+            // Reverse the workshop tab animation
+            if (activeWorkshopTab && !activeWorkshopTab.classList.contains('active')) {
+                activeWorkshopTab.style.transition = 'transform 0.3s ease';
+                activeWorkshopTab.style.transform = 'rotateX(-70deg)';
+
+                // Restore other tabs
+                const allTabs = document.querySelectorAll('.tab-content');
+                allTabs.forEach(tab => {
+                    if (tab !== activeWorkshopTab && tab.classList.contains('active')) {
+                        tab.style.opacity = '';
+                        tab.style.pointerEvents = '';
+                    }
+                });
+
+                // Restore sheet-content perspective and heights
+                const sheetContent = document.querySelector('.sheet-content');
+                const characterSheet = document.querySelector('.character-sheet');
+                if (sheetContent) {
+                    sheetContent.style.perspective = '';
+                    sheetContent.style.perspectiveOrigin = '';
+                    sheetContent.style.minHeight = '';
+                }
+                if (characterSheet) {
+                    characterSheet.style.minHeight = '';
+                }
+
+                // Remove the workshop preview overlay
+                const cancelOverlay = document.getElementById('workshop-preview-overlay');
+                if (cancelOverlay) {
+                    cancelOverlay.remove();
+                }
+
+                // Hide it completely after reverse animation
+                setTimeout(() => {
+                    if (activeWorkshopTab && !activeWorkshopTab.classList.contains('active')) {
+                        activeWorkshopTab.style.display = 'none';
+                        activeWorkshopTab.style.transform = '';
+                        activeWorkshopTab.style.transition = '';
+                        activeWorkshopTab.style.transformOrigin = '';
+                        activeWorkshopTab.style.pointerEvents = '';
+                        activeWorkshopTab.style.position = '';
+                        activeWorkshopTab.style.top = '';
+                        activeWorkshopTab.style.left = '';
+                        activeWorkshopTab.style.width = '';
+                        activeWorkshopTab.style.zIndex = '';
+                        activeWorkshopTab.style.backfaceVisibility = '';
+                        activeWorkshopTab.style.transformStyle = '';
+                        activeWorkshopTab.style.minHeight = '';
+                        activeWorkshopTab.style.background = '';
+                        activeWorkshopTab.style.backgroundColor = '';
+                        activeWorkshopTab.style.boxShadow = '';
+
+                        // Reset content children
+                        const contentChildren = activeWorkshopTab.children;
+                        for (let i = 0; i < contentChildren.length; i++) {
+                            contentChildren[i].style.position = '';
+                            contentChildren[i].style.zIndex = '';
+                        }
+                    }
+                }, 300);
+            }
+
+            pressStartTime = 0;
+            rotationSpeed = 0;
+            currentRotation = 0;
+            return;
+        }
+
+        // Stop pull sound and play release sound (animation was completed)
         if (window.soundManager) {
-            window.soundManager.stopPull();
+            window.soundManager.stopPull(true);
             window.soundManager.playRelease();
         }
 
-        const pressDuration = (Date.now() - pressStartTime) / 1000;
-        const launchScale = Math.min(1 + (pressDuration * 0.5), 2.5); // Max 2.5x scale
-        const launchDuration = Math.min(pressDuration * 200, 800); // Max 800ms
+        // Store the final rotation for puff-out animation
+        finalRotation = currentRotation % 360; // Normalize to 0-360
 
-        // Launch animation
-        workshopSealButton.style.transition = `transform ${launchDuration}ms cubic-bezier(0.34, 1.56, 0.64, 1)`;
-        workshopSealButton.style.transform = `scale(${launchScale}) rotate(${currentRotation}deg)`;
+        // Skip the launch animation - go directly to puff-out
+        // Just reset the button transform smoothly
+        workshopSealButton.style.transition = 'transform 0.2s ease-out';
+        workshopSealButton.style.transform = `rotate(${finalRotation}deg)`; // Just preserve rotation, no scale
 
-        // Trigger tab switch after launch
-        setTimeout(async () => {
-            // Reset button
-            workshopSealButton.style.transition = 'transform 0.3s ease';
-            workshopSealButton.style.transform = 'scale(1) rotate(0deg)';
+        // Complete the tab reveal animation smoothly
+        if (activeWorkshopTab) {
+            const remainingProgress = 1 - revealProgress;
+            const completionDuration = remainingProgress * 300; // Complete animation in remaining time (max 300ms)
 
-            // Switch to workshop tab
-            const targetTab = workshopSealButton.getAttribute('data-tab');
-            await switchTab(targetTab);
-        }, launchDuration);
+            activeWorkshopTab.style.transition = `transform ${completionDuration}ms ease-out`;
+            activeWorkshopTab.style.transform = 'rotateX(0deg)';
+            activeWorkshopTab.style.pointerEvents = 'auto'; // Re-enable interactions
+        }
+
+        // Trigger tab switch immediately (no delay needed since we skipped launch animation)
+        // Reset button rotation
+        workshopSealButton.style.transition = 'transform 0.2s ease-out';
+        workshopSealButton.style.transform = 'rotate(0deg)';
+        workshopSealButton.style.setProperty('--glow-speed', '2s'); // Reset glow speed
+
+        // Set flag to skip the default tab animation since we already animated it
+        skipWorkshopAnimation = true;
+
+        // Override the CSS animation by setting animation to none with !important priority
+        if (activeWorkshopTab) {
+            activeWorkshopTab.style.setProperty('animation', 'none', 'important');
+        }
+
+        // Prevent the workshop seal button puff animation from triggering automatically
+        // (We'll trigger it manually in switchTab)
+
+        // Switch to workshop tab (this will properly set active classes and trigger puff-out)
+        const targetTab = workshopSealButton.getAttribute('data-tab');
+        await switchTab(targetTab);
+
+        // Immediately clean up preview styles but keep the tab in its final position
+        if (activeWorkshopTab) {
+            activeWorkshopTab.style.transition = 'none'; // Disable transitions during cleanup
+            activeWorkshopTab.style.transformOrigin = '';
+            activeWorkshopTab.style.position = '';
+            activeWorkshopTab.style.top = '';
+            activeWorkshopTab.style.left = '';
+            activeWorkshopTab.style.width = '';
+            activeWorkshopTab.style.zIndex = '';
+            activeWorkshopTab.style.backfaceVisibility = '';
+            activeWorkshopTab.style.transformStyle = '';
+            activeWorkshopTab.style.minHeight = '';
+            activeWorkshopTab.style.background = '';
+            activeWorkshopTab.style.backgroundColor = '';
+            activeWorkshopTab.style.boxShadow = '';
+
+            // After a frame, clean up remaining styles but KEEP animation: none
+            requestAnimationFrame(() => {
+                if (activeWorkshopTab) {
+                    activeWorkshopTab.style.transform = '';
+                    activeWorkshopTab.style.transformOrigin = '';
+                    activeWorkshopTab.style.backfaceVisibility = '';
+                    activeWorkshopTab.style.transition = '';
+                    activeWorkshopTab.style.opacity = '';
+                }
+            });
+        }
+
+        // Remove the workshop preview overlay and cleanup
+        const overlay = document.getElementById('workshop-preview-overlay');
+        if (overlay) {
+            overlay.remove();
+        }
+
+        // Restore other tabs
+        const allTabs = document.querySelectorAll('.tab-content');
+        allTabs.forEach(tab => {
+            if (tab !== activeWorkshopTab) {
+                tab.style.opacity = '';
+                tab.style.pointerEvents = '';
+            }
+        });
+
+        // Restore sheet-content perspective and heights
+        const sheetContent = document.querySelector('.sheet-content');
+        const characterSheet = document.querySelector('.character-sheet');
+        if (sheetContent) {
+            sheetContent.style.perspective = '';
+            sheetContent.style.perspectiveOrigin = '';
+            sheetContent.style.minHeight = '';
+        }
+        if (characterSheet) {
+            characterSheet.style.minHeight = '';
+        }
+
+        // Reset content children styles and cleanup workshop tab
+        if (activeWorkshopTab) {
+            const contentChildren = activeWorkshopTab.children;
+            for (let i = 0; i < contentChildren.length; i++) {
+                contentChildren[i].style.position = '';
+                contentChildren[i].style.zIndex = '';
+            }
+        }
 
         pressStartTime = 0;
         rotationSpeed = 0;
@@ -752,14 +1168,82 @@ document.addEventListener('DOMContentLoaded', function() {
             rotationInterval = null;
         }
 
-        // Stop pull sound with fade out (no release sound on cancel)
+        // Stop pull sound and play in reverse (cancelled)
+        let pullStoppedAt = 0;
         if (window.soundManager) {
-            window.soundManager.stopPull();
+            pullStoppedAt = window.soundManager.stopPull(true);
+            if (pullStoppedAt > 0) {
+                window.soundManager.playPullReverse(pullStoppedAt);
+            }
         }
 
         if (workshopSealButton) {
             workshopSealButton.style.transition = 'transform 0.3s ease';
             workshopSealButton.style.transform = 'scale(1) rotate(0deg)';
+            workshopSealButton.style.setProperty('--glow-speed', '2s'); // Reset glow speed
+        }
+
+        // Hide the workshop tab preview with reverse animation
+        if (activeWorkshopTab && !activeWorkshopTab.classList.contains('active')) {
+            activeWorkshopTab.style.transition = 'transform 0.3s ease';
+            activeWorkshopTab.style.transform = 'rotateX(-70deg)';
+
+            // Restore other tabs
+            const allTabs = document.querySelectorAll('.tab-content');
+            allTabs.forEach(tab => {
+                if (tab !== activeWorkshopTab && tab.classList.contains('active')) {
+                    tab.style.opacity = '';
+                    tab.style.pointerEvents = '';
+                }
+            });
+
+            // Restore sheet-content perspective and heights
+            const sheetContent = document.querySelector('.sheet-content');
+            const characterSheet = document.querySelector('.character-sheet');
+            if (sheetContent) {
+                sheetContent.style.perspective = '';
+                sheetContent.style.perspectiveOrigin = '';
+                sheetContent.style.minHeight = '';
+            }
+            if (characterSheet) {
+                characterSheet.style.minHeight = '';
+            }
+
+            // Remove the workshop preview overlay and reset content children styles
+            const cancelOverlay = document.getElementById('workshop-preview-overlay');
+            if (cancelOverlay) {
+                cancelOverlay.remove();
+            }
+            if (activeWorkshopTab) {
+                const contentChildren = activeWorkshopTab.children;
+                for (let i = 0; i < contentChildren.length; i++) {
+                    contentChildren[i].style.position = '';
+                    contentChildren[i].style.zIndex = '';
+                }
+            }
+
+            // Hide it completely after animation
+            setTimeout(() => {
+                if (activeWorkshopTab && !activeWorkshopTab.classList.contains('active')) {
+                    activeWorkshopTab.style.display = 'none';
+                    activeWorkshopTab.style.transform = '';
+                    activeWorkshopTab.style.opacity = '';
+                    activeWorkshopTab.style.transition = '';
+                    activeWorkshopTab.style.transformOrigin = '';
+                    activeWorkshopTab.style.pointerEvents = '';
+                    activeWorkshopTab.style.position = '';
+                    activeWorkshopTab.style.top = '';
+                    activeWorkshopTab.style.left = '';
+                    activeWorkshopTab.style.width = '';
+                    activeWorkshopTab.style.zIndex = '';
+                    activeWorkshopTab.style.backfaceVisibility = '';
+                    activeWorkshopTab.style.transformStyle = '';
+                    activeWorkshopTab.style.minHeight = '';
+                    activeWorkshopTab.style.background = '';
+                    activeWorkshopTab.style.backgroundColor = '';
+                    activeWorkshopTab.style.boxShadow = '';
+                }
+            }, 300);
         }
 
         pressStartTime = 0;
