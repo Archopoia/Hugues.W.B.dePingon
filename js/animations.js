@@ -253,7 +253,7 @@ export function initializeRandomCardFlip() {
 
     // Start the random flip cycle
     flipRandomCard(); // Flip one immediately (if visible)
-    randomFlipInterval = setInterval(flipRandomCard, 2000); // Then every 2 seconds
+    randomFlipInterval = setInterval(flipRandomCard, 3000); // Then every 3 seconds
 
     // Add hover listeners to all game elements
     gameElements.forEach(card => {
@@ -274,10 +274,10 @@ export function initializeRandomCardFlip() {
         });
 
         card.addEventListener('mouseleave', function() {
-            // Set timeout to resume auto-flip after 2 seconds of no interaction
+            // Set timeout to resume auto-flip after 3 seconds of no interaction
             interactionTimeout = setTimeout(() => {
                 userInteracting = false;
-            }, 2000);
+            }, 3000);
         });
     });
 

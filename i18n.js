@@ -40,7 +40,7 @@ const translations = {
         "workshop-benefit-3": "Develop essential soft skills: collaboration, project management, creativity",
         "workshop-benefit-4": "Build a concrete portfolio for your studies or career",
 
-        "workshop-formats-title": "🧩 Available Formats",
+        "workshop-formats-title": "Available Formats",
 
         "format-objective-label": "Objective:",
         "format-format-label": "Format:",
@@ -95,7 +95,7 @@ const translations = {
         "value-personal-title": "Discover Your Talents",
         "value-personal-desc": "Identify your strengths: artist, designer, programmer, project manager.",
 
-        "workshop-structure-title": "⚙️ What We'll Create Together",
+        "workshop-structure-title": "What We'll Create Together",
 
         // Game Element Cards (12 cards)
         "element-concept-title": "Game Idea",
@@ -638,7 +638,7 @@ const translations = {
         "workshop-benefit-3": "Développez des soft skills essentiels : collaboration, gestion de projet, créativité",
         "workshop-benefit-4": "Obtenez un portfolio concret pour vos études ou votre carrière",
 
-        "workshop-formats-title": "🧩 Formats Disponibles",
+        "workshop-formats-title": "Formats Disponibles",
 
         "format-objective-label": "Objectif:",
         "format-format-label": "Format:",
@@ -693,7 +693,7 @@ const translations = {
         "value-personal-title": "Découverte de Vos Talents",
         "value-personal-desc": "Identifiez vos forces : artiste, designer, programmeur, chef de projet.",
 
-        "workshop-structure-title": "⚙️ Ce Qu'On Va Créer Ensemble",
+        "workshop-structure-title": "Ce Qu'On Va Créer",
 
         // Game Element Cards (12 cards)
         "element-concept-title": "Idée du Jeu",

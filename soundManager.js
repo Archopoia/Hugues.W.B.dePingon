@@ -721,6 +721,17 @@ window.addEventListener('DOMContentLoaded', () => {
             unlockPromises.push(promise);
         });
 
+        // Also unlock secret sounds for immediate playback
+        soundManager.sounds.secrets.forEach(audio => {
+            const promise = audio.play()
+                .then(() => {
+                    audio.pause();
+                    audio.currentTime = 0;
+                })
+                .catch(() => {});
+            unlockPromises.push(promise);
+        });
+
         // Wait for all audio to unlock
         await Promise.all(unlockPromises);
 

@@ -464,7 +464,7 @@
     content: '';
     position: absolute;
     top: 50%;
-    width: 35%;
+    width: 20%;
     height: 2px;
     background: linear-gradient(to right, transparent, var(--gold-glow), transparent);
     transform: translateY(-50%);
@@ -485,6 +485,8 @@
     font-size: 1.5rem;
     display: inline-block;
     animation: icon-pulse 2s ease-in-out infinite;
+    color: var(--gold-glow);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
 }
 
 @keyframes icon-pulse {
