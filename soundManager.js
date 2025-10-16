@@ -16,7 +16,8 @@ class SoundManager {
             reactFail: null,
             react01: null,
             react02: null,
-            flagflow: null
+            flagflow: null,
+            secrets: []
         };
 
         // Audio pools for frequently used sounds (to avoid delays)
@@ -86,6 +87,12 @@ class SoundManager {
         this.sounds.react01 = this.createFullyPreloadedAudio('Assets/Sounds/react01.wav', 0.6);
         this.sounds.react02 = this.createFullyPreloadedAudio('Assets/Sounds/react02.wav', 0.6);
         this.sounds.flagflow = this.createFullyPreloadedAudio('Assets/Sounds/flagflow.wav', 0.5);
+
+        // Secret unlock sounds for workshop achievements - need full preload for immediate playback
+        for (let i = 1; i <= 4; i++) {
+            const secretSound = this.createFullyPreloadedAudio(`Assets/Sounds/Unlocks/Secret${i}.wav`, 0.7);
+            this.sounds.secrets.push(secretSound);
+        }
 
         // Initialize available page sounds
         this.resetPageSoundPool();
@@ -607,6 +614,24 @@ class SoundManager {
         const release = this.sounds.release;
         release.currentTime = 0;
         release.play().catch(() => {});
+    }
+
+    // Play secret unlock sound for workshop achievements
+    // secretNumber: 1=Secret1.wav (H pattern), 2=Secret2.wav (O pattern),
+    //               3=Secret3.wav (Snake pattern), 4=Secret4.wav (All pattern)
+    playSecretUnlock(secretNumber) {
+        if (!this.audioReady) return;
+
+        if (secretNumber >= 1 && secretNumber <= 4) {
+            const secretSound = this.sounds.secrets[secretNumber - 1];
+
+            // Stop and reset the audio completely before playing
+            secretSound.pause();
+            secretSound.currentTime = 0;
+
+            // Play the sound
+            secretSound.play().catch(() => {});
+        }
     }
 }
 

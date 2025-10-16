@@ -25,14 +25,18 @@ const PATTERNS = {
         description: 'Drew an "H" with the flipped cards!',
         icon: '🅷',
         check: (flippedCards) => {
-            // H pattern: first and last columns + middle rows of middle columns
+            // H pattern: cards 1,5,9,6,7,4,8,12 (any order)
             const hPositions = [
-                '0-0', '1-0', '2-0',  // First column
-                '0-3', '1-3', '2-3',  // Last column
-                '0-1', '0-2',         // Top middle row
-                '2-1', '2-2'          // Bottom middle row
+                '0-0',  // Card 1
+                '1-0',  // Card 5
+                '2-0',  // Card 9
+                '1-1',  // Card 6
+                '1-2',  // Card 7
+                '0-3',  // Card 4
+                '1-3',  // Card 8
+                '2-3'   // Card 12
             ];
-            return hPositions.every(pos => flippedCards.has(pos)) && flippedCards.size === 10;
+            return hPositions.every(pos => flippedCards.has(pos)) && flippedCards.size === 8;
         }
     },
 
@@ -139,7 +143,7 @@ function checkPatterns(gameElements) {
 
         if (matched) {
             achievedPatterns.add(patternKey);
-            showAchievement(pattern);
+            showAchievement(pattern, patternKey);
 
             // Reset snake sequence after achieving
             if (patternKey === 'snake') {
@@ -149,7 +153,7 @@ function checkPatterns(gameElements) {
     }
 }
 
-function showAchievement(pattern) {
+function showAchievement(pattern, patternKey) {
     // Create achievement notification
     const achievement = document.createElement('div');
     achievement.className = 'workshop-achievement-notification';
@@ -164,9 +168,20 @@ function showAchievement(pattern) {
 
     document.body.appendChild(achievement);
 
-    // Play celebration sound if available
+    // Play secret unlock sound based on pattern
     if (window.soundManager) {
-        window.soundManager.playAchievementSound();
+        // Map pattern keys to secret sound numbers
+        const secretSoundMap = {
+            'h': 1,      // Secret1.wav for H pattern
+            'o': 2,      // Secret2.wav for O pattern
+            'snake': 3,  // Secret3.wav for Snake pattern
+            'all': 4     // Secret4.wav for All pattern
+        };
+
+        const secretNumber = secretSoundMap[patternKey];
+        if (secretNumber) {
+            window.soundManager.playSecretUnlock(secretNumber);
+        }
     }
 
     // Create rainbow particles

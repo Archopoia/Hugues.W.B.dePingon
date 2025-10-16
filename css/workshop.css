@@ -495,10 +495,11 @@
 /* Formats Grid */
 .formats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, 320px); /* Fixed width, auto-fit for columns */
     gap: 1.2rem;
     margin-bottom: 2rem;
     perspective: 1000px;
+    justify-content: center; /* Center the grid */
 }
 
 /* Format Cards - Exact copy of expertise-card structure */
@@ -590,7 +591,7 @@
     backface-visibility: hidden;
     transform: rotateY(180deg);
     border-radius: 15px;
-    background: var(--parchment-aged);
+    background: var(--parchment-light);
 }
 
 .format-card:hover .card-front,
@@ -876,31 +877,32 @@
 /* Game Development Elements - Responsive grid layout */
 .game-elements-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr); /* 4 columns on desktop */
     gap: 0.8rem;
     margin-bottom: 2rem;
     perspective: 1000px;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
+    justify-content: center; /* Center the grid */
 }
 
-/* Responsive breakpoints for different column counts */
+/* Responsive breakpoints - cards maintain fixed size, just change column count */
 @media screen and (max-width: 1200px) {
     .game-elements-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr); /* Keep 4 columns on laptop screens */
     }
 }
 
 @media screen and (max-width: 900px) {
     .game-elements-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr); /* 3 columns on tablets */
     }
 }
 
 @media screen and (max-width: 600px) {
     .game-elements-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
     }
 }
 
@@ -1315,7 +1317,7 @@
     }
 
     .formats-grid {
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        grid-template-columns: repeat(auto-fit, 300px); /* Fixed width on tablet */
     }
 
     .values-grid {
@@ -1323,7 +1325,7 @@
     }
 
     .game-elements-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(auto-fit, 200px);
     }
 }
 
@@ -1421,31 +1423,32 @@
     }
 
     .game-element {
-        aspect-ratio: 1 / 1.3;
-        min-height: 200px;
-        max-height: 250px;
+        aspect-ratio: 1 / 1.1;
+        min-height: 180px;
     }
 
+    /* Keep icon and title sizes consistent - don't shrink */
     .game-element .game-icon {
-        width: 50px;
-        height: 50px;
-        margin-bottom: 0.4rem;
+        width: 100px;
+        height: 100px;
+        margin-bottom: 1rem;
     }
 
     .game-element .game-icon i {
-        font-size: 1.4rem;
+        font-size: 2.5rem;
     }
 
     .game-element h4 {
-        font-size: 1rem;
-        line-height: 1.2;
-        margin-bottom: 0.3rem;
+        font-size: 1.8rem;
+        text-align: center;
+        margin: 0;
     }
 
     .game-element .card-back p {
-        font-size: 1rem;
-        line-height: 1.3;
+        font-size: 1.2rem;
+        line-height: 1.4;
         width: 100%;
+        text-align: center;
     }
 
     .tools-list {
