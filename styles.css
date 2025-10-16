@@ -48,6 +48,9 @@
 /* Workshop - Workshop Section and Seal Button */
 @import url('css/workshop.css');
 
+/* Workshop Achievements - Card Pattern Secret Achievements */
+@import url('css/workshop-achievements.css');
+
 /* Animations - All Keyframe Animations */
 @import url('css/animations.css');
 
@@ -75,7 +78,10 @@
  * - portfolio.css:    Portfolio grid and project cards
  * - skills.css:       Skills sections, attributes, languages
  * - contact.css:      Contact tab, quest forms, social platforms
+ * - workshop.css:     Workshop section and seal button
+ * - workshop-achievements.css: Workshop card pattern achievements
  * - animations.css:   All keyframe animations
  * - achievements.css: Secret achievements and Easter eggs
+ * - lazy-load.css:    Performance optimizations for media
  * - responsive.css:   Media queries for responsive design
  */

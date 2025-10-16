@@ -10,15 +10,28 @@ const FLIP_SOUND_DELAY = 200; // 200ms minimum between sounds
 // Performance: Store card states in WeakMap for better memory management
 const cardStates = new WeakMap();
 
+// Touch state management for mobile card flipping
+let touchStartTime = 0;
+let touchStartCard = null;
+const TOUCH_DELAY = 150; // 150ms minimum touch duration to trigger flip
+
 export function initializeFlipSounds() {
     // Performance: Use event delegation on document instead of individual listeners
     // Remove old listeners if they exist
     document.removeEventListener('mouseenter', handleCardMouseEnter, true);
     document.removeEventListener('mouseleave', handleCardMouseLeave, true);
+    document.removeEventListener('touchstart', handleCardTouchStart, { passive: true });
+    document.removeEventListener('touchend', handleCardTouchEnd, { passive: true });
+    document.removeEventListener('touchcancel', handleCardTouchCancel, { passive: true });
 
     // Add delegated event listeners (capture phase for better performance)
     document.addEventListener('mouseenter', handleCardMouseEnter, true);
     document.addEventListener('mouseleave', handleCardMouseLeave, true);
+
+    // Add touch event listeners for mobile card flipping
+    document.addEventListener('touchstart', handleCardTouchStart, { passive: true });
+    document.addEventListener('touchend', handleCardTouchEnd, { passive: true });
+    document.addEventListener('touchcancel', handleCardTouchCancel, { passive: true });
 }
 
 function handleCardMouseEnter(e) {
@@ -28,6 +41,72 @@ function handleCardMouseEnter(e) {
     const card = element.closest('.expertise-card, .academic-stat, .format-card, .game-element');
     if (!card) return;
 
+    // Use unified flip function
+    flipCard(card);
+}
+
+function handleCardMouseLeave(e) {
+    const element = getElementFromTarget(e.target);
+    if (!element) return;
+
+    const card = element.closest('.expertise-card, .academic-stat, .format-card, .game-element');
+    if (!card) return;
+
+    const state = cardStates.get(card);
+    if (!state) return;
+
+    // Wait 2 seconds before unflipping
+    state.unflipTimeout = setTimeout(() => {
+        if (!card.matches(':hover')) {
+            card.classList.remove('flipped');
+            state.isFlipping = false;
+            if (state.flipTimeout) clearTimeout(state.flipTimeout);
+        }
+    }, 2000); // 2 second delay
+}
+
+function playFlipSoundOnHover() {
+    if (window.soundManager) {
+        window.soundManager.playRandomFlipSound();
+    }
+}
+
+// Touch event handlers for mobile card flipping
+function handleCardTouchStart(e) {
+    const element = getElementFromTarget(e.target);
+    if (!element) return;
+
+    const card = element.closest('.expertise-card, .academic-stat, .format-card, .game-element');
+    if (!card) return;
+
+    // Store touch start info
+    touchStartTime = Date.now();
+    touchStartCard = card;
+}
+
+function handleCardTouchEnd(e) {
+    if (!touchStartCard) return;
+
+    const touchDuration = Date.now() - touchStartTime;
+
+    // Only flip if touch was long enough (prevents accidental flips during scrolling)
+    if (touchDuration >= TOUCH_DELAY) {
+        flipCard(touchStartCard);
+    }
+
+    // Reset touch state
+    touchStartTime = 0;
+    touchStartCard = null;
+}
+
+function handleCardTouchCancel(e) {
+    // Reset touch state on cancel
+    touchStartTime = 0;
+    touchStartCard = null;
+}
+
+// Unified card flipping function
+function flipCard(card) {
     // Get or create card state
     let state = cardStates.get(card);
     if (!state) {
@@ -56,32 +135,16 @@ function handleCardMouseEnter(e) {
         state.flipTimeout = setTimeout(() => {
             state.isFlipping = false;
         }, 600);
-    }
-}
 
-function handleCardMouseLeave(e) {
-    const element = getElementFromTarget(e.target);
-    if (!element) return;
-
-    const card = element.closest('.expertise-card, .academic-stat, .format-card, .game-element');
-    if (!card) return;
-
-    const state = cardStates.get(card);
-    if (!state) return;
-
-    // Wait 2 seconds before unflipping
-    state.unflipTimeout = setTimeout(() => {
-        if (!card.matches(':hover')) {
-            card.classList.remove('flipped');
-            state.isFlipping = false;
-            if (state.flipTimeout) clearTimeout(state.flipTimeout);
-        }
-    }, 2000); // 2 second delay
-}
-
-function playFlipSoundOnHover() {
-    if (window.soundManager) {
-        window.soundManager.playRandomFlipSound();
+        // Auto-unflip delay (2 seconds for desktop, 3 seconds for mobile)
+        const unflipDelay = window.innerWidth <= 768 ? 3000 : 2000;
+        state.unflipTimeout = setTimeout(() => {
+            if (!card.matches(':hover')) {
+                card.classList.remove('flipped');
+                state.isFlipping = false;
+                if (state.flipTimeout) clearTimeout(state.flipTimeout);
+            }
+        }, unflipDelay);
     }
 }
 

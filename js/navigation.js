@@ -6,6 +6,7 @@ import { initializeContactMethods } from './forms.js';
 import { initializeEducationNavigation, initializeAlpineEducationVideo } from './media.js';
 import { initializeRandomCardFlip } from './animations.js';
 import { initializeFlipSounds } from './animations.js';
+import { initializeWorkshopAchievements } from './workshop-achievements.js';
 
 let skipWorkshopAnimation = false;
 let finalRotation = 0;
@@ -61,6 +62,7 @@ export async function loadSection(sectionName) {
                     }
                     if (sectionName === 'workshop') {
                         initializeRandomCardFlip();
+                        initializeWorkshopAchievements();
                     }
 
                     // Initialize flip sounds for any flippable cards in this section
