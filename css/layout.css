@@ -33,6 +33,20 @@
     transform: perspective(1000px) rotateX(0deg) scale(1.01);
 }
 
+/* Remove transform on mobile to allow fixed positioning to work for workshop button */
+@media screen and (max-width: 968px) {
+    .character-sheet {
+        transform: none !important; /* Remove transform so position:fixed works correctly */
+        margin: 0; /* Full width on mobile */
+        border-left: none;
+        border-right: none;
+    }
+
+    .character-sheet:hover {
+        transform: none !important; /* Keep it flat on mobile */
+    }
+}
+
 .character-sheet::before {
     content: '';
     position: absolute;

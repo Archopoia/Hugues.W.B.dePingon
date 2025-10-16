@@ -149,6 +149,12 @@
     filter: brightness(0.95);
 }
 
+/* Disable button when on workshop tab (invisible and unclickable) */
+.workshop-seal-button.on-workshop-tab {
+    pointer-events: none !important;
+    cursor: default !important;
+}
+
 /* Pulse effect when pressing */
 .workshop-seal-button::after {
     content: '';
@@ -773,13 +779,20 @@
     }
 }
 
+/* Mobile and Tablet - Fixed workshop button for smaller screens */
+/* This catches devices/emulators up to 968px (tablet/phone width) */
 @media screen and (max-width: 968px) {
+    /* Workshop seal button - FIXED to screen on mobile/tablet (sticks and follows scroll) */
     .workshop-seal-button {
-        left: 10px;
-        top: 350px;
-        width: 100px;
-        height: 100px;
-        z-index: 9999;
+        position: fixed !important;
+        left: 1rem !important;
+        bottom: 1rem !important;
+        top: auto !important;
+        right: auto !important;
+        transform: none !important;
+        width: 90px !important;
+        height: 90px !important;
+        z-index: 999 !important;
     }
 
     .seal-icon {
@@ -791,7 +804,22 @@
     }
 }
 
+/* Extra small mobile screens - adjust sizing */
 @media screen and (max-width: 600px) {
+    .workshop-seal-button {
+        width: 80px !important;
+        height: 80px !important;
+    }
+
+    .seal-icon {
+        font-size: 1.6rem;
+    }
+
+    .seal-line1,
+    .seal-line2 {
+        font-size: 0.55rem;
+    }
+
     .workshop-title {
         font-size: 1.8rem;
     }
