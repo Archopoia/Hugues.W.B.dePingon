@@ -136,31 +136,92 @@ export async function switchTab(targetTab) {
 
         // Animate the workshop seal button (puff out) and change colors gradually
         if (workshopSealBtn) {
-            // Clear any conflicting styles and set rotation CSS variable
+            console.log(`🟣 [Navigation] Starting puff-out animation`);
+            console.log(`🟣 [Navigation] Final rotation from state: ${finalRotation}°`);
+            
+            // Check for leftover Web Animations
+            const activeAnimations = workshopSealBtn.getAnimations();
+            console.log(`🟣 [Navigation] Active animations on button:`, activeAnimations.length);
+            if (activeAnimations.length > 0) {
+                console.log(`🟣 [Navigation] Cancelling ${activeAnimations.length} active animations`);
+                activeAnimations.forEach(anim => anim.cancel());
+            }
+            
+            // Clear any conflicting styles except rotation (keep button at rotated position)
             workshopSealBtn.style.transition = 'none';
-            workshopSealBtn.style.transform = '';
             workshopSealBtn.style.filter = '';
             workshopSealBtn.style.opacity = '';
+            workshopSealBtn.style.animation = ''; // Clear any CSS animations
+            
+            // Check current transform before modifying
+            console.log(`🟣 [Navigation] Button transform BEFORE:`, workshopSealBtn.style.transform);
+            console.log(`🟣 [Navigation] Button CSS variable BEFORE:`, getComputedStyle(workshopSealBtn).getPropertyValue('--button-rotation'));
+            console.log(`🟣 [Navigation] Computed transform BEFORE:`, getComputedStyle(workshopSealBtn).transform);
+
+            // Set/update rotation CSS variable (may already be set from workshop-seal.js)
             workshopSealBtn.style.setProperty('--button-rotation', `${finalRotation}deg`);
+
+            // CRITICAL: Set transform to actual value, not CSS variable reference
+            // Web Animations API needs a concrete starting point
+            workshopSealBtn.style.transform = `scale(1) rotate(${finalRotation}deg)`;
+
+            console.log(`🟣 [Navigation] Button transform AFTER:`, workshopSealBtn.style.transform);
+            console.log(`🟣 [Navigation] Button CSS variable AFTER:`, getComputedStyle(workshopSealBtn).getPropertyValue('--button-rotation'));
+            console.log(`🟣 [Navigation] Computed transform:`, getComputedStyle(workshopSealBtn).transform);
 
             // Force a reflow to ensure styles are applied
             workshopSealBtn.offsetHeight;
 
             workshopSealBtn.classList.add('on-workshop-tab');
 
-            // Use requestAnimationFrame to ensure animation starts
+            // Use Web Animations API to animate while preserving rotation
             requestAnimationFrame(() => {
-                // Apply animation with rotation via CSS variable
-                workshopSealBtn.style.animation = 'puff-out-center 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) both';
+                console.log(`🟣 [Navigation] Applying puff-out animation with Web Animations API`);
+                console.log(`🟣 [Navigation] Animation FROM: scale(1) rotate(${finalRotation}deg)`);
+                console.log(`🟣 [Navigation] Animation TO: scale(2) rotate(${finalRotation}deg)`);
 
-                // After animation completes, lock in the final state with rotation
-                setTimeout(() => {
+                // Check computed style right before animation
+                const computedBefore = getComputedStyle(workshopSealBtn);
+                console.log(`🟣 [Navigation] Computed transform at animation start:`, computedBefore.transform);
+                console.log(`🟣 [Navigation] Computed filter:`, computedBefore.filter);
+                console.log(`🟣 [Navigation] Computed opacity:`, computedBefore.opacity);
+
+                // Use Web Animations API instead of CSS animation (CSS variables don't work in @keyframes)
+                const puffOutAnimation = workshopSealBtn.animate([
+                    {
+                        transform: `scale(1) rotate(${finalRotation}deg)`,
+                        filter: 'blur(0px)',
+                        opacity: 1
+                    },
+                    {
+                        transform: `scale(2) rotate(${finalRotation}deg)`,
+                        filter: 'blur(4px)',
+                        opacity: 0
+                    }
+                ], {
+                    duration: 1000,
+                    easing: 'cubic-bezier(0.165, 0.840, 0.440, 1.000)',
+                    fill: 'both'
+                });
+
+                console.log(`🟣 [Navigation] Animation object created:`, puffOutAnimation);
+                console.log(`🟣 [Navigation] Animation playState:`, puffOutAnimation.playState);
+
+                // After animation completes, lock in the final state
+                puffOutAnimation.onfinish = () => {
+                    console.log(`🟣 [Navigation] Puff-out animation complete, locking final state`);
+                    console.log(`🟣 [Navigation] Final locked rotation: ${finalRotation}°`);
+                    
+                    // Cancel the animation to free up resources
+                    puffOutAnimation.cancel();
+                    
                     // Lock the final state explicitly with rotation preserved
                     workshopSealBtn.style.transform = `scale(2) rotate(${finalRotation}deg)`;
                     workshopSealBtn.style.filter = 'blur(4px)';
                     workshopSealBtn.style.opacity = '0';
-                    workshopSealBtn.style.animation = '';
-                }, 1000);
+                    
+                    console.log(`🟣 [Navigation] Locked transform:`, workshopSealBtn.style.transform);
+                };
             });
         }
 
@@ -173,27 +234,52 @@ export async function switchTab(targetTab) {
 
         // Animate the workshop seal button back (puff in reverse)
         if (workshopSealBtn && workshopSealBtn.classList.contains('on-workshop-tab')) {
-            // Reset rotation to 0 before puff-in animation
-            workshopSealBtn.style.setProperty('--button-rotation', '0deg');
-            workshopSealBtn.style.transform = 'scale(2) rotate(0deg)'; // Reset rotation but keep scale
+            console.log(`🟣 [Navigation] Starting puff-in (reverse) animation`);
 
-            // Force reflow
-            workshopSealBtn.offsetHeight;
+            // The button is currently at scale(2) rotate(finalRotation) blur(4px) opacity(0)
+            // Animate back to normal state, rotating back to 0
+            const currentRotation = finalRotation; // Store current rotation
 
-            // The button is currently at scale(2) rotate(0) blur(4px) opacity(0)
-            // Start from the locked final state and animate back
-            workshopSealBtn.style.animation = 'puff-out-center 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) reverse both';
+            // Use Web Animations API for reverse animation
+            const puffInAnimation = workshopSealBtn.animate([
+                {
+                    transform: `scale(2) rotate(${currentRotation}deg)`,
+                    filter: 'blur(4px)',
+                    opacity: 0
+                },
+                {
+                    transform: 'scale(1) rotate(0deg)',
+                    filter: 'blur(0px)',
+                    opacity: 1
+                }
+            ], {
+                duration: 1000,
+                easing: 'cubic-bezier(0.165, 0.840, 0.440, 1.000)',
+                fill: 'both'
+            });
 
             // After reverse animation completes, restore normal state
-            setTimeout(() => {
+            puffInAnimation.onfinish = () => {
+                console.log(`🟣 [Navigation] Puff-in animation complete, restoring normal state`);
+                
+                // Cancel the animation explicitly to free up state
+                puffInAnimation.cancel();
+                
+                // Remove class and clear ALL inline styles
                 workshopSealBtn.classList.remove('on-workshop-tab');
-                workshopSealBtn.style.animation = '';
                 workshopSealBtn.style.transform = '';
                 workshopSealBtn.style.filter = '';
                 workshopSealBtn.style.opacity = '';
+                workshopSealBtn.style.transition = '';
+                workshopSealBtn.style.animation = '';
+                workshopSealBtn.style.willChange = '';
                 workshopSealBtn.style.removeProperty('--button-rotation');
+                
                 finalRotation = 0; // Reset rotation for next time
-            }, 1000);
+                
+                console.log(`🟣 [Navigation] Button fully reset, inline transform:`, workshopSealBtn.style.transform);
+                console.log(`🟣 [Navigation] Computed transform after reset:`, getComputedStyle(workshopSealBtn).transform);
+            };
         } else if (workshopSealBtn) {
             workshopSealBtn.classList.remove('on-workshop-tab');
             workshopSealBtn.style.removeProperty('--button-rotation');

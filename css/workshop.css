@@ -1224,7 +1224,7 @@
         bottom: 1rem !important;
         top: auto !important;
         right: auto !important;
-        transform: none !important;
+        /* transform: none !important; */ /* REMOVED - was blocking rotation animation */
         width: 90px !important;
         height: 90px !important;
         z-index: 999 !important;
