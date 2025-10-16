@@ -134,6 +134,12 @@ const translations = {
         "workshop-cta-desc": "Contact me to discuss your needs and book your workshop.",
         "workshop-cta-button": "Contact Me",
 
+        // Achievement System
+        "achievement-secret-title": "Secret Discovered!",
+        "achievement-secret-subtitle": "\"The Designer's Code\"",
+        "achievement-secret-text": "You have discovered the hidden sequence. A designer sees and creates patterns everywhere.",
+        "achievement-code-title": "Code Reconfirmed",
+
         // About Section
         "mission-vision": "Mission & Vision",
         "mission-text-1": "I identify the needs and expectations of diverse audiences - from business executives to neurodivergent children - and design systems and worlds that embody organizational vision through selective and rewarding processes.",
@@ -699,6 +705,12 @@ const translations = {
         "workshop-cta-title": "Prêt à créer votre premier jeu vidéo ?",
         "workshop-cta-desc": "Contactez-moi pour discuter de vos besoins et réserver votre atelier.",
         "workshop-cta-button": "Me Contacter",
+
+        // Achievement System
+        "achievement-secret-title": "Secret Découvert !",
+        "achievement-secret-subtitle": "\"Le Code du Designer\"",
+        "achievement-secret-text": "Vous avez découvert la séquence cachée. Un designer voit et crée des motifs partout.",
+        "achievement-code-title": "Code Reconfirmé",
 
         // About Section
         "mission-vision": "Mission & Vision",

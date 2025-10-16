@@ -346,3 +346,64 @@
     animation: langSwitch 0.3s ease;
 }
 
+/* Enter Portfolio Button - Styled like Active Tab Button */
+#enter-archives-btn {
+    /* Image 1: Dark reddish-brown background with cream text and multi-layered borders */
+    background: var(--red-theme) !important;
+    border: 2px solid var(--border-dark) !important;
+    border-radius: 3px !important;
+    color: var(--text-light) !important;
+    padding: 1rem 2rem !important;
+    cursor: pointer !important;
+    transition: all var(--transition-speed) ease !important;
+    font-family: 'Quintessential', cursive !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+    position: relative !important;
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 3px var(--gold-glow),
+        0 0 0 4px var(--red-theme),
+        0 4px 6px rgba(0, 0, 0, 0.2) !important;
+    z-index: 1 !important;
+}
+
+#enter-archives-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 30% 30%, rgba(184, 134, 11, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(184, 134, 11, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Image 2: Light cream background with dark brown text and simple border */
+#enter-archives-btn:hover {
+    background: var(--text-light) !important;
+    border: 2px solid var(--border-dark) !important;
+    color: var(--text-dark) !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Image 3: Light cream background with dark brown text and border (clicked/active) */
+#enter-archives-btn:active {
+    background: var(--text-light) !important;
+    border: 2px solid var(--border-dark) !important;
+    color: var(--text-dark) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    transform: translateY(0) !important;
+}
+
+/* Debug: Remove any inherited styles that might cause orange appearance */
+#enter-archives-btn * {
+    background: inherit !important;
+    color: inherit !important;
+    border: none !important;
+}
+

@@ -394,16 +394,16 @@ document.addEventListener('DOMContentLoaded', function() {
             achievement.appendChild(icon);
 
             const title = document.createElement('h3');
-            title.textContent = 'Secret Découvert !';
+            title.textContent = getTranslation('achievement-secret-title');
             achievement.appendChild(title);
 
             const subtitle = document.createElement('p');
-            subtitle.textContent = '"Le Code du Designer"';
+            subtitle.textContent = getTranslation('achievement-secret-subtitle');
             achievement.appendChild(subtitle);
 
             const text = document.createElement('p');
             text.className = 'achievement-subtext';
-            text.textContent = 'Tu as découvert la séquence cachée. Nous, les designers, voyons et créons des motifs partout.';
+            text.textContent = getTranslation('achievement-secret-text');
             achievement.appendChild(text);
 
             // Create particle effects
@@ -416,12 +416,12 @@ document.addEventListener('DOMContentLoaded', function() {
             achievement.appendChild(icon);
 
             const title = document.createElement('h3');
-            title.textContent = 'Code Confirmé';
+            title.textContent = getTranslation('achievement-code-title');
             achievement.appendChild(title);
 
             const text = document.createElement('p');
             text.className = 'achievement-subtext';
-            text.textContent = 'Tu te souviens bien de la séquence.';
+            text.textContent = '';
             achievement.appendChild(text);
         }
 
