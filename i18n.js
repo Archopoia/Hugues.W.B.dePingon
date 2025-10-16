@@ -95,7 +95,7 @@ const translations = {
         "value-personal-title": "Discover Your Talents",
         "value-personal-desc": "Identify your strengths: artist, designer, programmer, project manager.",
 
-        "workshop-structure-title": "What We'll Create Together",
+        "workshop-structure-title": "What YOU Will Create",
 
         // Game Element Cards (12 cards)
         "element-concept-title": "Game Idea",
@@ -115,7 +115,7 @@ const translations = {
         "element-polish-title": "Polish",
         "element-polish-desc": "Refine the details to make the game awesome",
         "element-levels-title": "Levels",
-        "element-levels-desc": "Design the scenery and game environment",
+        "element-levels-desc": "Design and plan the scenery and game environment",
         "element-objectives-title": "Objectives",
         "element-objectives-desc": "Define how to win, lose and score points",
         "element-audio-title": "Audio",
@@ -693,7 +693,7 @@ const translations = {
         "value-personal-title": "Découverte de Vos Talents",
         "value-personal-desc": "Identifiez vos forces : artiste, designer, programmeur, chef de projet.",
 
-        "workshop-structure-title": "Ce Qu'On Va Créer",
+        "workshop-structure-title": "Ce que VOUS allez Créer",
 
         // Game Element Cards (12 cards)
         "element-concept-title": "Idée du Jeu",
@@ -713,7 +713,7 @@ const translations = {
         "element-polish-title": "Finition",
         "element-polish-desc": "Peaufiner les détails pour rendre le jeu génial",
         "element-levels-title": "Niveaux",
-        "element-levels-desc": "Dessiner les décors et l'environnement du jeu",
+        "element-levels-desc": "Dessiner et planifier les décors et l'environnement du jeu",
         "element-objectives-title": "Objectifs",
         "element-objectives-desc": "Définir comment gagner, perdre et marquer des points",
         "element-audio-title": "Sons",
