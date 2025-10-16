@@ -92,6 +92,13 @@
     user-select: none;
     -webkit-user-select: none;
     background: transparent;
+    opacity: 0; /* Hidden initially until entrance screen is dismissed */
+    transition: opacity 1s ease-in-out;
+}
+
+/* Show button after entrance */
+.workshop-seal-button.visible {
+    opacity: 1;
 }
 
 /* Background image layer - darkened */

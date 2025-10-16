@@ -683,7 +683,15 @@ window.addEventListener('DOMContentLoaded', () => {
         // Fade out the static loader
         if (staticLoader) {
             staticLoader.style.animation = 'fadeOut 1.5s ease-in-out forwards';
-            setTimeout(() => staticLoader.remove(), 1500);
+            setTimeout(() => {
+                staticLoader.remove();
+
+                // Show workshop button and language switcher after entrance screen is gone
+                const workshopButton = document.querySelector('.workshop-seal-button');
+                const languageSwitcher = document.querySelector('.language-switcher');
+                if (workshopButton) workshopButton.classList.add('visible');
+                if (languageSwitcher) languageSwitcher.classList.add('visible');
+            }, 1500);
         }
 
         // Create an array of unlock promises for all pooled audio

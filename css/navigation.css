@@ -290,6 +290,13 @@
     right: 1.5rem;
     z-index: 999;
     pointer-events: none;
+    opacity: 0; /* Hidden initially until entrance screen is dismissed */
+    transition: opacity 1s ease-in-out;
+}
+
+/* Show language switcher after entrance */
+.language-switcher.visible {
+    opacity: 1;
 }
 
 .language-switcher .lang-btn {

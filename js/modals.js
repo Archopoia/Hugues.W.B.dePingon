@@ -55,10 +55,6 @@ function isMobileDevice() {
 
 // PDF Modal
 export function openFullPDF(pdfType) {
-    const modal = document.getElementById('modal-overlay');
-    const modalTitle = document.getElementById('modal-title');
-    const modalBody = document.getElementById('modal-body');
-
     const pdfSources = {
         'biocracy': {
             title: 'BIOCRACY - A Nietzschean Alignment',
@@ -91,70 +87,42 @@ export function openFullPDF(pdfType) {
     };
 
     const pdf = pdfSources[pdfType];
-    if (pdf) {
-        modalTitle.textContent = pdf.title;
-        modalBody.innerHTML = '';
+    if (!pdf) return;
 
-        if (isMobileDevice()) {
-            // For mobile: Create a download/open link instead of iframe
-            const container = document.createElement('div');
-            container.className = 'mobile-pdf-container';
-            container.style.cssText = 'display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px; text-align: center; gap: 20px;';
-
-            const message = document.createElement('p');
-            message.textContent = 'PDFs cannot be displayed in-browser on mobile devices.';
-            message.style.cssText = 'color: #d4af37; font-size: 16px; margin-bottom: 10px;';
-
-            const link = document.createElement('a');
-            link.href = pdf.src;
-            link.download = pdf.src.split('/').pop(); // Get filename from path
-            link.target = '_blank';
-            link.rel = 'noopener noreferrer';
-            link.className = 'pdf-mobile-button';
-            link.style.cssText = 'display: inline-block; background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%); color: #1a1410; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); transition: all 0.3s;';
-            link.innerHTML = '<i class="fas fa-file-pdf" style="margin-right: 10px;"></i> Open PDF';
-
-            // Add hover effect
-            link.addEventListener('mouseenter', () => {
-                link.style.background = 'linear-gradient(135deg, #e5c047 0%, #c9a52f 100%)';
-                link.style.transform = 'scale(1.05)';
-            });
-            link.addEventListener('mouseleave', () => {
-                link.style.background = 'linear-gradient(135deg, #d4af37 0%, #b8941f 100%)';
-                link.style.transform = 'scale(1)';
-            });
-
-            const subtext = document.createElement('p');
-            subtext.textContent = 'The PDF will open in your device\'s native viewer.';
-            subtext.style.cssText = 'color: #8B7355; font-size: 14px; font-style: italic;';
-
-            container.appendChild(message);
-            container.appendChild(link);
-            container.appendChild(subtext);
-            modalBody.appendChild(container);
-        } else {
-            // For desktop: Create iframe element safely
-            const iframe = document.createElement('iframe');
-            iframe.className = 'modal-pdf';
-            iframe.src = pdf.src + '#toolbar=1&navpanes=1&scrollbar=1';
-            iframe.frameBorder = '0';
-
-            // Add error handling to prevent console errors
-            iframe.onload = function() {
-                // PDF loaded successfully
-            };
-
-            iframe.onerror = function() {
-                // Handle PDF loading errors silently
-                console.warn('PDF loading error handled silently');
-            };
-
-            modalBody.appendChild(iframe);
-        }
-
-        modal.style.display = 'flex';
-        modal.style.animation = 'fadeIn 0.3s ease-in-out';
+    // On mobile: directly open PDF in new tab (don't show modal)
+    if (isMobileDevice()) {
+        window.open(pdf.src, '_blank', 'noopener,noreferrer');
+        return;
     }
+
+    // On desktop: show modal with iframe (keeps user on the website)
+    const modal = document.getElementById('modal-overlay');
+    const modalTitle = document.getElementById('modal-title');
+    const modalBody = document.getElementById('modal-body');
+
+    modalTitle.textContent = pdf.title;
+    modalBody.innerHTML = '';
+
+    // Create iframe element to display PDF within the website
+    const iframe = document.createElement('iframe');
+    iframe.className = 'modal-pdf';
+    iframe.src = pdf.src + '#toolbar=1&navpanes=1&scrollbar=1';
+    iframe.frameBorder = '0';
+
+    // Add error handling to prevent console errors
+    iframe.onload = function() {
+        // PDF loaded successfully
+    };
+
+    iframe.onerror = function() {
+        // Handle PDF loading errors silently
+        console.warn('PDF loading error handled silently');
+    };
+
+    modalBody.appendChild(iframe);
+
+    modal.style.display = 'flex';
+    modal.style.animation = 'fadeIn 0.3s ease-in-out';
 }
 
 // Image Gallery Modal
