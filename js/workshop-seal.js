@@ -83,11 +83,11 @@ async function startPress(e) {
     // Preload workshop content if not loaded
     await loadSection('workshop');
 
-    // Check if on smaller screen - add mobile preview animation
+    // Check if on smaller screen for scrolling behavior
     const isMobileView = window.innerWidth <= 968;
 
+    // On mobile, scroll to navigation tabs on press
     if (isMobileView) {
-        // Immediately scroll to navigation tabs on press
         const sheetTabs = document.querySelector('.sheet-tabs');
         if (sheetTabs) {
             sheetTabs.scrollIntoView({
@@ -95,164 +95,12 @@ async function startPress(e) {
                 block: 'start'
             });
         }
-
-        // Re-get the workshop tab reference after loading (in case DOM was modified)
-        activeWorkshopTab = document.getElementById('workshop');
-
-        // Show workshop tab for preview on mobile
-        if (activeWorkshopTab) {
-            const sheetContent = document.querySelector('.sheet-content');
-            const characterSheet = document.querySelector('.character-sheet');
-
-            if (sheetContent) {
-                sheetContent.style.perspective = '2000px';
-                sheetContent.style.perspectiveOrigin = 'center top';
-            }
-
-            // Store original height to restore later
-            if (sheetContent && !sheetContent.dataset.originalMinHeight) {
-                sheetContent.dataset.originalMinHeight = window.getComputedStyle(sheetContent).minHeight;
-            }
-            if (characterSheet && !characterSheet.dataset.originalMinHeight) {
-                characterSheet.dataset.originalMinHeight = window.getComputedStyle(characterSheet).minHeight;
-            }
-
-            // Hide all other tabs temporarily
-            const allTabs = document.querySelectorAll('.tab-content');
-            allTabs.forEach(tab => {
-                if (tab !== activeWorkshopTab && tab.classList.contains('active')) {
-                    tab.style.opacity = '0.3';
-                    tab.style.pointerEvents = 'none';
-                }
-            });
-
-            activeWorkshopTab.style.display = 'block';
-            activeWorkshopTab.style.pointerEvents = 'none';
-            activeWorkshopTab.style.animation = 'none';
-            activeWorkshopTab.style.position = 'absolute';
-            activeWorkshopTab.style.top = '0';
-            activeWorkshopTab.style.left = '0';
-            activeWorkshopTab.style.width = '100%';
-            activeWorkshopTab.style.zIndex = '10';
-            activeWorkshopTab.style.transformStyle = 'preserve-3d';
-            activeWorkshopTab.style.minHeight = '500px';
-
-            // Apply workshop burgundy background with patterns
-            activeWorkshopTab.style.background = `
-                radial-gradient(circle at 20% 20%, rgba(100, 48, 48, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(100, 48, 48, 0.3) 0%, transparent 50%),
-                linear-gradient(135deg, var(--red-theme-alpha) 0%, var(--red-theme) 50%)
-            `;
-            activeWorkshopTab.style.backgroundColor = 'var(--parchment-light)';
-            activeWorkshopTab.style.boxShadow = 'inset 0 0 0 2px var(--border-tan)';
-
-            // Add the diagonal hatched lines pattern as an overlay
-            const workshopOverlay = document.createElement('div');
-            workshopOverlay.id = 'workshop-preview-overlay';
-            workshopOverlay.style.cssText = `
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: repeating-linear-gradient(
-                    45deg,
-                    transparent,
-                    transparent 20px,
-                    rgba(184, 134, 11, 0.1) 20px,
-                    rgba(184, 134, 11, 0.1) 21px
-                );
-                pointer-events: none;
-                z-index: 0;
-            `;
-            activeWorkshopTab.insertBefore(workshopOverlay, activeWorkshopTab.firstChild);
-
-            // Ensure all content inside has proper z-index
-            const contentChildren = activeWorkshopTab.children;
-            for (let i = 0; i < contentChildren.length; i++) {
-                if (contentChildren[i].id !== 'workshop-preview-overlay') {
-                    contentChildren[i].style.position = 'relative';
-                    contentChildren[i].style.zIndex = '2';
-                }
-            }
-
-            // Start with fully hidden state for mobile - fade in instead of slide
-            activeWorkshopTab.style.transform = 'scale(0.9)';
-            activeWorkshopTab.style.transformOrigin = 'center';
-            activeWorkshopTab.style.opacity = '0';
-            activeWorkshopTab.style.backfaceVisibility = 'hidden';
-
-            // Expand the parent containers
-            const workshopHeight = activeWorkshopTab.offsetHeight;
-            if (sheetContent && workshopHeight > 0) {
-                sheetContent.style.minHeight = workshopHeight + 'px';
-            }
-            if (characterSheet && workshopHeight > 0) {
-                characterSheet.style.minHeight = (workshopHeight + 64) + 'px';
-            }
-
-        }
-
-        // Mobile animation loop with workshop preview
-        let lastTimestamp = performance.now();
-        function animateMobile(timestamp) {
-            const deltaTime = (timestamp - lastTimestamp) / 1000;
-            lastTimestamp = timestamp;
-
-            const pressDuration = (timestamp - pressStartTime) / 1000;
-
-            // Simple rotation animation
-            const baseSpeed = 200;
-            const acceleration = Math.pow(pressDuration + 0.5, 2.5) * 300;
-            rotationSpeed = Math.min(baseSpeed + acceleration, 3000);
-
-            currentRotation += rotationSpeed * deltaTime;
-
-            workshopSealButton.style.willChange = 'transform';
-            workshopSealButton.style.transform = `rotate(${currentRotation}deg)`;
-
-            // Update pulse effect
-            const pulseSpeed = Math.max(0.2, 1 - (pressDuration * 0.3));
-            const pulseScale = Math.min(1.5 + (pressDuration * 0.5), 3);
-            const pulseOpacity = Math.min(0.6 + (pressDuration * 0.1), 0.9);
-
-            workshopSealButton.style.setProperty('--pulse-speed', `${pulseSpeed}s`);
-            workshopSealButton.style.setProperty('--pulse-scale', pulseScale);
-            workshopSealButton.style.setProperty('--pulse-opacity', pulseOpacity);
-
-            const glowSpeed = Math.max(0.3, 2 - (pressDuration * 0.8));
-            workshopSealButton.style.setProperty('--glow-speed', `${glowSpeed}s`);
-
-            // Mobile workshop preview reveal - fade in with scale
-            if (activeWorkshopTab && activeWorkshopTab.parentElement) {
-                const revealProgress = Math.min(pressDuration / pullSoundDuration, 1);
-                const scale = 0.9 + (0.1 * revealProgress); // Scale from 0.9 to 1.0
-                const opacity = revealProgress; // Fade from 0 to 1
-
-                activeWorkshopTab.style.willChange = 'transform, opacity';
-                activeWorkshopTab.style.transform = `scale(${scale})`;
-                activeWorkshopTab.style.opacity = opacity;
-                activeWorkshopTab.style.transformOrigin = 'center';
-            }
-
-            if (pressStartTime > 0) {
-                rotationInterval = requestAnimationFrame(animateMobile);
-            } else {
-                workshopSealButton.style.willChange = 'auto';
-                if (activeWorkshopTab) {
-                    activeWorkshopTab.style.willChange = 'auto';
-                }
-            }
-        }
-
-        rotationInterval = requestAnimationFrame(animateMobile);
-        return; // Skip desktop preview animation
     }
 
     // Re-get the workshop tab reference after loading (in case DOM was modified)
     activeWorkshopTab = document.getElementById('workshop');
 
-    // Show workshop tab for preview (but not as active yet)
+    // Show workshop tab for preview (same logic for all screen sizes)
     if (activeWorkshopTab) {
         const sheetContent = document.querySelector('.sheet-content');
         const characterSheet = document.querySelector('.character-sheet');
@@ -329,7 +177,7 @@ async function startPress(e) {
             }
         }
 
-        // Start with fully hidden state
+        // Start with fully hidden state (same 3D rotation for all screen sizes)
         activeWorkshopTab.style.transform = 'rotateX(-70deg)';
         activeWorkshopTab.style.transformOrigin = 'top';
         activeWorkshopTab.style.opacity = '1';
@@ -345,7 +193,7 @@ async function startPress(e) {
         }
     }
 
-    // Start rotation animation using requestAnimationFrame
+    // Start rotation animation using requestAnimationFrame (same for all screen sizes)
     let lastTimestamp = performance.now();
     function animate(timestamp) {
         const deltaTime = (timestamp - lastTimestamp) / 1000;
@@ -375,7 +223,7 @@ async function startPress(e) {
         const glowSpeed = Math.max(0.3, 2 - (pressDuration * 0.8));
         workshopSealButton.style.setProperty('--glow-speed', `${glowSpeed}s`);
 
-        // Progressive reveal
+        // Progressive reveal (same 3D rotation for all screen sizes)
         if (activeWorkshopTab && activeWorkshopTab.parentElement) {
             const revealProgress = Math.min(pressDuration / pullSoundDuration, 1);
             const rotateX = -70 + (70 * revealProgress);
@@ -415,84 +263,8 @@ async function endPress(e) {
     const pressDuration = (performance.now() - pressStartTime) / 1000;
     const revealProgress = Math.min(pressDuration / pullSoundDuration, 1);
 
-    // Check if on smaller screen (mobile/tablet)
-    const isMobileView = window.innerWidth <= 968;
 
-    // On mobile, handle workshop preview completion
-    if (isMobileView) {
-
-        // Stop pull sound
-        if (window.soundManager) {
-            window.soundManager.stopPull(true);
-        }
-
-        // Check if animation is complete enough (at least 80% revealed)
-        const revealProgress = Math.min(pressDuration / pullSoundDuration, 1);
-
-        if (revealProgress < 0.8) {
-            // Reset button with quick spring-back
-            workshopSealButton.style.transition = 'transform 0.3s ease';
-            workshopSealButton.style.transform = 'scale(1) rotate(0deg)';
-            workshopSealButton.style.setProperty('--glow-speed', '2s');
-
-            // Reverse the workshop tab animation
-            if (activeWorkshopTab && !activeWorkshopTab.classList.contains('active')) {
-                cleanupWorkshopPreview(activeWorkshopTab, false);
-            }
-
-            // Reset state
-            pressStartTime = 0;
-            rotationSpeed = 0;
-            currentRotation = 0;
-            return;
-        }
-
-        // Play release sound on successful completion
-        if (window.soundManager) {
-            window.soundManager.playRelease();
-        }
-
-
-        // Store the final rotation
-        const finalRotation = currentRotation % 360;
-        setFinalRotation(finalRotation);
-
-        // Reset press state
-        pressStartTime = 0;
-        rotationSpeed = 0;
-        rotationInterval = null;
-
-        // Complete the tab reveal animation
-        if (activeWorkshopTab) {
-            const remainingProgress = 1 - revealProgress;
-            const completionDuration = remainingProgress * 300;
-
-            activeWorkshopTab.style.transition = `transform ${completionDuration}ms ease-out, opacity ${completionDuration}ms ease-out`;
-            activeWorkshopTab.style.transform = 'scale(1)';
-            activeWorkshopTab.style.opacity = '1';
-            activeWorkshopTab.style.pointerEvents = 'auto';
-        }
-
-        // Set flag to skip default animation
-        setSkipWorkshopAnimation(true);
-
-        if (activeWorkshopTab) {
-            activeWorkshopTab.style.setProperty('animation', 'none', 'important');
-        }
-
-        // Switch to workshop tab
-        const targetTab = workshopSealButton.getAttribute('data-tab');
-        await switchTab(targetTab);
-
-        // Clean up preview styles
-        if (activeWorkshopTab) {
-            cleanupWorkshopPreview(activeWorkshopTab, true);
-        }
-
-        return;
-    }
-
-    // Check if animation is complete enough (at least 80% revealed) - DESKTOP ONLY
+    // Check if animation is complete enough (at least 80% revealed)
     if (revealProgress < 0.8) {
         // Stop pull sound and play in reverse
         let pullStoppedAt = 0;
@@ -612,52 +384,27 @@ function cleanupWorkshopPreview(workshopTab, keepVisible) {
     const characterSheet = document.querySelector('.character-sheet');
 
     if (!keepVisible) {
-        // Check if this is mobile (scale) or desktop (rotateX) animation
+        // Unified cleanup - always use 3D rotation (same for all screen sizes)
         const currentTransform = workshopTab.style.transform;
-        const isMobileAnimation = currentTransform.includes('scale');
+        const currentRotateMatch = currentTransform.match(/rotateX\(([^)]+)\)/);
+        const currentRotateX = currentRotateMatch ? parseFloat(currentRotateMatch[1]) : 0;
 
-        if (isMobileAnimation) {
-            // Mobile cleanup - fade out with scale
-            const currentScaleMatch = currentTransform.match(/scale\(([^)]+)\)/);
-            const currentScale = currentScaleMatch ? parseFloat(currentScaleMatch[1]) : 1;
-            const currentOpacity = parseFloat(workshopTab.style.opacity) || 1;
+        // Step 1: Explicitly set current position with NO transition (freeze frame)
+        workshopTab.style.transition = 'none';
+        workshopTab.style.transform = `rotateX(${currentRotateX}deg)`;
 
-            // Step 1: Freeze current position
-            workshopTab.style.transition = 'none';
-            workshopTab.style.transform = `scale(${currentScale})`;
-            workshopTab.style.opacity = currentOpacity;
+        // Step 2: Force reflow to ensure the browser applies this state
+        workshopTab.offsetHeight;
 
-            // Step 2: Force reflow
-            workshopTab.offsetHeight;
+        // Step 3: Use requestAnimationFrame to ensure browser has painted the freeze frame
+        requestAnimationFrame(() => {
+            // Now add transition and animate to final position
+            // Use cubic-bezier that matches the reverse motion (ease-in for folding back up)
+            workshopTab.style.transition = 'transform 0.5s cubic-bezier(0.680, -0.275, 0.825, 0.115)';
 
-            // Step 3: Animate back to hidden state
-            requestAnimationFrame(() => {
-                workshopTab.style.transition = 'transform 0.5s cubic-bezier(0.680, -0.275, 0.825, 0.115), opacity 0.5s cubic-bezier(0.680, -0.275, 0.825, 0.115)';
-                workshopTab.style.transform = 'scale(0.9)';
-                workshopTab.style.opacity = '0';
-            });
-        } else {
-            // Desktop cleanup - rotate back
-            const currentRotateMatch = currentTransform.match(/rotateX\(([^)]+)\)/);
-            const currentRotateX = currentRotateMatch ? parseFloat(currentRotateMatch[1]) : 0;
-
-            // Step 1: Explicitly set current position with NO transition (freeze frame)
-            workshopTab.style.transition = 'none';
-            workshopTab.style.transform = `rotateX(${currentRotateX}deg)`;
-
-            // Step 2: Force reflow to ensure the browser applies this state
-            workshopTab.offsetHeight;
-
-            // Step 3: Use requestAnimationFrame to ensure browser has painted the freeze frame
-            requestAnimationFrame(() => {
-                // Now add transition and animate to final position
-                // Use cubic-bezier that matches the reverse motion (ease-in for folding back up)
-                workshopTab.style.transition = 'transform 0.5s cubic-bezier(0.680, -0.275, 0.825, 0.115)';
-
-                // Set target position (will animate smoothly from frozen position)
-                workshopTab.style.transform = 'rotateX(-70deg)';
-            });
-        }
+            // Set target position (will animate smoothly from frozen position)
+            workshopTab.style.transform = 'rotateX(-70deg)';
+        });
     }
 
     // Restore other tabs

@@ -326,7 +326,7 @@ class SoundManager {
         if (!pageSound.paused) {
             pageSound.currentTime = 0;
         }
-        
+
         // Ensure the sound is ready to play
         if (pageSound.readyState >= 2) { // HAVE_CURRENT_DATA or higher
             pageSound.play().catch(() => {});
@@ -359,7 +359,7 @@ class SoundManager {
         if (!pageSound.paused) {
             pageSound.currentTime = 0;
         }
-        
+
         // Ensure the sound is ready to play
         if (pageSound.readyState >= 2) { // HAVE_CURRENT_DATA or higher
             pageSound.play().catch(() => {});
