@@ -1,4 +1,4 @@
-// Character Sheet - Main Entry Point
+// Medieval Character Sheet - Main Entry Point
 // Location: /home/hullivan/Hugues.W.B.dePingon/script.js
 
 // MUST BE FIRST: Reset scroll position immediately

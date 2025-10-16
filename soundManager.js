@@ -708,16 +708,37 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }, 500);
 
+    // Track last click to prevent doubles
+    let lastClickTime = 0;
+    let lastClickTarget = null;
+
     // Add click listener to entire document for click sound
     document.addEventListener('click', (e) => {
-        // Check if the clicked element is interactive
         const target = e.target;
+        const now = Date.now();
+
+        // Prevent double sound within 50ms on same element or related label/input pair
+        if (now - lastClickTime < 50) {
+            const parentLabel = target.closest('label');
+            const lastParentLabel = lastClickTarget?.closest('label');
+
+            // Skip if clicking same element or elements within same label
+            if (target === lastClickTarget ||
+                (parentLabel && parentLabel === lastParentLabel)) {
+                return;
+            }
+        }
+
         const isInteractive = isElementInteractive(target);
 
         if (isInteractive) {
             soundManager.playClick();
+            lastClickTime = now;
+            lastClickTarget = target;
         } else {
             soundManager.playClickFail();
+            lastClickTime = now;
+            lastClickTarget = target;
         }
     });
 
