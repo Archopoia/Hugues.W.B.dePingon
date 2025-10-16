@@ -7,6 +7,9 @@ Portfolio/Game Development (Design, Worldbuilding, Graphic)/2) Clients' Graphic 
 Portfolio/Game Development (Design, Worldbuilding, Graphic)/2) PsychoStratégie (serious games)/
 Portfolio/Game Development (Design, Worldbuilding, Graphic)/3) Senior GameDesign at OLG (The Wayward Realms)/
 
+# READMEs folder (documentation and summaries)
+READMEs/
+
 # Common files to ignore
 .DS_Store
 *.log

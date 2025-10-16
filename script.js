@@ -1,6 +1,12 @@
 // Medieval Character Sheet Interactive Features
 
-// MUST BE FIRST: Suppress browser extension/PDF viewer console errors IMMEDIATELY
+// MUST BE FIRST: Reset scroll position immediately
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
+
+// Suppress browser extension/PDF viewer console errors IMMEDIATELY
 // This needs to run before any other code to catch all PDF-related errors
 (function() {
     const originalError = console.error;
@@ -240,20 +246,27 @@ function initializePortfolioNavigation() {
             return;
         }
 
-        const iframes = category.querySelectorAll('iframe.pdf-preview-small[data-pdf-src]');
+        const pdfContainers = category.querySelectorAll('[data-pdf-container][data-pdf-src]');
 
         // Load PDFs with staggered timing to prevent multiple simultaneous errors
-        iframes.forEach((iframe, index) => {
-            const pdfSrc = iframe.getAttribute('data-pdf-src');
+        pdfContainers.forEach((container, index) => {
+            const pdfSrc = container.getAttribute('data-pdf-src');
 
             // Only load if we have a data-pdf-src attribute (meaning it hasn't been loaded yet)
             if (pdfSrc) {
                 const delay = staggerDelay + (index * 800); // 800ms between each PDF
 
                 setTimeout(() => {
-                    // Directly set the PDF source
+                    // Create iframe dynamically to avoid CSP errors on page load
+                    const iframe = document.createElement('iframe');
+                    iframe.className = 'pdf-preview-small';
                     iframe.src = pdfSrc;
-                    iframe.removeAttribute('data-pdf-src');
+                    iframe.frameBorder = '0';
+
+                    // Clear container and add iframe
+                    container.innerHTML = '';
+                    container.appendChild(iframe);
+                    container.removeAttribute('data-pdf-src');
                 }, delay);
             }
         });
@@ -606,6 +619,22 @@ function initializeRandomCardFlip() {
 // Animation keyframes are defined in soundManager.js
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Always scroll to top of page on load
+    window.scrollTo(0, 0);
+
+    // Ensure About tab is active and visible
+    const aboutTab = document.getElementById('about');
+    const aboutButton = document.querySelector('.tab-button[data-tab="about"]');
+
+    if (aboutTab && aboutButton) {
+        // Make sure About tab is active
+        document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+        document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+
+        aboutTab.classList.add('active');
+        aboutButton.classList.add('active');
+    }
+
     // Load About section immediately
     loadSection('about');
 
