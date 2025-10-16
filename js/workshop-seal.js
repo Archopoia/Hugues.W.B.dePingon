@@ -56,12 +56,9 @@ async function startPress(e) {
         return;
     }
 
-    console.log('🔵 [Workshop] Press started');
-    
     // Cancel any leftover animations from previous interactions
     const activeAnimations = workshopSealButton.getAnimations();
     if (activeAnimations.length > 0) {
-        console.log(`🔵 [Workshop] Cancelling ${activeAnimations.length} leftover animations`);
         activeAnimations.forEach(anim => anim.cancel());
     }
 
@@ -69,10 +66,6 @@ async function startPress(e) {
     pressStartTime = performance.now();
     currentRotation = 0;
     rotationSpeed = 0;
-    
-    console.log('🔵 [Workshop] Initial rotation:', currentRotation, 'speed:', rotationSpeed);
-    console.log('🔵 [Workshop] Button transform before press:', workshopSealButton.style.transform);
-    console.log('🔵 [Workshop] Computed transform before press:', getComputedStyle(workshopSealButton).transform);
 
     // Disable transition during rotation and clear any lingering styles
     workshopSealButton.style.transition = 'none';
@@ -204,11 +197,6 @@ async function startPress(e) {
         workshopSealButton.style.willChange = 'transform';
         workshopSealButton.style.transform = `rotate(${currentRotation}deg)`;
 
-        // Debug: Log rotation every 0.5 seconds
-        if (Math.floor(pressDuration * 2) !== Math.floor((pressDuration - deltaTime) * 2)) {
-            console.log(`🔵 [Workshop] Rotating... ${currentRotation.toFixed(0)}° at speed ${rotationSpeed.toFixed(0)}°/s`);
-        }
-
         // Update pulse effect
         const pulseSpeed = Math.max(0.2, 1 - (pressDuration * 0.3));
         const pulseScale = Math.min(1.5 + (pressDuration * 0.5), 3);
@@ -263,9 +251,6 @@ async function endPress(e) {
 
     // Check if animation is complete enough (at least 80% revealed)
     if (revealProgress < 0.8) {
-        console.log(`🟡 [Workshop] Press cancelled - only ${(revealProgress * 100).toFixed(0)}% complete (need 80%)`);
-        console.log(`🟡 [Workshop] Rotation at cancel: ${currentRotation.toFixed(0)}°`);
-
         // Stop pull sound and play in reverse
         let pullStoppedAt = 0;
         if (window.soundManager) {
@@ -301,18 +286,17 @@ async function endPress(e) {
     const finalRotation = currentRotation % 360;
     setFinalRotation(finalRotation);
 
-    console.log(`🟢 [Workshop] Press completed!`);
-    console.log(`🟢 [Workshop] Current rotation: ${currentRotation.toFixed(0)}°`);
-    console.log(`🟢 [Workshop] Final rotation (normalized): ${finalRotation.toFixed(0)}°`);
+    // CRITICAL: Reset press state immediately to prevent cancelPress from interfering
+    // during the tab switch (animation loop is already stopped above)
+    pressStartTime = 0;
+    rotationSpeed = 0;
+    rotationInterval = null;
 
     // Keep the button at its rotated position - navigation.js will handle the puff-out
     // Using CSS variable so the animation can access it
     workshopSealButton.style.setProperty('--button-rotation', `${finalRotation}deg`);
     workshopSealButton.style.transition = 'none';
     workshopSealButton.style.transform = `rotate(var(--button-rotation, 0deg))`;
-
-    console.log(`🟢 [Workshop] Set CSS variable --button-rotation to ${finalRotation.toFixed(0)}°`);
-    console.log(`🟢 [Workshop] Button transform:`, workshopSealButton.style.transform);
 
     // Complete the tab reveal animation
     if (activeWorkshopTab) {
@@ -333,21 +317,20 @@ async function endPress(e) {
 
     // Switch to workshop tab
     const targetTab = workshopSealButton.getAttribute('data-tab');
-    console.log(`🟢 [Workshop] Switching to tab: ${targetTab}`);
     await switchTab(targetTab);
-    console.log(`🟢 [Workshop] Tab switch complete`);
 
     // Clean up preview styles
     if (activeWorkshopTab) {
         cleanupWorkshopPreview(activeWorkshopTab, true);
     }
-
-    pressStartTime = 0;
-    rotationSpeed = 0;
-    rotationInterval = null;
 }
 
 function cancelPress() {
+    // Guard: Don't cancel if press isn't active (already completed or never started)
+    if (pressStartTime === 0) {
+        return;
+    }
+
     const workshopSealButton = document.querySelector('.workshop-seal-button');
 
     workshopSealButton.classList.remove('pressing');
@@ -385,8 +368,31 @@ function cleanupWorkshopPreview(workshopTab, keepVisible) {
     const characterSheet = document.querySelector('.character-sheet');
 
     if (!keepVisible) {
-        workshopTab.style.transition = 'transform 0.3s ease';
-        workshopTab.style.transform = 'rotateX(-70deg)';
+        // CRITICAL: Get the COMPUTED transform (actual visual position) not inline style
+        const computedStyle = window.getComputedStyle(workshopTab);
+        const computedTransform = computedStyle.transform;
+
+        // Extract current rotation from the inline style as backup
+        const currentTransform = workshopTab.style.transform;
+        const currentRotateMatch = currentTransform.match(/rotateX\(([^)]+)\)/);
+        const currentRotateX = currentRotateMatch ? parseFloat(currentRotateMatch[1]) : 0;
+
+        // Step 1: Explicitly set current position with NO transition (freeze frame)
+        workshopTab.style.transition = 'none';
+        workshopTab.style.transform = `rotateX(${currentRotateX}deg)`;
+
+        // Step 2: Force reflow to ensure the browser applies this state
+        workshopTab.offsetHeight;
+
+        // Step 3: Use requestAnimationFrame to ensure browser has painted the freeze frame
+        requestAnimationFrame(() => {
+            // Now add transition and animate to final position
+            // Use cubic-bezier that matches the reverse motion (ease-in for folding back up)
+            workshopTab.style.transition = 'transform 0.5s cubic-bezier(0.680, -0.275, 0.825, 0.115)';
+
+            // Set target position (will animate smoothly from frozen position)
+            workshopTab.style.transform = 'rotateX(-70deg)';
+        });
     }
 
     // Restore other tabs
@@ -414,7 +420,7 @@ function cleanupWorkshopPreview(workshopTab, keepVisible) {
         overlay.remove();
     }
 
-    // Reset workshop tab styles
+    // Reset workshop tab styles after animation completes
     if (!keepVisible) {
         setTimeout(() => {
             if (workshopTab && !workshopTab.classList.contains('active')) {
@@ -441,7 +447,7 @@ function cleanupWorkshopPreview(workshopTab, keepVisible) {
                     contentChildren[i].style.zIndex = '';
                 }
             }
-        }, 300);
+        }, 500); // Match the animation duration
     } else {
         workshopTab.style.transition = 'none';
         workshopTab.style.transformOrigin = '';

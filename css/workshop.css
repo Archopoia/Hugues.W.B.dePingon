@@ -171,7 +171,33 @@
     cursor: default !important;
 }
 
-/* Pulse effect when pressing */
+/* Constant pulsating glow behind button (always visible) */
+.workshop-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    height: 120%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, rgba(255, 215, 0, 0.2) 40%, rgba(255, 255, 255, 0) 70%);
+    animation: constantGlowPulse var(--glow-speed, 2s) ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes constantGlowPulse {
+    0%, 100% {
+        opacity: 0.3;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1.15);
+    }
+}
+
+/* Pulse effect when pressing (white flash) */
 .workshop-seal-button::after {
     content: '';
     position: absolute;
@@ -1202,8 +1228,8 @@
     .workshop-seal-button {
         left: -20px;
         top: 350px;
-        width: 120px;
-        height: 120px;
+        width: 140px; /* Keep original size */
+        height: 140px; /* Keep original size */
     }
 
     .seal-icon {
@@ -1225,8 +1251,8 @@
         top: auto !important;
         right: auto !important;
         /* transform: none !important; */ /* REMOVED - was blocking rotation animation */
-        width: 90px !important;
-        height: 90px !important;
+        width: 140px !important; /* Keep original size */
+        height: 140px !important; /* Keep original size */
         z-index: 999 !important;
     }
 
@@ -1262,8 +1288,8 @@
 /* Extra small mobile screens - adjust sizing */
 @media screen and (max-width: 600px) {
     .workshop-seal-button {
-        width: 80px !important;
-        height: 80px !important;
+        width: 140px !important; /* Keep original size */
+        height: 140px !important; /* Keep original size */
     }
 
     .seal-icon {
