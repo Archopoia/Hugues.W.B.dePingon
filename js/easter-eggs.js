@@ -267,7 +267,7 @@ export function initializeEasterEggs() {
         // Load saved portrait state from localStorage
         const savedPortrait = localStorage.getItem('portraitState');
         if (savedPortrait === 'funny') {
-            portraitImage.src = 'Assets/Hugues/funnysmiling.PNG';
+            portraitImage.src = 'Assets/Hugues/Hugues.W.B.dePingon - funnysmiling.PNG';
         }
 
         portraitImage.addEventListener('click', function(e) {
@@ -294,10 +294,10 @@ export function initializeEasterEggs() {
                             // Toggle between original and funny
                             const currentSrc = portraitImg.src;
                             if (currentSrc.includes('funnysmiling.PNG')) {
-                                portraitImg.src = 'Assets/Hugues/roundvignette.jpg';
+                                portraitImg.src = 'Assets/Hugues/Hugues.W.B.dePingon - roundvignette.jpg';
                                 localStorage.setItem('portraitState', 'original');
                             } else {
-                                portraitImg.src = 'Assets/Hugues/funnysmiling.PNG';
+                                portraitImg.src = 'Assets/Hugues/Hugues.W.B.dePingon - funnysmiling.PNG';
                                 localStorage.setItem('portraitState', 'funny');
                             }
                         }
@@ -325,10 +325,10 @@ export function initializeEasterEggs() {
                             // Toggle between original and funny
                             const currentSrc = portraitImg.src;
                             if (currentSrc.includes('funnysmiling.PNG')) {
-                                portraitImg.src = 'Assets/Hugues/roundvignette.jpg';
+                                portraitImg.src = 'Assets/Hugues/Hugues.W.B.dePingon - roundvignette.jpg';
                                 localStorage.setItem('portraitState', 'original');
                             } else {
-                                portraitImg.src = 'Assets/Hugues/funnysmiling.PNG';
+                                portraitImg.src = 'Assets/Hugues/Hugues.W.B.dePingon - funnysmiling.PNG';
                                 localStorage.setItem('portraitState', 'funny');
                             }
                         }

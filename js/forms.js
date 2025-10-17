@@ -167,7 +167,8 @@ ${data.message}
             `.trim();
 
             // Create mailto link
-            const subject = `Contact Quest: ${data.purpose} - ${data.interest}`;
+            const questSubject = getTranslation('quest-email-subject');
+            const subject = `${questSubject} ${data.purpose} - ${data.interest}`;
             const mailtoLink = `mailto:hugues.ii.w.b.depingon@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
 
             // Open email client

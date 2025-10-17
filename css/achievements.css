@@ -197,7 +197,7 @@
 }
 
 .secret-achievement-repeat h3 {
-    font-family: 'MedievalSharp', cursive;
+    font-family: 'Quintessential', cursive;
     font-size: 1.5rem;
     color: var(--text-dark);
     margin: 0.5rem 0;
@@ -258,7 +258,7 @@
 }
 
 .konami-achievement h3 {
-    font-family: 'MedievalSharp', cursive;
+    font-family: 'Quintessential', cursive;
     font-size: 2.2rem;
     color: var(--text-dark);
     margin: 1rem 0 0.5rem;

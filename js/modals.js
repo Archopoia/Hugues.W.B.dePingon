@@ -166,7 +166,8 @@ export function openImageGallery(galleryType) {
                 { src: 'Assets/Commissions/BookCover 2021.jpg', caption: 'Book Cover Design (2021)' },
                 { src: 'Assets/Commissions/2020 - ArtPoster.jpg', caption: 'Art Poster Design (2020)' },
                 { src: 'Assets/Commissions/2016 - Forthright Forum Poster A2 - Copy.jpg', caption: 'Forum Poster A2 (2016)' },
-                { src: 'Assets/Commissions/2024 - URsymbol.png', caption: 'UR Symbol Branding (2024)' }
+                { src: 'Assets/Commissions/2024 - URsymbol.png', caption: 'UR Symbol Branding (2024)' },
+                { src: 'Assets/Hugues/Hugues.W.B.dePingon - ASUM poster.png', caption: 'ASUM Campaign Poster (2018)' }
             ],
             videos: [
                 { src: 'Assets/Commissions/2018 - CharacterSheet animation.mp4', caption: 'Character Sheet Animation (2018)' }

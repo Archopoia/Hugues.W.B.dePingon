@@ -1282,30 +1282,14 @@
     50% { transform: translateX(10px); }
 }
 
-/* Responsive Design for Seal Button */
-@media screen and (max-width: 1200px) {
-    .workshop-seal-button {
-        left: -20px;
-        top: 350px;
-        width: 140px; /* Keep original size */
-        height: 140px; /* Keep original size */
-    }
-
-    .seal-icon {
-        font-size: 2rem;
-    }
-
-    .seal-main {
-        font-size: 0.65rem;
-    }
-}
+/* Responsive Design for Seal Button - Keep original position until mobile */
 
 /* Tablet screens - Adjust layouts */
 @media screen and (max-width: 968px) {
-    /* Workshop seal button - FIXED to screen on mobile/tablet at top-left corner edge (sticks and follows scroll) */
+    /* Workshop seal button - FIXED to screen on mobile/tablet at top-right corner edge (sticks and follows scroll) */
     .workshop-seal-button {
         position: fixed !important;
-        left: -10 !important;
+        left: 0px !important;
         top: 0 !important;
         bottom: auto !important;
         right: auto !important;

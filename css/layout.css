@@ -23,7 +23,9 @@
     border: 3px solid var(--border-dark);
     position: relative;
     min-height: 100vh;
-    overflow: hidden;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
     z-index: 2;
     transform: perspective(1000px) rotateX(1deg);
     transition: transform 0.3s ease;

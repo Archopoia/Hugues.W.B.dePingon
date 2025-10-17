@@ -48,6 +48,11 @@ export async function loadSection(sectionName) {
                     if (sectionName === 'portfolio') {
                         initializePortfolioNavigation();
                         window.initializeVideoHoverPlay();
+
+                        // Initialize portfolio gallery click handlers
+                        if (typeof window.initializePortfolioGalleryClicks === 'function') {
+                            window.initializePortfolioGalleryClicks();
+                        }
                     }
                     if (sectionName === 'skills') {
                         initializeSkillsNavigation();

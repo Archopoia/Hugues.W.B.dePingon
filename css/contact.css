@@ -7,7 +7,270 @@
     animation: fadeIn 0.5s ease-in;
 }
 
-/* Compact Contact Image */
+/* Media & Public Appearances Section - Stacked Gallery */
+.media-appearances-section {
+    margin-bottom: 2rem;
+    padding: 0.5rem;
+    background: linear-gradient(to bottom, rgba(139, 115, 85, 0.05), transparent);
+    border-radius: 8px;
+    overflow: visible;
+}
+
+.media-appearances-section .section-header {
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.media-appearances-section .section-header h3 {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin-bottom: 0.25rem;
+}
+
+.media-appearances-section .section-header h3 i {
+    color: var(--accent-gold);
+    margin-right: 0.5rem;
+}
+
+.media-appearances-section .section-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    font-style: italic;
+    opacity: 0.8;
+}
+
+/* Stacked Gallery Layout */
+.media-grid {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0.5rem auto;
+    height: 450px;
+    perspective: 1000px;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+    overflow: visible;
+    z-index: 10;
+}
+
+.media-item {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 85%;
+    max-width: 500px;
+    display: block;
+    text-decoration: none;
+    background: var(--paper-bg);
+    border: 2px solid var(--border-tan);
+    border-radius: 0px;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    will-change: transform;
+    outline: none !important;
+}
+
+.media-item:focus {
+    outline: none !important;
+}
+
+/* Stack positioning - each item slightly offset */
+.media-item:nth-child(1) {
+    z-index: 7;
+    transform: translate(-50%, -50%) rotate(-3deg) translateY(0px);
+}
+.media-item:nth-child(2) {
+    z-index: 6;
+    transform: translate(-50%, -50%) rotate(2deg) translateY(10px);
+}
+.media-item:nth-child(3) {
+    z-index: 5;
+    transform: translate(-50%, -50%) rotate(-2deg) translateY(20px);
+}
+.media-item:nth-child(4) {
+    z-index: 4;
+    transform: translate(-50%, -50%) rotate(3deg) translateY(30px);
+}
+.media-item:nth-child(5) {
+    z-index: 3;
+    transform: translate(-50%, -50%) rotate(-2deg) translateY(40px);
+}
+.media-item:nth-child(6) {
+    z-index: 2;
+    transform: translate(-50%, -50%) rotate(2deg) translateY(50px);
+}
+.media-item:nth-child(7) {
+    z-index: 1;
+    transform: translate(-50%, -50%) rotate(-3deg) translateY(60px);
+}
+
+/* Hover - fan out to the right - all same z-index to prevent flicker */
+.media-grid:hover .media-item:nth-child(1) {
+    transform: translate(-50%, -50%) translateX(-300px) rotate(-8deg) scale(0.95);
+    z-index: 20;
+}
+.media-grid:hover .media-item:nth-child(2) {
+    transform: translate(-50%, -50%) translateX(-180px) rotate(-5deg) scale(0.95);
+    z-index: 20;
+}
+.media-grid:hover .media-item:nth-child(3) {
+    transform: translate(-50%, -50%) translateX(-90px) rotate(-2deg) scale(0.95);
+    z-index: 20;
+}
+.media-grid:hover .media-item:nth-child(4) {
+    transform: translate(-50%, -50%) translateX(0px) rotate(0deg) scale(1);
+    z-index: 20;
+}
+.media-grid:hover .media-item:nth-child(5) {
+    transform: translate(-50%, -50%) translateX(90px) rotate(2deg) scale(0.95);
+    z-index: 20;
+}
+.media-grid:hover .media-item:nth-child(6) {
+    transform: translate(-50%, -50%) translateX(180px) rotate(5deg) scale(0.95);
+    z-index: 20;
+}
+.media-grid:hover .media-item:nth-child(7) {
+    transform: translate(-50%, -50%) translateX(300px) rotate(8deg) scale(0.95);
+    z-index: 20;
+}
+
+/* Individual item hover - bring to front and enlarge, but stay in position */
+.media-grid:hover .media-item:nth-child(1):hover {
+    transform: translate(-50%, -50%) translateX(-300px) rotate(-8deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.media-grid:hover .media-item:nth-child(2):hover {
+    transform: translate(-50%, -50%) translateX(-180px) rotate(-5deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.media-grid:hover .media-item:nth-child(3):hover {
+    transform: translate(-50%, -50%) translateX(-90px) rotate(-2deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.media-grid:hover .media-item:nth-child(4):hover {
+    transform: translate(-50%, -50%) translateX(0px) rotate(0deg) scale(1.15) !important;
+    z-index: 100 !important;
+}
+.media-grid:hover .media-item:nth-child(5):hover {
+    transform: translate(-50%, -50%) translateX(90px) rotate(2deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.media-grid:hover .media-item:nth-child(6):hover {
+    transform: translate(-50%, -50%) translateX(180px) rotate(5deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.media-grid:hover .media-item:nth-child(7):hover {
+    transform: translate(-50%, -50%) translateX(300px) rotate(8deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+
+/* Add glow and border on individual hover - matches active button style */
+.media-grid:hover .media-item:hover {
+    border-color: var(--gold-glow);
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 3px var(--gold-glow),
+        0 0 0 4px var(--red-theme),
+        0px 0px 15px 5px var(--gold-glow),
+        0px 0px 10px 1px var(--focus-glow) inset;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+}
+
+.media-thumbnail {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    background: var(--dark-bg);
+}
+
+.media-thumbnail img,
+.media-thumbnail video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    transition: transform 0.4s ease;
+}
+
+/* Adjust Vilnius street photo to show head better */
+.media-item:nth-child(1) .media-thumbnail img {
+    object-position: center 35%;
+}
+
+.media-item:hover .media-thumbnail img,
+.media-item:hover .media-thumbnail video {
+    transform: scale(1.03);
+}
+
+.media-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.media-item:hover .media-overlay {
+    opacity: 0;
+}
+
+.media-overlay i {
+    font-size: 2.5rem;
+    color: var(--accent-gold);
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    display: none;
+}
+
+.media-caption {
+    padding: 1rem;
+    background: rgba(239, 235, 225, 0.98);
+    backdrop-filter: blur(5px);
+    border-top: 2px solid var(--border-tan);
+    position: relative;
+    z-index: 2;
+}
+
+.media-caption h4 {
+    font-size: 1rem;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.media-caption p {
+    font-size: 0.85rem;
+    color: var(--text-dark);
+    line-height: 1.4;
+    margin: 0;
+    opacity: 0.85;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+/* Video item specific styles */
+.media-item.video-item .media-overlay i {
+    font-size: 3rem;
+}
+
+.media-video {
+    pointer-events: none;
+}
+
+/* Compact Contact Image - Legacy (keeping for backward compatibility) */
 .contact-compact-image {
     text-align: center;
     margin: 1.5rem 0;
@@ -674,4 +937,84 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
+}
+
+/* Mobile and touch-friendly behavior */
+@media (max-width: 768px) {
+    .media-grid {
+        height: 400px;
+        /* On mobile, show items in a more accessible way */
+    }
+
+    .media-item {
+        /* Make items more touch-friendly on mobile */
+        min-height: 200px;
+        cursor: pointer;
+    }
+
+    /* On mobile, show all items fanned out by default for better interaction */
+    .media-grid.mobile-active .media-item:nth-child(1) {
+        transform: translate(-50%, -50%) translateX(-160px) rotate(-8deg) scale(0.9);
+        z-index: 7;
+    }
+    .media-grid.mobile-active .media-item:nth-child(2) {
+        transform: translate(-50%, -50%) translateX(-100px) rotate(-5deg) scale(0.9);
+        z-index: 6;
+    }
+    .media-grid.mobile-active .media-item:nth-child(3) {
+        transform: translate(-50%, -50%) translateX(-50px) rotate(-2deg) scale(0.9);
+        z-index: 5;
+    }
+    .media-grid.mobile-active .media-item:nth-child(4) {
+        transform: translate(-50%, -50%) translateX(0px) rotate(0deg) scale(1);
+        z-index: 8;
+    }
+    .media-grid.mobile-active .media-item:nth-child(5) {
+        transform: translate(-50%, -50%) translateX(50px) rotate(2deg) scale(0.9);
+        z-index: 5;
+    }
+    .media-grid.mobile-active .media-item:nth-child(6) {
+        transform: translate(-50%, -50%) translateX(100px) rotate(5deg) scale(0.9);
+        z-index: 6;
+    }
+    .media-grid.mobile-active .media-item:nth-child(7) {
+        transform: translate(-50%, -50%) translateX(160px) rotate(8deg) scale(0.9);
+        z-index: 7;
+    }
+
+    /* Individual item selection on mobile */
+    .media-grid.mobile-active .media-item.selected {
+        transform: translate(-50%, -50%) translateX(0px) rotate(0deg) scale(1.1) !important;
+        z-index: 100;
+    }
+}
+
+/* Scroll navigation states */
+.media-grid.scroll-active .media-item:nth-child(1) {
+    transform: translate(-50%, -50%) translateX(-300px) rotate(-8deg) scale(0.95);
+    z-index: 20;
+}
+.media-grid.scroll-active .media-item:nth-child(2) {
+    transform: translate(-50%, -50%) translateX(-180px) rotate(-5deg) scale(0.95);
+    z-index: 20;
+}
+.media-grid.scroll-active .media-item:nth-child(3) {
+    transform: translate(-50%, -50%) translateX(-90px) rotate(-2deg) scale(0.95);
+    z-index: 20;
+}
+.media-grid.scroll-active .media-item:nth-child(4) {
+    transform: translate(-50%, -50%) translateX(0px) rotate(0deg) scale(1);
+    z-index: 20;
+}
+.media-grid.scroll-active .media-item:nth-child(5) {
+    transform: translate(-50%, -50%) translateX(90px) rotate(2deg) scale(0.95);
+    z-index: 20;
+}
+.media-grid.scroll-active .media-item:nth-child(6) {
+    transform: translate(-50%, -50%) translateX(180px) rotate(5deg) scale(0.95);
+    z-index: 20;
+}
+.media-grid.scroll-active .media-item:nth-child(7) {
+    transform: translate(-50%, -50%) translateX(300px) rotate(8deg) scale(0.95);
+    z-index: 20;
 }

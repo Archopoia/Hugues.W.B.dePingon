@@ -177,14 +177,19 @@
                                 </div>
 
                             <!-- Worldmap - Award Winner -->
-                            <div class="project-card featured design" style="cursor: pointer;" onclick="event.target === this && openImageGallery('worldmaps')">
+                            <div class="project-card featured design">
                                 <div class="project-ribbon ribbon-gold"><i class="fas fa-award"></i> <span data-i18n="port-winner">Winner</span></div>
-                                <div class="project-media" onclick="event.stopPropagation(); openFullImage('Assets/Worldmaps/2021 - WorldMap.jpg')">
-                                    <div class="game-thumbnail" style="cursor: pointer;">
-                                        <img src="Assets/Worldmaps/2021 - WorldMap.jpg" alt="Award-Winning Worldmap">
+                                <div class="project-media">
+                                    <div class="portfolio-gallery" data-gallery="worldmaps">
+                                        <div class="portfolio-gallery-item">
+                                            <img src="Assets/Worldmaps/2021 - WorldMap.jpg" alt="Award-Winning Worldmap">
+                                        </div>
+                                        <div class="portfolio-gallery-item">
+                                            <img src="Assets/Worldmaps/2021 - GeocosmosENG_empty.jpg" alt="Geocosmos - Cosmological Map">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="project-content" onclick="event.stopPropagation()">
+                                <div class="project-content">
                                     <h4 data-i18n="port-worldmap-featured-title">Award-Winning Worldmap</h4>
                                     <p class="project-type" data-i18n="port-worldmap-featured-type">Fantasy Cartography — 2020 Competition Winner</p>
                                     <p class="project-description" data-i18n="port-worldmap-featured-desc">
@@ -547,14 +552,14 @@
                             </div>
 
                             <!-- Worldmaps for The Discording Tales -->
-                            <div class="project-card design" style="cursor: pointer;" onclick="event.target === this && openImageGallery('worldmaps')">
+                            <div class="project-card design" style="cursor: pointer;" onclick="openImageGallery('worldmaps')">
                                 <div class="project-ribbon ribbon-gold"><i class="fas fa-award"></i> <span data-i18n="port-winner">Winner</span></div>
-                                <div class="project-media" onclick="event.stopPropagation(); openFullImage('Assets/Worldmaps/2021 - WorldMap.jpg')">
+                                <div class="project-media">
                                     <div class="game-thumbnail" style="cursor: pointer;">
                                         <img src="Assets/Worldmaps/2021 - WorldMap.jpg" alt="The Discording Tales Worldmap">
                                     </div>
                                 </div>
-                                <div class="project-content" onclick="event.stopPropagation()">
+                                <div class="project-content">
                                     <h4 data-i18n="port-worldmaps-title">Worldmaps & Cartography</h4>
                                     <p class="project-type" data-i18n="port-worldmaps-type">The Discording Tales — Fantasy Cartography</p>
                                     <p class="project-description" data-i18n="port-worldmaps-desc">
@@ -573,13 +578,21 @@
                             </div>
 
                             <!-- Character Design for The Discording Tales -->
-                            <div class="project-card design" style="cursor: pointer;" onclick="event.target === this && openImageGallery('characters')">
-                                <div class="project-media" onclick="event.stopPropagation(); openFullImage('Assets/Character Design/Aristese.jpg')">
-                                    <div class="game-thumbnail" style="cursor: pointer;">
-                                        <img src="Assets/Character Design/Aristese.jpg" alt="Character Design - Aristese">
+                            <div class="project-card design">
+                                <div class="project-media">
+                                    <div class="portfolio-gallery" data-gallery="characters">
+                                        <div class="portfolio-gallery-item">
+                                            <img src="Assets/Character Design/Ylf.jpg" alt="Character Design - Ylf">
+                                        </div>
+                                        <div class="portfolio-gallery-item">
+                                            <img src="Assets/Character Design/Meridians.jpg" alt="Character Design - Meridians">
+                                        </div>
+                                        <div class="portfolio-gallery-item">
+                                            <img src="Assets/Character Design/Aristese.jpg" alt="Character Design - Aristese">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="project-content" onclick="event.stopPropagation()">
+                                <div class="project-content">
                                     <h4 data-i18n="port-characters-title">Character Design</h4>
                                     <p class="project-type" data-i18n="port-characters-type">The Discording Tales — Character Art</p>
                                     <p class="project-description" data-i18n="port-characters-desc">
@@ -597,13 +610,36 @@
                             </div>
 
                             <!-- Creature Design for The Discording Tales -->
-                            <div class="project-card design" style="cursor: pointer;" onclick="event.target === this && openImageGallery('creatures')">
-                                <div class="project-media" onclick="event.stopPropagation(); openFullImage('Assets/Creature Design/iguana-shrimp-macaque.png')">
-                                    <div class="game-thumbnail" style="cursor: pointer;">
-                                        <img src="Assets/Creature Design/iguana-shrimp-macaque.png" alt="Creature Design">
+                            <div class="project-card design">
+                                <div class="project-media">
+                                    <div class="portfolio-gallery" data-gallery="creatures">
+                                        <div class="portfolio-gallery-item">
+                                            <img src="Assets/Creature Design/iguana-shrimp-macaque.png" alt="Iguana-Shrimp-Macaque Hybrid">
+                                        </div>
+                                        <div class="portfolio-gallery-item">
+                                            <img src="Assets/Creature Design/hedgehog-pufferfish-siphonophore.png" alt="Hedgehog-Pufferfish-Siphonophore">
+                                        </div>
+                                        <div class="portfolio-gallery-item">
+                                            <img src="Assets/Creature Design/beetle-squirrel-siphonophore.png" alt="Beetle-Squirrel-Siphonophore">
+                                        </div>
+                                        <div class="portfolio-gallery-item">
+                                            <img src="Assets/Creature Design/slug-wasp-mole.jpg" alt="Slug-Wasp-Mole Creature">
+                                        </div>
+                                        <div class="portfolio-gallery-item">
+                                            <img src="Assets/Creature Design/sloth-wale-caterpillar.jpg" alt="Sloth-Whale-Caterpillar">
+                                        </div>
+                                        <div class="portfolio-gallery-item">
+                                            <img src="Assets/Creature Design/honeypotant-lemur.jpg" alt="Honeypot Ant-Lemur Hybrid">
+                                        </div>
+                                        <div class="portfolio-gallery-item">
+                                            <img src="Assets/Creature Design/silkworm-mole-feasant.png" alt="Silkworm-Mole-Pheasant">
+                                        </div>
+                                        <div class="portfolio-gallery-item">
+                                            <img src="Assets/Creature Design/cat-jellyfish.png" alt="Cat-Jellyfish Creature">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="project-content" onclick="event.stopPropagation()">
+                                <div class="project-content">
                                     <h4 data-i18n="port-creatures-title">Creature Design</h4>
                                     <p class="project-type" data-i18n="port-creatures-type">The Discording Tales — Speculative Biology</p>
                                     <p class="project-description" data-i18n="port-creatures-desc">
@@ -621,13 +657,32 @@
                             </div>
 
                             <!-- Client Commissions -->
-                            <div class="project-card design" style="cursor: pointer;" onclick="event.target === this && openImageGallery('commissions')">
-                                <div class="project-media" onclick="event.stopPropagation(); openFullImage('Assets/Commissions/BookCover 2021.jpg')">
-                                    <div class="game-thumbnail" style="cursor: pointer;">
-                                        <img src="Assets/Commissions/BookCover 2021.jpg" alt="Book Cover Commission">
+                            <div class="project-card design">
+                                <div class="project-media">
+                                    <div class="portfolio-gallery" data-gallery="commissions">
+                                        <div class="portfolio-gallery-item">
+                                            <img src="Assets/Hugues/Hugues.W.B.dePingon - ASUM poster.png" alt="ASUM Campaign Poster (2018)">
+                                        </div>
+                                        <div class="portfolio-gallery-item">
+                                            <img src="Assets/Commissions/2020 - ArtPoster.jpg" alt="Art Poster Design (2020)">
+                                        </div>
+                                        <div class="portfolio-gallery-item">
+                                            <img src="Assets/Commissions/2016 - Forthright Forum Poster A2 - Copy.jpg" alt="Forum Poster A2 (2016)">
+                                        </div>
+                                        <div class="portfolio-gallery-item">
+                                            <img src="Assets/Commissions/2024 - URsymbol.png" alt="UR Symbol Branding (2024)">
+                                        </div>
+                                        <div class="portfolio-gallery-item">
+                                            <img src="Assets/Commissions/BookCover 2021.jpg" alt="Book Cover Design (2021)">
+                                        </div>
+                                        <div class="portfolio-gallery-item video-item">
+                                            <video class="portfolio-gallery-video" muted loop playsinline>
+                                                <source src="Assets/Commissions/2018 - CharacterSheet animation.mp4" type="video/mp4">
+                                            </video>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="project-content" onclick="event.stopPropagation()">
+                                <div class="project-content">
                                     <h4 data-i18n="port-commissions-title">Client Commissions</h4>
                                     <p class="project-type" data-i18n="port-commissions-type">Professional Graphic Design</p>
                                     <p class="project-description" data-i18n="port-commissions-desc">

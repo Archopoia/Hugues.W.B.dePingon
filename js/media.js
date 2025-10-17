@@ -43,7 +43,7 @@ function handleVideoCardEnter(e) {
     const element = getElementFromTarget(e.target);
     if (!element) return;
 
-    const card = element.closest('.project-card, .alpine-card');
+    const card = element.closest('.project-card, .alpine-card, .media-item');
     if (!card) return;
 
     const video = card.querySelector('video');
@@ -75,7 +75,7 @@ function handleVideoCardLeave(e) {
     const element = getElementFromTarget(e.target);
     if (!element) return;
 
-    const card = element.closest('.project-card, .alpine-card');
+    const card = element.closest('.project-card, .alpine-card, .media-item');
     if (!card) return;
 
     const video = card.querySelector('video');

@@ -50,14 +50,14 @@ class SoundManager {
 
         // Create audio pools for click sounds (frequently used)
         for (let i = 0; i < this.clickPoolSize; i++) {
-            this.clickPool.push(this.createPreloadedAudio('Assets/Sounds/click.wav', 0.5));
+            this.clickPool.push(this.createPreloadedAudio('Assets/Sounds/click.wav', 0.25));
         }
         // Keep one reference as main click sound
         this.sounds.click = this.clickPool[0];
 
         // Create audio pools for clickfail sounds (frequently used)
         for (let i = 0; i < this.clickfailPoolSize; i++) {
-            this.clickfailPool.push(this.createPreloadedAudio('Assets/Sounds/clickfail.wav', 0.5));
+            this.clickfailPool.push(this.createPreloadedAudio('Assets/Sounds/clickfail.wav', 0.25));
         }
         // Keep one reference as main clickfail sound
         this.sounds.clickfail = this.clickfailPool[0];
@@ -70,7 +70,7 @@ class SoundManager {
 
         // Page sounds (for tab switching and flip effects) - page1 to page4 - need full preload for immediate playback
         for (let i = 1; i <= 4; i++) {
-            const pageSound = this.createFullyPreloadedAudio(`Assets/Sounds/pages/page${i}.wav`, 0.5);
+            const pageSound = this.createFullyPreloadedAudio(`Assets/Sounds/pages/page${i}.wav`, 0.25);
             this.sounds.pages.push(pageSound);
         }
         // Store indices 0-3 (page1, page2, page3, page4)
