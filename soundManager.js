@@ -771,7 +771,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
         // Play door unlock sound immediately at full volume (only if not already played)
         if (playSound) {
-            soundManager.playDoorUnlock();
+        soundManager.playDoorUnlock();
         }
 
         // Start chimes loop after door unlock
@@ -834,14 +834,10 @@ window.addEventListener('DOMContentLoaded', () => {
                         height: 0;
                         background: radial-gradient(circle,
                             rgba(255, 235, 198, 1) 0%,
-                            rgba(255, 235, 198, 0.95) 15%,
-                            rgba(255, 235, 198, 0.85) 30%,
-                            rgba(255, 235, 198, 0.7) 45%,
-                            rgba(255, 235, 198, 0.5) 60%,
-                            rgba(255, 235, 198, 0.3) 75%,
-                            rgba(255, 235, 198, 0.15) 85%,
-                            rgba(255, 235, 198, 0.05) 95%,
-                            transparent 100%);
+                            rgba(255, 235, 198, 0.8) 20%,
+                            rgba(255, 235, 198, 0.4) 35%,
+                            rgba(255, 235, 198, 0.1) 50%,
+                            transparent 70%);
                         transform: translate(-50%, -50%);
                         border-radius: 50%;
                         pointer-events: none;
@@ -853,6 +849,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     // Start the flash animation immediately - it purges everything
                     flashElement.style.animation = 'goldenFlash 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards';
 
+
                     // Wait for the flash to completely cover the screen
                     setTimeout(() => {
                         // Flash is at maximum - hide the entrance background underneath
@@ -863,14 +860,16 @@ window.addEventListener('DOMContentLoaded', () => {
                             enterButton.style.display = 'none';
                         }
 
-                        // Set the final dimensions as inline styles so they persist after animation change
-                        flashElement.style.width = '3000px';
-                        flashElement.style.height = '3000px';
-
-                        // Remove the goldenFlash animation and apply fadeOut
+                        // Remove the goldenFlash animation first to release the animation-fill-mode
                         flashElement.style.animation = 'none';
                         // Force a reflow to ensure the animation change is registered
                         void flashElement.offsetHeight;
+
+                        // Now set the final dimensions as inline styles
+                        flashElement.style.width = '3000px';
+                        flashElement.style.height = '3000px';
+
+                        // Apply fadeOut animation
                         flashElement.style.animation = 'fadeOut 1.5s ease-in-out forwards';
 
                         // After flash fades out, show the website content
