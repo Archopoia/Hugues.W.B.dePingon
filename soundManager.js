@@ -856,18 +856,91 @@ window.addEventListener('DOMContentLoaded', () => {
                     // Start the flash animation immediately - it purges everything
                     flashElement.style.animation = 'goldenFlash 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards';
 
-                    // Wait for the flash to completely cover the screen before fading everything
+                    // Wait for the flash to completely cover the screen
                     setTimeout(() => {
-                        // Start the background fade after flash has covered the screen
-                        unlockAudio(false); // Pass false to skip playing the sound again
-                    }, 1200); // Wait for the full flash animation to complete
-
-                    // Clean up after animation
-                    setTimeout(() => {
-                        if (flashElement.parentNode) {
-                            flashElement.parentNode.removeChild(flashElement);
+                        // Flash is at maximum - hide the entrance background underneath
+                        if (staticLoader) {
+                            staticLoader.style.display = 'none';
                         }
-                    }, 1200);
+                        if (enterButton) {
+                            enterButton.style.display = 'none';
+                        }
+
+                        // Set the final dimensions as inline styles so they persist after animation change
+                        flashElement.style.width = '3000px';
+                        flashElement.style.height = '3000px';
+
+                        // Remove the goldenFlash animation and apply fadeOut
+                        flashElement.style.animation = 'none';
+                        // Force a reflow to ensure the animation change is registered
+                        void flashElement.offsetHeight;
+                        flashElement.style.animation = 'fadeOut 1.5s ease-in-out forwards';
+
+                        // After flash fades out, show the website content
+                        setTimeout(() => {
+
+                            // Remove the static loader from DOM
+                            if (staticLoader && staticLoader.parentNode) {
+                                staticLoader.remove();
+                            }
+
+                            // Show workshop button and language switcher
+                            const workshopButton = document.querySelector('.workshop-seal-button');
+                            const languageSwitcher = document.querySelector('.language-switcher');
+                            if (workshopButton) {
+                                workshopButton.classList.add('visible');
+                            }
+                            if (languageSwitcher) languageSwitcher.classList.add('visible');
+
+                            // Clean up flash element
+                            if (flashElement.parentNode) {
+                                flashElement.parentNode.removeChild(flashElement);
+                            }
+
+                            // Unlock audio without playing sound (sound already played on click)
+                            audioUnlocked = true;
+
+                            // Unlock all pooled audio
+                            const unlockPromises = [];
+                            soundManager.clickPool.forEach(audio => {
+                                const promise = audio.play()
+                                    .then(() => {
+                                        audio.pause();
+                                        audio.currentTime = 0;
+                                    })
+                                    .catch(() => {});
+                                unlockPromises.push(promise);
+                            });
+
+                            // Unlock other sounds
+                            if (soundManager.sounds.stamp) {
+                                const promise = soundManager.sounds.stamp.play()
+                                    .then(() => {
+                                        soundManager.sounds.stamp.pause();
+                                        soundManager.sounds.stamp.currentTime = 0;
+                                    })
+                                    .catch(() => {});
+                                unlockPromises.push(promise);
+                            }
+
+                            soundManager.sounds.secrets.forEach(audio => {
+                                const promise = audio.play()
+                                    .then(() => {
+                                        audio.pause();
+                                        audio.currentTime = 0;
+                                    })
+                                    .catch(() => {});
+                                unlockPromises.push(promise);
+                            });
+
+                            // Start chimes loop after unlocking
+                            Promise.all(unlockPromises).then(() => {
+                                setTimeout(() => {
+                                    soundManager.startChimesLoop();
+                                }, 1000);
+                            });
+                        }, 1500); // Wait for fadeOut animation to complete
+                    }, 1200); // Wait for the full flash animation to complete
                 }, { once: true });
             }
 

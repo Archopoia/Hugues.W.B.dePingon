@@ -111,7 +111,7 @@ body::before {
     height: 100vh;
     min-height: 100vh;
     pointer-events: none;
-    z-index: 9999;
+    z-index: 10002;
     background:
         radial-gradient(
             ellipse at center,
