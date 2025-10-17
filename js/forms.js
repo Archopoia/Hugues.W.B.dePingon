@@ -179,8 +179,17 @@ export function resetContactForm() {
 
 // Handle form submission
 export function initializeContactFormSubmit() {
-    const form = document.getElementById('interactive-contact-form');
-    if (form) {
+    // Try to find the form with a delay to ensure DOM is loaded
+    const findForm = () => {
+        const form = document.getElementById('interactive-contact-form');
+        if (form) {
+            setupFormHandler(form);
+        } else {
+            setTimeout(findForm, 100);
+        }
+    };
+
+    const setupFormHandler = (form) => {
         form.addEventListener('submit', function(e) {
             e.preventDefault();
 
@@ -249,21 +258,29 @@ export function initializeContactFormSubmit() {
                 }
             });
 
-            // Create email body
-            const emailBody = `
-Purpose: ${data.purpose}
-Interest Area: ${data.industry || data.interest}
-Timeline: ${data.timeline}
-Name: ${data.name}
-Email: ${data.email}
-Organization: ${data.organization || 'N/A'}
+            // Create email body with translated labels
+            const purposeLabel = getTranslation('contact-q1') || 'Purpose';
+            const industryLabel = getTranslation('contact-q2') || 'Interest Area';
+            const timelineLabel = getTranslation('contact-q3') || 'Timeline';
+            const nameLabel = getTranslation('contact-name') || 'Name';
+            const emailLabel = getTranslation('contact-email') || 'Email';
+            const orgLabel = getTranslation('contact-org') || 'Organization';
+            const messageLabel = getTranslation('contact-q4') || 'Message';
 
-Message:
+            const emailBody = `
+${purposeLabel}: ${data.purpose}
+${industryLabel}: ${data.industry || data.interest}
+${timelineLabel}: ${data.timeline}
+${nameLabel}: ${data.name}
+${emailLabel}: ${data.email}
+${orgLabel}: ${data.organization || 'N/A'}
+
+${messageLabel}:
 ${data.message}
             `.trim();
 
             // Create mailto link
-            const questSubject = getTranslation('quest-email-subject');
+            const questSubject = getTranslation('quest-email-subject') || 'Contact Quest:';
             const subject = `${questSubject} ${data.purpose} - ${data.industry || data.interest}`;
             const mailtoLink = `mailto:hugues.ii.w.b.depingon@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
 
@@ -361,6 +378,18 @@ ${data.message}
         };
 
         syncFields();
-    }
+
+        // Add direct click handlers to submit buttons as fallback
+        const submitButtons = form.querySelectorAll('button[type="submit"]');
+        submitButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Trigger form submission manually
+                form.dispatchEvent(new Event('submit'));
+            });
+        });
+    };
+
+    findForm();
 }
 
