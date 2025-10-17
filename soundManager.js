@@ -828,7 +828,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     flashElement.id = 'golden-flash';
                     flashElement.style.cssText = `
                         position: fixed;
-                        top: 50%;
+                        top: 47%;
                         left: 50%;
                         width: 0;
                         height: 0;
