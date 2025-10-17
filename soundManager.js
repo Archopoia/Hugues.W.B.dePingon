@@ -684,7 +684,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Unlock audio on user interaction
     let audioUnlocked = false;
-    const unlockAudio = async (showAnimation = true) => {
+    const unlockAudio = async (playSound = true) => {
         if (audioUnlocked) return;
         audioUnlocked = true;
 
@@ -704,10 +704,6 @@ window.addEventListener('DOMContentLoaded', () => {
                 const languageSwitcher = document.querySelector('.language-switcher');
                 if (workshopButton) {
                     workshopButton.classList.add('visible');
-                    // Play stamp sound when the seal appears
-                    setTimeout(() => {
-                        soundManager.playStamp();
-                    }, 300); // Small delay to sync with the seal appearance animation
                 }
                 if (languageSwitcher) languageSwitcher.classList.add('visible');
             }, 1500);
@@ -773,8 +769,10 @@ window.addEventListener('DOMContentLoaded', () => {
         // Wait for all audio to unlock
         await Promise.all(unlockPromises);
 
-        // Play door unlock sound immediately at full volume
-        soundManager.playDoorUnlock();
+        // Play door unlock sound immediately at full volume (only if not already played)
+        if (playSound) {
+            soundManager.playDoorUnlock();
+        }
 
         // Start chimes loop after door unlock
         setTimeout(() => {
@@ -807,21 +805,75 @@ window.addEventListener('DOMContentLoaded', () => {
             // Show the button
             if (enterButton) {
                 enterButton.style.display = 'block';
+
+                // Add hover tracking for proper animation cycling
+                enterButton.addEventListener('mouseenter', () => {
+                    enterButton.classList.add('was-hovered');
+                });
             }
 
             // Unlock on button click
             if (enterButton) {
                 enterButton.addEventListener('click', () => {
-                    // Ensure volume is at full before playing
+                    // Prevent fallback handler from running
+                    window.keyholeClickInProgress = true;
+
+                    // Play the door unlock sound immediately on click
                     soundManager.sounds.doorUnlock.volume = 0.7;
                     soundManager.audioReady = true;
-                    unlockAudio(true);
+                    soundManager.sounds.doorUnlock.play();
+
+                    // Create a beautiful golden flash element that purges everything
+                    const flashElement = document.createElement('div');
+                    flashElement.id = 'golden-flash';
+                    flashElement.style.cssText = `
+                        position: fixed;
+                        top: 50%;
+                        left: 50%;
+                        width: 0;
+                        height: 0;
+                        background: radial-gradient(circle,
+                            rgba(255, 235, 198, 1) 0%,
+                            rgba(255, 235, 198, 1) 30%,
+                            rgba(255, 235, 198, 0.8) 50%,
+                            rgba(255, 235, 198, 0.6) 70%,
+                            rgba(255, 235, 198, 0.3) 85%,
+                            rgba(255, 235, 198, 0.1) 95%,
+                            transparent 100%);
+                        transform: translate(-50%, -50%);
+                        border-radius: 50%;
+                        pointer-events: none;
+                        z-index: 10001;
+                        opacity: 1;
+                        box-shadow:
+                            0 0 20px rgba(255, 235, 198, 0.6),
+                            0 0 40px rgba(255, 235, 198, 0.4),
+                            0 0 60px rgba(255, 235, 198, 0.2),
+                            0 0 80px rgba(255, 235, 198, 0.1);
+                    `;
+                    document.body.appendChild(flashElement);
+
+                    // Start the flash animation immediately - it purges everything
+                    flashElement.style.animation = 'goldenFlash 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards';
+
+                    // Wait for the flash to completely cover the screen before fading everything
+                    setTimeout(() => {
+                        // Start the background fade after flash has covered the screen
+                        unlockAudio(false); // Pass false to skip playing the sound again
+                    }, 1200); // Wait for the full flash animation to complete
+
+                    // Clean up after animation
+                    setTimeout(() => {
+                        if (flashElement.parentNode) {
+                            flashElement.parentNode.removeChild(flashElement);
+                        }
+                    }, 1200);
                 }, { once: true });
             }
 
             // Also handle regular clicks anywhere as fallback
             document.addEventListener('click', (e) => {
-                if (!audioUnlocked && e.target !== enterButton) {
+                if (!audioUnlocked && !window.keyholeClickInProgress && e.target !== enterButton && !e.target.closest('#enter-archives-btn')) {
                     soundManager.sounds.doorUnlock.volume = 0.7;
                     soundManager.audioReady = true;
                     unlockAudio(true);
