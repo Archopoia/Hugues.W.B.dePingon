@@ -834,22 +834,19 @@ window.addEventListener('DOMContentLoaded', () => {
                         height: 0;
                         background: radial-gradient(circle,
                             rgba(255, 235, 198, 1) 0%,
-                            rgba(255, 235, 198, 1) 30%,
-                            rgba(255, 235, 198, 0.8) 50%,
-                            rgba(255, 235, 198, 0.6) 70%,
-                            rgba(255, 235, 198, 0.3) 85%,
-                            rgba(255, 235, 198, 0.1) 95%,
+                            rgba(255, 235, 198, 0.95) 15%,
+                            rgba(255, 235, 198, 0.85) 30%,
+                            rgba(255, 235, 198, 0.7) 45%,
+                            rgba(255, 235, 198, 0.5) 60%,
+                            rgba(255, 235, 198, 0.3) 75%,
+                            rgba(255, 235, 198, 0.15) 85%,
+                            rgba(255, 235, 198, 0.05) 95%,
                             transparent 100%);
                         transform: translate(-50%, -50%);
                         border-radius: 50%;
                         pointer-events: none;
                         z-index: 10001;
                         opacity: 1;
-                        box-shadow:
-                            0 0 20px rgba(255, 235, 198, 0.6),
-                            0 0 40px rgba(255, 235, 198, 0.4),
-                            0 0 60px rgba(255, 235, 198, 0.2),
-                            0 0 80px rgba(255, 235, 198, 0.1);
                     `;
                     document.body.appendChild(flashElement);
 
