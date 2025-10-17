@@ -1,11 +1,26 @@
             <section id="contact" class="tab-content">
-                <!-- Media & Public Appearances Section -->
-                <div class="media-appearances-section">
-                    <div class="section-header">
-                        <h3><i class="fas fa-camera"></i> <span data-i18n="media-title">Public Appearances</span></h3>
-                        <p class="section-subtitle" data-i18n="media-subtitle">Featured in articles, festivals, and public events</p>
+                <!-- Top Section: Contact Buttons on Left, Public Appearances on Right -->
+                <div class="contact-top-section">
+                    <!-- Left: Contact Method Selector -->
+                    <div class="contact-methods-wrapper">
+                        <div class="contact-method-selector">
+                    <button class="method-btn active" data-method="form" onclick="switchContactMethod('form')">
+                        <i class="fas fa-comment-dots"></i>
+                        <span data-i18n="contact-interactive">Interactive Form</span>
+                    </button>
+                    <button class="method-btn" data-method="direct" onclick="switchContactMethod('direct')">
+                        <i class="fas fa-address-card"></i>
+                        <span data-i18n="contact-direct">Direct Contact</span>
+                    </button>
+                    <button class="method-btn" data-method="social" onclick="switchContactMethod('social')">
+                        <i class="fas fa-share-alt"></i>
+                        <span data-i18n="contact-social">Social Networks</span>
+                    </button>
+                        </div>
                     </div>
 
+                    <!-- Right: Public Appearances Section (Desktop only) -->
+                    <div class="media-appearances-section desktop-only">
                     <div class="media-grid">
                         <!-- Street Photography - Vilnius -->
                         <a href="https://www.facebook.com/permalink.php?story_fbid=pfbid022JYJWjRgNiZ6JKe6aWSzoYrY4cHvapwYjTo1tki7QXFiVKYSEcjAKPQTgaR2p3fXl&id=100011063237238" class="media-item" data-url-placeholder="vilnius-street-photo" target="_blank" rel="noopener noreferrer">
@@ -108,35 +123,172 @@
                         </a>
                     </div>
                 </div>
-
-                <!-- Contact Method Selector -->
-                <div class="contact-method-selector">
-                    <button class="method-btn active" data-method="form" onclick="switchContactMethod('form')">
-                        <i class="fas fa-comment-dots"></i>
-                        <span data-i18n="contact-interactive">Interactive Form</span>
-                    </button>
-                    <button class="method-btn" data-method="direct" onclick="switchContactMethod('direct')">
-                        <i class="fas fa-address-card"></i>
-                        <span data-i18n="contact-direct">Direct Contact</span>
-                    </button>
-                    <button class="method-btn" data-method="social" onclick="switchContactMethod('social')">
-                        <i class="fas fa-share-alt"></i>
-                        <span data-i18n="contact-social">Social Networks</span>
-                    </button>
                 </div>
 
                 <!-- Interactive Contact Form -->
                 <div class="contact-method-content" id="contact-form-section">
                     <div class="contact-quest-intro">
-                        <h3><i class="fas fa-scroll"></i> <span data-i18n="contact-quest-title">Begin Your Quest</span></h3>
-                        <p data-i18n="contact-quest-subtitle">Answer a few questions to help me understand how I can best assist you. Your responses will guide our conversation.</p>
+                        <p data-i18n="contact-quest-subtitle">Answer a few questions to help me understand how I can best assist you.</p>
                     </div>
 
                     <form id="interactive-contact-form" class="contact-quest-form">
-                        <!-- Question 1: Purpose -->
-                        <div class="quest-question active" data-question="1">
+                        <!-- Desktop Layout: 3 columns for questions + message area -->
+                        <div class="desktop-form-layout">
+                            <!-- Column 1: Question 1 -->
+                            <div class="quest-question desktop-question active" data-question="1">
                             <div class="question-header">
-                                <span class="question-number"><span data-i18n="quest-number">Quest</span> 1/5</span>
+                                    <h4 data-i18n="contact-q1">What brings you here today?</h4>
+                                </div>
+                                <div class="quest-options vertical">
+                                    <label class="quest-option">
+                                        <input type="radio" name="purpose" value="collaboration" required>
+                                        <div class="option-card">
+                                            <i class="fas fa-handshake"></i>
+                                            <span data-i18n="contact-q1-collab">Collaboration Opportunity</span>
+                                        </div>
+                                    </label>
+                                    <label class="quest-option">
+                                        <input type="radio" name="purpose" value="consultation" required>
+                                        <div class="option-card">
+                                            <i class="fas fa-lightbulb"></i>
+                                            <span data-i18n="contact-q1-consult">Consultation & Advice</span>
+                                        </div>
+                                    </label>
+                                    <label class="quest-option">
+                                        <input type="radio" name="purpose" value="hiring" required>
+                                        <div class="option-card">
+                                            <i class="fas fa-briefcase"></i>
+                                            <span data-i18n="contact-q1-hire">Hiring Opportunity</span>
+                                        </div>
+                                    </label>
+                                    <label class="quest-option">
+                                        <input type="radio" name="purpose" value="networking" required>
+                                        <div class="option-card">
+                                            <i class="fas fa-users"></i>
+                                            <span data-i18n="contact-q1-network">Networking & Connection</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Column 2: Question 2 -->
+                            <div class="quest-question desktop-question" data-question="2">
+                                <div class="question-header">
+                                    <h4 data-i18n="contact-q2">What industry or field interests you most?</h4>
+                                </div>
+                                <div class="quest-options vertical">
+                                    <label class="quest-option">
+                                        <input type="radio" name="industry" value="gaming" required>
+                                        <div class="option-card">
+                                            <i class="fas fa-gamepad"></i>
+                                            <span data-i18n="contact-q2-gaming">Game Development</span>
+                                        </div>
+                                    </label>
+                                    <label class="quest-option">
+                                        <input type="radio" name="industry" value="education" required>
+                                        <div class="option-card">
+                                            <i class="fas fa-graduation-cap"></i>
+                                            <span data-i18n="contact-q2-edu">Education & Learning</span>
+                                        </div>
+                                    </label>
+                                    <label class="quest-option">
+                                        <input type="radio" name="industry" value="technology" required>
+                                        <div class="option-card">
+                                            <i class="fas fa-laptop-code"></i>
+                                            <span data-i18n="contact-q2-tech">Technology & Innovation</span>
+                                        </div>
+                                    </label>
+                                    <label class="quest-option">
+                                        <input type="radio" name="industry" value="other" required>
+                                        <div class="option-card">
+                                            <i class="fas fa-globe"></i>
+                                            <span data-i18n="contact-q2-other">Other / General</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Column 3: Question 3 -->
+                            <div class="quest-question desktop-question" data-question="3">
+                                <div class="question-header">
+                                    <h4 data-i18n="contact-q3">What's your timeline for this project or collaboration?</h4>
+                                </div>
+                                <div class="quest-options vertical">
+                                    <label class="quest-option">
+                                        <input type="radio" name="timeline" value="immediate" required>
+                                        <div class="option-card">
+                                            <i class="fas fa-bolt"></i>
+                                            <span data-i18n="contact-q3-immediate">Immediate (Within 1 month)</span>
+                                        </div>
+                                    </label>
+                                    <label class="quest-option">
+                                        <input type="radio" name="timeline" value="short-term" required>
+                                        <div class="option-card">
+                                            <i class="fas fa-calendar-week"></i>
+                                            <span data-i18n="contact-q3-short">Short-term (1-3 months)</span>
+                                        </div>
+                                    </label>
+                                    <label class="quest-option">
+                                        <input type="radio" name="timeline" value="medium-term" required>
+                                        <div class="option-card">
+                                            <i class="fas fa-calendar-alt"></i>
+                                            <span data-i18n="contact-q3-medium">Medium-term (3-6 months)</span>
+                                        </div>
+                                    </label>
+                                    <label class="quest-option">
+                                        <input type="radio" name="timeline" value="long-term" required>
+                                        <div class="option-card">
+                                            <i class="fas fa-calendar-check"></i>
+                                            <span data-i18n="contact-q3-long">Long-term (6+ months)</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Column 4: Message Area -->
+                            <div class="quest-message-area">
+                                <div class="question-header">
+                                    <h4 data-i18n="contact-q4">Tell me more about your vision or challenge</h4>
+                                </div>
+                                <div class="quest-text-input">
+                                    <textarea
+                                        name="message-desktop"
+                                        rows="8"
+                                        data-i18n="contact-q4-placeholder"
+                                        placeholder="Share your idea or problem"
+                                    ></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact Info Section -->
+                        <div class="quest-contact-section">
+                            <div class="quest-contact-inputs horizontal">
+                                <div class="input-group">
+                                    <label><i class="fas fa-user"></i> <span data-i18n="contact-name">Name</span></label>
+                                    <input type="text" name="name-desktop" data-i18n="contact-name-placeholder" placeholder="Enter your name">
+                                </div>
+                                <div class="input-group">
+                                    <label><i class="fas fa-envelope"></i> <span data-i18n="contact-email">Email Address</span></label>
+                                    <input type="email" name="email-desktop" data-i18n="contact-email-placeholder" placeholder="your.email@example.com">
+                                </div>
+                                <div class="input-group">
+                                    <label><i class="fas fa-building"></i> <span data-i18n="contact-org">Organization (Optional)</span></label>
+                                    <input type="text" name="organization-desktop" data-i18n="contact-org-placeholder" placeholder="Company or institution">
+                                </div>
+                            </div>
+                            <div class="contact-submit-section">
+                                <button type="submit" class="quest-btn primary submit-btn" id="submit-btn" style="display: block;">
+                                    <i class="fas fa-paper-plane"></i> <span data-i18n="btn-send">Send</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Mobile Layout: Sequential questions (hidden on desktop) -->
+                        <div class="mobile-form-layout">
+                            <!-- Question 1: Purpose -->
+                            <div class="quest-question mobile-question active" data-question="1">
+                                <div class="question-header">
                                 <h4 data-i18n="contact-q1">What brings you here today?</h4>
                             </div>
                             <div class="quest-options">
@@ -172,9 +324,8 @@
                         </div>
 
                         <!-- Question 2: Industry -->
-                        <div class="quest-question" data-question="2">
+                            <div class="quest-question mobile-question" data-question="2">
                             <div class="question-header">
-                                <span class="question-number"><span data-i18n="quest-number">Quest</span> 2/5</span>
                                 <h4 data-i18n="contact-q2">What industry or field interests you most?</h4>
                             </div>
                             <div class="quest-options">
@@ -210,9 +361,8 @@
                         </div>
 
                         <!-- Question 3: Timeline -->
-                        <div class="quest-question" data-question="3">
+                            <div class="quest-question mobile-question" data-question="3">
                             <div class="question-header">
-                                <span class="question-number"><span data-i18n="quest-number">Quest</span> 3/5</span>
                                 <h4 data-i18n="contact-q3">What's your timeline for this project or collaboration?</h4>
                             </div>
                             <div class="quest-options">
@@ -248,9 +398,8 @@
                         </div>
 
                         <!-- Question 4: Message -->
-                        <div class="quest-question" data-question="4">
+                            <div class="quest-question mobile-question" data-question="4">
                             <div class="question-header">
-                                <span class="question-number"><span data-i18n="quest-number">Quest</span> 4/5</span>
                                 <h4 data-i18n="contact-q4">Tell me more about your vision or challenge</h4>
                             </div>
                             <div class="quest-text-input">
@@ -258,33 +407,35 @@
                                     name="message"
                                     rows="6"
                                     data-i18n="contact-q4-placeholder"
-                                    placeholder="Share your vision, challenge, or question. The more details, the better I can help..."
-                                    required
+                                        placeholder="Share your idea or problem"
                                 ></textarea>
                             </div>
                         </div>
 
                         <!-- Question 5: Contact Info -->
-                        <div class="quest-question" data-question="5">
-                            <div class="question-header">
-                                <span class="question-number"><span data-i18n="quest-number">Quest</span> 5/5</span>
-                                <h4 data-i18n="contact-q5">How should I reach you?</h4>
-                            </div>
+                            <div class="quest-question mobile-question" data-question="5" style="display: none;">
                             <div class="quest-contact-inputs">
                                 <div class="input-group">
                                     <label><i class="fas fa-user"></i> <span data-i18n="contact-name">Name</span></label>
-                                    <input type="text" name="name" data-i18n="contact-name-placeholder" placeholder="Enter your name" required>
+                                        <input type="text" name="name" data-i18n="contact-name-placeholder" placeholder="Enter your name">
                                 </div>
                                 <div class="input-group">
                                     <label><i class="fas fa-envelope"></i> <span data-i18n="contact-email">Email Address</span></label>
-                                    <input type="email" name="email" data-i18n="contact-email-placeholder" placeholder="your.email@example.com" required>
+                                        <input type="email" name="email" data-i18n="contact-email-placeholder" placeholder="your.email@example.com">
                                 </div>
                                 <div class="input-group">
                                     <label><i class="fas fa-building"></i> <span data-i18n="contact-org">Organization (Optional)</span></label>
                                     <input type="text" name="organization" data-i18n="contact-org-placeholder" placeholder="Company or institution">
+                                    </div>
+                                </div>
+                                <div class="contact-submit-section">
+                                    <button type="submit" class="quest-btn primary submit-btn" id="mobile-submit-btn">
+                                        <i class="fas fa-paper-plane"></i> <span data-i18n="btn-send">Send</span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
+
 
                         <!-- Form Navigation -->
                         <div class="quest-navigation">
@@ -302,9 +453,6 @@
                             </div>
                             <button type="button" class="quest-btn primary" id="next-btn" onclick="nextQuestion()">
                                 <span data-i18n="btn-next">Next</span> <i class="fas fa-arrow-right"></i>
-                            </button>
-                            <button type="submit" class="quest-btn submit" id="submit-btn" style="display:none;">
-                                <i class="fas fa-paper-plane"></i> <span data-i18n="btn-submit">Send Quest</span>
                             </button>
                         </div>
                     </form>
@@ -334,7 +482,6 @@
                             <a href="mailto:hugues.ii.w.b.depingon@gmail.com" class="contact-action-btn">
                                 <i class="fas fa-paper-plane"></i> <span data-i18n="btn-send-email">Send Email</span>
                             </a>
-                            <p class="contact-note">Best for detailed inquiries and proposals</p>
                         </div>
 
                         <div class="contact-card">
@@ -343,7 +490,7 @@
                             </div>
                             <h3 data-i18n="location">Location</h3>
                             <p class="contact-value" data-i18n="location-value">Switzerland / Estonia</p>
-                            <p class="contact-note">Open to remote collaboration worldwide</p>
+                            <p class="contact-note" data-i18n="contact-remote-collab">Open to remote collaboration worldwide</p>
                         </div>
                     </div>
                 </div>
@@ -353,32 +500,137 @@
                     <div class="social-platforms-grid">
                         <a href="https://www.linkedin.com/in/hugues-ii-w-b-de-pingon/" target="_blank" rel="noopener noreferrer" class="social-platform-card linkedin">
                             <i class="fab fa-linkedin"></i>
-                            <span class="platform-name">LinkedIn</span>
+                            <span class="platform-name" data-i18n="social-linkedin">LinkedIn</span>
                         </a>
 
                         <a href="https://github.com/Archopoia" target="_blank" rel="noopener noreferrer" class="social-platform-card github">
                             <i class="fab fa-github"></i>
-                            <span class="platform-name">GitHub</span>
+                            <span class="platform-name" data-i18n="social-github">GitHub</span>
                         </a>
 
                         <a href="https://the-discording-tales.itch.io/" target="_blank" rel="noopener noreferrer" class="social-platform-card itch">
                             <i class="fab fa-itch-io"></i>
-                            <span class="platform-name">Itch.io</span>
+                            <span class="platform-name" data-i18n="social-itch">Itch.io</span>
                         </a>
 
                         <a href="https://x.com/DiscordingTales" target="_blank" rel="noopener noreferrer" class="social-platform-card twitter">
                             <i class="fab fa-twitter"></i>
-                            <span class="platform-name">@DiscordingTales</span>
+                            <span class="platform-name" data-i18n="social-twitter">@DiscordingTales</span>
                         </a>
 
                         <a href="https://www.instagram.com/hugueswb_de_pingon" target="_blank" rel="noopener noreferrer" class="social-platform-card instagram">
                             <i class="fab fa-instagram"></i>
-                            <span class="platform-name">@hugueswb_de_pingon</span>
+                            <span class="platform-name" data-i18n="social-instagram">@hugueswb_de_pingon</span>
                         </a>
 
                         <a href="https://thediscordingtales.wordpress.com/" target="_blank" rel="noopener noreferrer" class="social-platform-card wordpress">
                             <i class="fab fa-wordpress"></i>
-                            <span class="platform-name">WordPress Blog</span>
+                            <span class="platform-name" data-i18n="social-wordpress">The Discording Tales RPG</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mobile Gallery - Appears at bottom after all contact content -->
+                <div class="media-appearances-section mobile-only">
+                    <div class="media-grid">
+                        <!-- Street Photography - Vilnius -->
+                        <a href="https://www.facebook.com/permalink.php?story_fbid=pfbid022JYJWjRgNiZ6JKe6aWSzoYrY4cHvapwYjTo1tki7QXFiVKYSEcjAKPQTgaR2p3fXl&id=100011063237238" class="media-item" data-url-placeholder="vilnius-street-photo" target="_blank" rel="noopener noreferrer">
+                            <div class="media-thumbnail">
+                                <img src="Assets/Hugues/Articles/Hugues.W.B.dePingon - fullfashion.jpg" alt="Hugues in Vilnius" loading="lazy">
+                                <div class="media-overlay">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </div>
+                            </div>
+                            <div class="media-caption">
+                                <h4 data-i18n="media-vilnius-title">Street Photography</h4>
+                                <p data-i18n="media-vilnius-desc">Snapped by @vincasalesius, Vilnius' street photographer</p>
+                            </div>
+                        </a>
+
+                        <!-- Brain Bar 2025 -->
+                        <a href="https://youtu.be/98z9I0WwnY8?t=42" class="media-item" data-url-placeholder="brainbar-2025" target="_blank" rel="noopener noreferrer">
+                            <div class="media-thumbnail">
+                                <img src="Assets/Hugues/Articles/Hugues.W.B.dePingon - BrainBar2025.jpg" alt="Brain Bar 2025" loading="lazy">
+                                <div class="media-overlay">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </div>
+                            </div>
+                            <div class="media-caption">
+                                <h4 data-i18n="media-brainbar-title">Brain Bar 2025</h4>
+                                <p data-i18n="media-brainbar-desc">Discussing de-extinction with Ben Lamm (Colossal CEO)</p>
+                            </div>
+                        </a>
+
+                        <!-- RTS Alpagisme Video -->
+                        <a href="https://www.facebook.com/reel/290268345456134" class="media-item video-item" data-url-placeholder="rts-alpagisme" target="_blank" rel="noopener noreferrer">
+                            <div class="media-thumbnail">
+                                <video class="media-video" muted loop playsinline>
+                                    <source src="Assets/Hugues/Articles/Hugues.W.B.dePingon - 2020 - RTS - Alpagisme.mp4" type="video/mp4">
+                                </video>
+                                <div class="media-overlay">
+                                    <i class="fas fa-play-circle"></i>
+                                </div>
+                            </div>
+                            <div class="media-caption">
+                                <h4 data-i18n="media-rts-title">RTS Documentary</h4>
+                                <p data-i18n="media-rts-desc">Alpine pastoralism in Swiss mountains (2020)</p>
+                            </div>
+                        </a>
+
+                        <!-- Vilnius Saint John Festival -->
+                        <a href="https://www.delfi.lt/vasara/naujienos/vilniuje-jau-dega-lauzai-ir-pinami-vainikai-verkiu-rumu-parke-prasidejo-tradicine-rasos-svente-81526543#gallery-id=84b01d40-7347-11ed-b29f-3da05397cd7c&image-id=e4a83fd0-7346-11ed-a414-71a9be2e1577" class="media-item" data-url-placeholder="vilnius-festival" target="_blank" rel="noopener noreferrer">
+                            <div class="media-thumbnail">
+                                <img src="Assets/Hugues/Articles/Hugues.W.B.dePingon - Vilnius Saint John Juonines Festival.PNG" alt="Vilnius Saint John Festival" loading="lazy">
+                                <div class="media-overlay">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </div>
+                            </div>
+                            <div class="media-caption">
+                                <h4 data-i18n="media-festival-title">Saint John's Festival</h4>
+                                <p data-i18n="media-festival-desc">Joninės celebration in Vilnius, Lithuania</p>
+                            </div>
+                        </a>
+
+                        <!-- Phil the Culture Prague 2019 -->
+                        <a href="https://youtu.be/Zqk13xZzI28?t=144" class="media-item" data-url-placeholder="prague-phil" target="_blank" rel="noopener noreferrer">
+                            <div class="media-thumbnail">
+                                <img src="Assets/Hugues/Articles/HuguesPrague-PhilTheCulture2019.png" alt="Phil the Culture Prague" loading="lazy">
+                                <div class="media-overlay">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </div>
+                            </div>
+                            <div class="media-caption">
+                                <h4 data-i18n="media-prague-title">Phil the Culture</h4>
+                                <p data-i18n="media-prague-desc">Philosophy conference in Prague (2019)</p>
+                            </div>
+                        </a>
+
+                        <!-- Systema Martial Arts 2018 -->
+                        <a href="https://www.montanakaimin.com/news/russian-martial-art-takes-unusual-approach-to-combat/article_dbd20f2e-14df-11e7-9334-1b04718bd1b6.html" class="media-item" data-url-placeholder="systema-2018" target="_blank" rel="noopener noreferrer">
+                            <div class="media-thumbnail">
+                                <img src="Assets/Hugues/Articles/Hugues - Systema - 2018.png" alt="Systema Martial Arts" loading="lazy">
+                                <div class="media-overlay">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </div>
+                            </div>
+                            <div class="media-caption">
+                                <h4 data-i18n="media-systema-title">Systema Martial Arts</h4>
+                                <p data-i18n="media-systema-desc">Russian martial arts training (2018)</p>
+                            </div>
+                        </a>
+
+                        <!-- ASUM Presidential Campaign -->
+                        <a href="https://www.montanakaimin.com/features/who-will-be-our-next-fearless-leader-asum-candidate-profiles/article_51257c7e-3c4f-11e8-9548-536939775063.html" class="media-item" data-url-placeholder="asum-campaign" target="_blank" rel="noopener noreferrer">
+                            <div class="media-thumbnail">
+                                <img src="Assets/Hugues/Articles/Hugues.W.B.dePingon - ASUM.webp" alt="ASUM Presidential Campaign" loading="lazy">
+                                <div class="media-overlay">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </div>
+                            </div>
+                            <div class="media-caption">
+                                <h4 data-i18n="media-asum-title">Student Government Campaign</h4>
+                                <p data-i18n="media-asum-desc">ASUM Presidential Candidate, University of Montana (2018)</p>
+                            </div>
                         </a>
                     </div>
                 </div>

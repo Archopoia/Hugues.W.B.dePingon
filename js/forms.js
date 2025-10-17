@@ -34,7 +34,10 @@ export function switchContactMethod(method) {
 }
 
 export function nextQuestion() {
-    const currentQ = document.querySelector(`.quest-question[data-question="${currentQuestion}"]`);
+    // Only handle mobile questions for navigation
+    const currentQ = document.querySelector(`.mobile-question[data-question="${currentQuestion}"]`);
+    if (!currentQ) return;
+
     const inputs = currentQ.querySelectorAll('input[required], textarea[required]');
 
     // Validate current question
@@ -58,41 +61,65 @@ export function nextQuestion() {
 
     // Hide current question
     currentQ.classList.remove('active');
+    currentQ.style.display = 'none';
 
     // Show next question
     currentQuestion++;
-    document.querySelector(`.quest-question[data-question="${currentQuestion}"]`).classList.add('active');
+    const nextQ = document.querySelector(`.mobile-question[data-question="${currentQuestion}"]`);
+    if (nextQ) {
+        nextQ.classList.add('active');
+        nextQ.style.display = 'block';
+    }
 
     // Update progress dots
     updateProgressDots();
 
     // Update navigation buttons
-    document.getElementById('prev-btn').disabled = false;
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
 
-    if (currentQuestion === totalQuestions) {
-        document.getElementById('next-btn').style.display = 'none';
-        document.getElementById('submit-btn').style.display = 'block';
+    if (prevBtn) prevBtn.disabled = false;
+    if (nextBtn) nextBtn.style.display = currentQuestion === totalQuestions ? 'none' : 'block';
+
+    // Handle mobile submit button
+    const mobileSubmitBtn = document.getElementById('mobile-submit-btn');
+    if (mobileSubmitBtn) {
+        mobileSubmitBtn.style.display = currentQuestion === totalQuestions ? 'block' : 'none';
     }
 }
 
 export function previousQuestion() {
+    // Only handle mobile questions for navigation
+    const currentQ = document.querySelector(`.mobile-question[data-question="${currentQuestion}"]`);
+    if (!currentQ) return;
+
     // Hide current question
-    document.querySelector(`.quest-question[data-question="${currentQuestion}"]`).classList.remove('active');
+    currentQ.classList.remove('active');
+    currentQ.style.display = 'none';
 
     // Show previous question
     currentQuestion--;
-    document.querySelector(`.quest-question[data-question="${currentQuestion}"]`).classList.add('active');
+    const prevQ = document.querySelector(`.mobile-question[data-question="${currentQuestion}"]`);
+    if (prevQ) {
+        prevQ.classList.add('active');
+        prevQ.style.display = 'block';
+    }
 
     // Update progress dots
     updateProgressDots();
 
     // Update navigation buttons
-    if (currentQuestion === 1) {
-        document.getElementById('prev-btn').disabled = true;
-    }
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
 
-    document.getElementById('next-btn').style.display = 'block';
-    document.getElementById('submit-btn').style.display = 'none';
+    if (prevBtn) prevBtn.disabled = currentQuestion === 1;
+    if (nextBtn) nextBtn.style.display = 'block';
+
+    // Handle mobile submit button
+    const mobileSubmitBtn = document.getElementById('mobile-submit-btn');
+    if (mobileSubmitBtn) {
+        mobileSubmitBtn.style.display = 'none';
+    }
 }
 
 function updateProgressDots() {
@@ -113,19 +140,30 @@ export function resetContactForm() {
         form.reset();
     }
 
-    // Reset to first question
+    // Reset to first question (both desktop and mobile)
     document.querySelectorAll('.quest-question').forEach(q => q.classList.remove('active'));
-    document.querySelector('.quest-question[data-question="1"]').classList.add('active');
+    document.querySelectorAll('.desktop-question, .mobile-question').forEach(q => {
+        q.classList.remove('active');
+        q.style.display = 'none';
+    });
+
+    // Show first question in both layouts
+    document.querySelector('.desktop-question[data-question="1"]').classList.add('active');
+    const firstMobileQ = document.querySelector('.mobile-question[data-question="1"]');
+    if (firstMobileQ) {
+        firstMobileQ.classList.add('active');
+        firstMobileQ.style.display = 'block';
+    }
     currentQuestion = 1;
 
     // Reset navigation
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
-    const submitBtn = document.getElementById('submit-btn');
+    const mobileSubmitBtn = document.getElementById('mobile-submit-btn');
 
     if (prevBtn) prevBtn.disabled = true;
     if (nextBtn) nextBtn.style.display = 'block';
-    if (submitBtn) submitBtn.style.display = 'none';
+    if (mobileSubmitBtn) mobileSubmitBtn.style.display = 'none';
 
     updateProgressDots();
 
@@ -146,17 +184,75 @@ export function initializeContactFormSubmit() {
         form.addEventListener('submit', function(e) {
             e.preventDefault();
 
+            // Sync values between desktop and mobile fields before submission
+            const mobileMessage = form.querySelector('textarea[name="message"]');
+            const desktopMessage = form.querySelector('textarea[name="message-desktop"]');
+            if (mobileMessage && desktopMessage) {
+                // Sync whichever has content to the other
+                if (mobileMessage.value.trim()) {
+                    desktopMessage.value = mobileMessage.value;
+                } else if (desktopMessage.value.trim()) {
+                    mobileMessage.value = desktopMessage.value;
+                }
+            }
+
+            const mobileName = form.querySelector('input[name="name"]');
+            const desktopName = form.querySelector('input[name="name-desktop"]');
+            if (mobileName && desktopName) {
+                if (mobileName.value.trim()) {
+                    desktopName.value = mobileName.value;
+                } else if (desktopName.value.trim()) {
+                    mobileName.value = desktopName.value;
+                }
+            }
+
+            const mobileEmail = form.querySelector('input[name="email"]');
+            const desktopEmail = form.querySelector('input[name="email-desktop"]');
+            if (mobileEmail && desktopEmail) {
+                if (mobileEmail.value.trim()) {
+                    desktopEmail.value = mobileEmail.value;
+                } else if (desktopEmail.value.trim()) {
+                    mobileEmail.value = desktopEmail.value;
+                }
+            }
+
+            const mobileOrg = form.querySelector('input[name="organization"]');
+            const desktopOrg = form.querySelector('input[name="organization-desktop"]');
+            if (mobileOrg && desktopOrg) {
+                if (mobileOrg.value.trim()) {
+                    desktopOrg.value = mobileOrg.value;
+                } else if (desktopOrg.value.trim()) {
+                    mobileOrg.value = desktopOrg.value;
+                }
+            }
+
+            // Validate that required fields are filled
+            const message = mobileMessage?.value.trim() || desktopMessage?.value.trim();
+            const name = mobileName?.value.trim() || desktopName?.value.trim();
+            const email = mobileEmail?.value.trim() || desktopEmail?.value.trim();
+
+            if (!message || !name || !email) {
+                alert('Please fill in all required fields (message, name, and email).');
+                return;
+            }
+
             // Collect form data
             const formData = new FormData(form);
             const data = {};
             formData.forEach((value, key) => {
-                data[key] = value;
+                // Handle both desktop and mobile field names
+                if (key.includes('-desktop')) {
+                    const baseKey = key.replace('-desktop', '');
+                    data[baseKey] = value;
+                } else if (!key.includes('-desktop')) {
+                    data[key] = value;
+                }
             });
 
             // Create email body
             const emailBody = `
 Purpose: ${data.purpose}
-Interest Area: ${data.interest}
+Interest Area: ${data.industry || data.interest}
 Timeline: ${data.timeline}
 Name: ${data.name}
 Email: ${data.email}
@@ -168,7 +264,7 @@ ${data.message}
 
             // Create mailto link
             const questSubject = getTranslation('quest-email-subject');
-            const subject = `${questSubject} ${data.purpose} - ${data.interest}`;
+            const subject = `${questSubject} ${data.purpose} - ${data.industry || data.interest}`;
             const mailtoLink = `mailto:hugues.ii.w.b.depingon@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
 
             // Open email client
@@ -185,6 +281,86 @@ ${data.message}
                 if (formSuccess) formSuccess.style.display = 'block';
             }, 500);
         });
+
+        // Add auto-advance functionality for mobile radio buttons
+        const radioButtons = form.querySelectorAll('.mobile-question input[type="radio"]');
+        radioButtons.forEach(radio => {
+            radio.addEventListener('change', function() {
+                // Small delay to allow the selection to be visible
+                setTimeout(() => {
+                    // Only auto-advance on mobile and for questions 1-3 (not message or contact info)
+                    if (window.innerWidth <= 768 && currentQuestion < 4) {
+                        nextQuestion();
+                    }
+                }, 300);
+            });
+        });
+
+        // Add auto-advance for textarea when user types (question 4)
+        const messageTextarea = form.querySelector('.mobile-question textarea[name="message"]');
+        if (messageTextarea) {
+            let typingTimer;
+            messageTextarea.addEventListener('input', function() {
+                clearTimeout(typingTimer);
+                // Auto-advance after user stops typing for 2 seconds
+                typingTimer = setTimeout(() => {
+                    if (window.innerWidth <= 768 && currentQuestion === 4 && this.value.trim().length > 10) {
+                        nextQuestion();
+                    }
+                }, 2000);
+            });
+        }
+
+        // Sync values between desktop and mobile fields
+        const syncFields = () => {
+            // Sync message fields
+            const desktopMessage = form.querySelector('textarea[name="message-desktop"]');
+            const mobileMessage = form.querySelector('textarea[name="message"]');
+            if (desktopMessage && mobileMessage) {
+                desktopMessage.addEventListener('input', () => {
+                    mobileMessage.value = desktopMessage.value;
+                });
+                mobileMessage.addEventListener('input', () => {
+                    desktopMessage.value = mobileMessage.value;
+                });
+            }
+
+            // Sync contact fields
+            const desktopName = form.querySelector('input[name="name-desktop"]');
+            const mobileName = form.querySelector('input[name="name"]');
+            if (desktopName && mobileName) {
+                desktopName.addEventListener('input', () => {
+                    mobileName.value = desktopName.value;
+                });
+                mobileName.addEventListener('input', () => {
+                    desktopName.value = mobileName.value;
+                });
+            }
+
+            const desktopEmail = form.querySelector('input[name="email-desktop"]');
+            const mobileEmail = form.querySelector('input[name="email"]');
+            if (desktopEmail && mobileEmail) {
+                desktopEmail.addEventListener('input', () => {
+                    mobileEmail.value = desktopEmail.value;
+                });
+                mobileEmail.addEventListener('input', () => {
+                    desktopEmail.value = mobileEmail.value;
+                });
+            }
+
+            const desktopOrg = form.querySelector('input[name="organization-desktop"]');
+            const mobileOrg = form.querySelector('input[name="organization"]');
+            if (desktopOrg && mobileOrg) {
+                desktopOrg.addEventListener('input', () => {
+                    mobileOrg.value = desktopOrg.value;
+                });
+                mobileOrg.addEventListener('input', () => {
+                    desktopOrg.value = mobileOrg.value;
+                });
+            }
+        };
+
+        syncFields();
     }
 }
 

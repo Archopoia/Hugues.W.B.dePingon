@@ -11,6 +11,7 @@ class SoundManager {
             clickfail: null,
             pull: null,
             release: null,
+            stamp: null,
             bells: [],
             pages: [],
             reactFail: null,
@@ -67,6 +68,9 @@ class SoundManager {
 
         // Release sound (for workshop button release) - needs full preload
         this.sounds.release = this.createFullyPreloadedAudio('Assets/Sounds/Release.wav', 0.6);
+
+        // Stamp sound (for workshop seal stamp effect) - needs full preload
+        this.sounds.stamp = this.createFullyPreloadedAudio('Assets/Sounds/Stamp.mp3', 0.7);
 
         // Page sounds (for tab switching and flip effects) - page1 to page4 - need full preload for immediate playback
         for (let i = 1; i <= 4; i++) {
@@ -616,6 +620,15 @@ class SoundManager {
         release.play().catch(() => {});
     }
 
+    // Play stamp sound (workshop seal stamp effect)
+    playStamp() {
+        if (!this.audioReady) return;
+
+        const stamp = this.sounds.stamp;
+        stamp.currentTime = 0;
+        stamp.play().catch(() => {});
+    }
+
     // Play secret unlock sound for workshop achievements
     // secretNumber: 1=Secret1.wav (H pattern), 2=Secret2.wav (O pattern),
     //               3=Secret3.wav (Snake pattern), 4=Secret4.wav (All pattern)
@@ -689,7 +702,13 @@ window.addEventListener('DOMContentLoaded', () => {
                 // Show workshop button and language switcher after entrance screen is gone
                 const workshopButton = document.querySelector('.workshop-seal-button');
                 const languageSwitcher = document.querySelector('.language-switcher');
-                if (workshopButton) workshopButton.classList.add('visible');
+                if (workshopButton) {
+                    workshopButton.classList.add('visible');
+                    // Play stamp sound when the seal appears
+                    setTimeout(() => {
+                        soundManager.playStamp();
+                    }, 300); // Small delay to sync with the seal appearance animation
+                }
                 if (languageSwitcher) languageSwitcher.classList.add('visible');
             }, 1500);
         }
@@ -728,6 +747,17 @@ window.addEventListener('DOMContentLoaded', () => {
                 .catch(() => {});
             unlockPromises.push(promise);
         });
+
+        // Also unlock stamp sound for immediate playback
+        if (soundManager.sounds.stamp) {
+            const promise = soundManager.sounds.stamp.play()
+                .then(() => {
+                    soundManager.sounds.stamp.pause();
+                    soundManager.sounds.stamp.currentTime = 0;
+                })
+                .catch(() => {});
+            unlockPromises.push(promise);
+        }
 
         // Also unlock secret sounds for immediate playback
         soundManager.sounds.secrets.forEach(audio => {

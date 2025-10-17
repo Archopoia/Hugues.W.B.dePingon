@@ -477,8 +477,8 @@ const translations = {
         "contact-q3-short": "Short-term (1-3 months)",
         "contact-q3-medium": "Medium-term (3-6 months)",
         "contact-q3-long": "Long-term (6+ months)",
-        "contact-q4": "Tell me more about your vision or challenge",
-        "contact-q4-placeholder": "Share your vision, challenge, or question. The more details, the better I can help...",
+        "contact-q4": "Tell me more about your idea or problem",
+        "contact-q4-placeholder": "Share your idea or problem",
         "contact-q5": "How should I reach you?",
         "contact-name": "Your Name",
         "contact-name-placeholder": "Enter your name",
@@ -507,11 +507,22 @@ const translations = {
 
         // Contact
         "contact-quest-title": "Begin Your Quest",
-        "contact-quest-subtitle": "Answer a few questions to help me understand how I can best assist you. Your responses will guide our conversation.",
+        "contact-quest-subtitle": "Answer a few questions to help me understand how I can best assist you.",
         "contact-success-title": "Quest Accepted!",
         "contact-success-message": "Thank you for reaching out. I'll review your message and respond within 48 hours.",
         "quest-number": "Quest",
         "quest-email-subject": "Contact Quest:",
+
+        // Contact Info
+        "contact-remote-collab": "Open to remote collaboration worldwide",
+
+        // Social Media Platforms
+        "social-linkedin": "LinkedIn",
+        "social-github": "GitHub",
+        "social-itch": "Itch.io",
+        "social-twitter": "@DiscordingTales",
+        "social-instagram": "@hugueswb_de_pingon",
+        "social-wordpress": "The Discording Tales RPG",
 
         // Buttons
         "btn-read": "Read",
@@ -521,6 +532,7 @@ const translations = {
         "btn-previous": "Previous",
         "btn-next": "Next",
         "btn-submit": "Send Quest",
+        "btn-send": "Send",
         "btn-send-email": "Send Email",
         "btn-join-discord": "Join Discord Server",
         "btn-official-website": "Official Website",
@@ -1095,8 +1107,8 @@ const translations = {
         "contact-q3-short": "Court terme (1-3 mois)",
         "contact-q3-medium": "Moyen terme (3-6 mois)",
         "contact-q3-long": "Long terme (6+ mois)",
-        "contact-q4": "Parlez-moi plus de votre vision ou défi",
-        "contact-q4-placeholder": "Partagez votre vision, défi ou question. Plus de détails m'aideront mieux...",
+        "contact-q4": "Parlez-moi plus de votre idée ou problème",
+        "contact-q4-placeholder": "Partagez votre idée ou problème",
         "contact-q5": "Comment puis-je vous contacter?",
         "contact-name": "Votre Nom",
         "contact-name-placeholder": "Entrez votre nom",
@@ -1125,11 +1137,22 @@ const translations = {
 
         // Contact
         "contact-quest-title": "Commencez votre quête",
-        "contact-quest-subtitle": "Répondez à quelques questions pour m'aider à comprendre comment je peux vous assister au mieux. Vos réponses guideront notre conversation.",
+        "contact-quest-subtitle": "Répondez à quelques questions pour m'aider à comprendre comment je peux vous assister au mieux.",
         "contact-success-title": "Quête acceptée !",
         "contact-success-message": "Merci de m'avoir contacté. J'examinerai votre message et répondrai dans les 48 heures.",
         "quest-number": "Quête",
         "quest-email-subject": "Quête de Contact:",
+
+        // Contact Info
+        "contact-remote-collab": "Ouvert à la collaboration à distance dans le monde entier",
+
+        // Social Media Platforms
+        "social-linkedin": "LinkedIn",
+        "social-github": "GitHub",
+        "social-itch": "Itch.io",
+        "social-twitter": "@DiscordingTales",
+        "social-instagram": "@hugueswb_de_pingon",
+        "social-wordpress": "JDR Des Récits Discordants",
 
         // Buttons
         "btn-read": "Lire",
@@ -1139,6 +1162,7 @@ const translations = {
         "btn-previous": "Précédent",
         "btn-next": "Suivant",
         "btn-submit": "Envoyer la quête",
+        "btn-send": "Envoyer",
         "btn-send-email": "Envoyer un email",
         "btn-join-discord": "Rejoindre le serveur Discord",
         "btn-official-website": "Site Officiel",

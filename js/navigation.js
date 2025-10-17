@@ -267,6 +267,11 @@ export async function switchTab(targetTab) {
                 workshopSealBtn.style.willChange = '';
                 workshopSealBtn.style.removeProperty('--button-rotation');
 
+                // Play stamp sound when the seal stamps back into view
+                if (window.soundManager) {
+                    window.soundManager.playStamp();
+                }
+
                 finalRotation = 0; // Reset rotation for next time
             };
         } else if (workshopSealBtn) {
