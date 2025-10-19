@@ -191,7 +191,8 @@ function flipCard(card) {
 }
 
 // Random card flip for workshop game elements
-let randomFlipInterval = null;
+let randomFlipTimeout = null;
+let unflipTimeout = null;
 let currentAutoFlippedCard = null;
 let userInteracting = false;
 let interactionTimeout = null;
@@ -227,14 +228,17 @@ export function initializeRandomCardFlip() {
     // Function to flip a random card (only if visible)
     function flipRandomCard() {
         // Don't auto-flip if user is interacting
-        if (userInteracting) return;
+        if (userInteracting) {
+            // Check again in 500ms
+            randomFlipTimeout = setTimeout(flipRandomCard, 500);
+            return;
+        }
 
         // Don't flip if no cards are visible
-        if (visibleCards.size === 0) return;
-
-        // Flip back the current auto-flipped card
-        if (currentAutoFlippedCard) {
-            currentAutoFlippedCard.classList.remove('flipped', 'auto-flipped');
+        if (visibleCards.size === 0) {
+            // Check again in 500ms
+            randomFlipTimeout = setTimeout(flipRandomCard, 500);
+            return;
         }
 
         // Pick a random card from only the visible cards
@@ -249,11 +253,21 @@ export function initializeRandomCardFlip() {
         if (window.soundManager) {
             window.soundManager.playRandomFlipSound();
         }
+
+        // Schedule unflip after 4 seconds
+        unflipTimeout = setTimeout(() => {
+            if (currentAutoFlippedCard && currentAutoFlippedCard.classList.contains('auto-flipped')) {
+                currentAutoFlippedCard.classList.remove('flipped', 'auto-flipped');
+                currentAutoFlippedCard = null;
+            }
+
+            // Wait 2 seconds before flipping the next card
+            randomFlipTimeout = setTimeout(flipRandomCard, 2000);
+        }, 4000);
     }
 
-    // Start the random flip cycle
-    flipRandomCard(); // Flip one immediately (if visible)
-    randomFlipInterval = setInterval(flipRandomCard, 2000); // Then every 2 seconds
+    // Start the random flip cycle immediately
+    flipRandomCard();
 
     // Add hover listeners to all game elements
     gameElements.forEach(card => {
@@ -261,45 +275,65 @@ export function initializeRandomCardFlip() {
             // Set user interaction flag
             userInteracting = true;
 
-            // Clear any existing timeout
+            // Clear any existing interaction timeout
             if (interactionTimeout) {
                 clearTimeout(interactionTimeout);
             }
 
-            // If there's an auto-flipped card, flip it back
+            // If there's an auto-flipped card, flip it back immediately
             if (currentAutoFlippedCard && currentAutoFlippedCard.classList.contains('auto-flipped')) {
                 currentAutoFlippedCard.classList.remove('flipped', 'auto-flipped');
                 currentAutoFlippedCard = null;
+
+                // Clear the unflip timeout since we manually unflipped
+                if (unflipTimeout) {
+                    clearTimeout(unflipTimeout);
+                    unflipTimeout = null;
+                }
             }
         });
 
         card.addEventListener('mouseleave', function() {
-            // Set timeout to resume auto-flip after 3 seconds of no interaction
+            // Set timeout to resume auto-flip after 2 seconds of no interaction
             interactionTimeout = setTimeout(() => {
                 userInteracting = false;
-            }, 3000);
+
+                // Clear any pending auto-flip and start fresh after 2 seconds
+                if (randomFlipTimeout) {
+                    clearTimeout(randomFlipTimeout);
+                }
+                randomFlipTimeout = setTimeout(flipRandomCard, 2000);
+            }, 2000);
         });
     });
 
-    // Clean up interval and observers when leaving workshop tab
+    // Clean up timeouts and observers when leaving workshop tab
     const workshopTab = document.getElementById('workshop');
     if (workshopTab) {
         const tabObserver = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
                 if (mutation.attributeName === 'class') {
                     if (!workshopTab.classList.contains('active')) {
-                        if (randomFlipInterval) {
-                            clearInterval(randomFlipInterval);
-                            randomFlipInterval = null;
+                        // Clear all timeouts
+                        if (randomFlipTimeout) {
+                            clearTimeout(randomFlipTimeout);
+                            randomFlipTimeout = null;
+                        }
+                        if (unflipTimeout) {
+                            clearTimeout(unflipTimeout);
+                            unflipTimeout = null;
                         }
                         if (interactionTimeout) {
                             clearTimeout(interactionTimeout);
                             interactionTimeout = null;
                         }
+
+                        // Flip back any auto-flipped card
                         if (currentAutoFlippedCard) {
                             currentAutoFlippedCard.classList.remove('flipped', 'auto-flipped');
                             currentAutoFlippedCard = null;
                         }
+
                         userInteracting = false;
 
                         // Clean up card visibility observer
