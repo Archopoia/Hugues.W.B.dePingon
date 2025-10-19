@@ -14,6 +14,27 @@ body {
     overflow-y: auto;
 }
 
+/* Lock body scrolling when entrance screen is active */
+body.entrance-active {
+    overflow: hidden !important;
+    position: fixed !important;
+    width: 100% !important;
+    height: 100vh !important;
+}
+
+/* Force light color scheme to prevent dark mode from being applied */
+:root {
+    color-scheme: light only;
+}
+
+html {
+    color-scheme: light only;
+}
+
+body {
+    color-scheme: light only;
+}
+
 :root {
     /* Parchment Colors - Based on your character sheet analysis */
     --parchment-bg: #9c8e72;

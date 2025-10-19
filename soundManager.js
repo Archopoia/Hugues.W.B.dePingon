@@ -656,6 +656,9 @@ window.addEventListener('DOMContentLoaded', () => {
     const staticLoader = document.getElementById('static-loader');
     const enterButton = document.getElementById('enter-archives-btn');
 
+    // Lock body scrolling on entrance screen
+    document.body.classList.add('entrance-active');
+
     // Add button hover effects
     if (enterButton) {
         enterButton.onmouseover = () => {
@@ -698,6 +701,9 @@ window.addEventListener('DOMContentLoaded', () => {
             staticLoader.style.animation = 'fadeOut 1.5s ease-in-out forwards';
             setTimeout(() => {
                 staticLoader.remove();
+
+                // Unlock body scrolling
+                document.body.classList.remove('entrance-active');
 
                 // Show workshop button and language switcher after entrance screen is gone
                 const workshopButton = document.querySelector('.workshop-seal-button');
@@ -880,6 +886,9 @@ window.addEventListener('DOMContentLoaded', () => {
                                 staticLoader.remove();
                             }
 
+                            // Unlock body scrolling
+                            document.body.classList.remove('entrance-active');
+
                             // Show workshop button and language switcher
                             const workshopButton = document.querySelector('.workshop-seal-button');
                             const languageSwitcher = document.querySelector('.language-switcher');
@@ -1044,6 +1053,45 @@ window.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('mousedown', (e) => {
         // Only play if click event didn't fire (edge case)
         // The click sound is already handled by the click event above
+    });
+
+    // Page Visibility API - Pause all sounds when user switches apps/tabs (especially on mobile)
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            // User switched to another app/tab - pause all sounds
+            soundManager.stopChimesLoop();
+
+            // Pause all individual sounds
+            Object.values(soundManager.sounds).forEach(sound => {
+                if (sound && sound.pause && !sound.paused) {
+                    sound.pause();
+                } else if (Array.isArray(sound)) {
+                    sound.forEach(s => {
+                        if (s && s.pause && !s.paused) {
+                            s.pause();
+                        }
+                    });
+                }
+            });
+
+            // Pause pooled sounds
+            soundManager.clickPool.forEach(audio => {
+                if (!audio.paused) {
+                    audio.pause();
+                }
+            });
+
+            soundManager.clickfailPool.forEach(audio => {
+                if (!audio.paused) {
+                    audio.pause();
+                }
+            });
+        } else {
+            // User returned to the page - restart chimes if they were playing
+            if (audioUnlocked && soundManager.chimesPlaying) {
+                soundManager.startChimesLoop();
+            }
+        }
     });
 });
 

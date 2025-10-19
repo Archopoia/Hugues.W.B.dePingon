@@ -60,8 +60,8 @@ function isSnakeSequence(sequence) {
 const PATTERNS = {
     // SNAKE PATTERN - Must be checked FIRST
     snake: {
-        name: 'Le Chemin du Serpent',
-        description: 'Vous avez suivi le motif serpent parfaitement !',
+        nameKey: 'pattern-snake-name',
+        descKey: 'pattern-snake-desc',
         icon: 'fas fa-route',
         color: 'var(--green-theme)',
         check: (flippedCards, sequence) => {
@@ -71,8 +71,8 @@ const PATTERNS = {
 
     // H PATTERN
     h: {
-        name: 'La Lettre H',
-        description: 'Vous avez dessiné un "H" avec les cartes retournées !',
+        nameKey: 'pattern-h-name',
+        descKey: 'pattern-h-desc',
         icon: 'fas fa-h',
         color: 'var(--red-theme)',
         check: (flippedCards) => {
@@ -93,8 +93,8 @@ const PATTERNS = {
 
     // O PATTERN
     o: {
-        name: 'La Lettre O',
-        description: 'Vous avez dessiné un "O" avec les cartes du périmètre !',
+        nameKey: 'pattern-o-name',
+        descKey: 'pattern-o-desc',
         icon: 'fas fa-o',
         color: 'var(--yellow-theme)',
         check: (flippedCards) => {
@@ -113,8 +113,8 @@ const PATTERNS = {
     // HARMONY/ALL PATTERN - Must be checked LAST
     // CRITICAL: Only triggers if all cards are flipped AND it's NOT the snake pattern
     all: {
-        name: 'Harmonie Parfaite',
-        description: 'Toutes les 12 cartes retournées d\'un coup !',
+        nameKey: 'pattern-all-name',
+        descKey: 'pattern-all-desc',
         icon: 'fas fa-star',
         color: 'var(--gold)',
         check: (flippedCards, sequence) => {
@@ -122,19 +122,19 @@ const PATTERNS = {
             if (flippedCards.size !== 12) {
                 return false;
             }
-            
+
             // REQUIREMENT 2: The sequence must NOT be the snake pattern
             // This is the CRITICAL check to prevent harmony from triggering on snake completion
             if (isSnakeSequence(sequence)) {
                 return false;
             }
-            
+
             // REQUIREMENT 3: Snake pattern must not have been recently completed
             const now = Date.now();
             if (lastMatchedPattern === 'snake' && (now - lastMatchTime) < PATTERN_MEMORY_DURATION) {
                 return false;
             }
-            
+
             return true;
         }
     }
@@ -175,7 +175,7 @@ function checkPatterns(gameElements) {
 
         // Check the pattern
         let matched = false;
-        
+
         if (patternKey === 'snake' || patternKey === 'all') {
             // Snake and harmony patterns need the sequence
             matched = pattern.check(flippedCards, flipSequence);
@@ -215,13 +215,16 @@ function checkPatterns(gameElements) {
 // ==========================================
 
 function showAchievement(pattern, patternKey) {
+    // Get translated text (use window.getTranslation if available, fallback to French)
+    const discoveredText = window.getTranslation ? window.getTranslation('pattern-discovered') : 'Vous avez découvert un motif secret';
+
     // Create achievement notification in Designer's Code style
     const achievement = document.createElement('div');
     achievement.className = 'secret-achievement';
     achievement.innerHTML = `
         <div class="achievement-glow"></div>
         <i class="${pattern.icon}" style="color: ${pattern.color};"></i>
-        <h3>Vous avez découvert un motif secret</h3>
+        <h3>${discoveredText}</h3>
     `;
 
     document.body.appendChild(achievement);
@@ -237,7 +240,7 @@ function showAchievement(pattern, patternKey) {
         };
 
         const secretNumber = secretSoundMap[patternKey];
-        
+
         if (secretNumber) {
             try {
                 window.soundManager.playSecretUnlock(secretNumber);

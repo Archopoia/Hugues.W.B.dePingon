@@ -164,6 +164,17 @@ const translations = {
         "achievement-secret-title": "Secret Discovered!",
         "achievement-secret-subtitle": "\"The Designer's Code\"",
         "achievement-secret-text": "You have discovered the hidden sequence. A designer sees and creates patterns everywhere.",
+
+        // Card Pattern Achievements
+        "pattern-discovered": "You discovered a secret pattern",
+        "pattern-snake-name": "The Snake Path",
+        "pattern-snake-desc": "You followed the snake pattern perfectly!",
+        "pattern-h-name": "The Letter H",
+        "pattern-h-desc": "You drew an 'H' with the flipped cards!",
+        "pattern-o-name": "The Letter O",
+        "pattern-o-desc": "You drew an 'O' with the perimeter cards!",
+        "pattern-all-name": "Perfect Harmony",
+        "pattern-all-desc": "All 12 cards flipped at once!",
         "achievement-code-title": "Code Reconfirmed",
 
         // About Section
@@ -795,6 +806,17 @@ const translations = {
         "achievement-secret-title": "Secret Découvert !",
         "achievement-secret-subtitle": "\"Le Code du Designer\"",
         "achievement-secret-text": "Vous avez découvert la séquence cachée. Un designer voit et crée des motifs partout.",
+
+        // Card Pattern Achievements
+        "pattern-discovered": "Vous avez découvert un motif secret",
+        "pattern-snake-name": "Le Chemin du Serpent",
+        "pattern-snake-desc": "Vous avez suivi le motif serpent parfaitement !",
+        "pattern-h-name": "La Lettre H",
+        "pattern-h-desc": "Vous avez dessiné un \"H\" avec les cartes retournées !",
+        "pattern-o-name": "La Lettre O",
+        "pattern-o-desc": "Vous avez dessiné un \"O\" avec les cartes du périmètre !",
+        "pattern-all-name": "Harmonie Parfaite",
+        "pattern-all-desc": "Toutes les 12 cartes retournées d'un coup !",
         "achievement-code-title": "Code Reconfirmé",
 
         // About Section
