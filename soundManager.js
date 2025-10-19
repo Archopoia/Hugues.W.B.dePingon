@@ -654,7 +654,7 @@ const soundManager = new SoundManager();
 // Initialize sounds when page loads
 window.addEventListener('DOMContentLoaded', () => {
     const staticLoader = document.getElementById('static-loader');
-    const enterButton = document.getElementById('enter-archives-btn');
+    const enterButton = document.getElementById('enter-portfolio-btn');
 
     // Lock body scrolling on entrance screen
     document.body.classList.add('entrance-active');
@@ -699,6 +699,16 @@ window.addEventListener('DOMContentLoaded', () => {
         // Fade out the static loader
         if (staticLoader) {
             staticLoader.style.animation = 'fadeOut 1.5s ease-in-out forwards';
+
+            // Start typing animation 200ms before fadeOut completes (at 1300ms)
+            setTimeout(() => {
+                const characterName = document.querySelector('.character-name');
+                if (characterName && window.typeWriter) {
+                    const originalText = characterName.dataset.originalText || characterName.textContent;
+                    window.typeWriter(characterName, originalText, 80);
+                }
+            }, 1300);
+
             setTimeout(() => {
                 staticLoader.remove();
 
@@ -878,6 +888,15 @@ window.addEventListener('DOMContentLoaded', () => {
                         // Apply fadeOut animation
                         flashElement.style.animation = 'fadeOut 1.5s ease-in-out forwards';
 
+                        // Start typing animation 200ms before fadeOut completes (at 1300ms)
+                        setTimeout(() => {
+                            const characterName = document.querySelector('.character-name');
+                            if (characterName && window.typeWriter) {
+                                const originalText = characterName.dataset.originalText || characterName.textContent;
+                                window.typeWriter(characterName, originalText, 80);
+                            }
+                        }, 1300);
+
                         // After flash fades out, show the website content
                         setTimeout(() => {
 
@@ -951,7 +970,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
             // Also handle regular clicks anywhere as fallback
             document.addEventListener('click', (e) => {
-                if (!audioUnlocked && !window.keyholeClickInProgress && e.target !== enterButton && !e.target.closest('#enter-archives-btn')) {
+                if (!audioUnlocked && !window.keyholeClickInProgress && e.target !== enterButton && !e.target.closest('#enter-portfolio-btn')) {
                     soundManager.sounds.doorUnlock.volume = 0.7;
                     soundManager.audioReady = true;
                     unlockAudio(true);

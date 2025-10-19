@@ -14,6 +14,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Always scroll to top of page on load
     window.scrollTo(0, 0);
 
+    // Clear character name initially (typing animation will fill it after entrance)
+    const characterName = document.querySelector('.character-name');
+    if (characterName) {
+        characterName.dataset.originalText = characterName.textContent;
+        characterName.textContent = '\u200B'; // Zero-width space to maintain layout
+    }
+
     // Ensure About tab is active and visible
     const aboutTab = document.getElementById('about');
     const aboutButton = document.querySelector('.tab-button[data-tab="about"]');
@@ -84,15 +91,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 300);
         }
     }, true);
-
-    // Initialize typing effect on load
-    const characterName = document.querySelector('.character-name');
-    if (characterName) {
-        const originalText = characterName.textContent;
-        setTimeout(() => {
-            typeWriter(characterName, originalText, 80);
-        }, 1000);
-    }
 
     // Interactive skill bars with click to reveal
     const skillItems = document.querySelectorAll('.skill-item');
@@ -326,6 +324,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Make functions globally available (for HTML onclick handlers)
 window.switchTab = switchTab;
 window.initializeVideoHoverPlay = initializeVideoHoverPlay;
+window.typeWriter = typeWriter; // Make available for entrance animation
 
 // Export form functions globally (called from HTML)
 window.switchContactMethod = switchContactMethod;

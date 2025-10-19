@@ -220,9 +220,6 @@ async function startPress(e) {
         workshopSealButton.style.setProperty('--pulse-scale', pulseScale);
         workshopSealButton.style.setProperty('--pulse-opacity', pulseOpacity);
 
-        const glowSpeed = Math.max(0.3, 2 - (pressDuration * 0.8));
-        workshopSealButton.style.setProperty('--glow-speed', `${glowSpeed}s`);
-
         // Progressive reveal (same 3D rotation for all screen sizes)
         if (activeWorkshopTab && activeWorkshopTab.parentElement) {
             const revealProgress = Math.min(pressDuration / pullSoundDuration, 1);
@@ -278,7 +275,6 @@ async function endPress(e) {
         // Reset button with spring-back
         workshopSealButton.style.transition = 'transform 0.3s ease';
         workshopSealButton.style.transform = 'scale(1) rotate(0deg)';
-        workshopSealButton.style.setProperty('--glow-speed', '2s');
 
         // Reverse the workshop tab animation
         if (activeWorkshopTab && !activeWorkshopTab.classList.contains('active')) {
@@ -367,7 +363,6 @@ function cancelPress() {
     if (workshopSealButton) {
         workshopSealButton.style.transition = 'transform 0.3s ease';
         workshopSealButton.style.transform = 'scale(1) rotate(0deg)';
-        workshopSealButton.style.setProperty('--glow-speed', '2s');
     }
 
     if (activeWorkshopTab && !activeWorkshopTab.classList.contains('active')) {

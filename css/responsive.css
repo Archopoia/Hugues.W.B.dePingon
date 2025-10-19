@@ -24,6 +24,7 @@
 
     .character-name {
         font-size: 2rem;
+        min-height: 2.5rem; /* Adjusted for smaller font size */
     }
 
     .character-stats {
@@ -290,12 +291,12 @@
         padding: 2rem;
     }
 
-    /* Language Switcher Responsive - Move to bottom-right on smaller screens */
+    /* Language Switcher Responsive - Move to top-right on smaller screens */
     .language-switcher {
-        top: auto;
-        bottom: 1rem;
+        top: 1rem;
+        bottom: auto;
         right: 1rem;
-        z-index: 10000; /* Above vignette effect (9999) on mobile */
+        z-index: 10003; /* Above vignette effect (10002) on mobile */
     }
 
     .lang-btn {
@@ -327,6 +328,7 @@
 
     .character-name {
         font-size: 1.8rem;
+        min-height: 2.2rem; /* Adjusted for smaller font size */
     }
 
     .content-header h2 {
@@ -362,12 +364,12 @@
         font-size: 1rem;
     }
 
-    /* Language Switcher Mobile - Keep at bottom-right on mobile */
+    /* Language Switcher Mobile - Keep at top-right on mobile */
     .language-switcher {
-        top: auto;
-        bottom: 0.75rem;
+        top: 0.75rem;
+        bottom: auto;
         right: 0.75rem;
-        z-index: 10000; /* Above vignette effect (9999) on mobile */
+        z-index: 10003; /* Above vignette effect (10002) on mobile */
     }
 
     .lang-btn {
