@@ -21,21 +21,21 @@ document.addEventListener('DOMContentLoaded', function() {
         characterName.textContent = '\u200B'; // Zero-width space to maintain layout
     }
 
-    // Ensure Chronicles tab is active and visible
-    const chroniclesTab = document.getElementById('chronicles');
-    const chroniclesButton = document.querySelector('.tab-button[data-tab="chronicles"]');
+    // Load and activate Chronicles section immediately
+    loadSection('chronicles').then(() => {
+        // After loading, ensure Chronicles tab is active and visible
+        const chroniclesTab = document.getElementById('chronicles');
+        const chroniclesButton = document.querySelector('.tab-button[data-tab="chronicles"]');
 
-    if (chroniclesTab && chroniclesButton) {
-        // Make sure Chronicles tab is active
-        document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-        document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+        if (chroniclesTab && chroniclesButton) {
+            // Make sure Chronicles tab is active
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
 
-        chroniclesTab.classList.add('active');
-        chroniclesButton.classList.add('active');
-    }
-
-    // Load Chronicles section immediately
-    loadSection('chronicles');
+            chroniclesTab.classList.add('active');
+            chroniclesButton.classList.add('active');
+        }
+    });
 
     // Initialize Easter Eggs (secret code, Konami, achievements)
     initializeEasterEggs();
