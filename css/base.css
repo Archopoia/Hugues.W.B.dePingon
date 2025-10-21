@@ -397,3 +397,209 @@ body::before {
     cursor: not-allowed;
 }
 
+/* ========================================
+   UNIFIED CARD SYSTEM
+   ======================================== */
+
+/* Base Card Styles */
+.card-base {
+    background: var(--parchment-light);
+    border: 3px solid var(--border-tan);
+    border-radius: 15px;
+    padding: 1.5rem;
+    position: relative;
+    transition: all var(--transition-speed) ease;
+    overflow: visible;
+}
+
+/* Regular Cards */
+.card {
+    background: var(--parchment-light);
+    border: 3px solid var(--border-tan);
+    border-radius: 15px;
+    padding: 1.5rem;
+    position: relative;
+    transition: all var(--transition-speed) ease;
+    overflow: visible;
+    box-shadow:
+        0 0 15px rgba(0, 0, 0, 0.1),
+        inset 0 0 0 2px var(--border-tan);
+}
+
+.card:hover {
+    background: var(--hover-bg);
+    transform: scale(1.05, 1.05);
+    box-shadow:
+        0 0 15px 8px var(--gold-glow),
+        0 0 30px 15px #72522f75,
+        0px 0px 10px 1px var(--focus-glow) inset;
+    z-index: 999;
+}
+
+/* Featured/Hero Cards */
+.card-hero {
+    background: var(--parchment-light);
+    border: 3px solid var(--gold-glow);
+    border-radius: 20px;
+    padding: 1.5rem;
+    position: relative;
+    transition: all var(--transition-speed) ease;
+    overflow: visible;
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 3px var(--gold-glow),
+        0 0 0 4px var(--red-theme),
+        0 0 20px 8px var(--gold-glow),
+        0 8px 16px rgba(0, 0, 0, 0.3),
+        inset 0 0 0 2px var(--border-tan);
+}
+
+.card-hero:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 3px var(--gold-glow),
+        0 0 0 4px var(--red-theme),
+        0 0 25px 12px var(--gold-glow),
+        0 12px 24px rgba(0, 0, 0, 0.4),
+        inset 0 0 0 2px var(--border-tan);
+}
+
+/* Card Content Styling */
+.card h4,
+.card-hero h4 {
+    font-family: 'Cinzel', serif;
+    color: var(--red-theme);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.card-hero h4 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.card p,
+.card-hero p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.card-hero p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+/* Project Type Badge */
+.project-type {
+    background: var(--red-theme);
+    color: var(--text-cream);
+    font-weight: 600;
+    font-size: 0.8rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 12px;
+    display: inline-block;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Project Description */
+.project-description {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.card-hero .project-description {
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+/* Project Media */
+.project-media {
+    position: relative;
+    overflow: visible;
+    z-index: 5;
+    margin-bottom: 1rem;
+}
+
+/* Project Ribbons */
+.project-ribbon {
+    position: absolute;
+    top: 15px;
+    right: -10px;
+    background: var(--red-theme);
+    color: var(--text-cream);
+    padding: 0.5rem 1rem;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transform: rotate(3deg);
+}
+
+.project-ribbon.ribbon-gold {
+    background: linear-gradient(135deg, var(--gold-glow), var(--orange-theme));
+    color: var(--text-dark);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.project-ribbon i {
+    margin-right: 0.3rem;
+}
+
+/* Project Links */
+.project-link,
+.social-link {
+    background: var(--red-theme);
+    border: 3px solid var(--border-dark);
+    border-radius: 10%;
+    color: var(--text-cream);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all var(--transition-speed) ease;
+    position: relative;
+    box-shadow: 0px 0px 10px 1px #421212 inset;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.project-link:hover,
+.social-link:hover {
+    background: var(--hover-bg);
+    color: var(--text-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Project Stats */
+.project-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-tan);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.project-stats span {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.project-stats i {
+    color: var(--red-theme);
+}
+

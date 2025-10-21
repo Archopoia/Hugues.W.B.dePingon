@@ -121,23 +121,12 @@
 }
 
 /* Hero Card - Full Width Feature */
+/* Featured Hero Cards */
 .project-card.hero-card {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    padding: 1.5rem;
-    background: var(--parchment-light);
-    border: 3px solid var(--gold-glow);
-    border-radius: 20px;
-    box-shadow:
-        0 0 0 1px var(--red-theme),
-        0 0 0 3px var(--gold-glow),
-        0 0 0 4px var(--red-theme),
-        0 0 20px 8px var(--gold-glow),
-        0 8px 16px rgba(0, 0, 0, 0.3),
-        inset 0 0 0 2px var(--border-tan);
-    position: relative;
-    overflow: visible;
+    /* Uses unified .card-hero class from base.css */
 }
 
 .project-media {
@@ -389,27 +378,7 @@
 .highlight-card,
 .work-item,
 .project-card {
-    background: var(--parchment-light);
-    border: 3px solid var(--border-tan);
-    border-radius: 15px;
-    padding: 1.5rem;
-    box-shadow:
-            0 0 15px rgba(0, 0, 0, 0.1),
-            inset 0 0 0 2px var(--border-tan);
-    position: relative;
-    transition: all var(--transition-speed) ease;
-}
-
-.highlight-card:hover,
-.work-item:hover,
-.project-card:hover {
-    background: var(--hover-bg);
-    transform: scale(1.05, 1.05);
-    box-shadow:
-        0 0 15px 8px var(--gold-glow),
-        0 0 30px 15px #72522f75,
-        0px 0px 10px 1px var(--focus-glow) inset;
-    z-index: 999;
+    /* Uses unified .card class from base.css */
 }
 
 /* Crystal Chronicles button styling */
