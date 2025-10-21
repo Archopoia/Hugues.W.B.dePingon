@@ -435,6 +435,18 @@ const translations = {
         "port-commissions-type": "Professional Graphic Design",
         "port-commissions-desc": "Professional graphic design work including book covers, posters, branding materials, character sheet animations, and association designs. Adobe Photoshop and InDesign expertise.",
 
+        // Academia Cards
+        "port-morality-title": "Effects of Morality on Creativity",
+        "port-morality-meta": "2021 - Master's Thesis (10/10)",
+        "port-archolectics-title": "Archolectics: The Ruler's Reason",
+        "port-archolectics-meta": "2021 - PhD Proposal",
+        "port-economie-title": "Economie Ecologique Evolutive",
+        "port-economie-meta": "2022 - PhD Proposal",
+        "port-unesco-title": "UNESCO: Future Foresight",
+        "port-unesco-meta": "2023 - Article",
+        "port-ateliers-title": "Serious Games: Ateliers de JdR",
+        "port-ateliers-meta": "2023 - Article",
+
         // Skills Section
         "skills-overview": "Overview",
         "skills-technical": "Technical",
@@ -1102,6 +1114,18 @@ const translations = {
         "port-commissions-title": "Commissions Clients",
         "port-commissions-type": "Design Graphique Professionnel",
         "port-commissions-desc": "Travaux de design graphique professionnel incluant couvertures de livres, affiches, matériels de branding, animations de feuilles de personnage et designs d'associations. Expertise Adobe Photoshop et InDesign.",
+
+        // Academia Cards
+        "port-morality-title": "Effets de la Moralité sur la Créativité",
+        "port-morality-meta": "2021 - Mémoire de Master (10/10)",
+        "port-archolectics-title": "Archolectique: La Raison du Puissant",
+        "port-archolectics-meta": "2021 - Projet de Doctorat",
+        "port-economie-title": "Economie Ecologique Evolutive",
+        "port-economie-meta": "2022 - Projet de Doctorat",
+        "port-unesco-title": "UNESCO: Prospective Future",
+        "port-unesco-meta": "2023 - Article",
+        "port-ateliers-title": "Serious Games: Ateliers de JdR",
+        "port-ateliers-meta": "2023 - Article",
 
         // Skills Section
         "skills-overview": "Vue d'ensemble",

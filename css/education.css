@@ -828,24 +828,12 @@ html[lang="fr"] .stat-label.countries-hover::before {
     margin-top: 2rem;
 }
 
+/* Academic cards now use unified .card styling from base.css */
 .academic-card {
-    background: var(--parchment-light);
-    border: 3px solid var(--border-dark);
-    border-radius: 10%;
-    padding: 1rem;
-    transition: all var(--transition-speed) ease;
-    box-shadow: 0px 0px 10px 1px #421212 inset;
+    /* Additional academic-specific overrides if needed */
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-}
-
-.academic-card:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow:
-        0 0 15px 8px var(--gold-glow),
-        0 0 30px 15px #72522f75,
-        0px 0px 10px 1px var(--focus-glow) inset;
 }
 
 /* Coming Soon Academic Card */
@@ -855,8 +843,8 @@ html[lang="fr"] .stat-label.countries-hover::before {
 }
 
 .academic-card.coming-soon:hover {
+    /* Disable hover effects for coming soon cards */
     transform: none;
-    box-shadow: 0px 0px 10px 1px #421212 inset;
 }
 
 .work-preview-small.placeholder {
