@@ -3,48 +3,12 @@
    Game Development Workshop Service Page
    ======================================== */
 
-/* ========================================
-   WORKSHOP LAYERING SYSTEM
-
-   The workshop tab uses the same layering as the header:
-
-   LAYER 1 - Parchment Background (see base.css for details)
-   - Red dot pattern
-   - Horizontal lines
-   - Base parchment color
-
-   LAYER 2 - Khaki/Green Diagonal Grid (see base.css for details)
-   - Color: #78c9a3
-   - 45deg and -45deg diagonal lines
-
-   LAYER 3A - Dark Burgundy Overlay (.sheet-content.workshop-active)
-   - Same as header burgundy overlay
-
-   LAYER 3B - Diagonal Gold Lines (.sheet-content.workshop-active::before)
-   - Same as header gold diagonal lines
-
-   LAYER 3C - Inner Gold Border (.sheet-content.workshop-active::after)
-   - Same as header inner border
-
-   The animation preview (js/workshop-seal.js) also uses all these layers.
-   ======================================== */
-
 /* Workshop Tab Background Override - Applied when workshop is active */
-/* LAYER 3A: Dark burgundy overlay (top layers) */
-/* LAYER 1 & 2: Parchment background with red dots, horizontal lines, and khaki diagonal grid (bottom layers) */
 .sheet-content.workshop-active {
     background:
-        radial-gradient(circle at 20% 20%, rgba(100, 48, 48, 0.3) 0%, transparent 50%),  /* LAYER 3A: Burgundy radial glow top-left */
-        radial-gradient(circle at 80% 80%, rgba(100, 48, 48, 0.3) 0%, transparent 50%),  /* LAYER 3A: Burgundy radial glow bottom-right */
-        linear-gradient(135deg, var(--red-theme-alpha) 0%, var(--red-theme) 100%),        /* LAYER 3A: Burgundy gradient base */
-        radial-gradient(#6100001f 3px, transparent 4px),                                   /* LAYER 1: Red dots (offset) */
-        radial-gradient(#6100001f 3px, transparent 4px),                                   /* LAYER 1: Red dots (base) */
-        linear-gradient(var(--parchment-light) 4px, transparent 0),                        /* LAYER 1: Horizontal lines */
-        linear-gradient(45deg, transparent 74px, #78c9a3 75px, transparent 76px, transparent 109px),  /* LAYER 2: Diagonal grid (45deg) */
-        linear-gradient(-45deg, transparent 75px, #78c9a3 76px, transparent 77px, transparent 109px), /* LAYER 2: Diagonal grid (-45deg) */
-        var(--parchment-light) !important;                                                  /* LAYER 1: Base parchment color */
-    background-size: 100% 100%, 100% 100%, 100% 100%, 109px 109px, 109px 109px, 100% 6px, 109px 109px, 109px 109px, 100% 100% !important;
-    background-position: 0 0, 0 0, 0 0, 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0 0 !important;
+        radial-gradient(circle at 20% 20%, rgba(100, 48, 48, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(100, 48, 48, 0.3) 0%, transparent 50%),
+        linear-gradient(135deg, var(--red-theme-alpha) 0%, var(--red-theme) 100%) !important;
     box-shadow: inset 0 0 0 2px var(--border-tan) !important;
 }
 

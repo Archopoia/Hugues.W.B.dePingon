@@ -33,15 +33,10 @@
  *     LAYER 3B: Diagonal gold lines (rgba(184, 134, 11, 0.1))
  *     LAYER 3C: Inner gold border frame
  *
- *   Workshop Tab (css/workshop.css):
- *     Uses same layers as header (3A, 3B, 3C)
- *     Also applied during button press animation preview
- *
  * For detailed documentation, see:
  * - css/base.css (lines 6-30)
  * - css/header.css (lines 6-24)
  * - css/layout.css (lines 6-12)
- * - css/workshop.css (lines 6-30)
  * ========================================
  */
 

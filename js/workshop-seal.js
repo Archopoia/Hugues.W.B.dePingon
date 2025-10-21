@@ -138,24 +138,26 @@ async function startPress(e) {
         activeWorkshopTab.style.transformStyle = 'preserve-3d';
         activeWorkshopTab.style.minHeight = '500px';
 
-        // Apply workshop burgundy background with ALL LAYERS (1, 2, 3A) - matches header and final workshop tab
+        // Apply workshop burgundy background with ALL layers (1, 2, 3A)
+        // LAYER 1: Red dots, horizontal lines, parchment base
+        // LAYER 2: Diagonal khaki/green grid
+        // LAYER 3A: Dark burgundy overlay
         activeWorkshopTab.style.background = `
             radial-gradient(circle at 20% 20%, rgba(100, 48, 48, 0.3) 0%, transparent 50%),
             radial-gradient(circle at 80% 80%, rgba(100, 48, 48, 0.3) 0%, transparent 50%),
             linear-gradient(135deg, var(--red-theme-alpha) 0%, var(--red-theme) 50%),
             radial-gradient(#6100001f 3px, transparent 4px),
             radial-gradient(#6100001f 3px, transparent 4px),
-            linear-gradient(var(--parchment-light) 4px, transparent 0),
+            linear-gradient(var(--parchment-sublight) 4px, transparent 0),
             linear-gradient(45deg, transparent 74px, #78c9a3 75px, transparent 76px, transparent 109px),
             linear-gradient(-45deg, transparent 75px, #78c9a3 76px, transparent 77px, transparent 109px),
-            var(--parchment-light)
+            var(--parchment-sublight)
         `;
         activeWorkshopTab.style.backgroundSize = '100% 100%, 100% 100%, 100% 100%, 109px 109px, 109px 109px, 100% 6px, 109px 109px, 109px 109px, 100% 100%';
         activeWorkshopTab.style.backgroundPosition = '0 0, 0 0, 0 0, 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0 0';
-        activeWorkshopTab.style.backgroundColor = '';
         activeWorkshopTab.style.boxShadow = 'inset 0 0 0 2px var(--border-tan)';
 
-        // Add the diagonal hatched lines pattern as an overlay
+        // Add the diagonal hatched lines pattern as an overlay (LAYER 3B)
         const workshopOverlay = document.createElement('div');
         workshopOverlay.id = 'workshop-preview-overlay';
         workshopOverlay.style.cssText = `
@@ -176,10 +178,27 @@ async function startPress(e) {
         `;
         activeWorkshopTab.insertBefore(workshopOverlay, activeWorkshopTab.firstChild);
 
+        // Add inner gold border frame (LAYER 3C)
+        const workshopBorder = document.createElement('div');
+        workshopBorder.id = 'workshop-preview-border';
+        workshopBorder.style.cssText = `
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            right: 1rem;
+            bottom: 1rem;
+            border: 2px solid var(--gold-ink);
+            border-radius: 8px;
+            pointer-events: none;
+            z-index: 0;
+        `;
+        activeWorkshopTab.insertBefore(workshopBorder, activeWorkshopTab.firstChild);
+
         // Ensure all content inside has proper z-index
         const contentChildren = activeWorkshopTab.children;
         for (let i = 0; i < contentChildren.length; i++) {
-            if (contentChildren[i].id !== 'workshop-preview-overlay') {
+            if (contentChildren[i].id !== 'workshop-preview-overlay' &&
+                contentChildren[i].id !== 'workshop-preview-border') {
                 contentChildren[i].style.position = 'relative';
                 contentChildren[i].style.zIndex = '2';
             }
@@ -429,10 +448,14 @@ function cleanupWorkshopPreview(workshopTab, keepVisible) {
         characterSheet.style.minHeight = '';
     }
 
-    // Remove overlay
+    // Remove overlays (LAYER 3B and 3C)
     const overlay = document.getElementById('workshop-preview-overlay');
     if (overlay) {
         overlay.remove();
+    }
+    const border = document.getElementById('workshop-preview-border');
+    if (border) {
+        border.remove();
     }
 
     // Reset workshop tab styles after animation completes
@@ -454,6 +477,8 @@ function cleanupWorkshopPreview(workshopTab, keepVisible) {
                 workshopTab.style.minHeight = '';
                 workshopTab.style.background = '';
                 workshopTab.style.backgroundColor = '';
+                workshopTab.style.backgroundSize = '';
+                workshopTab.style.backgroundPosition = '';
                 workshopTab.style.boxShadow = '';
 
                 const contentChildren = workshopTab.children;
@@ -476,6 +501,8 @@ function cleanupWorkshopPreview(workshopTab, keepVisible) {
         workshopTab.style.minHeight = '';
         workshopTab.style.background = '';
         workshopTab.style.backgroundColor = '';
+        workshopTab.style.backgroundSize = '';
+        workshopTab.style.backgroundPosition = '';
         workshopTab.style.boxShadow = '';
 
         requestAnimationFrame(() => {
