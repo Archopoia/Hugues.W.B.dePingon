@@ -1,0 +1,815 @@
+/*!
+ * Chronicles Section - Gamified Blog
+ * Medieval-themed blog with gamification elements
+ */
+
+/* ========================================
+   CHRONICLES CONTAINER
+   ======================================== */
+
+.chronicles-container {
+    width: 100%;
+    padding: 2rem;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* ========================================
+   CHRONICLES HEADER
+   ======================================== */
+
+.chronicles-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--red-theme);
+}
+
+.chronicles-title-container {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.chronicles-subtitle {
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+}
+
+/* ========================================
+   READER STATS PANEL (Gamification)
+   ======================================== */
+
+.reader-stats-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background: linear-gradient(135deg, rgba(139, 26, 26, 0.1), rgba(61, 0, 0, 0.1));
+    border-radius: 8px;
+    border: 1px solid #7a4040;
+}
+
+.stat-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 1.2rem;
+    background: var(--parchment-overlay);
+    border-radius: 6px;
+    border: 1px solid var(--gold-dark);
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.stat-badge:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(218, 165, 32, 0.3);
+}
+
+.stat-badge i {
+    font-size: 1.5rem;
+    color: var(--gold);
+}
+
+.stat-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-number {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: var(--text-cream);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.reader-level {
+    padding: 0.8rem 1.5rem;
+    background: linear-gradient(135deg, var(--red-theme), var(--red-theme));
+    border-radius: 8px;
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 15px rgba(218, 165, 32, 0.4);
+}
+
+.level-title {
+    color: var(--text-cream);
+    font-size: 0.9rem;
+    margin-right: 0.5rem;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.level-name {
+    color: var(--text-cream);
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* ========================================
+   ACHIEVEMENTS BANNER
+   ======================================== */
+
+.achievements-banner {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: var(--red-theme);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(218, 165, 32, 0.6);
+    animation: slideInRight 0.5s ease-out, pulse 1.5s ease-in-out infinite;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.achievements-banner i {
+    font-size: 1.5rem;
+    animation: bounce 1s ease-in-out infinite;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 4px 20px rgba(218, 165, 32, 0.6);
+    }
+    50% {
+        box-shadow: 0 4px 30px rgba(218, 165, 32, 0.9);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* ========================================
+   TOME SELECTOR (Categories)
+   ======================================== */
+
+.tome-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.tome-tab {
+    background: var(--parchment-aged);
+    color: var(--text-dark);
+    border: 2px solid var(--border-dark);
+    padding: 0.8rem 1.5rem;
+    border-radius: 3px;
+    font-family: 'Quintessential', cursive;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.tome-tab:hover {
+    background: var(--hover-bg);
+    transform: translateY(-3px);
+    box-shadow:
+        0 0 15px 5px var(--gold-glow),
+        0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.tome-tab.active {
+    background: var(--red-theme);
+    color: var(--text-cream);
+    border: 2px solid var(--gold-glow);
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 3px var(--gold-glow),
+        0 0 0 4px var(--red-theme),
+        0 0 15px 5px var(--gold-glow),
+        0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.tome-tab i {
+    font-size: 1.1rem;
+}
+
+/* ========================================
+   SEARCH & FILTER
+   ======================================== */
+
+.chronicle-search {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-container {
+    flex: 1;
+    min-width: 250px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-container i {
+    position: absolute;
+    left: 1rem;
+    color: var(--gold);
+    font-size: 1.1rem;
+}
+
+#chronicle-search-input {
+    width: 100%;
+    padding: 0.8rem 1rem 0.8rem 3rem;
+    background: var(--parchment-overlay);
+    border: 2px solid #7a4040;
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+#chronicle-search-input:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 10px rgba(218, 165, 32, 0.3);
+}
+
+#chronicle-search-input::placeholder {
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.sort-container {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.sort-container label {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+
+#sort-select {
+    padding: 0.8rem 1rem;
+    background: var(--parchment-overlay);
+    border: 2px solid #7a4040;
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#sort-select:focus {
+    outline: none;
+    border-color: var(--gold);
+}
+
+/* ========================================
+   CHRONICLES GRID
+   ======================================== */
+
+.chronicles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* ========================================
+   CHRONICLE CARD
+   ======================================== */
+
+.chronicle-card {
+    position: relative;
+    background: linear-gradient(135deg, var(--text-cream), var(--parchment));
+    border: 0px solid var(--border-tan);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.chronicle-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent, rgba(218, 165, 32, 0.05));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.chronicle-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    border-color: var(--border-brown);
+}
+
+.chronicle-card:hover::before {
+    opacity: 1;
+}
+
+/* Chronicle Ribbon (Category) */
+.chronicle-ribbon {
+    position: absolute;
+    top: 15px;
+    right: -35px;
+    background: linear-gradient(135deg, var(--red-theme), var(--red-theme));
+    color: var(--text-cream);
+    padding: 0.4rem 2.5rem;
+    transform: rotate(45deg);
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+/* Chronicle Seal Icon */
+.chronicle-seal {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border-radius: 50%;
+    border: 3px solid var(--red-theme);
+}
+
+/* Chronicle Seal Icon - SPECIFIC to chronicles only */
+.chronicle-seal .seal-icon {
+    font-size: 1.8rem;
+    color: var(--red-theme);
+    text-shadow: none !important;
+    filter: none !important;
+    box-shadow: none !important;
+}
+
+/* Chronicle Header */
+.chronicle-header {
+    margin-bottom: 1rem;
+}
+
+.chronicle-title {
+    font-size: 1.3rem;
+    color: var(--red-theme);
+    margin-bottom: 0.8rem;
+    font-family: 'Cinzel', serif;
+    line-height: 1.4;
+    transition: color 0.3s ease;
+}
+
+.chronicle-card:hover .chronicle-title {
+    color: var(--text-dark);
+}
+
+.chronicle-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.chronicle-meta span {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.chronicle-meta i {
+    color: var(--red-theme);
+}
+
+/* Chronicle Preview */
+.chronicle-preview {
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+/* Rune Tags */
+.chronicle-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.rune-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.3rem 0.8rem;
+    background: #7a4040;
+    color: var(--text-cream);
+    border-radius: 4px;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+.rune-tag:hover {
+    background: var(--red-theme);
+    transform: scale(1.05);
+}
+
+.rune-tag i {
+    font-size: 0.7rem;
+}
+
+/* Read Chronicle Button */
+.read-chronicle-btn {
+    width: 100%;
+    padding: 0.8rem 1.5rem;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: var(--red-theme);
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.read-chronicle-btn:hover {
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(218, 165, 32, 0.5);
+}
+
+.read-chronicle-btn i {
+    font-size: 1.1rem;
+}
+
+/* ========================================
+   EMPTY STATE
+   ======================================== */
+
+.chronicles-empty {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-secondary);
+}
+
+.chronicles-empty i {
+    font-size: 4rem;
+    color: #7a4040;
+    margin-bottom: 1rem;
+}
+
+.chronicles-empty h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--red-theme);
+}
+
+/* ========================================
+   CHRONICLE MODAL (Full Article View)
+   ======================================== */
+
+.chronicle-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 10000;
+    padding: 2rem;
+    overflow-y: auto;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.chronicle-modal.active {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.chronicle-scroll {
+    position: relative;
+    max-width: 900px;
+    width: 100%;
+    background: linear-gradient(135deg, var(--text-cream), var(--parchment));
+    border: 3px solid var(--red-theme);
+    border-radius: 12px;
+    padding: 3rem;
+    margin: 2rem auto;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+    animation: unfurlScroll 0.6s ease-out;
+}
+
+@keyframes unfurlScroll {
+    from {
+        transform: scaleY(0);
+        transform-origin: top;
+        opacity: 0;
+    }
+    to {
+        transform: scaleY(1);
+        opacity: 1;
+    }
+}
+
+.close-chronicle {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    background: var(--red-theme);
+    color: var(--gold);
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.close-chronicle:hover {
+    background: var(--red-theme);
+    transform: rotate(90deg);
+}
+
+.scroll-content {
+    color: var(--text-primary);
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.scroll-content h1,
+.scroll-content h2,
+.scroll-content h3 {
+    color: var(--red-theme);
+    font-family: 'Cinzel', serif;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.scroll-content h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.scroll-content h2 {
+    font-size: 1.8rem;
+    border-bottom: 2px solid #7a4040;
+    padding-bottom: 0.5rem;
+}
+
+.scroll-content p {
+    margin-bottom: 1.5rem;
+}
+
+.scroll-content code {
+    background: #7a4040;
+    color: var(--text-cream);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+}
+
+.scroll-content pre {
+    background: var(--red-theme);
+    color: var(--text-cream);
+    padding: 1.5rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+}
+
+.scroll-content img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Reading Progress Bar */
+.reading-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(139, 26, 26, 0.2);
+    z-index: 10001;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+    width: 0%;
+    transition: width 0.1s ease;
+}
+
+/* Chronicle Footer */
+.chronicle-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid #7a4040;
+}
+
+.share-btn,
+.next-article-btn {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    background: linear-gradient(135deg, var(--red-theme), var(--red-theme));
+    color: var(--gold);
+    border: 2px solid var(--gold);
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.share-btn:hover,
+.next-article-btn:hover {
+    background: linear-gradient(135deg, var(--red-theme), var(--red-theme));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(218, 165, 32, 0.4);
+}
+
+/* ========================================
+   PAGINATION
+   ======================================== */
+
+.chronicles-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem 0;
+}
+
+.page-btn {
+    padding: 0.8rem 1.2rem;
+    background: var(--parchment-overlay);
+    border: 2px solid #7a4040;
+    border-radius: 6px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.page-btn:not(:disabled):hover {
+    background: var(--red-theme);
+    color: var(--text-cream);
+    border-color: var(--gold);
+}
+
+.page-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.page-info {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+@media (max-width: 1024px) {
+    .chronicles-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .chronicles-container {
+        padding: 1rem;
+    }
+
+    .chronicles-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .reader-stats-panel {
+        flex-direction: column;
+    }
+
+    .tome-selector {
+        gap: 0.5rem;
+    }
+
+    .tome-tab {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .chronicle-search {
+        flex-direction: column;
+    }
+
+    .search-container {
+        width: 100%;
+    }
+
+    .chronicle-scroll {
+        padding: 2rem 1.5rem;
+    }
+
+    .chronicle-footer {
+        flex-direction: column;
+    }
+
+    .achievements-banner {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .chronicle-title {
+        font-size: 1.1rem;
+    }
+
+    .chronicle-meta {
+        font-size: 0.75rem;
+    }
+
+    .stat-number {
+        font-size: 1.2rem;
+    }
+
+    .stat-label {
+        font-size: 0.75rem;
+    }
+}
+

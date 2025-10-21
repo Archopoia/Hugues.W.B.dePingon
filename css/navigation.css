@@ -99,6 +99,63 @@
     letter-spacing: 1px;
 }
 
+/* ========================================
+   CHRONICLES TAB - Dark burgundy default, golden borders when active
+   ======================================== */
+
+.tab-button-chronicles {
+    background: var(--red-theme) !important;
+    color: var(--text-cream) !important;
+    border-color: var(--border-dark) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+}
+
+.tab-button-chronicles::before {
+    background:
+        radial-gradient(circle at 30% 30%, rgba(184, 134, 11, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(184, 134, 11, 0.1) 0%, transparent 50%) !important;
+}
+
+.tab-button-chronicles i,
+.tab-button-chronicles span {
+    color: var(--text-cream) !important;
+    text-shadow: none;
+}
+
+.tab-button-chronicles:hover {
+    background: var(--hover-bg) !important;
+    transform: translateY(-2px);
+    box-shadow:
+        0 0 15px 8px var(--gold-glow),
+        0 0 30px 15px rgba(114, 82, 47, 0.46),
+        0px 0px 10px 1px var(--focus-glow) inset !important;
+    z-index: 999;
+}
+
+.tab-button-chronicles:hover i,
+.tab-button-chronicles:hover span {
+    color: var(--text-dark) !important;
+}
+
+/* ACTIVE STATE: Same detailed borders as other active tabs */
+.tab-button-chronicles.active {
+    background: var(--text-light) !important;
+    color: var(--text-dark) !important;
+    border-color: var(--gold-glow) !important;
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 3px var(--gold-glow),
+        0 0 0 4px var(--red-theme),
+        0px 0px 15px 5px var(--gold-glow),
+        0px 0px 10px 1px var(--focus-glow) inset !important;
+}
+
+.tab-button-chronicles.active i,
+.tab-button-chronicles.active span {
+    color: var(--text-dark) !important;
+    text-shadow: none;
+}
+
 /* Education Navigation */
 .education-nav {
     display: flex;

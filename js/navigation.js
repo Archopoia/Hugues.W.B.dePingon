@@ -7,6 +7,7 @@ import { initializeEducationNavigation, initializeAlpineEducationVideo } from '.
 import { initializeRandomCardFlip } from './animations.js';
 import { initializeFlipSounds } from './animations.js';
 import { initializeWorkshopAchievements } from './workshop-achievements.js';
+import { initializeChronicles } from './chronicles.js';
 
 let skipWorkshopAnimation = false;
 let finalRotation = 0;
@@ -75,6 +76,9 @@ export async function loadSection(sectionName) {
                             window.soundManager.resetFlipSoundPool();
                         }
                     }
+                    if (sectionName === 'chronicles') {
+                        initializeChronicles();
+                    }
 
                     // Initialize flip sounds for any flippable cards in this section
                     initializeFlipSounds();
@@ -93,9 +97,9 @@ export async function loadSection(sectionName) {
 
 // Preload sections for better UX
 export function preloadAllSections() {
-    const sections = ['about', 'workshop', 'education', 'experience', 'portfolio', 'skills', 'contact'];
+    const sections = ['chronicles', 'about', 'workshop', 'education', 'experience', 'portfolio', 'skills', 'contact'];
     sections.forEach(section => {
-        if (section !== 'about') { // About is loaded by default
+        if (section !== 'chronicles') { // Chronicles is loaded by default
             loadSection(section);
         }
     });
