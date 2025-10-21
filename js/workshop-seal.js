@@ -337,12 +337,9 @@ async function endPress(e) {
     workshopSealButton.style.transition = 'none';
     workshopSealButton.style.transform = `rotate(var(--button-rotation, 0deg))`;
 
-    // Complete the tab reveal animation
+    // Complete the tab reveal instantly (preview already matches final appearance)
     if (activeWorkshopTab) {
-        const remainingProgress = 1 - revealProgress;
-        const completionDuration = remainingProgress * 300;
-
-        activeWorkshopTab.style.transition = `transform ${completionDuration}ms ease-out`;
+        activeWorkshopTab.style.transition = 'none';
         activeWorkshopTab.style.transform = 'rotateX(0deg)';
         activeWorkshopTab.style.pointerEvents = 'auto';
     }
@@ -489,7 +486,10 @@ function cleanupWorkshopPreview(workshopTab, keepVisible) {
             }
         }, 500); // Match the animation duration
     } else {
+        // When keeping visible (switching to workshop tab), remove all inline styles instantly
+        // The CSS from workshop.css will take over seamlessly since it has the same styling
         workshopTab.style.transition = 'none';
+        workshopTab.style.transform = '';
         workshopTab.style.transformOrigin = '';
         workshopTab.style.position = '';
         workshopTab.style.top = '';
@@ -504,16 +504,8 @@ function cleanupWorkshopPreview(workshopTab, keepVisible) {
         workshopTab.style.backgroundSize = '';
         workshopTab.style.backgroundPosition = '';
         workshopTab.style.boxShadow = '';
-
-        requestAnimationFrame(() => {
-            if (workshopTab) {
-                workshopTab.style.transform = '';
-                workshopTab.style.transformOrigin = '';
-                workshopTab.style.backfaceVisibility = '';
-                workshopTab.style.transition = '';
-                workshopTab.style.opacity = '';
-            }
-        });
+        workshopTab.style.opacity = '';
+        workshopTab.style.pointerEvents = '';
 
         const contentChildren = workshopTab.children;
         for (let i = 0; i < contentChildren.length; i++) {
