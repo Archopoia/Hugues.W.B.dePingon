@@ -13,10 +13,10 @@ const chroniclesData = {
         content: `
             <h1>The Art of AI Behavior Trees: Lessons from The Wayward Realms</h1>
             <p><em>January 15, 2025 • 12 minute read</em></p>
-            
+
             <h2>Introduction</h2>
             <p>Creating believable NPCs is one of the greatest challenges in game design. In The Wayward Realms, we're pushing the boundaries of AI behavior systems to create a living, breathing world where every character feels unique and purposeful.</p>
-            
+
             <h2>What Are Behavior Trees?</h2>
             <p>Behavior Trees are a hierarchical structure for organizing AI decision-making. Unlike Finite State Machines (FSMs), Behavior Trees offer greater flexibility and modularity. They consist of:</p>
             <ul>
@@ -24,7 +24,7 @@ const chroniclesData = {
                 <li><strong>Decorator Nodes:</strong> Modify behavior of child nodes</li>
                 <li><strong>Leaf Nodes:</strong> Actions and conditions</li>
             </ul>
-            
+
             <h2>Integrating GOAP with Behavior Trees</h2>
             <p>While Behavior Trees excel at reactive behaviors, Goal-Oriented Action Planning (GOAP) provides long-term planning capabilities. We've developed a hybrid system that leverages both:</p>
             <pre><code>// Example GOAP goal structure
@@ -36,7 +36,7 @@ const goal = {
         hunger: 0
     }
 };</code></pre>
-            
+
             <h2>Practical Implementation</h2>
             <p>In The Wayward Realms, NPCs use this hybrid approach to:</p>
             <ul>
@@ -44,7 +44,7 @@ const goal = {
                 <li>Execute immediate reactions (Behavior Trees)</li>
                 <li>Adapt to player actions dynamically</li>
             </ul>
-            
+
             <h2>Challenges and Solutions</h2>
             <p>One major challenge was performance. With hundreds of NPCs active simultaneously, we needed optimization strategies:</p>
             <ol>
@@ -52,13 +52,13 @@ const goal = {
                 <li><strong>Tick Budgeting:</strong> Distribute AI updates across frames</li>
                 <li><strong>Caching:</strong> Store frequently accessed pathfinding data</li>
             </ol>
-            
+
             <h2>Results</h2>
             <p>The result is a world that feels alive. Guards change shifts, merchants travel to restock, and NPCs react meaningfully to your reputation and actions. This level of simulation creates emergent storytelling that's different for every player.</p>
-            
+
             <h2>Conclusion</h2>
             <p>Behavior Trees combined with GOAP provide a powerful framework for creating believable AI. The key is finding the right balance between reactive and goal-oriented behaviors for your specific game needs.</p>
-            
+
             <p><strong>Want to learn more?</strong> Check out my tutorial on implementing GOAP in Godot!</p>
         `
     },
@@ -72,10 +72,10 @@ const goal = {
         content: `
             <h1>Ethics in Game AI: Should NPCs Have Rights?</h1>
             <p><em>January 10, 2025 • 8 minute read</em></p>
-            
+
             <h2>The Question</h2>
             <p>As NPCs become increasingly sophisticated—especially with LLM integration—we're approaching a philosophical crossroads. When does a simulated consciousness deserve ethical consideration?</p>
-            
+
             <h2>The Philosophical Framework</h2>
             <p>Drawing from my MPhil in Applied Ethics, I approach this through three lenses:</p>
             <ol>
@@ -83,10 +83,10 @@ const goal = {
                 <li><strong>Deontology:</strong> Do we have duties to our creations?</li>
                 <li><strong>Virtue Ethics:</strong> What kind of designers should we be?</li>
             </ol>
-            
+
             <h2>The Simulation Argument</h2>
             <p>If an NPC's internal experience is indistinguishable from consciousness to an observer, does it matter whether it's "real"? This mirrors debates in philosophy of mind about p-zombies and the hard problem of consciousness.</p>
-            
+
             <h2>Practical Implications</h2>
             <p>These aren't just abstract questions. They affect design decisions:</p>
             <ul>
@@ -94,10 +94,10 @@ const goal = {
                 <li>What are our responsibilities when creating "living" worlds?</li>
                 <li>How do we balance player freedom with NPC dignity?</li>
             </ul>
-            
+
             <h2>A Designer's Responsibility</h2>
             <p>I argue that while NPCs may not deserve rights in a legal sense, we as designers have a responsibility to thoughtfully consider the worlds we create. This shapes player psychology and cultural norms around AI.</p>
-            
+
             <h2>Conclusion</h2>
             <p>The question isn't whether to give NPCs rights today, but how we prepare for a future where the line between simulation and consciousness becomes increasingly blurred.</p>
         `
@@ -112,17 +112,17 @@ const goal = {
         content: `
             <h1>Building Your First GOAP System in Godot</h1>
             <p><em>January 5, 2025 • 15 minute read</em></p>
-            
+
             <h2>What is GOAP?</h2>
             <p>Goal-Oriented Action Planning (GOAP) is an AI architecture that allows agents to formulate plans to achieve goals. Unlike scripted behaviors, GOAP agents can adapt to changing circumstances.</p>
-            
+
             <h2>Prerequisites</h2>
             <ul>
                 <li>Godot 4.x installed</li>
                 <li>Basic GDScript knowledge</li>
                 <li>Understanding of object-oriented programming</li>
             </ul>
-            
+
             <h2>Step 1: Define the World State</h2>
             <pre><code>extends Node
 class_name GOAPWorldState
@@ -140,7 +140,7 @@ func meets_conditions(conditions: Dictionary) -> bool:
         if state.get(key) != conditions[key]:
             return false
     return true</code></pre>
-            
+
             <h2>Step 2: Create Actions</h2>
             <pre><code>extends Node
 class_name GOAPAction
@@ -156,7 +156,7 @@ func can_run(world_state: GOAPWorldState) -> bool:
 func perform() -> bool:
     # Override this in child classes
     return true</code></pre>
-            
+
             <h2>Step 3: Implement the Planner</h2>
             <pre><code>extends Node
 class_name GOAPPlanner
@@ -165,18 +165,18 @@ func plan(actions: Array, world_state: GOAPWorldState, goal: Dictionary) -> Arra
     var available_actions = actions.duplicate()
     var plan = []
     var current_state = world_state.state.duplicate()
-    
+
     while not _meets_goal(current_state, goal):
         var best_action = _find_best_action(available_actions, current_state, goal)
         if best_action == null:
             return []  # No plan found
-        
+
         plan.append(best_action)
         _apply_effects(current_state, best_action.effects)
         available_actions.erase(best_action)
-    
+
     return plan</code></pre>
-            
+
             <h2>Step 4: Example Usage</h2>
             <pre><code># Create a simple "Get Food" action
 extends GOAPAction
@@ -190,14 +190,14 @@ func _init():
 func perform() -> bool:
     print("Gathering food...")
     return true</code></pre>
-            
+
             <h2>Common Pitfalls</h2>
             <ol>
                 <li><strong>Infinite Loops:</strong> Always ensure goals are achievable</li>
                 <li><strong>Performance:</strong> Cache plans when world state hasn't changed</li>
                 <li><strong>Action Costs:</strong> Carefully balance costs to avoid unrealistic behavior</li>
             </ol>
-            
+
             <h2>Next Steps</h2>
             <p>This is a basic implementation. To make it production-ready:</p>
             <ul>
@@ -206,10 +206,10 @@ func perform() -> bool:
                 <li>Create a visual debugger</li>
                 <li>Add dynamic goal prioritization</li>
             </ul>
-            
+
             <h2>Conclusion</h2>
             <p>GOAP is a powerful tool for creating intelligent, adaptive AI. While the initial setup requires more work than simple state machines, the flexibility and emergent behavior make it worthwhile for complex games.</p>
-            
+
             <p><strong>Download the full example project from my GitHub!</strong></p>
         `
     },
@@ -223,13 +223,13 @@ func perform() -> bool:
         content: `
             <h1>Creating Believable Cultures: The Discording Tales Method</h1>
             <p><em>December 28, 2024 • 10 minute read</em></p>
-            
+
             <h2>The Challenge of Cultural Authenticity</h2>
             <p>When creating The Discording Tales, a 300-page tabletop RPG, I faced a common problem: how do you create cultures that feel real without simply copying Earth cultures?</p>
-            
+
             <h2>The Anthropological Approach</h2>
             <p>Drawing from my background in anthropology, I developed a systematic method:</p>
-            
+
             <h3>1. Environmental Foundation</h3>
             <p>Culture emerges from environment. Before designing customs, I establish:</p>
             <ul>
@@ -238,7 +238,7 @@ func perform() -> bool:
                 <li>Natural threats and opportunities</li>
                 <li>Seasonal patterns</li>
             </ul>
-            
+
             <h3>2. Subsistence Patterns</h3>
             <p>How people acquire food shapes everything:</p>
             <ul>
@@ -246,7 +246,7 @@ func perform() -> bool:
                 <li>Pastoralists: Hierarchical, territorial</li>
                 <li>Agriculturalists: Sedentary, complex social structures</li>
             </ul>
-            
+
             <h3>3. Social Organization</h3>
             <p>From subsistence patterns, social structures emerge naturally:</p>
             <pre><code>// Example cultural framework
@@ -257,7 +257,7 @@ const culture = {
     marriage: "Polygynous",
     residence: "Matrilocal"
 };</code></pre>
-            
+
             <h2>The Neuroscience Angle</h2>
             <p>My neuroscience background informed how cultures differ in cognition:</p>
             <ul>
@@ -265,7 +265,7 @@ const culture = {
                 <li><strong>Time Perception:</strong> Linear vs. cyclical thinking</li>
                 <li><strong>Spatial Reasoning:</strong> Absolute vs. relative frames of reference</li>
             </ul>
-            
+
             <h2>The Discording Tales Example</h2>
             <p>One culture in the game, the Khevren, demonstrates this approach:</p>
             <ul>
@@ -273,14 +273,14 @@ const culture = {
                 <li><strong>Subsistence:</strong> Nomadic pastoralism</li>
                 <li><strong>Result:</strong> Honor-based society, complex hospitality rules, oral tradition emphasis</li>
             </ul>
-            
+
             <h2>Avoiding Common Traps</h2>
             <ol>
                 <li><strong>Planet of Hats:</strong> Don't make cultures one-dimensional</li>
                 <li><strong>Exoticism:</strong> Avoid making "foreign" = "interesting"</li>
                 <li><strong>Static Cultures:</strong> Show internal diversity and change</li>
             </ol>
-            
+
             <h2>Practical Application</h2>
             <p>For game designers, this method provides:</p>
             <ul>
@@ -288,7 +288,7 @@ const culture = {
                 <li>Rich storytelling opportunities</li>
                 <li>Meaningful player choices based on cultural context</li>
             </ul>
-            
+
             <h2>Conclusion</h2>
             <p>Creating believable cultures requires understanding the interconnected systems that shape human societies. By building from environmental foundations up, you create worlds that feel lived-in and authentic.</p>
         `
@@ -303,20 +303,20 @@ const culture = {
         content: `
             <h1>Wayward Realms Dev Diary #1: Procedural Generation Challenges</h1>
             <p><em>December 20, 2024 • 7 minute read</em></p>
-            
+
             <h2>The Vision</h2>
             <p>The Wayward Realms aims to create a world as vast as Daggerfall but with modern sophistication. That means massive procedural generation—but done right.</p>
-            
+
             <h2>Challenge 1: Scale vs. Meaning</h2>
             <p>Our first major challenge: how do you create a world with thousands of locations that still feels handcrafted?</p>
-            
+
             <h3>Our Solution:</h3>
             <ul>
                 <li><strong>Seed-based consistency:</strong> Same seeds always generate same results</li>
                 <li><strong>Designer oversight:</strong> Hand-authored templates guide generation</li>
                 <li><strong>Context awareness:</strong> Generation considers surrounding regions</li>
             </ul>
-            
+
             <h2>Challenge 2: Performance</h2>
             <p>Generating content on-the-fly while maintaining 60fps is brutal. We've implemented:</p>
             <pre><code>// Chunked generation with time budgeting
@@ -325,12 +325,12 @@ var chunk_queue = []
 
 func _process(delta):
     var start_time = Time.get_ticks_msec()
-    
+
     while chunk_queue.size() > 0:
         if Time.get_ticks_msec() - start_time > generation_budget_ms:
             break
         generate_chunk(chunk_queue.pop_front())</code></pre>
-            
+
             <h2>Challenge 3: Memorable Moments</h2>
             <p>Procedural doesn't mean random. We use "memorable event" injection:</p>
             <ul>
@@ -338,21 +338,21 @@ func _process(delta):
                 <li>Story beats integrated into generated content</li>
                 <li>Persistent world changes from player actions</li>
             </ul>
-            
+
             <h2>What's Working</h2>
             <ul>
                 <li>Cities feel unique and culturally distinct</li>
                 <li>Wilderness exploration remains engaging</li>
                 <li>Performance meets our targets</li>
             </ul>
-            
+
             <h2>What's Not (Yet)</h2>
             <ul>
                 <li>Dungeon variety needs more templates</li>
                 <li>NPC dialogue occasionally feels generic</li>
                 <li>Some biome transitions are too abrupt</li>
             </ul>
-            
+
             <h2>Next Steps</h2>
             <p>We're focusing on:</p>
             <ol>
@@ -360,10 +360,10 @@ func _process(delta):
                 <li>Improving biome blending algorithms</li>
                 <li>Integrating LLM for dynamic NPC dialogue</li>
             </ol>
-            
+
             <h2>The Takeaway</h2>
             <p>Procedural generation is a tool, not a replacement for design. The key is knowing when to be random and when to be deliberate.</p>
-            
+
             <p><em>Stay tuned for Dev Diary #2 where I'll discuss our NPC simulation systems!</em></p>
         `
     },
@@ -377,12 +377,12 @@ func _process(delta):
         content: `
             <h1>Systemic Design: Making Every Action Matter</h1>
             <p><em>December 15, 2024 • 11 minute read</em></p>
-            
+
             <h2>What is Systemic Design?</h2>
             <p>Systemic design is about creating interconnected game systems that react to player actions in meaningful, often unexpected ways. Think Breath of the Wild's physics interactions or Deus Ex's multiple solution paths.</p>
-            
+
             <h2>The Core Principles</h2>
-            
+
             <h3>1. Systems Over Scripts</h3>
             <p>Instead of scripting every interaction, create rules that govern behavior:</p>
             <pre><code>// Bad: Scripted
@@ -396,7 +396,7 @@ func _process(delta):
             witness.update_opinion(player, -50)
             if witness.is_guard:
                 witness.set_target(player)</code></pre>
-            
+
             <h3>2. Emergent Complexity</h3>
             <p>Simple rules + multiple systems = complex emergent behavior</p>
             <ul>
@@ -405,7 +405,7 @@ func _process(delta):
                 <li>Guards investigate disturbances</li>
                 <li>Result: Setting fire creates distraction for theft</li>
             </ul>
-            
+
             <h3>3. Meaningful Consequences</h3>
             <p>Every action should ripple through connected systems:</p>
             <ul>
@@ -413,9 +413,9 @@ func _process(delta):
                 <li>Help a faction → Enemy factions react</li>
                 <li>Use magic publicly → Social consequences based on culture</li>
             </ul>
-            
+
             <h2>Implementing Systemic Design</h2>
-            
+
             <h3>Step 1: Define Your Systems</h3>
             <p>In The Wayward Realms, our core systems are:</p>
             <ul>
@@ -424,24 +424,24 @@ func _process(delta):
                 <li>Politics (faction relationships, power struggles)</li>
                 <li>Weather/Environment (affects travel, combat, NPC behavior)</li>
             </ul>
-            
+
             <h3>Step 2: Create Connections</h3>
             <pre><code>class SystemManager:
     var systems = []
-    
+
     func notify_event(event_type: String, data: Dictionary):
         for system in systems:
             if system.cares_about(event_type):
                 system.process_event(event_type, data)</code></pre>
-            
+
             <h3>Step 3: Test for Emergence</h3>
             <p>Playtest looking for unexpected interactions. These are features, not bugs!</p>
-            
+
             <h2>Common Pitfalls</h2>
-            
+
             <h3>1. Over-Complexity</h3>
             <p>Too many systems = confusion. Start simple, add depth gradually.</p>
-            
+
             <h3>2. Invisible Systems</h3>
             <p>Players can't engage with what they can't see. Provide feedback:</p>
             <ul>
@@ -449,10 +449,10 @@ func _process(delta):
                 <li>NPC dialogue reflecting systemic changes</li>
                 <li>Environmental storytelling</li>
             </ul>
-            
+
             <h3>3. Unfun Consequences</h3>
             <p>Not all realism is fun. Sometimes you need to "cheat" for gameplay.</p>
-            
+
             <h2>Case Study: The Merchant Murder</h2>
             <p>A player kills a merchant in a remote village. In a systemic game:</p>
             <ol>
@@ -464,10 +464,10 @@ func _process(delta):
                 <li>Other merchants raise prices (risk premium)</li>
             </ol>
             <p>All from existing systems, no special scripting needed.</p>
-            
+
             <h2>Conclusion</h2>
             <p>Systemic design creates worlds that feel alive and responsive. It's more work upfront, but the payoff is a game where every playthrough tells a unique story.</p>
-            
+
             <p>The best game design isn't about creating content—it's about creating systems that generate content.</p>
         `
     }
@@ -534,7 +534,7 @@ class ChroniclesGameState {
             const lastDate = new Date(this.lastReadDate);
             const yesterday = new Date();
             yesterday.setDate(yesterday.getDate() - 1);
-            
+
             if (lastDate.toDateString() === yesterday.toDateString()) {
                 this.streak++;
             } else if (lastDate.toDateString() !== today) {
@@ -601,10 +601,10 @@ class ChroniclesGameState {
         if (banner && achievementText) {
             achievementText.textContent = text;
             banner.style.display = 'flex';
-            
+
             // Play sound if available
             if (window.soundManager) {
-                window.soundManager.playRandomBellSound();
+                window.soundManager.playRandomPageSound();
             }
 
             setTimeout(() => {
@@ -657,7 +657,7 @@ function initializeChroniclesFiltering() {
 
             // Play sound
             if (window.soundManager) {
-                window.soundManager.playClickSound();
+                window.soundManager.playRandomPageSound();
             }
         });
     });
@@ -757,6 +757,17 @@ function openChronicle(chronicleId) {
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
 
+        // Add class to sheet-content to change background
+        const sheetContent = document.querySelector('.sheet-content');
+        if (sheetContent) {
+            sheetContent.classList.add('chronicle-modal-active');
+
+            // Create animated background overlay
+            const backgroundOverlay = document.createElement('div');
+            backgroundOverlay.className = 'chronicle-background-overlay';
+            sheetContent.appendChild(backgroundOverlay);
+        }
+
         // Mark as read and award XP
         gameState.markAsRead(chronicleId);
 
@@ -773,6 +784,24 @@ function openChronicle(chronicleId) {
 function closeChronicle() {
     const modal = document.getElementById('chronicle-modal');
     if (modal) {
+        // Add exit animation class before removing the main class
+        const sheetContent = document.querySelector('.sheet-content');
+        if (sheetContent) {
+            const backgroundOverlay = sheetContent.querySelector('.chronicle-background-overlay');
+            if (backgroundOverlay) {
+                backgroundOverlay.classList.add('exiting');
+
+                // Wait for the overlay animation to complete before removing everything
+                setTimeout(() => {
+                    sheetContent.classList.remove('chronicle-modal-active', 'chronicle-modal-exiting');
+                    backgroundOverlay.remove();
+                }, 600); // Match the CSS animation duration
+            } else {
+                // Fallback if no overlay found
+                sheetContent.classList.remove('chronicle-modal-active', 'chronicle-modal-exiting');
+            }
+        }
+
         modal.classList.remove('active');
         document.body.style.overflow = '';
     }
@@ -795,7 +824,7 @@ function nextChronicle() {
     // Find next unread chronicle
     const allIds = Object.keys(chroniclesData).map(Number);
     const unread = allIds.filter(id => !gameState.articlesRead.has(id));
-    
+
     if (unread.length > 0) {
         closeChronicle();
         setTimeout(() => openChronicle(unread[0]), 300);
@@ -830,7 +859,7 @@ window.nextChronicle = nextChronicle;
 export function initializeChronicles() {
     gameState = new ChroniclesGameState();
     initializeChroniclesFiltering();
-    
+
     // Close modal on escape key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
