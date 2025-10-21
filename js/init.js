@@ -21,19 +21,19 @@ document.addEventListener('DOMContentLoaded', function() {
         characterName.textContent = '\u200B'; // Zero-width space to maintain layout
     }
 
-    // Load and activate Chronicles section immediately
-    loadSection('chronicles').then(() => {
-        // After loading, ensure Chronicles tab is active and visible
-        const chroniclesTab = document.getElementById('chronicles');
-        const chroniclesButton = document.querySelector('.tab-button[data-tab="chronicles"]');
+    // Load and activate About section immediately
+    loadSection('about').then(() => {
+        // After loading, ensure About tab is active and visible
+        const aboutTab = document.getElementById('about');
+        const aboutButton = document.querySelector('.tab-button[data-tab="about"]');
 
-        if (chroniclesTab && chroniclesButton) {
-            // Make sure Chronicles tab is active
+        if (aboutTab && aboutButton) {
+            // Make sure About tab is active
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
 
-            chroniclesTab.classList.add('active');
-            chroniclesButton.classList.add('active');
+            aboutTab.classList.add('active');
+            aboutButton.classList.add('active');
         }
     });
 

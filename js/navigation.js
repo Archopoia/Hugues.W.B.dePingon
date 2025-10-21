@@ -99,7 +99,7 @@ export async function loadSection(sectionName) {
 export function preloadAllSections() {
     const sections = ['chronicles', 'about', 'workshop', 'education', 'experience', 'portfolio', 'skills', 'contact'];
     sections.forEach(section => {
-        if (section !== 'chronicles') { // Chronicles is loaded by default
+        if (section !== 'about') { // About is loaded by default
             loadSection(section);
         }
     });

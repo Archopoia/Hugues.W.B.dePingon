@@ -603,7 +603,7 @@
 }
 
 /* Chronicles Tab - Hidden for WIP */
-.tab-button-chronicles {
+ .tab-button-chronicles {
     display: none !important;
     visibility: hidden !important;
     pointer-events: none !important;
