@@ -290,7 +290,7 @@ html[lang="fr"] .stat-label.countries-hover::before {
 
 /* Education Cards */
 .education-card {
-    background: var(--parchment-light);
+    background: var(--hover-bg);
     border: 3px solid var(--border-tan);
     border-radius: 20px;
     margin: 2rem 0;
@@ -568,7 +568,7 @@ html[lang="fr"] .stat-label.countries-hover::before {
 
 .degree-item:hover {
     border-color: var(--red-theme);
-    background: var(--parchment-light);
+    background: var(--hover-bg);
     transform: translateX(5px);
 }
 
@@ -635,7 +635,7 @@ html[lang="fr"] .stat-label.countries-hover::before {
 }
 
 .cert-card {
-    background: var(--parchment-light);
+    background: var(--hover-bg);
     border: 2px solid var(--border-tan);
     border-radius: 15px;
     padding: 1.5rem;
@@ -709,7 +709,7 @@ html[lang="fr"] .stat-label.countries-hover::before {
     width: 12px;
     height: 12px;
     background: var(--red-theme);
-    border: 3px solid var(--parchment-light);
+    border: 3px solid var(--hover-bg);
     border-radius: 50%;
     box-shadow: 0 0 10px var(--shadow);
 }
@@ -786,7 +786,7 @@ html[lang="fr"] .stat-label.countries-hover::before {
 }
 
 .work-item {
-    background: var(--parchment-light);
+    background: var(--hover-bg);
     border: 2px solid var(--parchment-dark);
     border-radius: 10px;
     padding: 1.5rem;
@@ -917,7 +917,7 @@ html[lang="fr"] .stat-label.countries-hover::before {
     border-radius: 5%;
     overflow: hidden;
     box-shadow: 0px 0px 5px 1px #421212 inset;
-    background: var(--parchment-light);
+    background: var(--hover-bg);
 }
 
 .pdf-preview-small {
@@ -925,7 +925,7 @@ html[lang="fr"] .stat-label.countries-hover::before {
     height: 100%;
     border: none;
     pointer-events: none;
-    background: var(--parchment-light);
+    background: var(--hover-bg);
 }
 
 .project-link.compact {

@@ -414,7 +414,7 @@ body::before {
 
 /* Regular Cards */
 .card {
-    background: var(--parchment-light);
+    background: var(--hover-bg);
     border: 3px solid var(--border-tan);
     border-radius: 15px;
     padding: 1.5rem;
@@ -427,7 +427,7 @@ body::before {
 }
 
 .card:hover {
-    background: var(--hover-bg);
+    background: var(--parchment-light);
     transform: scale(1.05, 1.05);
     box-shadow:
         0 0 15px 8px var(--gold-glow),
