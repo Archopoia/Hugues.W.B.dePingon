@@ -138,13 +138,21 @@ async function startPress(e) {
         activeWorkshopTab.style.transformStyle = 'preserve-3d';
         activeWorkshopTab.style.minHeight = '500px';
 
-        // Apply workshop burgundy background with patterns
+        // Apply workshop burgundy background with ALL LAYERS (1, 2, 3A) - matches header and final workshop tab
         activeWorkshopTab.style.background = `
             radial-gradient(circle at 20% 20%, rgba(100, 48, 48, 0.3) 0%, transparent 50%),
             radial-gradient(circle at 80% 80%, rgba(100, 48, 48, 0.3) 0%, transparent 50%),
-            linear-gradient(135deg, var(--red-theme-alpha) 0%, var(--red-theme) 50%)
+            linear-gradient(135deg, var(--red-theme-alpha) 0%, var(--red-theme) 50%),
+            radial-gradient(#6100001f 3px, transparent 4px),
+            radial-gradient(#6100001f 3px, transparent 4px),
+            linear-gradient(var(--parchment-light) 4px, transparent 0),
+            linear-gradient(45deg, transparent 74px, #78c9a3 75px, transparent 76px, transparent 109px),
+            linear-gradient(-45deg, transparent 75px, #78c9a3 76px, transparent 77px, transparent 109px),
+            var(--parchment-light)
         `;
-        activeWorkshopTab.style.backgroundColor = 'var(--parchment-light)';
+        activeWorkshopTab.style.backgroundSize = '100% 100%, 100% 100%, 100% 100%, 109px 109px, 109px 109px, 100% 6px, 109px 109px, 109px 109px, 100% 100%';
+        activeWorkshopTab.style.backgroundPosition = '0 0, 0 0, 0 0, 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0 0';
+        activeWorkshopTab.style.backgroundColor = '';
         activeWorkshopTab.style.boxShadow = 'inset 0 0 0 2px var(--border-tan)';
 
         // Add the diagonal hatched lines pattern as an overlay
