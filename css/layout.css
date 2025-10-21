@@ -19,10 +19,10 @@
     background:
         radial-gradient(#6100001f 3px, transparent 4px),        /* LAYER 1: Red dots (offset) */
         radial-gradient(#6100001f 3px, transparent 4px),        /* LAYER 1: Red dots (base) */
-        linear-gradient(var(--parchment-sublight) 4px, transparent 0), /* LAYER 1: Horizontal lines */
+        linear-gradient(var(--text-light) 4px, transparent 0), /* LAYER 1: Horizontal lines */
         linear-gradient(45deg, transparent 74px, var(--jade-grid) 75px, transparent 76px, transparent 109px),  /* LAYER 2: Diagonal grid (45deg) */
         linear-gradient(-45deg, transparent 75px, var(--jade-grid) 76px, transparent 77px, transparent 109px), /* LAYER 2: Diagonal grid (-45deg) */
-        var(--parchment-sublight);                               /* LAYER 1: Base parchment color (lighter variant) */
+        var(--text-light);                               /* LAYER 1: Base parchment color (lighter variant) */
     background-size: 109px 109px, 109px 109px, 100% 6px, 109px 109px, 109px 109px;
     background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
     box-shadow:
@@ -123,10 +123,10 @@
     background:
             radial-gradient(#6100001f 3px, transparent 4px),
             radial-gradient(#6100001f 3px, transparent 4px),
-            linear-gradient(var(--parchment-sublight) 4px, transparent 0),
+            linear-gradient(var(--text-light) 4px, transparent 0),
             linear-gradient(45deg, transparent 74px, var(--jade-grid) 75px, transparent 76px, transparent 109px),
             linear-gradient(-45deg, transparent 75px, var(--jade-grid) 76px, transparent 77px, transparent 109px),
-            var(--parchment-sublight);
+            var(--text-light);
         background-size: 109px 109px, 109px 109px, 100% 6px, 109px 109px, 109px 109px;
         background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
     z-index: 1;

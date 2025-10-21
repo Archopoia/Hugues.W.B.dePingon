@@ -166,7 +166,7 @@
 }
 
 .edu-nav-btn {
-    background: var(--parchment-light);
+    background: var(--parchment-aged);
     border: 3px solid var(--border-tan);
     border-radius: 3px;
     padding: 0.75rem 1.5rem;
@@ -303,7 +303,7 @@
 }
 
 .method-btn {
-    background: var(--parchment-light);
+    background: var(--parchment-aged);
     border: 3px solid var(--border-dark);
     border-radius: 3px;
     padding: 1rem 2rem;

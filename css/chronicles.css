@@ -1,6 +1,7 @@
 /*!
  * Chronicles Section - Gamified Blog
  * Medieval-themed blog with gamification elements
+ * REDESIGNED to match the rest of the website's tab styling
  */
 
 /* ========================================
@@ -20,7 +21,7 @@
 .chronicles-header {
     margin-bottom: 2rem;
     padding-bottom: 1.5rem;
-    border-bottom: 2px solid var(--red-theme);
+    border-bottom: 2px solid var(--border-dark);
 }
 
 .chronicles-title-container {
@@ -36,76 +37,88 @@
 }
 
 /* ========================================
-   READER STATS PANEL (Gamification)
+   READER STATS PANEL (Gamification) - REDESIGNED
    ======================================== */
 
 .reader-stats-panel {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 1rem;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    background: linear-gradient(135deg, rgba(139, 26, 26, 0.1), var(--vignette-dark));
-    border-radius: 8px;
-    border: 1px solid var(--red-theme);
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: var(--parchment-light);
+    border: 3px solid var(--border-dark);
+    border-radius: 15px;
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.2),
+        inset 0 0 0 2px var(--border-tan);
 }
 
 .stat-badge {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 0.8rem;
-    padding: 0.8rem 1.2rem;
-    background: var(--parchment-light);
-    border-radius: 6px;
-    border: 1px solid var(--border-brown);
-    transition: all 0.3s ease;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: var(--parchment-aged);
+    border: 2px solid var(--border-tan);
+    border-radius: 12px;
+    transition: all var(--transition-speed) ease;
     cursor: default;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .stat-badge:hover {
     transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3);
+    box-shadow:
+        0 0 12px 5px var(--gold-glow),
+        0 6px 12px rgba(0, 0, 0, 0.3),
+        inset 0 0 0 2px var(--focus-glow);
 }
 
 .stat-badge i {
-    font-size: 1.5rem;
-    color: var(--gold-glow);
+    font-size: 2rem;
+    color: var(--red-theme);
 }
 
 .stat-info {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
 }
 
 .stat-number {
     font-size: 1.5rem;
     font-weight: bold;
-    color: var(--text-cream);
+    color: var(--text-dark);
     font-family: 'Cinzel', serif;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .stat-label {
-    font-size: 0.85rem;
-    color: var(--text-cream);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 
 .reader-level {
-    padding: 0.8rem 1.5rem;
-    background: linear-gradient(135deg, var(--red-theme), var(--red-theme));
-    border-radius: 8px;
-    border: 2px solid var(--gold-glow);
-    box-shadow: 0 0 15px rgba(184, 134, 11, 0.4);
+    padding: 1rem 1.5rem;
+    background: var(--red-theme);
+    border: 3px solid var(--border-dark);
+    border-radius: 15px;
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.2),
+        inset 0 0 0 2px var(--border-tan);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
 .level-title {
     color: var(--text-cream);
     font-size: 0.9rem;
-    margin-right: 0.5rem;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 
@@ -119,7 +132,7 @@
 }
 
 /* ========================================
-   ACHIEVEMENTS BANNER
+   ACHIEVEMENTS BANNER - REDESIGNED
    ======================================== */
 
 .achievements-banner {
@@ -128,19 +141,24 @@
     right: 20px;
     z-index: 9999;
     padding: 1rem 2rem;
-    background: linear-gradient(135deg, var(--gold-glow), var(--parchment-aged));
-    color: var(--red-theme);
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(184, 134, 11, 0.6);
-    animation: slideInRight 0.5s ease-out, pulse 1.5s ease-in-out infinite;
+    background: var(--parchment-light);
+    border: 3px solid var(--border-dark);
+    border-radius: 15px;
+    box-shadow:
+        0 0 20px 5px var(--gold-glow),
+        0 8px 20px rgba(0, 0, 0, 0.3),
+        inset 0 0 0 2px var(--focus-glow);
+    animation: slideInRight 0.5s ease-out, badgePulse 2s ease-in-out infinite;
     font-weight: bold;
     display: flex;
     align-items: center;
     gap: 1rem;
+    color: var(--text-dark);
 }
 
 .achievements-banner i {
     font-size: 1.5rem;
+    color: var(--red-theme);
     animation: bounce 1s ease-in-out infinite;
 }
 
@@ -155,12 +173,12 @@
     }
 }
 
-@keyframes pulse {
+@keyframes badgePulse {
     0%, 100% {
-        box-shadow: 0 4px 20px rgba(184, 134, 11, 0.6);
+        transform: scale(1);
     }
     50% {
-        box-shadow: 0 4px 30px rgba(184, 134, 11, 0.9);
+        transform: scale(1.05);
     }
 }
 
@@ -174,7 +192,7 @@
 }
 
 /* ========================================
-   TOME SELECTOR (Categories)
+   TOME SELECTOR (Categories) - REDESIGNED
    ======================================== */
 
 .tome-selector {
@@ -227,7 +245,7 @@
 }
 
 /* ========================================
-   SEARCH & FILTER
+   SEARCH & FILTER - REDESIGNED
    ======================================== */
 
 .chronicle-search {
@@ -250,7 +268,7 @@
 .search-container i {
     position: absolute;
     left: 1rem;
-    color: var(--gold-glow);
+    color: var(--red-theme);
     font-size: 1.1rem;
 }
 
@@ -258,17 +276,21 @@
     width: 100%;
     padding: 0.8rem 1rem 0.8rem 3rem;
     background: var(--parchment-light);
-    border: 2px solid var(--red-theme);
-    border-radius: 6px;
+    border: 3px solid var(--border-dark);
+    border-radius: 10px;
     color: var(--text-dark);
     font-size: 1rem;
-    transition: all 0.3s ease;
+    font-family: 'Quintessential', cursive;
+    transition: all var(--transition-speed) ease;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #chronicle-search-input:focus {
     outline: none;
-    border-color: var(--gold-glow);
-    box-shadow: 0 0 10px rgba(184, 134, 11, 0.3);
+    border-color: var(--red-theme);
+    box-shadow:
+        0 0 15px rgba(100, 48, 48, 0.2),
+        inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #chronicle-search-input::placeholder {
@@ -283,29 +305,35 @@
 }
 
 .sort-container label {
-    color: var(--text-secondary);
+    color: var(--text-dark);
     font-size: 0.95rem;
     white-space: nowrap;
+    font-weight: 600;
 }
 
 #sort-select {
     padding: 0.8rem 1rem;
     background: var(--parchment-light);
-    border: 2px solid var(--red-theme);
-    border-radius: 6px;
+    border: 3px solid var(--border-dark);
+    border-radius: 10px;
     color: var(--text-dark);
     font-size: 0.95rem;
+    font-family: 'Quintessential', cursive;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all var(--transition-speed) ease;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #sort-select:focus {
     outline: none;
-    border-color: var(--gold-glow);
+    border-color: var(--red-theme);
+    box-shadow:
+        0 0 15px rgba(100, 48, 48, 0.2),
+        inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* ========================================
-   CHRONICLES GRID
+   CHRONICLES GRID - REDESIGNED
    ======================================== */
 
 .chronicles-grid {
@@ -316,83 +344,92 @@
 }
 
 /* ========================================
-   CHRONICLE CARD
+   CHRONICLE CARD - REDESIGNED TO MATCH OTHER TABS
    ======================================== */
 
 .chronicle-card {
     position: relative;
-    background: linear-gradient(135deg, var(--text-cream), var(--parchment-bg));
-    border: 0px solid var(--border-tan);
-    border-radius: 12px;
+    background: var(--parchment-light);
+    border: 3px solid var(--border-tan);
+    border-radius: 15px;
     padding: 1.5rem;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all var(--transition-speed) ease;
     cursor: pointer;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.chronicle-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, transparent, rgba(184, 134, 11, 0.05));
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
+    overflow: visible;
+    box-shadow:
+        0 0 15px rgba(0, 0, 0, 0.1),
+        inset 0 0 0 2px var(--border-tan);
 }
 
 .chronicle-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-    border-color: var(--border-brown);
+    background: var(--hover-bg);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow:
+        0 0 15px 8px var(--gold-glow),
+        0 0 30px 15px var(--ink-shadow),
+        0px 0px 10px 1px var(--focus-glow) inset;
+    z-index: 999;
 }
 
-.chronicle-card:hover::before {
-    opacity: 1;
-}
-
-/* Chronicle Ribbon (Category) */
+/* Chronicle Ribbon (Category) - REDESIGNED */
 .chronicle-ribbon {
     position: absolute;
     top: 15px;
-    right: -35px;
-    background: linear-gradient(135deg, var(--red-theme), var(--red-theme));
+    right: -10px;
+    background: var(--red-theme);
     color: var(--text-cream);
-    padding: 0.4rem 2.5rem;
-    transform: rotate(45deg);
+    padding: 0.5rem 1.5rem;
     font-size: 0.75rem;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    border: 2px solid var(--border-dark);
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.3),
+        -4px 0 8px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    transform: rotate(3deg);
     display: flex;
     align-items: center;
     gap: 0.3rem;
 }
 
-/* Chronicle Seal Icon */
+.chronicle-ribbon::before {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-top: 8px solid var(--ink-brown);
+}
+
+/* Chronicle Seal Icon - REDESIGNED */
 .chronicle-seal {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     margin: 0 auto 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: transparent;
+    background: var(--red-theme);
+    border: 3px solid var(--border-dark);
     border-radius: 50%;
-    border: 3px solid var(--red-theme);
+    box-shadow:
+        0 0 10px var(--gold-glow),
+        inset 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: all var(--transition-speed);
+}
+
+.chronicle-card:hover .chronicle-seal {
+    transform: scale(1.1);
 }
 
 /* Chronicle Seal Icon - SPECIFIC to chronicles only */
 .chronicle-seal .seal-icon {
-    font-size: 1.8rem;
-    color: var(--red-theme);
-    text-shadow: none !important;
-    filter: none !important;
-    box-shadow: none !important;
+    font-size: 2.2rem;
+    color: var(--text-cream);
 }
 
 /* Chronicle Header */
@@ -402,15 +439,15 @@
 
 .chronicle-title {
     font-size: 1.3rem;
-    color: var(--red-theme);
+    color: var(--text-dark);
     margin-bottom: 0.8rem;
     font-family: 'Cinzel', serif;
     line-height: 1.4;
-    transition: color 0.3s ease;
+    transition: color var(--transition-speed) ease;
 }
 
 .chronicle-card:hover .chronicle-title {
-    color: var(--text-dark);
+    color: var(--red-theme);
 }
 
 .chronicle-meta {
@@ -439,7 +476,7 @@
     font-size: 0.95rem;
 }
 
-/* Rune Tags */
+/* Rune Tags - REDESIGNED */
 .chronicle-tags {
     display: flex;
     flex-wrap: wrap;
@@ -454,21 +491,27 @@
     padding: 0.3rem 0.8rem;
     background: var(--red-theme);
     color: var(--text-cream);
-    border-radius: 4px;
+    border-radius: 12px;
     font-size: 0.8rem;
-    transition: all 0.3s ease;
+    border: 2px solid var(--border-dark);
+    transition: all var(--transition-speed) ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .rune-tag:hover {
-    background: var(--red-theme);
-    transform: scale(1.05);
+    background: var(--yellow-theme);
+    color: var(--text-dark);
+    transform: scale(1.1);
+    box-shadow:
+        0 0 10px 3px var(--gold-glow),
+        0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .rune-tag i {
     font-size: 0.7rem;
 }
 
-/* Read Chronicle Button */
+/* Read Chronicle Button - REDESIGNED */
 .read-chronicle-btn {
     width: 100%;
     padding: 0.8rem 1.5rem;
@@ -504,13 +547,18 @@
 }
 
 /* ========================================
-   EMPTY STATE
+   EMPTY STATE - REDESIGNED
    ======================================== */
 
 .chronicles-empty {
     text-align: center;
     padding: 4rem 2rem;
-    color: var(--text-secondary);
+    background: var(--parchment-light);
+    border: 3px solid var(--border-dark);
+    border-radius: 15px;
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.2),
+        inset 0 0 0 2px var(--border-tan);
 }
 
 .chronicles-empty i {
@@ -522,7 +570,13 @@
 .chronicles-empty h3 {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
-    color: var(--red-theme);
+    color: var(--text-dark);
+    font-family: 'Quintessential', cursive;
+}
+
+.chronicles-empty p {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
 }
 
 /* ========================================
@@ -623,14 +677,12 @@
 }
 
 /* When modal is active, hide the original ::before (layers 1 & 2) completely */
-/* We'll create a new element for the hatched lines instead */
 .sheet-content.chronicle-modal-active::before {
     opacity: 0 !important;
     transition: opacity 0.6s ease-in-out !important;
 }
 
 /* When modal is exiting, fade the original ::before back in */
-/* More specific selector to override the active state */
 .sheet-content.chronicle-modal-active.chronicle-modal-exiting::before {
     opacity: 1 !important;
     transition: opacity 0.6s ease-in-out !important;
@@ -659,9 +711,6 @@
     transition: opacity 0.6s ease-in-out !important;
 }
 
-/* Removed - this was causing background-size/position to transition, creating a shrinking effect */
-/* The base .sheet-content in layout.css already has the correct transitions */
-
 @keyframes fadeInHatch {
     from {
         opacity: 0;
@@ -689,20 +738,19 @@
     }
 }
 
-/* Removed exit animations for ::before and ::after - they fade in via transition property instead */
-/* The ::before (layers 1&2) fades from opacity 0 to 1 */
-/* The ::after (gold border) fades from opacity 1 to 0 */
-
+/* Chronicle Scroll - REDESIGNED */
 .chronicle-scroll {
     position: relative;
     max-width: 900px;
     width: 100%;
     background: var(--red-theme);
-    border: 2px solid var(--red-theme);
-    border-radius: 12px;
+    border: 3px solid var(--border-dark);
+    border-radius: 15px;
     padding: 3rem;
     margin: 2rem auto;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+    box-shadow:
+        0 8px 40px rgba(0, 0, 0, 0.5),
+        inset 0 0 0 2px var(--border-tan);
     animation: unfurlScroll 0.6s ease-out;
 }
 
@@ -733,8 +781,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
+    transition: all var(--transition-speed) ease;
     z-index: 10;
+}
+
+.close-chronicle:hover {
+    background: var(--hover-bg);
+    transform: scale(1.1);
+    box-shadow:
+        0 0 15px 5px var(--gold-glow),
+        0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .close-chronicle-bottom {
@@ -749,16 +805,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
-    margin: 0 auto;
+    transition: all var(--transition-speed) ease;
+    margin: 2rem auto 0;
 }
 
 .close-chronicle-bottom:hover {
     background: var(--hover-bg);
-    transform: rotate(90deg);
+    transform: rotate(90deg) scale(1.1);
     box-shadow:
         0 0 15px 8px var(--gold-glow),
-        0 0 30px 15px rgba(114, 82, 47, 0.46),
+        0 0 30px 15px var(--ink-shadow),
         0px 0px 10px 1px var(--focus-glow) inset;
 }
 
@@ -794,18 +850,18 @@
 }
 
 .scroll-content code {
-    background: var(--text-cream);
+    background: var(--parchment-light);
     color: var(--red-theme);
-    border: 1px solid var(--text-cream);
+    border: 1px solid var(--border-tan);
     padding: 0.2rem 0.5rem;
     border-radius: 4px;
     font-family: 'Courier New', monospace;
 }
 
 .scroll-content pre {
-    background: var(--text-cream);
-    color: var(--red-theme);
-    border: 2px solid var(--text-cream);
+    background: var(--parchment-light);
+    color: var(--text-dark);
+    border: 2px solid var(--border-dark);
     padding: 1.5rem;
     border-radius: 8px;
     overflow-x: auto;
@@ -900,14 +956,14 @@
     border-radius: 0 2px 2px 0;
 }
 
-/* Chronicle Footer */
+/* Chronicle Footer - REDESIGNED */
 .chronicle-footer {
     display: flex;
     justify-content: space-between;
     gap: 1rem;
     margin-top: 3rem;
     padding-top: 2rem;
-    border-top: 2px solid var(--red-theme);
+    border-top: 2px solid var(--border-dark);
 }
 
 .share-btn,
@@ -917,15 +973,16 @@
     background: var(--parchment-aged);
     color: var(--text-dark);
     border: 2px solid var(--border-dark);
-    border-radius: 6px;
+    border-radius: 3px;
     font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all var(--transition-speed) ease;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .share-btn:hover,
@@ -934,12 +991,12 @@
     transform: translateY(-2px);
     box-shadow:
         0 0 15px 8px var(--gold-glow),
-        0 0 30px 15px rgba(114, 82, 47, 0.46),
+        0 0 30px 15px var(--ink-shadow),
         0px 0px 10px 1px var(--focus-glow) inset;
 }
 
 /* ========================================
-   PAGINATION
+   PAGINATION - REDESIGNED
    ======================================== */
 
 .chronicles-pagination {
@@ -952,18 +1009,24 @@
 
 .page-btn {
     padding: 0.8rem 1.2rem;
-    background: var(--parchment-light);
-    border: 2px solid var(--red-theme);
-    border-radius: 6px;
+    background: var(--parchment-aged);
+    border: 2px solid var(--border-dark);
+    border-radius: 3px;
     color: var(--text-dark);
+    font-family: 'Quintessential', cursive;
+    font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all var(--transition-speed) ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .page-btn:not(:disabled):hover {
-    background: var(--red-theme);
-    color: var(--text-cream);
-    border-color: var(--gold-glow);
+    background: var(--hover-bg);
+    transform: translateY(-2px);
+    border-color: var(--red-theme);
+    box-shadow:
+        0 0 12px 5px var(--gold-glow),
+        0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .page-btn:disabled {
@@ -972,8 +1035,9 @@
 }
 
 .page-info {
-    color: var(--text-secondary);
+    color: var(--text-dark);
     font-size: 1rem;
+    font-weight: 600;
 }
 
 /* ========================================
@@ -998,7 +1062,12 @@
     }
 
     .reader-stats-panel {
-        flex-direction: column;
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+
+    .stat-badge {
+        padding: 0.8rem;
     }
 
     .tome-selector {
@@ -1051,5 +1120,13 @@
     .stat-label {
         font-size: 0.75rem;
     }
-}
 
+    .chronicle-seal {
+        width: 60px;
+        height: 60px;
+    }
+
+    .chronicle-seal .seal-icon {
+        font-size: 1.8rem;
+    }
+}
