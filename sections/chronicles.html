@@ -51,27 +51,27 @@
 
     <!-- Tome Categories (Blog Categories) -->
     <div class="tome-selector">
-        <button class="tome-tab active" data-category="all">
+        <button class="tome-tab btn-nav active" data-category="all">
             <i class="fas fa-book"></i>
             <span data-i18n="chronicles-all">All Chronicles</span>
         </button>
-        <button class="tome-tab" data-category="game-design">
+        <button class="tome-tab btn-nav" data-category="game-design">
             <i class="fas fa-gamepad"></i>
             <span data-i18n="chronicles-game-design">Game Design</span>
         </button>
-        <button class="tome-tab" data-category="philosophy">
+        <button class="tome-tab btn-nav" data-category="philosophy">
             <i class="fas fa-brain"></i>
             <span data-i18n="chronicles-philosophy">Philosophy</span>
         </button>
-        <button class="tome-tab" data-category="tutorials">
+        <button class="tome-tab btn-nav" data-category="tutorials">
             <i class="fas fa-graduation-cap"></i>
             <span data-i18n="chronicles-tutorials">Tutorials</span>
         </button>
-        <button class="tome-tab" data-category="worldbuilding">
+        <button class="tome-tab btn-nav" data-category="worldbuilding">
             <i class="fas fa-globe"></i>
             <span data-i18n="chronicles-worldbuilding">Worldbuilding</span>
         </button>
-        <button class="tome-tab" data-category="dev-diary">
+        <button class="tome-tab btn-nav" data-category="dev-diary">
             <i class="fas fa-pen-fancy"></i>
             <span data-i18n="chronicles-dev-diary">Dev Diaries</span>
         </button>
@@ -132,7 +132,7 @@
                 <span class="rune-tag"><i class="fas fa-bookmark"></i> GOAP</span>
                 <span class="rune-tag"><i class="fas fa-bookmark"></i> NPCs</span>
             </div>
-            <button class="read-chronicle-btn" onclick="openChronicle(1)">
+            <button class="read-chronicle-btn btn-action" onclick="openChronicle(1)">
                 <i class="fas fa-scroll"></i>
                 <span data-i18n="chronicles-read">Unfurl Scroll</span>
             </button>
@@ -174,7 +174,7 @@
                 <span class="rune-tag"><i class="fas fa-bookmark"></i> Philosophy</span>
                 <span class="rune-tag"><i class="fas fa-bookmark"></i> AI</span>
             </div>
-            <button class="read-chronicle-btn" onclick="openChronicle(2)">
+            <button class="read-chronicle-btn btn-action" onclick="openChronicle(2)">
                 <i class="fas fa-scroll"></i>
                 <span data-i18n="chronicles-read">Unfurl Scroll</span>
             </button>
@@ -216,7 +216,7 @@
                 <span class="rune-tag"><i class="fas fa-bookmark"></i> Tutorial</span>
                 <span class="rune-tag"><i class="fas fa-bookmark"></i> GOAP</span>
             </div>
-            <button class="read-chronicle-btn" onclick="openChronicle(3)">
+            <button class="read-chronicle-btn btn-action" onclick="openChronicle(3)">
                 <i class="fas fa-scroll"></i>
                 <span data-i18n="chronicles-read">Unfurl Scroll</span>
             </button>
@@ -258,7 +258,7 @@
                 <span class="rune-tag"><i class="fas fa-bookmark"></i> RPG</span>
                 <span class="rune-tag"><i class="fas fa-bookmark"></i> Culture</span>
             </div>
-            <button class="read-chronicle-btn" onclick="openChronicle(4)">
+            <button class="read-chronicle-btn btn-action" onclick="openChronicle(4)">
                 <i class="fas fa-scroll"></i>
                 <span data-i18n="chronicles-read">Unfurl Scroll</span>
             </button>
@@ -300,7 +300,7 @@
                 <span class="rune-tag"><i class="fas fa-bookmark"></i> Dev Diary</span>
                 <span class="rune-tag"><i class="fas fa-bookmark"></i> Procedural</span>
             </div>
-            <button class="read-chronicle-btn" onclick="openChronicle(5)">
+            <button class="read-chronicle-btn btn-action" onclick="openChronicle(5)">
                 <i class="fas fa-scroll"></i>
                 <span data-i18n="chronicles-read">Unfurl Scroll</span>
             </button>
@@ -342,7 +342,7 @@
                 <span class="rune-tag"><i class="fas fa-bookmark"></i> Design</span>
                 <span class="rune-tag"><i class="fas fa-bookmark"></i> RPG</span>
             </div>
-            <button class="read-chronicle-btn" onclick="openChronicle(6)">
+            <button class="read-chronicle-btn btn-action" onclick="openChronicle(6)">
                 <i class="fas fa-scroll"></i>
                 <span data-i18n="chronicles-read">Unfurl Scroll</span>
             </button>
@@ -358,11 +358,11 @@
 
     <!-- Pagination (for future expansion) -->
     <div class="chronicles-pagination" style="display: none;">
-        <button class="page-btn" disabled>
+        <button class="page-btn btn-secondary" disabled>
             <i class="fas fa-chevron-left"></i>
         </button>
         <span class="page-info">Page 1 of 1</span>
-        <button class="page-btn" disabled>
+        <button class="page-btn btn-secondary" disabled>
             <i class="fas fa-chevron-right"></i>
         </button>
     </div>
@@ -381,11 +381,11 @@
             <div class="progress-fill" id="reading-progress"></div>
         </div>
         <div class="chronicle-footer">
-            <button class="share-btn" onclick="shareChronicle()">
+            <button class="share-btn btn-secondary" onclick="shareChronicle()">
                 <i class="fas fa-share-alt"></i>
                 <span data-i18n="chronicles-share">Share This Chronicle</span>
             </button>
-            <button class="next-article-btn" onclick="nextChronicle()">
+            <button class="next-article-btn btn-secondary" onclick="nextChronicle()">
                 <span data-i18n="chronicles-next">Next Chronicle</span>
                 <i class="fas fa-chevron-right"></i>
             </button>

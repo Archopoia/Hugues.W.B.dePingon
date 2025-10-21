@@ -165,36 +165,9 @@
     flex-wrap: wrap;
 }
 
+/* Education Navigation */
 .edu-nav-btn {
-    background: var(--parchment-aged);
-    border: 3px solid var(--border-tan);
-    border-radius: 3px;
-    padding: 0.75rem 1.5rem;
-    font-family: 'Quintessential', cursive;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text-dark);
-    cursor: pointer;
-    transition: all var(--transition-speed);
-    position: relative;
-    overflow: hidden;
-}
-
-.edu-nav-btn:hover {
-    background: var(--hover-bg);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.edu-nav-btn.active {
-    background: var(--red-theme);
-    color: var(--text-cream);
-    border: 2px solid var(--gold-glow);
-    box-shadow:
-        0 0 0 1px var(--red-theme),
-        0 0 0 2px var(--gold-glow),
-        0 0 12px var(--gold-glow),
-        inset 0 0 0 1px var(--text-cream);
+    /* Uses unified .btn-nav class from base.css */
 }
 
 /* Portfolio Navigation Pills */
@@ -206,45 +179,9 @@
     flex-wrap: wrap;
 }
 
+/* Portfolio Navigation */
 .port-nav-btn {
-    background: var(--parchment-aged);
-    color: var(--text-dark);
-    border: 2px solid var(--border-dark);
-    padding: 0.8rem 1.5rem;
-    border-radius: 3px;
-    font-family: 'Quintessential', cursive;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all var(--transition-speed) ease;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.port-nav-btn:hover {
-    background: var(--hover-bg);
-    transform: translateY(-3px);
-    box-shadow:
-        0 0 15px 5px var(--gold-glow),
-        0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-.port-nav-btn.active {
-    background: var(--red-theme);
-    color: var(--text-cream);
-    border: 2px solid var(--gold-glow);
-    box-shadow:
-        0 0 0 1px var(--red-theme),
-        0 0 0 3px var(--gold-glow),
-        0 0 0 4px var(--red-theme),
-        0 0 15px 5px var(--gold-glow),
-        0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-.port-nav-btn i {
-    font-size: 1.1rem;
+    /* Uses unified .btn-nav class from base.css */
 }
 
 /* Skills Navigation */
@@ -256,41 +193,9 @@
     max-width: 800px;
 }
 
+/* Skills Navigation */
 .skill-nav-btn {
-    background: var(--parchment-aged);
-    color: var(--text-dark);
-    border: 2px solid var(--border-dark);
-    padding: 0.7rem 1.2rem;
-    border-radius: 3px;
-    font-family: 'Quintessential', cursive;
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all var(--transition-speed) ease;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.skill-nav-btn:hover {
-    background: var(--hover-bg);
-    transform: translateY(-2px);
-    box-shadow:
-        0 0 12px 4px var(--gold-glow),
-        0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-.skill-nav-btn.active {
-    background: var(--red-theme);
-    color: var(--text-cream);
-    border: 2px solid var(--gold-glow);
-    box-shadow:
-        0 0 0 1px var(--red-theme),
-        0 0 0 3px var(--gold-glow),
-        0 0 0 4px var(--red-theme),
-        0 0 12px 5px var(--gold-glow),
-        0 4px 8px rgba(0, 0, 0, 0.3);
+    /* Uses unified .btn-nav class from base.css */
 }
 
 /* Contact Method Selector */
@@ -302,42 +207,9 @@
     flex-wrap: wrap;
 }
 
+/* Contact Method Buttons */
 .method-btn {
-    background: var(--parchment-aged);
-    border: 3px solid var(--border-dark);
-    border-radius: 3px;
-    padding: 1rem 2rem;
-    font-family: 'Quintessential', cursive;
-    font-size: 1rem;
-    color: var(--text-dark);
-    cursor: pointer;
-    transition: all var(--transition-speed);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.method-btn i {
-    font-size: 1.5rem;
-}
-
-.method-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    border-color: var(--red-theme);
-}
-
-.method-btn.active {
-    background: var(--red-theme);
-    color: var(--text-cream);
-    border: 2px solid var(--gold-glow);
-    box-shadow:
-        0 0 0 1px var(--red-theme),
-        0 0 0 3px var(--gold-glow),
-        0 0 0 4px var(--red-theme),
-        0 0 15px var(--gold-glow);
+    /* Uses unified .btn-method class from base.css */
 }
 
 /* Language Switcher */

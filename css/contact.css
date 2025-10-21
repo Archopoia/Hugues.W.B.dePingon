@@ -690,45 +690,9 @@
     border-top: 2px solid var(--border-dark);
 }
 
+/* Quest Buttons */
 .quest-btn {
-    padding: 1rem 2rem;
-    border: none;
-    border-radius: 10px;
-    font-family: 'Quintessential', cursive;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all var(--transition-speed);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.quest-btn.primary,
-.quest-btn.submit {
-    background: var(--red-theme);
-    color: var(--text-cream);
-}
-
-.quest-btn.primary:hover,
-.quest-btn.submit:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(139, 0, 0, 0.3);
-}
-
-.quest-btn.secondary {
-    background: var(--parchment-aged);
-    color: var(--text-dark);
-    border: 2px solid var(--border-dark);
-}
-
-.quest-btn.secondary:hover:not(:disabled) {
-    background: var(--parchment-dark);
-}
-
-.quest-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+    /* Uses unified .btn-primary and .btn-secondary classes from base.css */
 }
 
 .quest-progress {

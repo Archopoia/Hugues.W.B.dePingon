@@ -207,3 +207,193 @@ body::before {
     background: var(--focus-glow);
 }
 
+/* ========================================
+   UNIFIED BUTTON SYSTEM
+   ======================================== */
+
+/* Base Button Styles */
+.btn-base {
+    font-family: 'Quintessential', cursive;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Navigation Buttons (Tabs) */
+.btn-nav {
+    font-family: 'Quintessential', cursive;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    background: var(--parchment-aged);
+    color: var(--text-dark);
+    border: 2px solid var(--border-dark);
+    border-radius: 3px;
+    padding: 0.75rem 1.5rem;
+}
+
+.btn-nav:hover {
+    background: var(--hover-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-nav.active {
+    background: var(--red-theme);
+    color: var(--text-cream);
+    border: 2px solid var(--gold-glow);
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 3px var(--gold-glow),
+        0 0 0 4px var(--red-theme),
+        0 0 15px 5px var(--gold-glow),
+        0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn-nav i {
+    font-size: 1.1rem;
+}
+
+/* Method Buttons (Contact Method Selection) */
+.btn-method {
+    font-family: 'Quintessential', cursive;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--parchment-aged);
+    color: var(--text-dark);
+    border: 3px solid var(--border-dark);
+    border-radius: 3px;
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-method:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    border-color: var(--red-theme);
+}
+
+.btn-method.active {
+    background: var(--red-theme);
+    color: var(--text-cream);
+    border: 2px solid var(--gold-glow);
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 3px var(--gold-glow),
+        0 0 0 4px var(--red-theme),
+        0 0 15px var(--gold-glow);
+}
+
+/* Action Buttons (Primary Actions) */
+.btn-action {
+    font-family: 'Quintessential', cursive;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    background: var(--parchment-aged);
+    color: var(--text-dark);
+    border: 2px solid var(--border-dark);
+    border-radius: 3px;
+    padding: 0.8rem 1.5rem;
+}
+
+.btn-action:hover {
+    background: var(--hover-bg);
+    transform: translateY(-3px);
+    box-shadow:
+        0 0 15px 5px var(--gold-glow),
+        0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn-action i {
+    font-size: 1.1rem;
+}
+
+/* Primary Action Buttons (Submit, Primary Actions) */
+.btn-primary {
+    font-family: 'Quintessential', cursive;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--red-theme);
+    color: var(--text-cream);
+    border: 2px solid var(--border-dark);
+    border-radius: 10px;
+    padding: 1rem 2rem;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(139, 0, 0, 0.3);
+}
+
+/* Secondary Action Buttons */
+.btn-secondary {
+    font-family: 'Quintessential', cursive;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--parchment-aged);
+    color: var(--text-dark);
+    border: 2px solid var(--border-dark);
+    border-radius: 3px;
+    padding: 0.8rem 1.5rem;
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: var(--parchment-dark);
+}
+
+.btn-secondary i {
+    font-size: 1.1rem;
+}
+
+/* Disabled State */
+.btn-base:disabled,
+.btn-nav:disabled,
+.btn-method:disabled,
+.btn-action:disabled,
+.btn-primary:disabled,
+.btn-secondary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+

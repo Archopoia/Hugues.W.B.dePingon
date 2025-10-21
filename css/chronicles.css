@@ -203,45 +203,9 @@
     margin-bottom: 2rem;
 }
 
+/* Tome Tab Buttons */
 .tome-tab {
-    background: var(--parchment-aged);
-    color: var(--text-dark);
-    border: 2px solid var(--border-dark);
-    padding: 0.8rem 1.5rem;
-    border-radius: 3px;
-    font-family: 'Quintessential', cursive;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all var(--transition-speed) ease;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.tome-tab:hover {
-    background: var(--hover-bg);
-    transform: translateY(-3px);
-    box-shadow:
-        0 0 15px 5px var(--gold-glow),
-        0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-.tome-tab.active {
-    background: var(--red-theme);
-    color: var(--text-cream);
-    border: 2px solid var(--gold-glow);
-    box-shadow:
-        0 0 0 1px var(--red-theme),
-        0 0 0 3px var(--gold-glow),
-        0 0 0 4px var(--red-theme),
-        0 0 15px 5px var(--gold-glow),
-        0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-.tome-tab i {
-    font-size: 1.1rem;
+    /* Uses unified .btn-nav class from base.css */
 }
 
 /* ========================================
