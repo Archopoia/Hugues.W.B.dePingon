@@ -494,6 +494,8 @@ body::before {
 }
 
 /* Project Type Badge */
+.card .project-type,
+.card-hero .project-type,
 .project-type {
     background: var(--red-theme);
     color: var(--text-cream);
@@ -503,7 +505,6 @@ body::before {
     border-radius: 12px;
     display: inline-block;
     margin-bottom: 0.8rem;
-    text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 

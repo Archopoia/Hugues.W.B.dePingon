@@ -375,11 +375,7 @@
 }
 
 /* Crystal Chronicles card styling */
-.highlight-card,
-.work-item,
-.project-card {
-    /* Uses unified .card class from base.css */
-}
+/* Uses unified .card class from base.css */
 
 /* Crystal Chronicles button styling */
 .project-link,

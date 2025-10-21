@@ -691,9 +691,7 @@
 }
 
 /* Quest Buttons */
-.quest-btn {
-    /* Uses unified .btn-primary and .btn-secondary classes from base.css */
-}
+/* Uses unified .btn-primary and .btn-secondary classes from base.css */
 
 .quest-progress {
     flex: 1;
