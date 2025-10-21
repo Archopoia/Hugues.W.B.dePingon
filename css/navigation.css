@@ -6,7 +6,7 @@
 /* Navigation Tabs - Crystal Chronicles Style */
 .sheet-tabs {
     display: flex;
-    background: var(--parchment-light);
+    background: var(--hover-bg);
     border-bottom: 3px solid var(--border-dark);
     overflow-x: auto;
     position: relative;

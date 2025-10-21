@@ -12,7 +12,7 @@
 }
 
 .exp-card {
-    background: var(--parchment-light);
+    background: var(--hover-bg);
     border: 3px solid var(--border-dark);
     border-radius: 15px;
     overflow: hidden;
@@ -45,7 +45,7 @@
     align-items: center;
     gap: 1rem;
     padding: 1.5rem;
-    background: linear-gradient(135deg, var(--parchment-bg) 0%, var(--parchment-light) 100%);
+    background: linear-gradient(135deg, var(--parchment-bg) 0%, var(--hover-bg) 100%);
     border-bottom: 2px solid var(--border-dark);
 }
 

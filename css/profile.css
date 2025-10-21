@@ -26,7 +26,7 @@
 }
 
 .highlight-card {
-    background: linear-gradient(135deg, var(--parchment-dark) 0%, var(--parchment-light) 100%);
+    background: linear-gradient(135deg, var(--parchment-dark) 0%, var(--hover-bg) 100%);
     padding: 1.5rem;
     border-radius: 10px;
     border: 2px solid var(--gold);
@@ -66,7 +66,7 @@
 }
 
 .stat-box {
-    background: var(--parchment-light);
+    background: var(--hover-bg);
     border: 3px solid var(--border-dark);
     border-radius: 15px;
     padding: 1.25rem;
@@ -131,7 +131,7 @@
 
 /* Mission Statement */
 .mission-statement {
-    background: var(--parchment-light);
+    background: var(--hover-bg);
     border: 3px solid var(--border-dark);
     border-radius: 15px;
     padding: 2rem;
@@ -472,7 +472,7 @@
 
 /* Journey Section */
 .journey-section {
-    background: var(--parchment-light);
+    background: var(--hover-bg);
     border: 3px solid var(--border-dark);
     border-radius: 15px;
     padding: 2rem;
@@ -578,7 +578,7 @@
 
 /* Interests Section */
 .interests-section {
-    background: var(--parchment-light);
+    background: var(--hover-bg);
     border: 3px solid var(--border-dark);
     border-radius: 15px;
     padding: 2rem;

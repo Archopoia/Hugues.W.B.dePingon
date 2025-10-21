@@ -355,7 +355,7 @@
 
 /* Workshop Mission - Parchment style like other tabs */
 .workshop-mission {
-    background: linear-gradient(135deg, var(--parchment-light) 0%, var(--parchment-aged) 100%);
+    background: linear-gradient(135deg, var(--hover-bg) 0%, var(--parchment-aged) 100%);
     border: 2px solid var(--gold-glow);
     border-radius: 12px;
     padding: 2rem;
@@ -612,7 +612,7 @@
     backface-visibility: hidden;
     transform: rotateY(180deg);
     border-radius: 15px;
-    background: var(--parchment-light);
+    background: var(--hover-bg);
 }
 
 .format-card:hover .card-front,
@@ -828,7 +828,7 @@
     align-items: flex-start;
     gap: 1rem;
     padding: 1.2rem;
-    background: var(--parchment-light);
+    background: var(--hover-bg);
     border: 2px solid var(--border-tan);
     border-left: 4px solid var(--red-theme);
     border-radius: 8px;
@@ -1079,7 +1079,7 @@
     display: flex;
     align-items: center;
     gap: 0.8rem;
-    background: var(--parchment-light);
+    background: var(--hover-bg);
     padding: 0.9rem;
     border-radius: 6px;
     border: 2px solid var(--border-tan);
@@ -1191,7 +1191,7 @@
 /* Call to Action - Parchment style */
 .workshop-cta {
     text-align: center;
-    background: linear-gradient(135deg, var(--parchment-light) 0%, var(--parchment-aged) 100%);
+    background: linear-gradient(135deg, var(--hover-bg) 0%, var(--parchment-aged) 100%);
     border: 2px solid var(--gold-glow);
     border-radius: 12px;
     padding: 3rem 2rem;

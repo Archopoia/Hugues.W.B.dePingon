@@ -32,7 +32,7 @@
 
 /* Large Attribute Cards */
 .attribute-card-lg {
-    background: var(--parchment-light);
+    background: var(--hover-bg);
     border: 2px solid var(--gold-glow);
     border-radius: 15px;
     padding: 1.5rem;
@@ -166,7 +166,7 @@
 }
 
 .skill-group {
-    background: var(--parchment-light);
+    background: var(--hover-bg);
     border: 2px solid var(--gold-glow);
     border-radius: 15px;
     padding: 1.5rem;
@@ -367,7 +367,7 @@
 }
 
 .language-card {
-    background: var(--parchment-light);
+    background: var(--hover-bg);
     border: 2px solid var(--gold-glow);
     border-radius: 15px;
     padding: 1.5rem;

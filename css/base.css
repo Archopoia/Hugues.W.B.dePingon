@@ -403,7 +403,7 @@ body::before {
 
 /* Base Card Styles */
 .card-base {
-    background: var(--parchment-light);
+    background: var(--hover-bg);
     border: 3px solid var(--border-tan);
     border-radius: 15px;
     padding: 1.5rem;
@@ -438,7 +438,7 @@ body::before {
 
 /* Featured/Hero Cards */
 .card-hero {
-    background: var(--parchment-light);
+    background: var(--hover-bg);
     border: 3px solid var(--gold-glow);
     border-radius: 20px;
     padding: 1.5rem;

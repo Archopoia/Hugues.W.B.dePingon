@@ -104,7 +104,7 @@
     max-width: 500px;
     display: block;
     text-decoration: none;
-    background: var(--parchment-light);
+    background: var(--hover-bg);
     border: 2px solid var(--border-tan);
     border-radius: 0px;
     overflow: hidden;
@@ -371,7 +371,7 @@
 
 /* Interactive Quest Form */
 .contact-quest-intro {
-    background: var(--parchment-light);
+    background: var(--hover-bg);
     border: 3px solid var(--border-dark);
     border-radius: 15px;
     padding: 2rem;
@@ -569,7 +569,7 @@
 }
 
 .option-card {
-    background: var(--parchment-light);
+    background: var(--hover-bg);
     border: 3px solid var(--border-dark);
     border-radius: 15px;
     padding: 2rem 1rem;
@@ -620,7 +620,7 @@
     padding: 1.5rem;
     border: 3px solid var(--border-dark);
     border-radius: 15px;
-    background: var(--parchment-light);
+    background: var(--hover-bg);
     color: var(--text-dark);
     font-family: 'Quintessential', cursive;
     font-size: 1.05rem;
@@ -665,7 +665,7 @@
     padding: 1rem 1.5rem;
     border: 3px solid var(--border-dark);
     border-radius: 10px;
-    background: var(--parchment-light);
+    background: var(--hover-bg);
     color: var(--text-dark);
     font-family: 'Quintessential', cursive;
     font-size: 1rem;
@@ -752,7 +752,7 @@
 }
 
 .contact-card {
-    background: var(--parchment-light);
+    background: var(--hover-bg);
     border: 3px solid var(--border-dark);
     border-radius: 15px;
     padding: 2rem;
@@ -768,7 +768,7 @@
 
 .contact-card.primary {
     border-color: var(--red-theme);
-    background: linear-gradient(135deg, var(--parchment-light) 0%, var(--parchment-aged) 100%);
+    background: linear-gradient(135deg, var(--hover-bg) 0%, var(--parchment-aged) 100%);
 }
 
 .card-icon {
@@ -1016,7 +1016,7 @@
     align-items: center;
     gap: 1rem;
     padding: 1rem;
-    background: var(--parchment-light);
+    background: var(--hover-bg);
     border: 2px solid var(--parchment-dark);
     border-radius: 10px;
     transition: all 0.3s ease;
@@ -1051,7 +1051,7 @@
     align-items: center;
     gap: 0.5rem;
     padding: 1rem;
-    background: var(--parchment-light);
+    background: var(--hover-bg);
     border: 2px solid var(--parchment-dark);
     border-radius: 10px;
     text-decoration: none;
