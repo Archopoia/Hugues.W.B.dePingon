@@ -132,7 +132,7 @@
     z-index: 1;
     /* Smooth transition for modal opening/closing */
     transition: opacity 0.6s ease-in-out;
-        box-shadow: 0px 30px 60px 1px #421212 inset;
+        box-shadow: 0px 30px 60px 1px var(--red-theme) inset;
 }
 
 .tab-content {

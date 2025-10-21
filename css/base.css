@@ -65,7 +65,7 @@ body {
     /* Parchment Colors - Based on your character sheet analysis */
     --parchment-bg: #9c8e72;
     --parchment-light: #fffaec;
-    --parchment-aged: #e8dcc0;
+    --parchment-aged: #ecd7a8;
     --parchment-sublight: #fff5d3;
     --parchment-dark: #d4c4a8;
 
@@ -320,8 +320,8 @@ body::before {
     text-decoration: none;
     position: relative;
     overflow: hidden;
-    background: var(--parchment-aged);
-    color: var(--text-dark);
+    background: var(--red-theme);
+    color: var(--text-cream);
     border: 2px solid var(--border-dark);
     border-radius: 3px;
     padding: 0.8rem 1.5rem;
@@ -329,6 +329,7 @@ body::before {
 
 .btn-action:hover {
     background: var(--hover-bg);
+    color: var(--text-dark);
     transform: translateY(-3px);
     box-shadow:
         0 0 15px 5px var(--gold-glow),
