@@ -33,11 +33,23 @@ html {
     scroll-behavior: smooth;
     overflow-x: hidden;
     overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+html::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
 }
 
 body {
     overflow-x: hidden;
     overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
 }
 
 /* Lock body scrolling when entrance screen is active */
@@ -189,22 +201,14 @@ body::before {
         );
 }
 
-/* Scrollbar Styling */
-::-webkit-scrollbar {
-    width: 12px;
+/* Scrollbar Styling - Hidden globally */
+* {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
 }
 
-::-webkit-scrollbar-track {
-    background: var(--red-theme);
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--border-tan);
-    border-radius: 6px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--focus-glow);
+*::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
 }
 
 /* ========================================

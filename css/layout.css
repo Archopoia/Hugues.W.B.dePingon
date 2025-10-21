@@ -38,6 +38,12 @@
     z-index: 2;
     transform: perspective(1000px) rotateX(1deg);
     transition: transform 0.3s ease;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+.character-sheet::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
 }
 
 .character-sheet:hover {
@@ -111,6 +117,12 @@
     background: var(--hover-bg);
     /* Smooth transition for modal opening/closing */
     transition: background 0.6s ease-in-out, box-shadow 0.6s ease-in-out;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+.sheet-content::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
 }
 
 .sheet-content::before {
