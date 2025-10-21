@@ -3,6 +3,32 @@
    CSS Variables, Resets, and Global Styles
    ======================================== */
 
+/* ========================================
+   LAYERING SYSTEM DOCUMENTATION
+
+   The character sheet uses a multi-layer overlay system:
+
+   LAYER 1 - MAIN BACKGROUND (body element, lines ~107-116):
+   - Base parchment color: var(--parchment-bg) #9c8e72
+   - Red dot pattern: radial-gradient(#6100001f 3px, transparent 4px)
+   - Horizontal lines: linear-gradient(var(--parchment-bg) 4px, transparent 0)
+
+   LAYER 2 - KHAKI/GREEN DIAGONAL GRID OVERLAY (body element, lines ~112-113):
+   - Diagonal gold/green lines at 45deg and -45deg
+   - Color: #78c9a3 (khaki/jade green)
+   - Creates the checkered diamond pattern across the entire page
+
+   LAYER 3 - SECTION-SPECIFIC OVERLAYS (varies by section):
+
+   For HEADER section (header.css):
+   - LAYER 3A: Dark burgundy base with radial gradients
+     (var(--red-theme) #643030, var(--red-theme-alpha) #643030b9)
+   - LAYER 3B: Diagonal gold line overlay at 45deg
+     (rgba(184, 134, 11, 0.1) - semi-transparent gold)
+
+   For other sections, see their respective CSS files.
+   ======================================== */
+
 html {
     scroll-behavior: smooth;
     overflow-x: hidden;
@@ -104,14 +130,16 @@ body {
 
 body {
     font-family: 'Quintessential', cursive;
+    /* LAYER 1: Main Background - Parchment with Red Dots and Horizontal Lines */
+    /* LAYER 2: Khaki/Green Diagonal Grid Overlay (#78c9a3) */
     background:
         /* url('Assets/Background.jpg') center center / 80% 100% no-repeat, */ /* Hidden for now, might use later */
-        radial-gradient(#6100001f 3px, transparent 4px),
-        radial-gradient(#6100001f 3px, transparent 4px),
-        linear-gradient(var(--parchment-bg) 4px, transparent 0),
-        linear-gradient(45deg, transparent 74px, #78c9a3 75px, transparent 76px, transparent 109px),
-        linear-gradient(-45deg, transparent 75px, #78c9a3 76px, transparent 77px, transparent 109px),
-        var(--parchment-bg);
+        radial-gradient(#6100001f 3px, transparent 4px),        /* LAYER 1: Red dots (offset) */
+        radial-gradient(#6100001f 3px, transparent 4px),        /* LAYER 1: Red dots (base) */
+        linear-gradient(var(--parchment-bg) 4px, transparent 0), /* LAYER 1: Horizontal lines */
+        linear-gradient(45deg, transparent 74px, #78c9a3 75px, transparent 76px, transparent 109px),  /* LAYER 2: Diagonal grid (45deg) */
+        linear-gradient(-45deg, transparent 75px, #78c9a3 76px, transparent 77px, transparent 109px), /* LAYER 2: Diagonal grid (-45deg) */
+        var(--parchment-bg);                                     /* LAYER 1: Base parchment color */
     background-size: 109px 109px, 109px 109px, 100% 6px, 109px 109px, 109px 109px;
     background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
     color: var(--text-dark);

@@ -3,17 +3,26 @@
    Character Sheet Container and Main Structure
    ======================================== */
 
+/* ========================================
+   LAYERING SYSTEM - See base.css for full documentation
+
+   The .character-sheet container uses the same layering as body:
+   LAYER 1: Parchment background with red dots and horizontal lines
+   LAYER 2: Khaki/green diagonal grid overlay (#78c9a3)
+   ======================================== */
+
 /* Character Sheet Container - Crystal Chronicles Style */
 .character-sheet {
     max-width: 900px;
     margin: 2rem auto;
+    /* Same layering as body - LAYER 1 & 2 (see base.css for details) */
     background:
-        radial-gradient(#6100001f 3px, transparent 4px),
-        radial-gradient(#6100001f 3px, transparent 4px),
-        linear-gradient(var(--parchment-sublight) 4px, transparent 0),
-        linear-gradient(45deg, transparent 74px, #78c9a3 75px, transparent 76px, transparent 109px),
-        linear-gradient(-45deg, transparent 75px, #78c9a3 76px, transparent 77px, transparent 109px),
-        var(--parchment-sublight);
+        radial-gradient(#6100001f 3px, transparent 4px),        /* LAYER 1: Red dots (offset) */
+        radial-gradient(#6100001f 3px, transparent 4px),        /* LAYER 1: Red dots (base) */
+        linear-gradient(var(--parchment-sublight) 4px, transparent 0), /* LAYER 1: Horizontal lines */
+        linear-gradient(45deg, transparent 74px, #78c9a3 75px, transparent 76px, transparent 109px),  /* LAYER 2: Diagonal grid (45deg) */
+        linear-gradient(-45deg, transparent 75px, #78c9a3 76px, transparent 77px, transparent 109px), /* LAYER 2: Diagonal grid (-45deg) */
+        var(--parchment-sublight);                               /* LAYER 1: Base parchment color (lighter variant) */
     background-size: 109px 109px, 109px 109px, 100% 6px, 109px 109px, 109px 109px;
     background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
     box-shadow:
@@ -67,6 +76,7 @@
 }
 
 .character-sheet::after {
+    /* Extra overlay: Square grid lines (horizontal and vertical khaki lines) */
     content: '';
     position: absolute;
     top: 0;
@@ -78,14 +88,14 @@
             90deg,
             transparent,
             transparent 98px,
-            rgba(139, 105, 20, 0.1) 98px,
+            rgba(139, 105, 20, 0.1) 98px,  /* Vertical khaki lines */
             rgba(139, 105, 20, 0.1) 100px
         ),
         repeating-linear-gradient(
             0deg,
             transparent,
             transparent 98px,
-            rgba(139, 105, 20, 0.1) 98px,
+            rgba(139, 105, 20, 0.1) 98px,  /* Horizontal khaki lines */
             rgba(139, 105, 20, 0.1) 100px
         );
     pointer-events: none;
