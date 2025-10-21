@@ -762,10 +762,38 @@ function openChronicle(chronicleId) {
         if (sheetContent) {
             sheetContent.classList.add('chronicle-modal-active');
 
-            // Create animated background overlay
+            // Create animated background overlay (Layer 3A - burgundy)
             const backgroundOverlay = document.createElement('div');
             backgroundOverlay.className = 'chronicle-background-overlay';
             sheetContent.appendChild(backgroundOverlay);
+
+            // Create hatched lines overlay (Layer 3B - diagonal gold lines)
+            const hatchOverlay = document.createElement('div');
+            hatchOverlay.className = 'chronicle-hatch-overlay';
+            hatchOverlay.style.cssText = `
+                position: absolute !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                bottom: 0 !important;
+                background: repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 20px,
+                    rgba(184, 134, 11, 0.1) 20px,
+                    rgba(184, 134, 11, 0.1) 21px
+                ) !important;
+                pointer-events: none !important;
+                z-index: 1 !important;
+                opacity: 0;
+            `;
+            sheetContent.appendChild(hatchOverlay);
+
+            // Trigger fade-in animation
+            requestAnimationFrame(() => {
+                hatchOverlay.style.transition = 'opacity 0.8s ease-in-out';
+                hatchOverlay.style.opacity = '1';
+            });
         }
 
         // Mark as read and award XP
@@ -784,22 +812,33 @@ function openChronicle(chronicleId) {
 function closeChronicle() {
     const modal = document.getElementById('chronicle-modal');
     if (modal) {
-        // Add exit animation class before removing the main class
         const sheetContent = document.querySelector('.sheet-content');
         if (sheetContent) {
+            // Add exit animation class to trigger fade-out animations
+            sheetContent.classList.add('chronicle-modal-exiting');
+
             const backgroundOverlay = sheetContent.querySelector('.chronicle-background-overlay');
+            const hatchOverlay = sheetContent.querySelector('.chronicle-hatch-overlay');
+
             if (backgroundOverlay) {
                 backgroundOverlay.classList.add('exiting');
-
-                // Wait for the overlay animation to complete before removing everything
-                setTimeout(() => {
-                    sheetContent.classList.remove('chronicle-modal-active', 'chronicle-modal-exiting');
-                    backgroundOverlay.remove();
-                }, 600); // Match the CSS animation duration
-            } else {
-                // Fallback if no overlay found
-                sheetContent.classList.remove('chronicle-modal-active', 'chronicle-modal-exiting');
             }
+
+            if (hatchOverlay) {
+                hatchOverlay.style.transition = 'opacity 0.6s ease-in-out';
+                hatchOverlay.style.opacity = '0';
+            }
+
+            // Wait for the exit animations to complete before removing everything
+            setTimeout(() => {
+                sheetContent.classList.remove('chronicle-modal-active', 'chronicle-modal-exiting');
+                if (backgroundOverlay) {
+                    backgroundOverlay.remove();
+                }
+                if (hatchOverlay) {
+                    hatchOverlay.remove();
+                }
+            }, 600); // Match the CSS animation duration
         }
 
         modal.classList.remove('active');

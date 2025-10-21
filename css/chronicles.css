@@ -553,8 +553,15 @@
 .sheet-content.chronicle-modal-active {
     background: transparent !important;
     box-shadow: none !important;
-    transition: none !important;
+    transition: background 0.6s ease-in-out, box-shadow 0.6s ease-in-out !important;
     position: relative !important;
+}
+
+/* When exiting, restore the original background smoothly */
+.sheet-content.chronicle-modal-active.chronicle-modal-exiting {
+    background: var(--parchment-light) !important;
+    box-shadow: none !important;
+    transition: background 0.6s ease-in-out, box-shadow 0.6s ease-in-out !important;
 }
 
 /* Animated background overlay */
@@ -615,27 +622,18 @@
     }
 }
 
-/* Hatched lines overlay like character header */
+/* When modal is active, hide the original ::before (layers 1 & 2) completely */
+/* We'll create a new element for the hatched lines instead */
 .sheet-content.chronicle-modal-active::before {
-    content: '' !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    background:
-        repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 20px,
-            rgba(184, 134, 11, 0.1) 20px,
-            rgba(184, 134, 11, 0.1) 21px
-        ) !important;
-    pointer-events: none !important;
-    z-index: 1 !important;
-    display: block !important;
-    opacity: 0;
-    animation: fadeInHatch 0.8s ease-in-out 0.2s forwards !important;
+    opacity: 0 !important;
+    transition: opacity 0.6s ease-in-out !important;
+}
+
+/* When modal is exiting, fade the original ::before back in */
+/* More specific selector to override the active state */
+.sheet-content.chronicle-modal-active.chronicle-modal-exiting::before {
+    opacity: 1 !important;
+    transition: opacity 0.6s ease-in-out !important;
 }
 
 /* Inner border frame like character header */
@@ -651,70 +649,49 @@
     pointer-events: none !important;
     z-index: 1 !important;
     display: block !important;
-    opacity: 0;
-    animation: fadeInBorder 0.6s ease-in-out 0.4s forwards !important;
+    opacity: 1;
+    transition: opacity 0.6s ease-in-out !important;
 }
 
-/* Add transition to sheet-content for smooth background changes */
-.sheet-content {
-    transition: all 0.6s ease-in-out !important;
+/* When modal is exiting, fade the gold border out */
+.sheet-content.chronicle-modal-active.chronicle-modal-exiting::after {
+    opacity: 0 !important;
+    transition: opacity 0.6s ease-in-out !important;
 }
+
+/* Removed - this was causing background-size/position to transition, creating a shrinking effect */
+/* The base .sheet-content in layout.css already has the correct transitions */
 
 @keyframes fadeInHatch {
     from {
         opacity: 0;
-        transform: scale(0.8);
     }
     to {
         opacity: 1;
-        transform: scale(1);
     }
 }
 
 @keyframes fadeOutHatch {
     from {
         opacity: 1;
-        transform: scale(1);
     }
     to {
         opacity: 0;
-        transform: scale(0.8);
     }
 }
 
 @keyframes fadeOutBorder {
     from {
         opacity: 1;
-        transform: scale(1);
     }
     to {
         opacity: 0;
-        transform: scale(0.9);
     }
 }
 
-/* Exit animation for pseudo-elements - More specific selectors */
-main.sheet-content.chronicle-modal-active.chronicle-modal-exiting::before {
-    animation: fadeOutHatch 0.6s ease-in-out forwards !important;
-    opacity: 1 !important;
-    display: block !important;
-}
-
-main.sheet-content.chronicle-modal-active.chronicle-modal-exiting::after {
-    animation: fadeOutBorder 0.6s ease-in-out forwards !important;
-    opacity: 1 !important;
-    display: block !important;
-    content: '' !important;
-    position: absolute !important;
-    top: 1rem !important;
-    left: 1rem !important;
-    right: 1rem !important;
-    bottom: 1rem !important;
-    border: 2px solid var(--gold-ink) !important;
-    border-radius: 8px !important;
-    pointer-events: none !important;
-    z-index: 1 !important;
-}
+/* Removed exit animations for ::before and ::after - they fade in via transition property instead */
+/* The ::before (layers 1&2) fades from opacity 0 to 1 */
+/* The ::after (gold border) fades from opacity 1 to 0 */
 
 .chronicle-scroll {
     position: relative;

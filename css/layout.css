@@ -109,6 +109,8 @@
     position: relative;
     z-index: 2;
     background: var(--parchment-light);
+    /* Smooth transition for modal opening/closing */
+    transition: background 0.6s ease-in-out, box-shadow 0.6s ease-in-out;
 }
 
 .sheet-content::before {
@@ -128,6 +130,8 @@
         background-size: 109px 109px, 109px 109px, 100% 6px, 109px 109px, 109px 109px;
         background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
     z-index: 1;
+    /* Smooth transition for modal opening/closing */
+    transition: opacity 0.6s ease-in-out;
 }
 
 .tab-content {
