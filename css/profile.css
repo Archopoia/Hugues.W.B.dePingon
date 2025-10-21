@@ -26,7 +26,7 @@
 }
 
 .highlight-card {
-    background: linear-gradient(135deg, var(--beige-dark) 0%, var(--beige-paper) 100%);
+    background: linear-gradient(135deg, var(--parchment-dark) 0%, var(--parchment-light) 100%);
     padding: 1.5rem;
     border-radius: 10px;
     border: 2px solid var(--gold);
@@ -41,7 +41,7 @@
 
 .highlight-card h3 {
     font-family: 'Cinzel', serif;
-    color: var(--burgundy-dark);
+    color: var(--red-theme);
     margin-bottom: 0.5rem;
     font-size: 1.2rem;
 }
@@ -53,7 +53,7 @@
 }
 
 .highlight-card small {
-    color: var(--burgundy-medium);
+    color: var(--red-theme);
     font-style: italic;
 }
 

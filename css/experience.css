@@ -203,7 +203,7 @@
     border: 3px solid var(--border-dark);
     flex-shrink: 0;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
-    background: linear-gradient(135deg, #FFD700, #FFA500);
+    background: linear-gradient(135deg, var(--gold-glow), var(--orange-theme));
     color: var(--text-dark);
 }
 
@@ -331,7 +331,7 @@
 
 .role-item h4 {
     font-family: 'Cinzel', serif;
-    color: var(--burgundy-dark);
+    color: var(--red-theme);
     margin-bottom: 0.3rem;
 }
 

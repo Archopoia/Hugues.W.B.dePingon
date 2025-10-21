@@ -46,9 +46,9 @@
     justify-content: center;
     align-items: center;
     padding: 1rem;
-    background: linear-gradient(135deg, rgba(139, 26, 26, 0.1), rgba(61, 0, 0, 0.1));
+    background: linear-gradient(135deg, rgba(139, 26, 26, 0.1), var(--vignette-dark));
     border-radius: 8px;
-    border: 1px solid #7a4040;
+    border: 1px solid var(--red-theme);
 }
 
 .stat-badge {
@@ -56,21 +56,21 @@
     align-items: center;
     gap: 0.8rem;
     padding: 0.8rem 1.2rem;
-    background: var(--parchment-overlay);
+    background: var(--parchment-light);
     border-radius: 6px;
-    border: 1px solid var(--gold-dark);
+    border: 1px solid var(--border-brown);
     transition: all 0.3s ease;
     cursor: default;
 }
 
 .stat-badge:hover {
     transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(218, 165, 32, 0.3);
+    box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3);
 }
 
 .stat-badge i {
     font-size: 1.5rem;
-    color: var(--gold);
+    color: var(--gold-glow);
 }
 
 .stat-info {
@@ -81,7 +81,7 @@
 .stat-number {
     font-size: 1.5rem;
     font-weight: bold;
-    color: var(--gold);
+    color: var(--text-cream);
     font-family: 'Cinzel', serif;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
@@ -98,8 +98,8 @@
     padding: 0.8rem 1.5rem;
     background: linear-gradient(135deg, var(--red-theme), var(--red-theme));
     border-radius: 8px;
-    border: 2px solid var(--gold);
-    box-shadow: 0 0 15px rgba(218, 165, 32, 0.4);
+    border: 2px solid var(--gold-glow);
+    box-shadow: 0 0 15px rgba(184, 134, 11, 0.4);
 }
 
 .level-title {
@@ -128,10 +128,10 @@
     right: 20px;
     z-index: 9999;
     padding: 1rem 2rem;
-    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    background: linear-gradient(135deg, var(--gold-glow), var(--parchment-aged));
     color: var(--red-theme);
     border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(218, 165, 32, 0.6);
+    box-shadow: 0 4px 20px rgba(184, 134, 11, 0.6);
     animation: slideInRight 0.5s ease-out, pulse 1.5s ease-in-out infinite;
     font-weight: bold;
     display: flex;
@@ -157,10 +157,10 @@
 
 @keyframes pulse {
     0%, 100% {
-        box-shadow: 0 4px 20px rgba(218, 165, 32, 0.6);
+        box-shadow: 0 4px 20px rgba(184, 134, 11, 0.6);
     }
     50% {
-        box-shadow: 0 4px 30px rgba(218, 165, 32, 0.9);
+        box-shadow: 0 4px 30px rgba(184, 134, 11, 0.9);
     }
 }
 
@@ -250,25 +250,25 @@
 .search-container i {
     position: absolute;
     left: 1rem;
-    color: var(--gold);
+    color: var(--gold-glow);
     font-size: 1.1rem;
 }
 
 #chronicle-search-input {
     width: 100%;
     padding: 0.8rem 1rem 0.8rem 3rem;
-    background: var(--parchment-overlay);
-    border: 2px solid #7a4040;
+    background: var(--parchment-light);
+    border: 2px solid var(--red-theme);
     border-radius: 6px;
-    color: var(--text-primary);
+    color: var(--text-dark);
     font-size: 1rem;
     transition: all 0.3s ease;
 }
 
 #chronicle-search-input:focus {
     outline: none;
-    border-color: var(--gold);
-    box-shadow: 0 0 10px rgba(218, 165, 32, 0.3);
+    border-color: var(--gold-glow);
+    box-shadow: 0 0 10px rgba(184, 134, 11, 0.3);
 }
 
 #chronicle-search-input::placeholder {
@@ -290,10 +290,10 @@
 
 #sort-select {
     padding: 0.8rem 1rem;
-    background: var(--parchment-overlay);
-    border: 2px solid #7a4040;
+    background: var(--parchment-light);
+    border: 2px solid var(--red-theme);
     border-radius: 6px;
-    color: var(--text-primary);
+    color: var(--text-dark);
     font-size: 0.95rem;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -301,7 +301,7 @@
 
 #sort-select:focus {
     outline: none;
-    border-color: var(--gold);
+    border-color: var(--gold-glow);
 }
 
 /* ========================================
@@ -321,7 +321,7 @@
 
 .chronicle-card {
     position: relative;
-    background: linear-gradient(135deg, var(--text-cream), var(--parchment));
+    background: linear-gradient(135deg, var(--text-cream), var(--parchment-bg));
     border: 0px solid var(--border-tan);
     border-radius: 12px;
     padding: 1.5rem;
@@ -338,7 +338,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, transparent, rgba(218, 165, 32, 0.05));
+    background: linear-gradient(135deg, transparent, rgba(184, 134, 11, 0.05));
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;
@@ -434,7 +434,7 @@
 /* Chronicle Preview */
 .chronicle-preview {
     margin-bottom: 1rem;
-    color: var(--text-primary);
+    color: var(--text-dark);
     line-height: 1.6;
     font-size: 0.95rem;
 }
@@ -452,7 +452,7 @@
     align-items: center;
     gap: 0.3rem;
     padding: 0.3rem 0.8rem;
-    background: #7a4040;
+    background: var(--red-theme);
     color: var(--text-cream);
     border-radius: 4px;
     font-size: 0.8rem;
@@ -515,7 +515,7 @@
 
 .chronicles-empty i {
     font-size: 4rem;
-    color: #7a4040;
+    color: var(--red-theme);
     margin-bottom: 1rem;
 }
 
@@ -644,7 +644,7 @@
     left: 1rem !important;
     right: 1rem !important;
     bottom: 1rem !important;
-    border: 2px solid var(--gold-ink) !important;
+    border: 2px solid var(--border-brown) !important;
     border-radius: 8px !important;
     pointer-events: none !important;
     z-index: 1 !important;
@@ -697,7 +697,7 @@
     position: relative;
     max-width: 900px;
     width: 100%;
-    background: rgba(100, 48, 48, 1);
+    background: var(--red-theme);
     border: 2px solid var(--red-theme);
     border-radius: 12px;
     padding: 3rem;
@@ -907,7 +907,7 @@
     gap: 1rem;
     margin-top: 3rem;
     padding-top: 2rem;
-    border-top: 2px solid #7a4040;
+    border-top: 2px solid var(--red-theme);
 }
 
 .share-btn,
@@ -952,10 +952,10 @@
 
 .page-btn {
     padding: 0.8rem 1.2rem;
-    background: var(--parchment-overlay);
-    border: 2px solid #7a4040;
+    background: var(--parchment-light);
+    border: 2px solid var(--red-theme);
     border-radius: 6px;
-    color: var(--text-primary);
+    color: var(--text-dark);
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -963,7 +963,7 @@
 .page-btn:not(:disabled):hover {
     background: var(--red-theme);
     color: var(--text-cream);
-    border-color: var(--gold);
+    border-color: var(--gold-glow);
 }
 
 .page-btn:disabled {

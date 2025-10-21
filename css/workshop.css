@@ -41,7 +41,7 @@
     left: 1rem !important;
     right: 1rem !important;
     bottom: 1rem !important;
-    border: 2px solid var(--gold-ink) !important;
+    border: 2px solid var(--border-brown) !important;
     border-radius: 8px !important;
     pointer-events: none !important;
     z-index: 1 !important;
@@ -1219,7 +1219,7 @@
 }
 
 .cta-button {
-    background: linear-gradient(135deg, var(--gold-glow) 0%, #d4a574 100%);
+    background: linear-gradient(135deg, var(--gold-glow) 0%, var(--parchment-aged) 100%);
     color: var(--red-theme);
     border: 3px solid var(--red-theme);
     border-radius: 0;

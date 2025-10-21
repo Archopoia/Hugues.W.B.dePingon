@@ -342,9 +342,9 @@ html[lang="fr"] .stat-label.countries-hover::before {
 }
 
 .degree-badge.laude {
-    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    background: linear-gradient(45deg, var(--gold-glow), var(--text-light));
     color: var(--text-dark);
-    box-shadow: 0 0 15px #ffd700;
+    box-shadow: 0 0 15px var(--gold-glow);
 }
 
 .institution-logo {
@@ -496,7 +496,7 @@ html[lang="fr"] .stat-label.countries-hover::before {
 /* Achievement Highlights */
 .achievement-highlight {
     background: rgba(255, 215, 0, 0.1);
-    border: 2px solid #ffd700;
+    border: 2px solid var(--gold-glow);
     border-radius: 10px;
     padding: 1rem;
     margin: 1.5rem 0;
@@ -505,7 +505,7 @@ html[lang="fr"] .stat-label.countries-hover::before {
 }
 
 .achievement-highlight i {
-    color: #ffd700;
+    color: var(--gold-glow);
     margin-right: 0.5rem;
 }
 
@@ -699,7 +699,7 @@ html[lang="fr"] .stat-label.countries-hover::before {
     top: 0;
     bottom: -2rem;
     width: 2px;
-    background: linear-gradient(to bottom, var(--gold), var(--burgundy-medium));
+    background: linear-gradient(to bottom, var(--gold-glow), var(--red-theme));
 }
 
 .timeline-marker {
@@ -708,15 +708,15 @@ html[lang="fr"] .stat-label.countries-hover::before {
     top: 0.5rem;
     width: 12px;
     height: 12px;
-    background: var(--gold);
-    border: 3px solid var(--beige-paper);
+    background: var(--gold-glow);
+    border: 3px solid var(--parchment-light);
     border-radius: 50%;
     box-shadow: 0 0 10px var(--shadow);
 }
 
 .timeline-marker.current {
-    background: var(--gold-light);
-    box-shadow: 0 0 15px var(--gold);
+    background: var(--text-light);
+    box-shadow: 0 0 15px var(--gold-glow);
     animation: pulse 2s infinite;
 }
 
@@ -738,13 +738,13 @@ html[lang="fr"] .stat-label.countries-hover::before {
 }
 
 .timeline-content .institution {
-    color: var(--burgundy-medium);
+    color: var(--red-theme);
     font-weight: 600;
     margin-bottom: 0.3rem;
 }
 
 .timeline-content .period {
-    color: var(--gold-dark);
+    color: var(--border-brown);
     font-style: italic;
     margin-bottom: 0.5rem;
 }
@@ -754,7 +754,7 @@ html[lang="fr"] .stat-label.countries-hover::before {
     background: rgba(212, 175, 55, 0.1);
     padding: 0.5rem;
     border-radius: 5px;
-    border-left: 3px solid var(--gold);
+    border-left: 3px solid var(--gold-glow);
     margin-top: 0.5rem;
     font-style: italic;
 }
@@ -778,16 +778,16 @@ html[lang="fr"] .stat-label.countries-hover::before {
 
 .work-category h3 {
     font-family: 'Cinzel', serif;
-    color: var(--burgundy-dark);
+    color: var(--red-theme);
     font-size: 1.5rem;
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--gold);
+    border-bottom: 2px solid var(--gold-glow);
 }
 
 .work-item {
-    background: var(--beige-paper);
-    border: 2px solid var(--beige-dark);
+    background: var(--parchment-light);
+    border: 2px solid var(--parchment-dark);
     border-radius: 10px;
     padding: 1.5rem;
     margin-bottom: 1rem;
@@ -796,20 +796,20 @@ html[lang="fr"] .stat-label.countries-hover::before {
 }
 
 .work-item:hover {
-    border-color: var(--gold);
+    border-color: var(--gold-glow);
     box-shadow: 0 4px 8px var(--shadow);
     transform: translateY(-2px);
 }
 
 .work-item h4 {
     font-family: 'Cinzel', serif;
-    color: var(--burgundy-dark);
+    color: var(--red-theme);
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
 }
 
 .work-meta {
-    color: var(--gold-dark);
+    color: var(--border-brown);
     font-weight: 600;
     margin-bottom: 0.5rem;
     font-size: 0.9rem;

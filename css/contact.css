@@ -69,7 +69,7 @@
 }
 
 .media-appearances-section .section-header h3 i {
-    color: var(--accent-gold);
+    color: var(--gold-glow);
     margin-right: 0.5rem;
 }
 
@@ -104,7 +104,7 @@
     max-width: 500px;
     display: block;
     text-decoration: none;
-    background: var(--paper-bg);
+    background: var(--parchment-light);
     border: 2px solid var(--border-tan);
     border-radius: 0px;
     overflow: hidden;
@@ -229,7 +229,7 @@
     width: 100%;
     height: 250px;
     overflow: hidden;
-    background: var(--dark-bg);
+    background: var(--red-theme);
 }
 
 .media-thumbnail img,
@@ -272,7 +272,7 @@
 
 .media-overlay i {
     font-size: 2.5rem;
-    color: var(--accent-gold);
+    color: var(--gold-glow);
     text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
     display: none;
 }
@@ -1054,26 +1054,26 @@
     align-items: center;
     gap: 1rem;
     padding: 1rem;
-    background: var(--beige-paper);
-    border: 2px solid var(--beige-dark);
+    background: var(--parchment-light);
+    border: 2px solid var(--parchment-dark);
     border-radius: 10px;
     transition: all 0.3s ease;
 }
 
 .contact-item:hover {
-    border-color: var(--gold);
+    border-color: var(--gold-glow);
     box-shadow: 0 4px 8px var(--shadow);
 }
 
 .contact-item i {
-    color: var(--gold);
+    color: var(--gold-glow);
     font-size: 1.2rem;
     width: 20px;
 }
 
 .social-links h3 {
     font-family: 'Cinzel', serif;
-    color: var(--burgundy-dark);
+    color: var(--red-theme);
     margin-bottom: 1rem;
 }
 
@@ -1089,8 +1089,8 @@
     align-items: center;
     gap: 0.5rem;
     padding: 1rem;
-    background: var(--beige-paper);
-    border: 2px solid var(--beige-dark);
+    background: var(--parchment-light);
+    border: 2px solid var(--parchment-dark);
     border-radius: 10px;
     text-decoration: none;
     color: var(--text-dark);
@@ -1099,9 +1099,9 @@
 }
 
 .social-link:hover {
-    border-color: var(--gold);
-    background: var(--gold);
-    color: var(--burgundy-dark);
+    border-color: var(--gold-glow);
+    background: var(--gold-glow);
+    color: var(--red-theme);
     transform: translateY(-3px);
     box-shadow: 0 6px 12px var(--shadow);
 }

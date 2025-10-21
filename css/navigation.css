@@ -378,7 +378,7 @@
 }
 
 .lang-btn:hover {
-    background: #754040;
+    background: var(--red-theme);
     border-color: var(--gold-glow);
     transform: translateY(-2px);
     box-shadow:

@@ -71,6 +71,7 @@ body {
 
     /* Text Colors */
     --text-dark: #4d3000;
+    --text-secondary: #72522f;
     --text-cream: #F3E2A9;
 
     /* Prevent scroll bounce */
@@ -97,6 +98,7 @@ body {
     --border-dark: #674B1B;
     --shadow-dark: #574b35;
     --shadow-darker: #493f2e;
+    --shadow: rgba(87, 75, 53, 0.3); /* Alias for shadow effects */
 
     /* Interactive States */
     --hover-bg: #fff6df;
@@ -107,7 +109,22 @@ body {
     /* Highlight Colors */
     --cyan-bright: #42ffd6;
     --cyan-mint: rgb(104, 255, 222);
+    --jade-grid: #78c9a3;
     --gold-glow: #ffebc6;
+
+    /* Keyhole Entrance Glow Colors (ONLY for portfolio entrance animation) */
+    --keyhole-gold: #ffd700;        /* rgba(255, 215, 0) - Main golden glow */
+    --keyhole-goldenrod: #daa520;   /* rgba(218, 165, 32) - Mid-transition gold */
+    --keyhole-brown: #8b4513;       /* rgba(139, 69, 19) - Dark brown-gold transition */
+
+    /* Ink/Dark Colors */
+    --ink-dark: #421212;
+    --ink-brown: #3d1f1f;
+    --ink-shadow: rgba(114, 82, 47, 0.46);
+
+    /* Vignette Colors */
+    --vignette-dark: rgba(61, 0, 0, 0.3);
+    --vignette-darker: rgba(26, 5, 5, 0.6);
 
     /* Transitions */
     --transition-speed: 0.4s;
@@ -131,14 +148,14 @@ body {
 body {
     font-family: 'Quintessential', cursive;
     /* LAYER 1: Main Background - Parchment with Red Dots and Horizontal Lines */
-    /* LAYER 2: Khaki/Green Diagonal Grid Overlay (#78c9a3) */
+    /* LAYER 2: Khaki/Green Diagonal Grid Overlay (var(--cyan-mint)) */
     background:
         /* url('Assets/Background.jpg') center center / 80% 100% no-repeat, */ /* Hidden for now, might use later */
         radial-gradient(#6100001f 3px, transparent 4px),        /* LAYER 1: Red dots (offset) */
         radial-gradient(#6100001f 3px, transparent 4px),        /* LAYER 1: Red dots (base) */
         linear-gradient(var(--parchment-bg) 4px, transparent 0), /* LAYER 1: Horizontal lines */
-        linear-gradient(45deg, transparent 74px, #78c9a3 75px, transparent 76px, transparent 109px),  /* LAYER 2: Diagonal grid (45deg) */
-        linear-gradient(-45deg, transparent 75px, #78c9a3 76px, transparent 77px, transparent 109px), /* LAYER 2: Diagonal grid (-45deg) */
+        linear-gradient(45deg, transparent 74px, var(--jade-grid) 75px, transparent 76px, transparent 109px),  /* LAYER 2: Diagonal grid (45deg) */
+        linear-gradient(-45deg, transparent 75px, var(--jade-grid) 76px, transparent 77px, transparent 109px), /* LAYER 2: Diagonal grid (-45deg) */
         var(--parchment-bg);                                     /* LAYER 1: Base parchment color */
     background-size: 109px 109px, 109px 109px, 100% 6px, 109px 109px, 109px 109px;
     background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
@@ -166,8 +183,8 @@ body::before {
             ellipse at center,
             transparent 0%,
             transparent 40%,
-            rgba(61, 0, 0, 0.3) 70%,
-            rgba(26, 5, 5, 0.6) 85%,
+            var(--vignette-dark) 70%,
+            var(--vignette-darker) 85%,
             rgba(0, 0, 0, 0.8) 100%
         );
 }
@@ -178,15 +195,15 @@ body::before {
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--burgundy-dark);
+    background: var(--red-theme);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--gold);
+    background: var(--border-tan);
     border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--gold-light);
+    background: var(--focus-glow);
 }
 

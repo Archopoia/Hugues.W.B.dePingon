@@ -53,7 +53,7 @@
 
 .portfolio-category h3 {
     font-family: 'Cinzel', serif;
-    color: var(--burgundy-dark);
+    color: var(--red-theme);
     font-size: 1.5rem;
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
@@ -88,7 +88,7 @@
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--gold), var(--burgundy-medium));
+    background: linear-gradient(90deg, var(--gold), var(--red-theme));
 }
 
 .project-card:hover {
@@ -104,7 +104,7 @@
 
 .project-card h4 {
     font-family: 'Cinzel', serif;
-    color: var(--burgundy-dark);
+    color: var(--red-theme);
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
 }
@@ -231,11 +231,11 @@
     width: 0;
     height: 0;
     border-left: 8px solid transparent;
-    border-top: 8px solid #3d1f1f;
+    border-top: 8px solid var(--ink-brown);
 }
 
 .ribbon-gold {
-    background: linear-gradient(135deg, #FFD700, #FFA500);
+    background: linear-gradient(135deg, var(--gold-glow), var(--orange-theme));
     color: var(--text-dark);
 }
 
