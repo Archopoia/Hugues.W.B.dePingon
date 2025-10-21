@@ -191,9 +191,9 @@
     left: -20px;
     right: -20px;
     bottom: -10px;
-    background:
+    /* background:
         radial-gradient(circle at 20% 20%, rgba(184, 134, 11, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(184, 134, 11, 0.1) 0%, transparent 50%);
+        radial-gradient(circle at 80% 80%, rgba(184, 134, 11, 0.1) 0%, transparent 50%); */
     z-index: -1;
 }
 

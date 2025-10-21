@@ -13,7 +13,7 @@
 }
 
 .academic-stat {
-    background: var(--parchment-light);
+    background: var(--parchment-aged);
     border: 3px solid var(--border-tan);
     border-radius: 15px;
     padding: 1.5rem;
