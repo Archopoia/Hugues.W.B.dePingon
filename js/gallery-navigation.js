@@ -1,6 +1,8 @@
 // Gallery Navigation System
 // Handles scroll navigation and mobile touch interactions for the media gallery
 
+console.log('📄 gallery-navigation.js loaded');
+
 class GalleryNavigation {
     constructor() {
         this.mediaGrid = document.querySelector('.media-grid');
@@ -31,9 +33,11 @@ class GalleryNavigation {
             console.log('📱 Setting up media gallery with', this.mediaItems.length, 'items');
             if (this.isMobile) {
                 this.setupMobileBehavior(this.mediaGrid, this.mediaItems);
+            } else {
+                // Only set up desktop behaviors on desktop
+                this.setupScrollNavigation(this.mediaGrid);
+                this.setupTouchGestures(this.mediaGrid);
             }
-            this.setupScrollNavigation(this.mediaGrid);
-            this.setupTouchGestures(this.mediaGrid);
         }
 
         // Set up portfolio galleries
@@ -44,19 +48,18 @@ class GalleryNavigation {
             if (items.length > 0) {
                 if (this.isMobile) {
                     this.setupMobileBehavior(gallery, items);
+                } else {
+                    // Only set up desktop behaviors on desktop
+                    this.setupScrollNavigation(gallery);
+                    this.setupTouchGestures(gallery);
+                    this.setupPortfolioClickHandlers(gallery, items);
                 }
-                this.setupScrollNavigation(gallery);
-                this.setupTouchGestures(gallery);
-                this.setupPortfolioClickHandlers(gallery, items);
             }
         });
 
         // Handle window resize
         window.addEventListener('resize', () => {
-            const wasMobile = this.isMobile;
             this.isMobile = window.innerWidth <= 768;
-            console.log('📏 Window resized - was mobile:', wasMobile, 'now mobile:', this.isMobile, 'width:', window.innerWidth);
-
             if (this.isMobile) {
                 if (this.mediaGrid) this.setupMobileBehavior(this.mediaGrid, this.mediaItems);
                 this.portfolioGalleries.forEach(gallery => {
@@ -64,291 +67,175 @@ class GalleryNavigation {
                     this.setupMobileBehavior(gallery, items);
                 });
             } else {
-                if (this.mediaGrid) this.cleanupMobileBehavior(this.mediaGrid, this.mediaItems);
+                if (this.mediaGrid) {
+                    this.cleanupMobileBehavior(this.mediaGrid, this.mediaItems);
+                    // Re-enable desktop behaviors for media grid
+                    this.setupScrollNavigation(this.mediaGrid);
+                    this.setupTouchGestures(this.mediaGrid);
+                }
                 this.portfolioGalleries.forEach(gallery => {
                     const items = gallery.querySelectorAll('.portfolio-gallery-item');
                     this.cleanupMobileBehavior(gallery, items);
+                    // Re-enable desktop behaviors
+                    this.setupScrollNavigation(gallery);
+                    this.setupTouchGestures(gallery);
+                    this.setupPortfolioClickHandlers(gallery, items);
                 });
             }
         });
     }
 
     setupMobileBehavior(gallery, items) {
+        console.log('🔧 Setting up mobile behavior for gallery:', gallery);
+        console.log('📱 Is mobile:', this.isMobile, 'Window width:', window.innerWidth);
+
         // Add mobile-active class to show fanned out layout
         gallery.classList.add('mobile-active');
-        console.log('🔧 Mobile behavior setup for gallery with', items.length, 'items');
+        console.log('📱 Added mobile-active class to gallery');
 
-        // Add touch-and-hold scrolling behavior
+        // Debug: Monitor for any class changes on the gallery
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                    console.log('🔍 Gallery class changed:', mutation.target.className);
+                }
+            });
+        });
+        observer.observe(gallery, { attributes: true, attributeFilter: ['class'] });
+
+        // Debug: Monitor for any class changes on gallery items
+        const itemObserver = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                    console.log('🔍 Item class changed:', mutation.target.className, 'on element:', mutation.target);
+                }
+            });
+        });
+        items.forEach(item => {
+            itemObserver.observe(item, { attributes: true, attributeFilter: ['class'] });
+        });
+
+        // Debug: Monitor for any style changes
+        const styleObserver = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+                    console.log('🔍 Style changed on element:', mutation.target, 'new style:', mutation.target.style.cssText);
+                }
+            });
+        });
+        items.forEach(item => {
+            styleObserver.observe(item, { attributes: true, attributeFilter: ['style'] });
+        });
+
+        // Debug: Monitor for any DOM changes
+        const domObserver = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'childList') {
+                    console.log('🔍 DOM structure changed:', mutation);
+                }
+            });
+        });
+        domObserver.observe(gallery, { childList: true, subtree: true });
+
+        // On mobile, clicking anywhere on the gallery opens the gallery modal
+        gallery.addEventListener('click', (e) => {
+            console.log('📱 Gallery clicked on mobile');
+            console.log('📱 Event target:', e.target);
+            console.log('📱 Event currentTarget:', e.currentTarget);
+            console.log('📱 Event type:', e.type);
+            console.log('📱 Event bubbles:', e.bubbles);
+
+            // Debug: Check if any classes are being added/removed
+            console.log('📱 Gallery classes before:', gallery.className);
+            console.log('📱 Gallery items before:', Array.from(gallery.querySelectorAll('.portfolio-gallery-item')).map(item => ({
+                element: item,
+                classes: item.className,
+                transform: getComputedStyle(item).transform
+            })));
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            // Find the gallery type from data-gallery attribute
+            const galleryType = gallery.getAttribute('data-gallery');
+            console.log('🎨 Gallery type:', galleryType);
+            if (galleryType) {
+                // Open the gallery modal directly
+                if (window.openImageGallery) {
+                    console.log('🚀 Opening gallery modal for:', galleryType);
+                    window.openImageGallery(galleryType);
+                } else {
+                    console.error('❌ window.openImageGallery not found');
+                }
+            } else {
+                console.error('❌ No data-gallery attribute found');
+            }
+
+            // Debug: Check if any classes changed after modal opening
+            setTimeout(() => {
+                console.log('📱 Gallery classes after:', gallery.className);
+                console.log('📱 Gallery items after:', Array.from(gallery.querySelectorAll('.portfolio-gallery-item')).map(item => ({
+                    element: item,
+                    classes: item.className,
+                    transform: getComputedStyle(item).transform
+                })));
+            }, 100);
+        }, true); // Use capture phase to ensure it fires first
+
+        // Prevent individual item clicks from opening images
         items.forEach((item, index) => {
-            let touchStartTime = 0;
-            let touchStartX = 0;
-            let touchStartY = 0;
-            let isHolding = false;
-            let holdTimer = null;
-
-            // Prevent default click behavior on mobile
+            console.log('📱 Setting up click handler for item', index, item);
             item.addEventListener('click', (e) => {
-                console.log('📱 Click event on item', index);
+                console.log('📱 Individual item clicked on mobile, preventing');
+                console.log('📱 Item event target:', e.target);
+                console.log('📱 Item event currentTarget:', e.currentTarget);
                 e.preventDefault();
                 e.stopPropagation();
-                // Only select item, don't open image
-                this.selectItem(gallery, items, index);
+                // Don't do anything - let the gallery click handler take over
             });
 
-            // Touch start - begin hold detection
+            // Add touch event listeners to debug
             item.addEventListener('touchstart', (e) => {
                 console.log('👆 Touch start on item', index);
-                touchStartTime = Date.now();
-                touchStartX = e.touches[0].clientX;
-                touchStartY = e.touches[0].clientY;
-                isHolding = false;
-
-                // Start hold timer
-                holdTimer = setTimeout(() => {
-                    console.log('⏰ Hold threshold reached for item', index);
-                    isHolding = true;
-                    item.classList.add('touch-holding');
-                    // Enable scrolling through gallery
-                    this.enableGalleryScrolling(gallery, items, index);
-                }, 500); // 500ms hold threshold
             });
 
-            // Touch move - cancel hold if moved too much
-            item.addEventListener('touchmove', (e) => {
-                if (holdTimer) {
-                    const deltaX = Math.abs(e.touches[0].clientX - touchStartX);
-                    const deltaY = Math.abs(e.touches[0].clientY - touchStartY);
-
-                    // If moved more than 10px, cancel hold
-                    if (deltaX > 10 || deltaY > 10) {
-                        console.log('🚫 Touch moved too much, canceling hold');
-                        clearTimeout(holdTimer);
-                        holdTimer = null;
-                        item.classList.remove('touch-holding');
-                    }
-                }
-            });
-
-            // Touch end - handle tap vs hold
             item.addEventListener('touchend', (e) => {
-                const touchDuration = Date.now() - touchStartTime;
-                console.log('👆 Touch end on item', index, 'duration:', touchDuration + 'ms', 'wasHolding:', isHolding);
-
-                if (holdTimer) {
-                    clearTimeout(holdTimer);
-                    holdTimer = null;
-                }
-
-                if (isHolding) {
-                    // Was holding - disable scrolling
-                    console.log('🛑 Disabling gallery scrolling');
-                    this.disableGalleryScrolling(gallery);
-                    item.classList.remove('touch-holding');
-                } else if (touchDuration < 500) {
-                    // Quick tap - select item
-                    console.log('⚡ Quick tap detected, selecting item', index);
-                    this.selectItem(gallery, items, index);
-                }
-
-                isHolding = false;
-            });
-
-            // Touch cancel - cleanup
-            item.addEventListener('touchcancel', () => {
-                console.log('❌ Touch canceled on item', index);
-                if (holdTimer) {
-                    clearTimeout(holdTimer);
-                    holdTimer = null;
-                }
-                item.classList.remove('touch-holding');
-                isHolding = false;
-            });
-
-            // Add mouse events for desktop testing (simulate touch)
-            let mouseDownTime = 0;
-            let mouseHoldTimer = null;
-            let isMouseHolding = false;
-
-            item.addEventListener('mousedown', (e) => {
-                console.log('🖱️ Mouse down on item', index);
-                mouseDownTime = Date.now();
-                isMouseHolding = false;
-
-                // Start hold timer for mouse
-                mouseHoldTimer = setTimeout(() => {
-                    console.log('⏰ Mouse hold threshold reached for item', index);
-                    isMouseHolding = true;
-                    item.classList.add('touch-holding');
-                    this.enableGalleryScrolling(gallery, items, index);
-                }, 500);
-            });
-
-            item.addEventListener('mouseup', (e) => {
-                const mouseDuration = Date.now() - mouseDownTime;
-                console.log('🖱️ Mouse up on item', index, 'duration:', mouseDuration + 'ms', 'wasHolding:', isMouseHolding);
-
-                if (mouseHoldTimer) {
-                    clearTimeout(mouseHoldTimer);
-                    mouseHoldTimer = null;
-                }
-
-                if (isMouseHolding) {
-                    console.log('🛑 Disabling gallery scrolling (mouse)');
-                    this.disableGalleryScrolling(gallery);
-                    item.classList.remove('touch-holding');
-                } else if (mouseDuration < 500) {
-                    console.log('⚡ Quick mouse click detected, selecting item', index);
-                    this.selectItem(gallery, items, index);
-                }
-
-                isMouseHolding = false;
-            });
-
-            item.addEventListener('mouseleave', () => {
-                if (mouseHoldTimer) {
-                    clearTimeout(mouseHoldTimer);
-                    mouseHoldTimer = null;
-                }
-                item.classList.remove('touch-holding');
-                isMouseHolding = false;
+                console.log('👆 Touch end on item', index);
             });
         });
     }
 
     cleanupMobileBehavior(gallery, items) {
+        console.log('🧹 Cleaning up mobile behavior for gallery:', gallery);
+
+        // Remove mobile-active class
         gallery.classList.remove('mobile-active');
-        gallery.classList.remove('scroll-enabled');
+
+        // Clean up item classes
         items.forEach(item => {
             item.classList.remove('selected');
-            item.classList.remove('touch-holding');
         });
-
-        // Clean up any active scrolling handlers
-        this.disableGalleryScrolling(gallery);
-    }
-
-    enableGalleryScrolling(gallery, items, startIndex) {
-        console.log('🎯 Enabling gallery scrolling for gallery with', items.length, 'items, starting at index', startIndex);
-
-        // Add visual feedback that scrolling is enabled
-        gallery.classList.add('scroll-enabled');
-
-        // Set up touch scrolling for the gallery
-        let scrollStartX = 0;
-        let scrollStartY = 0;
-
-        const handleScrollStart = (e) => {
-            scrollStartX = e.touches[0].clientX;
-            scrollStartY = e.touches[0].clientY;
-            console.log('🎯 Scroll start at:', scrollStartX, scrollStartY);
-        };
-
-        const handleScrollMove = (e) => {
-            const deltaX = e.touches[0].clientX - scrollStartX;
-            const deltaY = e.touches[0].clientY - scrollStartY;
-
-            console.log('🎯 Scroll move - deltaX:', deltaX, 'deltaY:', deltaY);
-
-            // Check if horizontal swipe (gallery navigation)
-            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 30) {
-                console.log('🎯 Horizontal swipe detected, deltaX:', deltaX);
-                if (deltaX > 0) {
-                    // Swipe right - previous item
-                    console.log('🎯 Swiping right - going to previous item');
-                    this.previousItem(gallery);
-                } else {
-                    // Swipe left - next item
-                    console.log('🎯 Swiping left - going to next item');
-                    this.nextItem(gallery);
-                }
-                scrollStartX = e.touches[0].clientX;
-            }
-        };
-
-        // Store handlers for cleanup
-        gallery._scrollHandlers = {
-            start: handleScrollStart,
-            move: handleScrollMove
-        };
-
-        gallery.addEventListener('touchstart', handleScrollStart, { passive: true });
-        gallery.addEventListener('touchmove', handleScrollMove, { passive: true });
-
-        // Add mouse events for desktop testing
-        const handleMouseScrollStart = (e) => {
-            scrollStartX = e.clientX;
-            scrollStartY = e.clientY;
-            console.log('🖱️ Mouse scroll start at:', scrollStartX, scrollStartY);
-        };
-
-        const handleMouseScrollMove = (e) => {
-            const deltaX = e.clientX - scrollStartX;
-            const deltaY = e.clientY - scrollStartY;
-
-            console.log('🖱️ Mouse scroll move - deltaX:', deltaX, 'deltaY:', deltaY);
-
-            // Check if horizontal drag (gallery navigation)
-            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 30) {
-                console.log('🖱️ Horizontal drag detected, deltaX:', deltaX);
-                if (deltaX > 0) {
-                    console.log('🖱️ Dragging right - going to previous item');
-                    this.previousItem(gallery);
-                } else {
-                    console.log('🖱️ Dragging left - going to next item');
-                    this.nextItem(gallery);
-                }
-                scrollStartX = e.clientX;
-            }
-        };
-
-        gallery._mouseScrollHandlers = {
-            start: handleMouseScrollStart,
-            move: handleMouseScrollMove
-        };
-
-        gallery.addEventListener('mousedown', handleMouseScrollStart);
-        gallery.addEventListener('mousemove', handleMouseScrollMove);
-    }
-
-    disableGalleryScrolling(gallery) {
-        console.log('🛑 Disabling gallery scrolling');
-
-        // Remove visual feedback
-        gallery.classList.remove('scroll-enabled');
-
-        // Remove touch event listeners
-        if (gallery._scrollHandlers) {
-            gallery.removeEventListener('touchstart', gallery._scrollHandlers.start);
-            gallery.removeEventListener('touchmove', gallery._scrollHandlers.move);
-            delete gallery._scrollHandlers;
-        }
-
-        // Remove mouse event listeners
-        if (gallery._mouseScrollHandlers) {
-            gallery.removeEventListener('mousedown', gallery._mouseScrollHandlers.start);
-            gallery.removeEventListener('mousemove', gallery._mouseScrollHandlers.move);
-            delete gallery._mouseScrollHandlers;
-        }
     }
 
     selectItem(gallery, items, index) {
-        console.log('🎯 Selecting item', index, 'from', items.length, 'items');
-
+        console.log('🎯 selectItem called for gallery:', gallery, 'index:', index, 'isMobile:', this.isMobile);
         // Remove previous selection
         items.forEach(item => item.classList.remove('selected'));
 
         // Select new item
         items[index].classList.add('selected');
+        console.log('🎯 Added selected class to item', index);
         this.currentIndex = index;
-
-        console.log('✅ Item', index, 'selected, currentIndex set to:', this.currentIndex);
     }
 
     setupScrollNavigation(gallery) {
+        console.log('🖱️ Setting up scroll navigation for gallery:', gallery, 'isMobile:', this.isMobile);
         let scrollAccumulator = 0;
         const scrollThreshold = 50; // Pixels to scroll before changing item
 
         gallery.addEventListener('wheel', (e) => {
+            console.log('🖱️ Wheel event detected on gallery');
+            console.log('🖱️ Wheel event target:', e.target);
             e.preventDefault();
             e.stopPropagation();
 
@@ -357,13 +244,16 @@ class GalleryNavigation {
             scrollAccumulator += e.deltaY;
 
             if (Math.abs(scrollAccumulator) >= scrollThreshold) {
+                console.log('🖱️ Scroll threshold reached, navigating');
                 this.isScrolling = true;
 
                 if (scrollAccumulator > 0) {
                     // Scroll down - next item
+                    console.log('🖱️ Scrolling down - going to next item');
                     this.nextItem(gallery);
                 } else {
                     // Scroll up - previous item
+                    console.log('🖱️ Scrolling up - going to previous item');
                     this.previousItem(gallery);
                 }
 
@@ -378,21 +268,28 @@ class GalleryNavigation {
 
         // Prevent page scrolling when hovering over gallery
         gallery.addEventListener('mouseenter', () => {
+            console.log('🖱️ Mouse enter on gallery');
             document.body.style.overflow = 'hidden';
         });
 
         gallery.addEventListener('mouseleave', () => {
+            console.log('🖱️ Mouse leave on gallery');
             document.body.style.overflow = '';
         });
     }
 
     setupTouchGestures(gallery) {
+        console.log('👆 Setting up touch gestures for gallery:', gallery, 'isMobile:', this.isMobile);
         gallery.addEventListener('touchstart', (e) => {
+            console.log('👆 Touch start detected on gallery');
+            console.log('👆 Touch start target:', e.target);
             this.touchStartX = e.touches[0].clientX;
             this.touchStartY = e.touches[0].clientY;
         });
 
         gallery.addEventListener('touchend', (e) => {
+            console.log('👆 Touch end detected on gallery');
+            console.log('👆 Touch end target:', e.target);
             this.touchEndX = e.changedTouches[0].clientX;
             this.touchEndY = e.changedTouches[0].clientY;
 
@@ -401,33 +298,46 @@ class GalleryNavigation {
     }
 
     handleSwipe(gallery) {
+        console.log('👆 Handle swipe called - isMobile:', this.isMobile);
+
+        // Don't handle swipes on mobile
+        if (this.isMobile) {
+            console.log('👆 Mobile detected, ignoring swipe');
+            return;
+        }
+
         const deltaX = this.touchEndX - this.touchStartX;
         const deltaY = this.touchEndY - this.touchStartY;
         const minSwipeDistance = 50;
 
         // Check if it's a horizontal swipe
         if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > minSwipeDistance) {
+            console.log('👆 Horizontal swipe detected on mobile:', this.isMobile);
             if (deltaX > 0) {
                 // Swipe right - previous item
+                console.log('👆 Swiping right - going to previous item');
                 this.previousItem(gallery);
             } else {
                 // Swipe left - next item
+                console.log('👆 Swiping left - going to next item');
                 this.nextItem(gallery);
             }
         }
     }
 
     nextItem(gallery) {
+        console.log('➡️ nextItem called for gallery:', gallery, 'isMobile:', this.isMobile);
         const items = gallery.querySelectorAll('.portfolio-gallery-item, .media-item');
         this.currentIndex = (this.currentIndex + 1) % items.length;
-        console.log('➡️ Next item - current index:', this.currentIndex, 'total items:', items.length);
+        console.log('➡️ New currentIndex:', this.currentIndex);
         this.updateGalleryState(gallery);
     }
 
     previousItem(gallery) {
+        console.log('⬅️ previousItem called for gallery:', gallery, 'isMobile:', this.isMobile);
         const items = gallery.querySelectorAll('.portfolio-gallery-item, .media-item');
         this.currentIndex = (this.currentIndex - 1 + items.length) % items.length;
-        console.log('⬅️ Previous item - current index:', this.currentIndex, 'total items:', items.length);
+        console.log('⬅️ New currentIndex:', this.currentIndex);
         this.updateGalleryState(gallery);
     }
 
@@ -444,13 +354,21 @@ class GalleryNavigation {
 
         // Update mobile selection if on mobile
         if (this.isMobile) {
-            const items = gallery.querySelectorAll('.portfolio-gallery-item, .media-item');
-            console.log('📱 Mobile mode - selecting item', this.currentIndex, 'from', items.length, 'items');
-            this.selectItem(gallery, items, this.currentIndex);
+            console.log('📱 Mobile detected, skipping selection');
+            return;
         }
+
+        const items = gallery.querySelectorAll('.portfolio-gallery-item, .media-item');
+        console.log('📱 Mobile mode - selecting item', this.currentIndex, 'from', items.length, 'items');
+        this.selectItem(gallery, items, this.currentIndex);
     }
 
     setupPortfolioClickHandlers(gallery, items) {
+        // Don't set up individual click handlers on mobile - let gallery click handle it
+        if (this.isMobile) {
+            return;
+        }
+
         items.forEach((item, index) => {
             item.style.pointerEvents = 'auto';
 
@@ -566,6 +484,11 @@ window.openPortfolioImage = function(src) {
 
 // Global function to initialize portfolio gallery click handlers
 window.initializePortfolioGalleryClicks = function() {
+    // Don't initialize individual click handlers on mobile
+    if (window.innerWidth <= 768) {
+        return;
+    }
+
     const galleries = document.querySelectorAll('.portfolio-gallery');
 
     galleries.forEach((gallery, galleryIndex) => {
@@ -594,3 +517,25 @@ window.initializePortfolioGalleryClicks = function() {
         });
     });
 };
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('📄 DOM loaded, GalleryNavigation ready');
+    // Don't initialize immediately - wait for portfolio section to load
+});
+
+// Function to initialize galleries when portfolio section loads
+window.initializeGalleryNavigation = function() {
+    console.log('🎨 Portfolio section loaded, initializing galleries...');
+    if (window.galleryNavigation) {
+        // Reinitialize with current DOM
+        window.galleryNavigation = new GalleryNavigation();
+    } else {
+        window.galleryNavigation = new GalleryNavigation();
+    }
+};
+
+// Export for potential use in other modules
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = GalleryNavigation;
+}

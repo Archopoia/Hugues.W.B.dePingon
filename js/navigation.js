@@ -50,9 +50,14 @@ export async function loadSection(sectionName) {
                         initializePortfolioNavigation();
                         window.initializeVideoHoverPlay();
 
-                        // Initialize portfolio gallery click handlers
-                        if (typeof window.initializePortfolioGalleryClicks === 'function') {
+                        // Initialize portfolio gallery click handlers (desktop only)
+                        if (typeof window.initializePortfolioGalleryClicks === 'function' && window.innerWidth > 768) {
                             window.initializePortfolioGalleryClicks();
+                        }
+
+                        // Initialize gallery navigation
+                        if (typeof window.initializeGalleryNavigation === 'function') {
+                            window.initializeGalleryNavigation();
                         }
                     }
                     if (sectionName === 'skills') {

@@ -127,23 +127,6 @@ export function openFullPDF(pdfType) {
 
 // Image Gallery Modal
 export function openImageGallery(galleryType) {
-    // On mobile: don't open modal, just enable touch scrolling
-    if (isMobileDevice()) {
-        // Find the gallery element and enable mobile scrolling
-        const gallery = document.querySelector(`[data-gallery="${galleryType}"]`);
-        if (gallery) {
-            const items = gallery.querySelectorAll('.portfolio-gallery-item');
-            if (items.length > 0) {
-                // Enable mobile behavior for this specific gallery
-                const galleryNav = window.galleryNavigation;
-                if (galleryNav) {
-                    galleryNav.setupMobileBehavior(gallery, items);
-                }
-            }
-        }
-        return;
-    }
-
     const modal = document.getElementById('modal-overlay');
     const modalTitle = document.getElementById('modal-title');
     const modalBody = document.getElementById('modal-body');
@@ -361,4 +344,11 @@ export function toggleExpCard(card) {
         }
     }
 }
+
+// Export functions for global access
+window.openImageGallery = openImageGallery;
+window.openFullVideo = openFullVideo;
+window.openFullPDF = openFullPDF;
+window.openFullImage = openFullImage;
+window.closeModal = closeModal;
 
