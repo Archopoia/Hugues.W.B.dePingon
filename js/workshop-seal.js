@@ -305,7 +305,7 @@ async function endPress(e) {
 
         // Always clean up workshop preview for quick clicks (regardless of active state)
         if (activeWorkshopTab) {
-            cleanupWorkshopPreview(activeWorkshopTab, false);
+            startReverseAnimation(workshopSealButton, activeWorkshopTab, currentRotation, revealProgress);
         }
 
         pressStartTime = 0;
@@ -390,7 +390,7 @@ function cancelPress() {
     }
 
     if (activeWorkshopTab && !activeWorkshopTab.classList.contains('active')) {
-        cleanupWorkshopPreview(activeWorkshopTab, false);
+        startReverseAnimation(workshopSealButton, activeWorkshopTab, currentRotation, 0);
     }
 
     pressStartTime = 0;
@@ -403,27 +403,26 @@ function cleanupWorkshopPreview(workshopTab, keepVisible) {
     const characterSheet = document.querySelector('.character-sheet');
 
     if (!keepVisible) {
-        // Unified cleanup - always use 3D rotation (same for all screen sizes)
-        const currentTransform = workshopTab.style.transform;
-        const currentRotateMatch = currentTransform.match(/rotateX\(([^)]+)\)/);
-        const currentRotateX = currentRotateMatch ? parseFloat(currentRotateMatch[1]) : 0;
-
-        // Step 1: Explicitly set current position with NO transition (freeze frame)
-        workshopTab.style.transition = 'none';
-        workshopTab.style.transform = `rotateX(${currentRotateX}deg)`;
-
-        // Step 2: Force reflow to ensure the browser applies this state
-        workshopTab.offsetHeight;
-
-        // Step 3: Use requestAnimationFrame to ensure browser has painted the freeze frame
-        requestAnimationFrame(() => {
-            // Now add transition and animate to final position
-            // Use cubic-bezier that matches the reverse motion (ease-in for folding back up)
-            workshopTab.style.transition = 'transform 0.5s cubic-bezier(0.680, -0.275, 0.825, 0.115)';
-
-            // Set target position (will animate smoothly from frozen position)
-            workshopTab.style.transform = 'rotateX(-70deg)';
-        });
+        // For quick cleanup (when animation is complete), just hide immediately
+        workshopTab.style.display = 'none';
+        workshopTab.style.transform = '';
+        workshopTab.style.transition = '';
+        workshopTab.style.transformOrigin = '';
+        workshopTab.style.pointerEvents = '';
+        workshopTab.style.position = '';
+        workshopTab.style.top = '';
+        workshopTab.style.left = '';
+        workshopTab.style.width = '';
+        workshopTab.style.zIndex = '';
+        workshopTab.style.backfaceVisibility = '';
+        workshopTab.style.transformStyle = '';
+        workshopTab.style.minHeight = '';
+        workshopTab.style.background = '';
+        workshopTab.style.backgroundColor = '';
+        workshopTab.style.backgroundSize = '';
+        workshopTab.style.backgroundPosition = '';
+        workshopTab.style.boxShadow = '';
+        workshopTab.style.opacity = '';
     }
 
     // Restore other tabs
@@ -513,5 +512,62 @@ function cleanupWorkshopPreview(workshopTab, keepVisible) {
             contentChildren[i].style.zIndex = '';
         }
     }
+}
+
+function startReverseAnimation(workshopSealButton, activeWorkshopTab, startRotation, startRevealProgress) {
+    const reverseStartTime = performance.now();
+    const reverseDuration = pullSoundDuration * startRevealProgress; // Duration should match how long we've been pressing
+
+    // Store initial states
+    const startRotateX = -70 + (70 * startRevealProgress);
+
+    // Disable transitions during reverse animation
+    workshopSealButton.style.transition = 'none';
+    if (activeWorkshopTab) {
+        activeWorkshopTab.style.transition = 'none';
+    }
+
+    function reverseAnimate(timestamp) {
+        const elapsed = (timestamp - reverseStartTime) / 1000;
+        const progress = Math.min(elapsed / reverseDuration, 1);
+
+        // Ease-out curve for smooth deceleration (inverse of the forward acceleration)
+        const easeOutProgress = 1 - Math.pow(1 - progress, 3);
+
+        // Reverse rotation (from current rotation back to 0)
+        const currentReverseRotation = startRotation * (1 - easeOutProgress);
+        workshopSealButton.style.transform = `rotate(${currentReverseRotation}deg)`;
+
+        // Reverse pulse effects (from current state back to normal)
+        const reversePulseSpeed = Math.max(0.2, 1 - (startRevealProgress * 0.3) * (1 - progress));
+        const reversePulseScale = Math.min(1.5 + (startRevealProgress * 0.5) * (1 - progress), 3);
+        const reversePulseOpacity = Math.min(0.6 + (startRevealProgress * 0.1) * (1 - progress), 0.9);
+
+        workshopSealButton.style.setProperty('--pulse-speed', `${reversePulseSpeed}s`);
+        workshopSealButton.style.setProperty('--pulse-scale', reversePulseScale);
+        workshopSealButton.style.setProperty('--pulse-opacity', reversePulseOpacity);
+
+        // Reverse workshop tab reveal (from current rotation back to -70deg)
+        if (activeWorkshopTab) {
+            const reverseRotateX = startRotateX - (startRotateX + 70) * easeOutProgress;
+            activeWorkshopTab.style.transform = `rotateX(${reverseRotateX}deg)`;
+        }
+
+        if (progress < 1) {
+            requestAnimationFrame(reverseAnimate);
+        } else {
+            // Animation complete - clean up
+            workshopSealButton.style.transition = '';
+            workshopSealButton.style.transform = 'scale(1) rotate(0deg)';
+            workshopSealButton.style.willChange = 'auto';
+
+            // Clean up workshop preview
+            if (activeWorkshopTab) {
+                cleanupWorkshopPreview(activeWorkshopTab, false);
+            }
+        }
+    }
+
+    requestAnimationFrame(reverseAnimate);
 }
 
