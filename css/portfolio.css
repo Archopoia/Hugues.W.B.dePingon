@@ -993,6 +993,44 @@
         transform: translate(-50%, -50%) translateX(0px) rotate(0deg) scale(1.1) !important;
         z-index: 100;
     }
+
+    /* Touch and hold visual feedback */
+    .portfolio-gallery-item.touch-holding {
+        transform: translate(-50%, -50%) scale(1.05) !important;
+        z-index: 200 !important;
+        box-shadow: 0 0 20px rgba(184, 134, 11, 0.6);
+        border: 2px solid var(--gold-glow);
+        border-radius: 8px;
+        transition: all 0.2s ease;
+    }
+
+    /* Scroll enabled state */
+    .portfolio-gallery.scroll-enabled {
+        cursor: grab;
+    }
+
+    .portfolio-gallery.scroll-enabled::after {
+        content: 'Swipe to navigate';
+        position: absolute;
+        top: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--gold-glow);
+        color: var(--text-dark);
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 600;
+        opacity: 0.9;
+        z-index: 1000;
+        pointer-events: none;
+        animation: fadeInOut 2s ease-in-out;
+    }
+
+    @keyframes fadeInOut {
+        0%, 100% { opacity: 0; }
+        20%, 80% { opacity: 0.9; }
+    }
 }
 
 /* Scroll navigation states for portfolio galleries */
