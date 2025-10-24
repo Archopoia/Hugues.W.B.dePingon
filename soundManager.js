@@ -712,9 +712,6 @@ window.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 staticLoader.remove();
 
-                // Unlock body scrolling
-                document.body.classList.remove('entrance-active');
-
                 // Show workshop button and language switcher after entrance screen is gone
                 const workshopButton = document.querySelector('.workshop-seal-button');
                 const languageSwitcher = document.querySelector('.language-switcher');
@@ -810,6 +807,9 @@ window.addEventListener('DOMContentLoaded', () => {
             // Mark as ready and play sounds with animation
             soundManager.audioReady = true;
 
+            // Unlock body scrolling immediately for autoplay
+            document.body.classList.remove('entrance-active');
+
             // Just animate
             unlockAudio(true); // Show animation
         } catch (err) {
@@ -833,6 +833,9 @@ window.addEventListener('DOMContentLoaded', () => {
                 enterButton.addEventListener('click', () => {
                     // Prevent fallback handler from running
                     window.keyholeClickInProgress = true;
+
+                    // Unlock body scrolling immediately on click
+                    document.body.classList.remove('entrance-active');
 
                     // Play the door unlock sound immediately on click
                     soundManager.sounds.doorUnlock.volume = 0.7;
@@ -876,6 +879,14 @@ window.addEventListener('DOMContentLoaded', () => {
                             enterButton.style.display = 'none';
                         }
 
+                        // Show workshop button and language switcher after flash completes
+                        const workshopButton = document.querySelector('.workshop-seal-button');
+                        const languageSwitcher = document.querySelector('.language-switcher');
+                        if (workshopButton) {
+                            workshopButton.classList.add('visible');
+                        }
+                        if (languageSwitcher) languageSwitcher.classList.add('visible');
+
                         // Remove the goldenFlash animation first to release the animation-fill-mode
                         flashElement.style.animation = 'none';
                         // Force a reflow to ensure the animation change is registered
@@ -904,17 +915,6 @@ window.addEventListener('DOMContentLoaded', () => {
                             if (staticLoader && staticLoader.parentNode) {
                                 staticLoader.remove();
                             }
-
-                            // Unlock body scrolling
-                            document.body.classList.remove('entrance-active');
-
-                            // Show workshop button and language switcher
-                            const workshopButton = document.querySelector('.workshop-seal-button');
-                            const languageSwitcher = document.querySelector('.language-switcher');
-                            if (workshopButton) {
-                                workshopButton.classList.add('visible');
-                            }
-                            if (languageSwitcher) languageSwitcher.classList.add('visible');
 
                             // Clean up flash element
                             if (flashElement.parentNode) {
