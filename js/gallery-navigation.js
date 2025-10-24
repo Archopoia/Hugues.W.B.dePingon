@@ -6,6 +6,7 @@ class GalleryNavigation {
         this.mediaGrid = document.querySelector('.media-grid');
         this.mediaItems = document.querySelectorAll('.media-item');
         this.portfolioGalleries = document.querySelectorAll('.portfolio-gallery');
+        this.contactGalleries = document.querySelectorAll('.media-grid[data-gallery="media-appearances"]');
         this.currentIndex = 0;
         this.isScrolling = false;
         this.scrollTimeout = null;
@@ -42,6 +43,21 @@ class GalleryNavigation {
                     this.setupScrollNavigation(gallery);
                     this.setupTouchGestures(gallery);
                     this.setupPortfolioClickHandlers(gallery, items);
+                }
+            }
+        });
+
+        // Set up contact galleries
+        this.contactGalleries.forEach((gallery, index) => {
+            const items = gallery.querySelectorAll('.media-item');
+
+            if (items.length > 0) {
+                if (this.isMobile) {
+                    this.setupMobileBehavior(gallery, items);
+                } else {
+                    // Only set up desktop behaviors on desktop
+                    this.setupScrollNavigation(gallery);
+                    this.setupTouchGestures(gallery);
                 }
             }
         });
@@ -106,7 +122,7 @@ class GalleryNavigation {
     cleanupMobileBehavior(gallery, items) {
         // Remove mobile-active class
         gallery.classList.remove('mobile-active');
-        
+
         // Clean up item classes
         items.forEach(item => {
             item.classList.remove('selected');
@@ -183,7 +199,7 @@ class GalleryNavigation {
         if (this.isMobile) {
             return;
         }
-        
+
         const deltaX = this.touchEndX - this.touchStartX;
         const deltaY = this.touchEndY - this.touchStartY;
         const minSwipeDistance = 50;
@@ -225,7 +241,7 @@ class GalleryNavigation {
         if (this.isMobile) {
             return;
         }
-        
+
         const items = gallery.querySelectorAll('.portfolio-gallery-item, .media-item');
         this.selectItem(gallery, items, this.currentIndex);
     }

@@ -1167,36 +1167,75 @@
         /* Make items more touch-friendly on mobile */
         min-height: 200px;
         cursor: pointer;
+        pointer-events: none; /* Disable individual item clicks on mobile */
+        touch-action: none; /* Disable touch gestures on mobile */
+        transition: none !important; /* Disable all transitions on mobile */
+        animation: none !important; /* Disable all animations on mobile */
+    }
+
+    /* Disable ALL hover effects on mobile to prevent horizontal accordion */
+    .media-grid:hover .media-item {
+        transform: none !important;
+    }
+
+    .media-grid:hover::before {
+        opacity: 0 !important;
+    }
+
+    /* Disable ALL hover effects on mobile - comprehensive */
+    .media-grid:hover .media-item:hover {
+        transform: none !important;
+        background: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Disable scroll-active effects on mobile */
+    .media-grid.scroll-active .media-item {
+        transform: none !important;
     }
 
     /* On mobile, show all items fanned out by default for better interaction */
     .media-grid.mobile-active .media-item:nth-child(1) {
-        transform: translate(-50%, -50%) translateX(-160px) rotate(-8deg) scale(0.9);
+        transform: translate(-50%, -50%) rotate(-3deg) translateY(0px) !important;
         z-index: 7;
+        transition: none !important;
+        animation: none !important;
     }
     .media-grid.mobile-active .media-item:nth-child(2) {
-        transform: translate(-50%, -50%) translateX(-100px) rotate(-5deg) scale(0.9);
+        transform: translate(-50%, -50%) rotate(2deg) translateY(10px) !important;
         z-index: 6;
+        transition: none !important;
+        animation: none !important;
     }
     .media-grid.mobile-active .media-item:nth-child(3) {
-        transform: translate(-50%, -50%) translateX(-50px) rotate(-2deg) scale(0.9);
+        transform: translate(-50%, -50%) rotate(-2deg) translateY(20px) !important;
         z-index: 5;
+        transition: none !important;
+        animation: none !important;
     }
     .media-grid.mobile-active .media-item:nth-child(4) {
-        transform: translate(-50%, -50%) translateX(0px) rotate(0deg) scale(1);
-        z-index: 8;
+        transform: translate(-50%, -50%) rotate(3deg) translateY(30px) !important;
+        z-index: 4;
+        transition: none !important;
+        animation: none !important;
     }
     .media-grid.mobile-active .media-item:nth-child(5) {
-        transform: translate(-50%, -50%) translateX(50px) rotate(2deg) scale(0.9);
-        z-index: 5;
+        transform: translate(-50%, -50%) rotate(-2deg) translateY(40px) !important;
+        z-index: 3;
+        transition: none !important;
+        animation: none !important;
     }
     .media-grid.mobile-active .media-item:nth-child(6) {
-        transform: translate(-50%, -50%) translateX(100px) rotate(5deg) scale(0.9);
-        z-index: 6;
+        transform: translate(-50%, -50%) rotate(2deg) translateY(50px) !important;
+        z-index: 2;
+        transition: none !important;
+        animation: none !important;
     }
     .media-grid.mobile-active .media-item:nth-child(7) {
-        transform: translate(-50%, -50%) translateX(160px) rotate(8deg) scale(0.9);
-        z-index: 7;
+        transform: translate(-50%, -50%) rotate(-3deg) translateY(60px) !important;
+        z-index: 1;
+        transition: none !important;
+        animation: none !important;
     }
 
     /* Individual item selection on mobile */

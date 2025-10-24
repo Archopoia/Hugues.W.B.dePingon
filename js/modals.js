@@ -172,6 +172,20 @@ export function openImageGallery(galleryType) {
             videos: [
                 { src: 'Assets/Commissions/2018 - CharacterSheet animation.mp4', caption: 'Character Sheet Animation (2018)' }
             ]
+        },
+        'media-appearances': {
+            title: 'Media Appearances & Public Events',
+            images: [
+                { src: 'Assets/Hugues/Articles/Hugues.W.B.dePingon - fullfashion.jpg', caption: 'Street Photography - Vilnius, Lithuania', url: 'https://www.facebook.com/permalink.php?story_fbid=pfbid022JYJWjRgNiZ6JKe6aWSzoYrY4cHvapwYjTo1tki7QXFiVKYSEcjAKPQTgaR2p3fXl&id=100011063237238' },
+                { src: 'Assets/Hugues/Articles/Hugues.W.B.dePingon - BrainBar2025.jpg', caption: 'Brain Bar 2025 - Discussing de-extinction with Ben Lamm (Colossal CEO)', url: 'https://youtu.be/98z9I0WwnY8?t=42' },
+                { src: 'Assets/Hugues/Articles/Hugues.W.B.dePingon - Vilnius Saint John Juonines Festival.PNG', caption: 'Saint John\'s Festival - Joninės celebration in Vilnius, Lithuania', url: 'https://www.delfi.lt/vasara/naujienos/vilniuje-jau-dega-lauzai-ir-pinami-vainikai-verkiu-rumu-parke-prasidejo-tradicine-rasos-svente-81526543#gallery-id=84b01d40-7347-11ed-b29f-3da05397cd7c&image-id=e4a83fd0-7346-11ed-a414-71a9be2e1577' },
+                { src: 'Assets/Hugues/Articles/HuguesPrague-PhilTheCulture2019.png', caption: 'Phil the Culture - Philosophy conference in Prague (2019)', url: 'https://youtu.be/Zqk13xZzI28?t=144' },
+                { src: 'Assets/Hugues/Articles/Hugues - Systema - 2018.png', caption: 'Systema Martial Arts - Russian martial arts training (2018)', url: 'https://www.montanakaimin.com/news/russian-martial-art-takes-unusual-approach-to-combat/article_dbd20f2e-14df-11e7-9334-1b04718bd1b6.html' },
+                { src: 'Assets/Hugues/Articles/Hugues.W.B.dePingon - ASUM.webp', caption: 'ASUM Presidential Campaign - University of Montana (2018)', url: 'https://www.montanakaimin.com/features/who-will-be-our-next-fearless-leader-asum-candidate-profiles/article_51257c7e-3c4f-11e8-9548-536939775063.html' }
+            ],
+            videos: [
+                { src: 'Assets/Hugues/Articles/Hugues.W.B.dePingon - 2020 - RTS - Alpagisme.mp4', caption: 'RTS Documentary - Alpine pastoralism in Swiss mountains (2020)', url: 'https://www.facebook.com/reel/290268345456134' }
+            ]
         }
     };
 
@@ -196,7 +210,14 @@ export function openImageGallery(galleryType) {
                 img.style.cssText = 'width: 100%; height: auto; border-radius: 8px; cursor: pointer; transition: transform 0.3s;';
                 img.onmouseover = () => img.style.transform = 'scale(1.05)';
                 img.onmouseout = () => img.style.transform = 'scale(1)';
-                img.onclick = () => window.open(item.src, '_blank');
+                img.onclick = () => {
+                    // For media-appearances gallery, open the URL instead of the image
+                    if (galleryType === 'media-appearances' && item.url) {
+                        window.open(item.url, '_blank');
+                    } else {
+                        window.open(item.src, '_blank');
+                    }
+                };
 
                 const caption = document.createElement('p');
                 caption.textContent = item.caption;
@@ -217,7 +238,13 @@ export function openImageGallery(galleryType) {
                 const video = document.createElement('video');
                 video.src = item.src;
                 video.controls = true;
-                video.style.cssText = 'width: 100%; height: auto; border-radius: 8px;';
+                video.style.cssText = 'width: 100%; height: auto; border-radius: 8px; cursor: pointer;';
+                video.onclick = () => {
+                    // For media-appearances gallery, open the URL instead of playing the video
+                    if (galleryType === 'media-appearances' && item.url) {
+                        window.open(item.url, '_blank');
+                    }
+                };
 
                 const caption = document.createElement('p');
                 caption.textContent = item.caption;

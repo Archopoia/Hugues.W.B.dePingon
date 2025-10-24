@@ -60,12 +60,12 @@ export async function loadSection(sectionName) {
                             window.initializeGalleryNavigation();
                         }
                     }
-                    if (sectionName === 'skills') {
-                        initializeSkillsNavigation();
-                        setTimeout(() => animateSkillBars(), 200);
-                    }
                     if (sectionName === 'contact') {
                         initializeContactMethods();
+                        // Initialize gallery navigation for contact tab
+                        if (typeof window.initializeGalleryNavigation === 'function') {
+                            window.initializeGalleryNavigation();
+                        }
                     }
                     if (sectionName === 'education') {
                         initializeEducationNavigation();
