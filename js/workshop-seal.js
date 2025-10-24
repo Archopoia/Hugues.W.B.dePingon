@@ -9,6 +9,8 @@ let rotationInterval = null;
 let currentRotation = 0;
 let rotationSpeed = 0;
 let activeWorkshopTab = null;
+let reverseAnimationFrame = null; // Track reverse animation
+let wasReverseAnimationCanceled = false; // Track if reverse animation was canceled
 
 // Get the pull sound duration to sync animation
 let pullSoundDuration = 2.0; // Default
@@ -62,15 +64,32 @@ async function startPress(e) {
         activeAnimations.forEach(anim => anim.cancel());
     }
 
+    // Cancel any ongoing reverse animation
+    if (reverseAnimationFrame) {
+        cancelAnimationFrame(reverseAnimationFrame);
+        reverseAnimationFrame = null;
+        wasReverseAnimationCanceled = true;
+
+        // Don't clean up workshop preview when canceling reverse animation
+        // The new press will continue from the current state
+    }
+
     // Use performance.now() for consistency with requestAnimationFrame
     pressStartTime = performance.now();
-    currentRotation = 0;
-    rotationSpeed = 0;
+
+    // If we're continuing from a canceled reverse animation, don't reset rotation
+    if (!wasReverseAnimationCanceled) {
+        currentRotation = 0;
+        rotationSpeed = 0;
+    } else {
+        // We're continuing from a canceled reverse animation, keep current rotation
+        wasReverseAnimationCanceled = false; // Reset flag
+    }
 
     // Disable transition during rotation and clear any lingering styles
     workshopSealButton.style.transition = 'none';
     workshopSealButton.style.animation = '';
-    workshopSealButton.style.transform = 'rotate(0deg)'; // Start from 0
+    workshopSealButton.style.transform = `rotate(${currentRotation}deg)`; // Start from current rotation
 
     // Add pressing class for pulse effect
     workshopSealButton.classList.add('pressing');
@@ -376,6 +395,12 @@ function cancelPress() {
         rotationInterval = null;
     }
 
+    // Cancel any ongoing reverse animation
+    if (reverseAnimationFrame) {
+        cancelAnimationFrame(reverseAnimationFrame);
+        reverseAnimationFrame = null;
+    }
+
     let pullStoppedAt = 0;
     if (window.soundManager) {
         pullStoppedAt = window.soundManager.stopPull(true);
@@ -554,9 +579,10 @@ function startReverseAnimation(workshopSealButton, activeWorkshopTab, startRotat
         }
 
         if (progress < 1) {
-            requestAnimationFrame(reverseAnimate);
+            reverseAnimationFrame = requestAnimationFrame(reverseAnimate);
         } else {
             // Animation complete - clean up
+            reverseAnimationFrame = null;
             workshopSealButton.style.transition = '';
             workshopSealButton.style.transform = 'scale(1) rotate(0deg)';
             workshopSealButton.style.willChange = 'auto';
@@ -568,6 +594,6 @@ function startReverseAnimation(workshopSealButton, activeWorkshopTab, startRotat
         }
     }
 
-    requestAnimationFrame(reverseAnimate);
+    reverseAnimationFrame = requestAnimationFrame(reverseAnimate);
 }
 
