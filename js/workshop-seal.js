@@ -303,8 +303,8 @@ async function endPress(e) {
         workshopSealButton.style.transition = 'transform 0.3s ease';
         workshopSealButton.style.transform = 'scale(1) rotate(0deg)';
 
-        // Reverse the workshop tab animation
-        if (activeWorkshopTab && !activeWorkshopTab.classList.contains('active')) {
+        // Always clean up workshop preview for quick clicks (regardless of active state)
+        if (activeWorkshopTab) {
             cleanupWorkshopPreview(activeWorkshopTab, false);
         }
 
