@@ -176,13 +176,38 @@ export function openImageGallery(galleryType) {
         'media-appearances': {
             title: 'Media Appearances & Public Events',
             images: [
-                { src: 'Assets/Hugues/Articles/Hugues.W.B.dePingon - fullfashion.jpg', caption: 'Street Photography - Vilnius, Lithuania', url: 'https://www.facebook.com/permalink.php?story_fbid=pfbid022JYJWjRgNiZ6JKe6aWSzoYrY4cHvapwYjTo1tki7QXFiVKYSEcjAKPQTgaR2p3fXl&id=100011063237238' },
-                { src: 'Assets/Hugues/Articles/Hugues.W.B.dePingon - BrainBar2025.jpg', caption: 'Brain Bar 2025 - Discussing de-extinction with Ben Lamm (Colossal CEO)', url: 'https://youtu.be/98z9I0WwnY8?t=42' },
-                { src: 'Assets/Hugues/Articles/Hugues.W.B.dePingon - Vilnius Saint John Juonines Festival.PNG', caption: 'Saint John\'s Festival - Joninės celebration in Vilnius, Lithuania', url: 'https://www.delfi.lt/vasara/naujienos/vilniuje-jau-dega-lauzai-ir-pinami-vainikai-verkiu-rumu-parke-prasidejo-tradicine-rasos-svente-81526543#gallery-id=84b01d40-7347-11ed-b29f-3da05397cd7c&image-id=e4a83fd0-7346-11ed-a414-71a9be2e1577' },
-                { src: 'Assets/Hugues/Articles/Hugues.W.B.dePingon - ASUM.webp', caption: 'ASUM Presidential Campaign - University of Montana (2018)', url: 'https://www.montanakaimin.com/features/who-will-be-our-next-fearless-leader-asum-candidate-profiles/article_51257c7e-3c4f-11e8-9548-536939775063.html' }
+                {
+                    src: 'Assets/Hugues/Articles/Hugues.W.B.dePingon - fullfashion.jpg',
+                    titleKey: 'media-vilnius-title',
+                    descKey: 'media-vilnius-desc',
+                    url: 'https://www.facebook.com/permalink.php?story_fbid=pfbid022JYJWjRgNiZ6JKe6aWSzoYrY4cHvapwYjTo1tki7QXFiVKYSEcjAKPQTgaR2p3fXl&id=100011063237238'
+                },
+                {
+                    src: 'Assets/Hugues/Articles/Hugues.W.B.dePingon - BrainBar2025.jpg',
+                    titleKey: 'media-brainbar-title',
+                    descKey: 'media-brainbar-desc',
+                    url: 'https://youtu.be/98z9I0WwnY8?t=42'
+                },
+                {
+                    src: 'Assets/Hugues/Articles/Hugues.W.B.dePingon - Vilnius Saint John Juonines Festival.PNG',
+                    titleKey: 'media-festival-title',
+                    descKey: 'media-festival-desc',
+                    url: 'https://www.delfi.lt/vasara/naujienos/vilniuje-jau-dega-lauzai-ir-pinami-vainikai-verkiu-rumu-parke-prasidejo-tradicine-rasos-svente-81526543#gallery-id=84b01d40-7347-11ed-b29f-3da05397cd7c&image-id=e4a83fd0-7346-11ed-a414-71a9be2e1577'
+                },
+                {
+                    src: 'Assets/Hugues/Articles/Hugues.W.B.dePingon - ASUM.webp',
+                    titleKey: 'media-asum-title',
+                    descKey: 'media-asum-desc',
+                    url: 'https://www.montanakaimin.com/features/who-will-be-our-next-fearless-leader-asum-candidate-profiles/article_51257c7e-3c4f-11e8-9548-536939775063.html'
+                }
             ],
             videos: [
-                { src: 'Assets/Hugues/Articles/Hugues.W.B.dePingon - 2020 - RTS - Alpagisme.mp4', caption: 'RTS Documentary - Alpine pastoralism in Swiss mountains (2020)', url: 'https://www.facebook.com/reel/290268345456134' }
+                {
+                    src: 'Assets/Hugues/Articles/Hugues.W.B.dePingon - 2020 - RTS - Alpagisme.mp4',
+                    titleKey: 'media-rts-title',
+                    descKey: 'media-rts-desc',
+                    url: 'https://www.facebook.com/reel/290268345456134'
+                }
             ]
         }
     };
@@ -204,7 +229,20 @@ export function openImageGallery(galleryType) {
 
                 const img = document.createElement('img');
                 img.src = item.src;
-                img.alt = item.caption;
+
+                // Use translation keys for media-appearances gallery, fallback to caption for others
+                let altText, titleText, descText;
+                if (galleryType === 'media-appearances' && item.titleKey && item.descKey) {
+                    altText = window.getTranslation ? window.getTranslation(item.titleKey) : item.titleKey;
+                    titleText = window.getTranslation ? window.getTranslation(item.titleKey) : item.titleKey;
+                    descText = window.getTranslation ? window.getTranslation(item.descKey) : item.descKey;
+                } else {
+                    altText = item.caption || '';
+                    titleText = item.caption || '';
+                    descText = '';
+                }
+
+                img.alt = altText;
                 img.style.cssText = 'width: 100%; height: auto; border-radius: 8px; cursor: pointer; transition: transform 0.3s;';
                 img.onmouseover = () => img.style.transform = 'scale(1.05)';
                 img.onmouseout = () => img.style.transform = 'scale(1)';
@@ -217,11 +255,18 @@ export function openImageGallery(galleryType) {
                     }
                 };
 
+                // Create title element
+                const title = document.createElement('h4');
+                title.textContent = titleText;
+                title.style.cssText = 'margin: 10px 0 5px 0; font-size: 16px; font-weight: bold; color: #8B7355;';
+
+                // Create description element
                 const caption = document.createElement('p');
-                caption.textContent = item.caption;
-                caption.style.cssText = 'margin-top: 10px; font-size: 14px; color: #8B7355;';
+                caption.textContent = descText;
+                caption.style.cssText = 'margin: 0 0 10px 0; font-size: 14px; color: #8B7355;';
 
                 imgWrapper.appendChild(img);
+                imgWrapper.appendChild(title);
                 imgWrapper.appendChild(caption);
                 galleryContainer.appendChild(imgWrapper);
             });
@@ -244,11 +289,28 @@ export function openImageGallery(galleryType) {
                     }
                 };
 
+                // Use translation keys for media-appearances gallery, fallback to caption for others
+                let titleText, descText;
+                if (galleryType === 'media-appearances' && item.titleKey && item.descKey) {
+                    titleText = window.getTranslation ? window.getTranslation(item.titleKey) : item.titleKey;
+                    descText = window.getTranslation ? window.getTranslation(item.descKey) : item.descKey;
+                } else {
+                    titleText = item.caption || '';
+                    descText = '';
+                }
+
+                // Create title element
+                const title = document.createElement('h4');
+                title.textContent = titleText;
+                title.style.cssText = 'margin: 10px 0 5px 0; font-size: 16px; font-weight: bold; color: #8B7355;';
+
+                // Create description element
                 const caption = document.createElement('p');
-                caption.textContent = item.caption;
-                caption.style.cssText = 'margin-top: 10px; font-size: 14px; color: #8B7355;';
+                caption.textContent = descText;
+                caption.style.cssText = 'margin: 0 0 10px 0; font-size: 14px; color: #8B7355;';
 
                 videoWrapper.appendChild(video);
+                videoWrapper.appendChild(title);
                 videoWrapper.appendChild(caption);
                 galleryContainer.appendChild(videoWrapper);
             });
