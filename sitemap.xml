@@ -20,5 +20,21 @@
     </image:image>
   </url>
 
+  <!-- Portfolio - Academia Section -->
+  <url>
+    <loc>https://archopoia.github.io/Hugues.W.B.dePingon/#portfolio</loc>
+    <lastmod>2025-10-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- BIOCRACY Thesis -->
+  <url>
+    <loc>https://archopoia.github.io/Hugues.W.B.dePingon/Portfolio/Academia%20(Foresight,%20Ethics%20%26%20Serious%20Games)/2025%20-%20BIOCRACY%20-%20A%20Nietzschean%20Alignment;%20From%20Artificial%20Intelligence%20to%20Accelerated%20Independence%20-%20H.W.B.dePingon.pdf</loc>
+    <lastmod>2025-10-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>
 

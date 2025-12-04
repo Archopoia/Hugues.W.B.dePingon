@@ -447,6 +447,8 @@ const translations = {
         "port-unesco-meta": "2023 - Article",
         "port-ateliers-title": "Serious Games: Ateliers de JdR",
         "port-ateliers-meta": "2023 - Article",
+        "port-biocracy-title": "BIOCRACY - A Nietzschean AI Alignment",
+        "port-biocracy-meta": "2025 - Master's Thesis",
 
         // Skills Section
         "skills-overview": "Overview",
@@ -1128,6 +1130,8 @@ const translations = {
         "port-unesco-meta": "2023 - Article",
         "port-ateliers-title": "Serious Games: Ateliers de JdR",
         "port-ateliers-meta": "2023 - Article",
+        "port-biocracy-title": "BIOCRATIE - Un Alignement d'IA Nietzschéen",
+        "port-biocracy-meta": "2025 - Mémoire de Master",
 
         // Skills Section
         "skills-overview": "Vue d'ensemble",

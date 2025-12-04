@@ -57,8 +57,8 @@ function isMobileDevice() {
 export function openFullPDF(pdfType) {
     const pdfSources = {
         'biocracy': {
-            title: 'BIOCRACY - A Nietzschean Alignment',
-            src: 'Portfolio/Academia (Foresight, Ethics & Serious Games)/2025 - MASTER - BIOCRACY - A Nietzschean Alignment; From Artificial Intelligence to Accelerated Independence - H.W.B.dePingon.pdf'
+            title: 'BIOCRACY - A Nietzschean AI Alignment',
+            src: 'Portfolio/Academia (Foresight, Ethics & Serious Games)/2025 - BIOCRACY - A Nietzschean Alignment; From Artificial Intelligence to Accelerated Independence - H.W.B.dePingon.pdf'
         },
         'morality': {
             title: 'Evaluation of Morality as a factor of Creativity',
