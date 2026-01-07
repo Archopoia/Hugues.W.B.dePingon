@@ -7,7 +7,7 @@ const translations = {
         "lang-name": "EN",
 
         // Header
-        "subtitle": "System Designer: Ethics, Esthetics and Experience",
+        "subtitle": "SYSTEM DESIGNER: Emergence through Ethics, Esthetics and Experience",
         "age": "Age",
         "current-role": "Current Role",
         "lead-game-designer": "Lead Game Designer",
@@ -690,7 +690,7 @@ const translations = {
         "lang-name": "FR",
 
         // Header
-        "subtitle": "Concepteur de Systèmes: Éthique, Esthétique et Expérience",
+        "subtitle": "Concepteur de Systèmes: Émergence par l'Éthique, l'Esthétique et l'Expérience",
         "age": "Âge",
         "current-role": "Poste actuel",
         "lead-game-designer": "Lead Game Designer",
