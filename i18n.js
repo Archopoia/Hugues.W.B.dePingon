@@ -7,7 +7,7 @@ const translations = {
         "lang-name": "EN",
 
         // Header
-        "subtitle": "System designer, Worldbuilder & Philosopher",
+        "subtitle": "System Designer: Ethics, Esthetics and Experience",
         "age": "Age",
         "current-role": "Current Role",
         "lead-game-designer": "Lead Game Designer",
@@ -690,7 +690,7 @@ const translations = {
         "lang-name": "FR",
 
         // Header
-        "subtitle": "Concepteur de systèmes, Créateur de mondes & Philosophe",
+        "subtitle": "Concepteur de Systèmes: Éthique, Esthétique et Expérience",
         "age": "Âge",
         "current-role": "Poste actuel",
         "lead-game-designer": "Lead Game Designer",
