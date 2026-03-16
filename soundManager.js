@@ -655,9 +655,45 @@ const soundManager = new SoundManager();
 window.addEventListener('DOMContentLoaded', () => {
     const staticLoader = document.getElementById('static-loader');
     const enterButton = document.getElementById('enter-portfolio-btn');
+    const ENTRANCE_COOLDOWN_KEY = 'entranceSeenAt';
+    const ENTRANCE_COOLDOWN_MS = 5 * 60 * 1000; // 5 minutes
 
-    // Lock body scrolling on entrance screen
-    document.body.classList.add('entrance-active');
+    const markEntranceSeenNow = () => {
+        localStorage.setItem(ENTRANCE_COOLDOWN_KEY, String(Date.now()));
+    };
+
+    const shouldShowEntrance = () => {
+        const lastSeenRaw = localStorage.getItem(ENTRANCE_COOLDOWN_KEY);
+        if (!lastSeenRaw) return true;
+        const lastSeen = Number(lastSeenRaw);
+        if (!Number.isFinite(lastSeen)) return true;
+        return (Date.now() - lastSeen) >= ENTRANCE_COOLDOWN_MS;
+    };
+
+    const revealMainUi = () => {
+        const workshopButton = document.querySelector('.workshop-seal-button');
+        const languageSwitcher = document.querySelector('.language-switcher');
+        if (workshopButton) workshopButton.classList.add('visible');
+        if (languageSwitcher) languageSwitcher.classList.add('visible');
+    };
+
+    const startNameTyping = () => {
+        const characterName = document.querySelector('.character-name');
+        if (characterName && window.typeWriter) {
+            const originalText = characterName.dataset.originalText || characterName.textContent;
+            window.typeWriter(characterName, originalText, 80);
+        }
+    };
+
+    // Lock body scrolling only if entrance screen should be shown.
+    if (shouldShowEntrance()) {
+        document.body.classList.add('entrance-active');
+    } else {
+        document.body.classList.remove('entrance-active');
+        if (staticLoader) staticLoader.remove();
+        revealMainUi();
+        startNameTyping();
+    }
 
     // Add button hover effects
     if (enterButton) {
@@ -687,39 +723,37 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Unlock audio on user interaction
     let audioUnlocked = false;
-    const unlockAudio = async (playSound = true) => {
+    const unlockAudio = async (playSound = true, animateEntrance = true) => {
         if (audioUnlocked) return;
         audioUnlocked = true;
+        markEntranceSeenNow();
 
-        // Hide button
-        if (enterButton) {
-            enterButton.style.display = 'none';
-        }
+        if (animateEntrance) {
+            // Hide button
+            if (enterButton) {
+                enterButton.style.display = 'none';
+            }
 
-        // Fade out the static loader
-        if (staticLoader) {
-            staticLoader.style.animation = 'fadeOut 1.5s ease-in-out forwards';
+            // Fade out the static loader
+            if (staticLoader) {
+                staticLoader.style.animation = 'fadeOut 1.5s ease-in-out forwards';
 
-            // Start typing animation 200ms before fadeOut completes (at 1300ms)
-            setTimeout(() => {
-                const characterName = document.querySelector('.character-name');
-                if (characterName && window.typeWriter) {
-                    const originalText = characterName.dataset.originalText || characterName.textContent;
-                    window.typeWriter(characterName, originalText, 80);
-                }
-            }, 1300);
+                // Start typing animation 200ms before fadeOut completes (at 1300ms)
+                setTimeout(() => {
+                    const characterName = document.querySelector('.character-name');
+                    if (characterName && window.typeWriter) {
+                        const originalText = characterName.dataset.originalText || characterName.textContent;
+                        window.typeWriter(characterName, originalText, 80);
+                    }
+                }, 1300);
 
-            setTimeout(() => {
-                staticLoader.remove();
+                setTimeout(() => {
+                    staticLoader.remove();
 
-                // Show workshop button and language switcher after entrance screen is gone
-                const workshopButton = document.querySelector('.workshop-seal-button');
-                const languageSwitcher = document.querySelector('.language-switcher');
-                if (workshopButton) {
-                    workshopButton.classList.add('visible');
-                }
-                if (languageSwitcher) languageSwitcher.classList.add('visible');
-            }, 1500);
+                    // Show workshop button and language switcher after entrance screen is gone
+                    revealMainUi();
+                }, 1500);
+            }
         }
 
         // Create an array of unlock promises for all pooled audio
@@ -793,6 +827,20 @@ window.addEventListener('DOMContentLoaded', () => {
         }, 1000);
     };
 
+    // If entrance was recently seen, skip it and unlock audio on first interaction.
+    if (!shouldShowEntrance()) {
+        const unlockOnFirstInteraction = () => {
+            unlockAudio(false, false);
+            document.removeEventListener('pointerdown', unlockOnFirstInteraction);
+            document.removeEventListener('keydown', unlockOnFirstInteraction);
+            document.removeEventListener('touchstart', unlockOnFirstInteraction);
+        };
+        document.addEventListener('pointerdown', unlockOnFirstInteraction, { once: true });
+        document.addEventListener('keydown', unlockOnFirstInteraction, { once: true });
+        document.addEventListener('touchstart', unlockOnFirstInteraction, { once: true });
+        return;
+    }
+
     // Try to autoplay immediately (will work if user has high MEI or on some browsers)
     setTimeout(async () => {
         // Create a separate test audio to avoid affecting the real doorUnlock sound
@@ -833,6 +881,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 enterButton.addEventListener('click', () => {
                     // Prevent fallback handler from running
                     window.keyholeClickInProgress = true;
+                    markEntranceSeenNow();
 
                     // Unlock body scrolling immediately on click
                     document.body.classList.remove('entrance-active');
