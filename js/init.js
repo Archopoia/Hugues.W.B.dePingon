@@ -10,9 +10,30 @@ import { initializeContactFormSubmit, switchContactMethod, nextQuestion, previou
 import { initializeVideoHoverPlay } from './media.js';
 import { initializeWorkshopSeal } from './workshop-seal.js';
 
+function updateAgeStat() {
+    const ageValueElement = document.getElementById('age-value');
+    if (!ageValueElement) return;
+
+    // Birthday is March 1st, 1996.
+    const birthYear = 1996;
+    const birthMonthIndex = 2; // March (0-based index)
+    const birthDay = 1;
+
+    const today = new Date();
+    const hasHadBirthdayThisYear =
+        today.getMonth() > birthMonthIndex ||
+        (today.getMonth() === birthMonthIndex && today.getDate() >= birthDay);
+
+    const calculatedAge = today.getFullYear() - birthYear - (hasHadBirthdayThisYear ? 0 : 1);
+    ageValueElement.textContent = String(calculatedAge);
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Always scroll to top of page on load
     window.scrollTo(0, 0);
+
+    // Keep age in sync automatically every year on March 1st.
+    updateAgeStat();
 
     // Clear character name initially (typing animation will fill it after entrance)
     const characterName = document.querySelector('.character-name');
