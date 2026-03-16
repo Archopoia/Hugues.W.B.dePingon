@@ -318,10 +318,52 @@
     transform: scale(1.05);
     cursor: default;
     filter: brightness(1.2);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
 }
 
 .stat-item.stat-locked:hover {
-    transform: scale(1.05);
-    filter: brightness(1.2);
+    filter: inherit;
+}
+
+/* Sequence visual cue: white -> signature gold glow, increasing by order */
+.stat-item.stat-locked-step-1 {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 248, 236, 0.25) 100%);
+    border-color: rgba(255, 255, 255, 0.95);
+    box-shadow:
+        0 0 20px rgba(255, 255, 255, 0.85),
+        0 0 30px rgba(255, 249, 238, 0.4),
+        inset 0 0 14px rgba(255, 255, 255, 0.5);
+    transform: scale(1.04);
+}
+
+.stat-item.stat-locked-step-2 {
+    background: linear-gradient(135deg, rgba(255, 244, 220, 0.5) 0%, rgba(255, 234, 196, 0.3) 100%);
+    border-color: rgba(255, 240, 212, 0.95);
+    box-shadow:
+        0 0 24px rgba(255, 242, 218, 0.9),
+        0 0 38px rgba(255, 229, 178, 0.55),
+        inset 0 0 16px rgba(255, 244, 220, 0.55);
+    transform: scale(1.06);
+}
+
+.stat-item.stat-locked-step-3 {
+    background: linear-gradient(135deg, rgba(255, 234, 192, 0.52) 0%, rgba(255, 220, 160, 0.35) 100%);
+    border-color: rgba(255, 228, 184, 0.95);
+    box-shadow:
+        0 0 30px rgba(255, 230, 184, 0.95),
+        0 0 48px rgba(255, 213, 141, 0.65),
+        inset 0 0 18px rgba(255, 236, 198, 0.6);
+    transform: scale(1.08);
+}
+
+.stat-item.stat-locked-step-4 {
+    background: linear-gradient(135deg, rgba(255, 235, 198, 0.62) 0%, rgba(255, 215, 0, 0.44) 100%);
+    border-color: var(--gold-glow);
+    box-shadow:
+        0 0 38px var(--gold-glow),
+        0 0 62px rgba(255, 215, 0, 0.8),
+        inset 0 0 22px rgba(255, 238, 205, 0.7);
+    transform: scale(1.11);
+    filter: brightness(1.28);
 }
 

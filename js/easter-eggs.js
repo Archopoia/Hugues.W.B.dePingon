@@ -31,7 +31,13 @@ function resetSequence() {
     secretSequence = [];
     // Remove locked highlights
     lockedStats.forEach(stat => {
-        stat.classList.remove('stat-locked');
+        stat.classList.remove(
+            'stat-locked',
+            'stat-locked-step-1',
+            'stat-locked-step-2',
+            'stat-locked-step-3',
+            'stat-locked-step-4'
+        );
     });
     lockedStats = [];
     clearTimeout(resetTimer);
@@ -234,6 +240,11 @@ export function initializeEasterEggs() {
 
                 // Lock this stat with highlight
                 this.classList.add('stat-locked');
+                const positionInCorrectSequence = correctSequence.indexOf(label);
+                if (positionInCorrectSequence >= 0) {
+                    // Visual cue is tied to the true secret order, not click order.
+                    this.classList.add(`stat-locked-step-${positionInCorrectSequence + 1}`);
+                }
                 lockedStats.push(this);
 
                 secretSequence.push(label);
@@ -241,7 +252,6 @@ export function initializeEasterEggs() {
                 // Play bell sound based on this stat's position in the CORRECT sequence
                 // This way, each stat always plays the same bell (as a hint)
                 // Position 0 in correct sequence = bell4, 1 = bell3, 2 = bell2, 3 = bell1
-                const positionInCorrectSequence = correctSequence.indexOf(label);
                 if (window.soundManager && positionInCorrectSequence >= 0) {
                     window.soundManager.playBellForSequence(positionInCorrectSequence);
                 }
