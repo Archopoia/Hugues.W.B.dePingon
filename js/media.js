@@ -6,26 +6,42 @@ import { getElementFromTarget } from './utils.js';
 export function initializeEducationNavigation() {
     const eduNavBtns = document.querySelectorAll('.edu-nav-btn');
     const educationSections = document.querySelectorAll('.education-section');
+    const sectionIdMap = {
+        graduate: 'graduate-studies',
+        undergraduate: 'undergraduate-studies',
+        specialized: 'specialized-training'
+    };
 
+    const switchEducationSection = (button) => {
+        const targetSection = button.getAttribute('data-section');
+
+        // Remove active class from all buttons and sections
+        eduNavBtns.forEach(b => b.classList.remove('active'));
+        educationSections.forEach(s => s.classList.remove('active'));
+
+        // Add active class to clicked button
+        button.classList.add('active');
+
+        // Show target section (explicit mapping + fallback for compatibility)
+        const mappedId = sectionIdMap[targetSection];
+        const targetElement = document.getElementById(mappedId) ||
+                             document.getElementById(targetSection + '-studies') ||
+                             document.getElementById(targetSection + '-training');
+        if (targetElement) {
+            targetElement.classList.add('active');
+        }
+    };
+
+    // Use onclick assignment so repeated initializations remain stable.
     eduNavBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const targetSection = this.getAttribute('data-section');
-
-            // Remove active class from all buttons and sections
-            eduNavBtns.forEach(b => b.classList.remove('active'));
-            educationSections.forEach(s => s.classList.remove('active'));
-
-            // Add active class to clicked button
-            this.classList.add('active');
-
-            // Show target section
-            const targetElement = document.getElementById(targetSection + '-studies') ||
-                                 document.getElementById(targetSection + '-training');
-            if (targetElement) {
-                targetElement.classList.add('active');
-            }
-        });
+        btn.onclick = () => switchEducationSection(btn);
     });
+
+    // Ensure initial state is synchronized with the active button.
+    const activeBtn = document.querySelector('.edu-nav-btn.active') || eduNavBtns[0];
+    if (activeBtn) {
+        switchEducationSection(activeBtn);
+    }
 }
 
 // Performance: Use event delegation for video hover play
