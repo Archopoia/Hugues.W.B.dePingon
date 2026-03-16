@@ -170,14 +170,6 @@ class GalleryNavigation {
             }
         });
 
-        // Prevent page scrolling when hovering over gallery
-        gallery.addEventListener('mouseenter', () => {
-            document.body.style.overflow = 'hidden';
-        });
-
-        gallery.addEventListener('mouseleave', () => {
-            document.body.style.overflow = '';
-        });
     }
 
     setupTouchGestures(gallery) {

@@ -44,6 +44,7 @@ export function openFullVideo(videoType) {
 
         modal.style.display = 'flex';
         modal.style.animation = 'fadeIn 0.3s ease-in-out';
+        lockBodyScrollForModal();
     }
 }
 
@@ -123,6 +124,7 @@ export function openFullPDF(pdfType) {
 
     modal.style.display = 'flex';
     modal.style.animation = 'fadeIn 0.3s ease-in-out';
+    lockBodyScrollForModal();
 }
 
 // Image Gallery Modal
@@ -321,6 +323,7 @@ export function openImageGallery(galleryType) {
 
         modal.style.display = 'flex';
         modal.style.animation = 'fadeIn 0.3s ease-in-out';
+        lockBodyScrollForModal();
     }
 }
 
@@ -380,7 +383,7 @@ export function openFullImage(imageSrc) {
     modalBody.appendChild(container);
 
     modal.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
+    lockBodyScrollForModal();
 }
 
 // Close Modal
@@ -391,7 +394,26 @@ export function closeModal() {
         modal.style.display = 'none';
         // Clear the content
         document.getElementById('modal-body').innerHTML = '';
+        unlockBodyScrollForModal();
     }, 300);
+}
+
+function lockBodyScrollForModal() {
+    document.body.dataset.modalScrollLocked = 'true';
+    document.body.style.overflow = 'hidden';
+}
+
+function unlockBodyScrollForModal() {
+    delete document.body.dataset.modalScrollLocked;
+
+    // Keep scroll locked if another system still requires it.
+    const entranceActive = document.body.classList.contains('entrance-active');
+    const chronicleModalActive = document.getElementById('chronicle-modal')?.classList.contains('active');
+    const shouldRemainLocked = entranceActive || chronicleModalActive;
+
+    if (!shouldRemainLocked) {
+        document.body.style.overflow = '';
+    }
 }
 
 // Initialize modal event listeners
