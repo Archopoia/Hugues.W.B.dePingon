@@ -58,7 +58,7 @@ window.scrollTo(0, 0);
 import './js/init.js';
 
 // Export modal functions globally (called from HTML onclick handlers)
-import { openFullVideo, openFullPDF, openImageGallery, openFullImage, closeModal, toggleExpCard } from './js/modals.js';
+import { openFullVideo, openFullPDF, openImageGallery, openFullImage, closeModal, toggleExpCard } from './js/modals.js?v=20260316-1';
 
 window.openFullVideo = openFullVideo;
 window.openFullPDF = openFullPDF;

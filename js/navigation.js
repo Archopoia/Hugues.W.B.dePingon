@@ -22,7 +22,7 @@ export async function loadSection(sectionName) {
     }
 
     try {
-        const response = await fetch(`sections/${sectionName}.html`);
+        const response = await fetch(`sections/${sectionName}.html`, { cache: 'no-store' });
         if (!response.ok) throw new Error(`Failed to load ${sectionName}`);
 
         const html = await response.text();
