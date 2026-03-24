@@ -306,6 +306,33 @@
     margin-right: 0.35rem;
 }
 
+.github-snake-score {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-left: 0.55rem;
+    color: var(--parchment-aged);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    white-space: nowrap;
+}
+
+.github-snake-score-dot {
+    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #3bffea;
+    box-shadow: 0 0 8px rgba(59, 255, 234, 0.65);
+}
+
+.github-snake-score-value {
+    font-variant-numeric: tabular-nums;
+    color: rgba(255, 250, 242, 0.95);
+}
+
 .github-heatmap-shell {
     display: inline-block;
     width: max-content;
@@ -358,6 +385,7 @@
     letter-spacing: 0.8px;
 }
 
+/* Align with heatmap data rows 2 / 4 / 6 (snake row-blade only uses these three bands). */
 .github-heatmap-weekdays span:nth-child(1) {
     grid-row: 2;
 }
@@ -368,6 +396,66 @@
 
 .github-heatmap-weekdays span:nth-child(3) {
     grid-row: 6;
+}
+
+.github-heatmap-months .github-heatmap-month.snake-column-label-pulse {
+    animation: snakeMonthLabelWallPulse 750ms ease-in-out 1 both;
+    z-index: 2;
+}
+
+.github-heatmap-months .github-heatmap-month.snake-column-label-pulse:first-child {
+    visibility: visible;
+}
+
+.github-heatmap-weekdays span.snake-weekday-label-pulse {
+    animation: snakeWeekdayLabelBladePulse 10s linear 1 both;
+    z-index: 2;
+}
+
+@keyframes snakeMonthLabelWallPulse {
+    0% {
+        opacity: 0.75;
+        color: var(--parchment-aged);
+        text-shadow: none;
+        transform: scale(1);
+    }
+    40% {
+        opacity: 1;
+        color: #3a363d;
+        text-shadow:
+            0 0 6px rgba(0, 0, 0, 0.55),
+            0 0 14px rgba(25, 22, 30, 0.75);
+        transform: scale(1.08);
+    }
+    100% {
+        opacity: 0.92;
+        color: var(--parchment-aged);
+        text-shadow: 0 0 4px rgba(20, 18, 24, 0.35);
+        transform: scale(1);
+    }
+}
+
+@keyframes snakeWeekdayLabelBladePulse {
+    0% {
+        opacity: 0.75;
+        color: var(--parchment-aged);
+        text-shadow: none;
+        transform: scale(1);
+    }
+    40% {
+        opacity: 1;
+        color: #ff8a8a;
+        text-shadow:
+            0 0 8px rgba(255, 100, 100, 0.95),
+            0 0 18px rgba(200, 50, 50, 0.55);
+        transform: scale(1.12);
+    }
+    100% {
+        opacity: 0.9;
+        color: var(--parchment-aged);
+        text-shadow: 0 0 4px rgba(255, 90, 90, 0.35);
+        transform: scale(1);
+    }
 }
 
 .github-heatmap-grid {
@@ -449,27 +537,289 @@
     animation: none !important;
 }
 
+/* Snake game trigger: reads as a floating icon, not a heatmap cell */
 .github-cell.snake-trigger-cell {
     cursor: pointer;
-    z-index: 2;
+    z-index: 6;
+    overflow: visible !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    isolation: isolate;
+}
+
+.github-cell.snake-trigger-cell::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    /* Wider than the 11px cell so clicks on the aura start the game */
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-left: -1.375rem;
+    margin-top: -1.375rem;
+    border-radius: 50%;
+    pointer-events: auto;
+    z-index: 1;
+    transform-origin: center center;
+    transition:
+        opacity 220ms ease-out,
+        box-shadow 220ms ease-out,
+        background 220ms ease-out;
+}
+
+/* Pre-start: soft passive aura pulse (hidden during active game via .snake-game-active rule). */
+.github-cell.snake-trigger-cell:not(.snake-trigger-door-near)::before {
+    animation: snakeStartDoorAuraIdle 2.4s ease-in-out infinite;
+}
+
+.github-cell.snake-trigger-cell.snake-trigger-door-near::before {
+    animation: snakeStartDoorAuraNear 1.3s ease-in-out infinite;
+}
+
+.github-cell.snake-trigger-cell::after {
+    opacity: 0 !important;
+    animation: none !important;
+    display: none !important;
 }
 
 .snake-trigger-icon {
     position: absolute;
-    inset: 0;
+    left: 50%;
+    top: 50%;
+    width: 0.95rem;
+    height: 0.95rem;
+    margin-left: -0.475rem;
+    margin-top: -0.475rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.55rem;
-    font-weight: 700;
     color: var(--gold-glow);
-    text-shadow: 0 0 6px rgba(255, 235, 198, 0.85);
     pointer-events: none;
-    z-index: 4;
+    z-index: 2;
+    transform-origin: center center;
+    animation: snakeStartDoorIdlePulse 2.4s ease-in-out infinite;
+    transition:
+        opacity 260ms ease-out,
+        filter 260ms ease-out,
+        transform 260ms ease-out;
 }
 
-.github-heatmap-grid.snake-wave-running .github-cell.snake-wave-clearing {
-    animation: snakeWaveSweep 680ms ease-out both;
+.snake-trigger-icon .snake-exit-door-svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.github-cell.snake-trigger-cell.snake-trigger-door-near .snake-trigger-icon {
+    animation: snakeStartDoorNearPulse 1.3s ease-in-out infinite;
+}
+
+.github-cell.snake-trigger-cell.snake-trigger-fading::before {
+    animation: none !important;
+    opacity: 0;
+    transform: scale(0.6);
+    filter: blur(1px);
+}
+
+.github-cell.snake-trigger-cell.snake-trigger-fading .snake-trigger-icon {
+    animation: none !important;
+    opacity: 0;
+    transform: translateY(-1px) scale(0.75);
+    filter: blur(0.5px);
+}
+
+.github-heatmap-grid.snake-game-active .github-cell.snake-trigger-cell::before,
+.github-heatmap-grid.snake-game-active .github-cell.snake-trigger-cell .snake-trigger-icon {
+    opacity: 0 !important;
+    animation: none !important;
+    transform: scale(0.7);
+    filter: blur(1px);
+    pointer-events: none !important;
+}
+
+/* In-run exit: turquoise aura + icon pulse when head is near (mirrors pre-start gold glow). */
+.github-heatmap-grid.snake-game-active .github-cell.snake-trigger-cell.snake-exit-cell.snake-exit-door-near::before {
+    opacity: 1 !important;
+    animation: snakeExitDoorAuraNear 1.3s ease-in-out infinite !important;
+    transform-origin: center center;
+    filter: none !important;
+    pointer-events: none !important;
+}
+
+/* Exit door symbol (hidden until a run is active). */
+.github-cell .snake-exit-door-icon {
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0.95rem;
+    height: 0.95rem;
+    margin-left: -0.475rem;
+    margin-top: -0.475rem;
+    align-items: center;
+    justify-content: center;
+    color: #3bffea;
+    pointer-events: none;
+    z-index: 3;
+    opacity: 0.3;
+    transition:
+        opacity 220ms ease-out,
+        filter 220ms ease-out;
+}
+
+.github-cell .snake-exit-door-icon .snake-exit-door-svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.github-heatmap-grid.snake-game-active .github-cell.snake-trigger-cell.snake-exit-cell .snake-exit-door-icon {
+    display: flex;
+}
+
+.github-heatmap-grid.snake-game-active .github-cell.snake-trigger-cell.snake-exit-cell.snake-exit-door-near .snake-exit-door-icon {
+    opacity: 1;
+    animation: snakeExitDoorNearPulse 1.3s ease-in-out infinite;
+    transition:
+        opacity 260ms ease-out,
+        filter 260ms ease-out,
+        transform 260ms ease-out;
+}
+
+@keyframes snakeExitDoorNearPulse {
+    0%,
+    100% {
+        opacity: 0.94;
+        transform: scale(1.08);
+        filter: drop-shadow(0 0 6px rgba(59, 255, 234, 0.95)) drop-shadow(0 0 14px rgba(59, 255, 234, 0.65))
+            drop-shadow(0 0 24px rgba(59, 255, 234, 0.38));
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.18);
+        filter: drop-shadow(0 0 10px rgba(120, 255, 245, 1)) drop-shadow(0 0 22px rgba(59, 255, 234, 0.9))
+            drop-shadow(0 0 36px rgba(59, 255, 234, 0.55));
+    }
+}
+
+@keyframes snakeExitDoorAuraNear {
+    0%,
+    100% {
+        opacity: 0.95;
+        transform: scale(1.02);
+        background: radial-gradient(
+            circle,
+            rgba(59, 255, 234, 0.22) 0%,
+            rgba(59, 255, 234, 0.08) 45%,
+            transparent 68%
+        );
+        box-shadow: 0 0 18px rgba(59, 255, 234, 0.42);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.12);
+        background: radial-gradient(
+            circle,
+            rgba(120, 255, 245, 0.32) 0%,
+            rgba(59, 255, 234, 0.12) 42%,
+            transparent 65%
+        );
+        box-shadow: 0 0 28px rgba(59, 255, 234, 0.58);
+    }
+}
+
+/* Pre-start door: gentle always-on pulse; cursor-near ramps up via snakeStartDoorNearPulse / snakeStartDoorAuraNear. */
+@keyframes snakeStartDoorIdlePulse {
+    0%,
+    100% {
+        opacity: 0.4;
+        transform: scale(0.97);
+        filter: drop-shadow(0 0 2px rgba(255, 235, 198, 0.35)) drop-shadow(0 0 6px rgba(255, 215, 120, 0.2));
+    }
+    50% {
+        opacity: 0.58;
+        transform: scale(1.03);
+        filter: drop-shadow(0 0 4px rgba(255, 235, 198, 0.55)) drop-shadow(0 0 10px rgba(255, 220, 150, 0.32));
+    }
+}
+
+@keyframes snakeStartDoorNearPulse {
+    0%,
+    100% {
+        opacity: 0.94;
+        transform: scale(1.08);
+        filter: drop-shadow(0 0 6px rgba(255, 235, 198, 0.95)) drop-shadow(0 0 14px rgba(255, 220, 150, 0.65))
+            drop-shadow(0 0 24px rgba(255, 200, 100, 0.38));
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.18);
+        filter: drop-shadow(0 0 10px rgba(255, 248, 220, 1)) drop-shadow(0 0 22px rgba(255, 228, 170, 0.9))
+            drop-shadow(0 0 36px rgba(255, 210, 130, 0.55));
+    }
+}
+
+@keyframes snakeStartDoorAuraIdle {
+    0%,
+    100% {
+        opacity: 0.45;
+        transform: scale(0.88);
+        background: radial-gradient(
+            circle,
+            rgba(255, 235, 198, 0.12) 0%,
+            rgba(255, 215, 120, 0.04) 48%,
+            transparent 72%
+        );
+        box-shadow: 0 0 8px rgba(255, 220, 150, 0.18);
+    }
+    50% {
+        opacity: 0.85;
+        transform: scale(1);
+        background: radial-gradient(
+            circle,
+            rgba(255, 235, 198, 0.22) 0%,
+            rgba(255, 210, 130, 0.08) 48%,
+            transparent 72%
+        );
+        box-shadow: 0 0 14px rgba(255, 215, 120, 0.32);
+    }
+}
+
+@keyframes snakeStartDoorAuraNear {
+    0%,
+    100% {
+        opacity: 0.95;
+        transform: scale(1.02);
+        background: radial-gradient(
+            circle,
+            rgba(255, 235, 198, 0.28) 0%,
+            rgba(255, 200, 100, 0.1) 45%,
+            transparent 68%
+        );
+        box-shadow: 0 0 18px rgba(255, 220, 150, 0.45);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.12);
+        background: radial-gradient(
+            circle,
+            rgba(255, 248, 230, 0.4) 0%,
+            rgba(255, 210, 130, 0.14) 42%,
+            transparent 65%
+        );
+        box-shadow: 0 0 28px rgba(255, 215, 120, 0.62);
+    }
+}
+
+.github-heatmap-grid.snake-wave-running.snake-wave-start .github-cell.snake-wave-clearing {
+    animation: snakeWaveSweepGold 680ms ease-out both;
+    animation-delay: var(--snake-wave-delay, 0ms);
+}
+
+.github-heatmap-grid.snake-wave-running.snake-wave-end .github-cell.snake-wave-clearing {
+    animation: snakeWaveSweepTurquoise 680ms ease-out both;
     animation-delay: var(--snake-wave-delay, 0ms);
 }
 
@@ -491,38 +841,265 @@
 }
 
 .github-cell.snake-food-cell {
-    background-color: rgba(255, 235, 198, 0.22) !important;
-    border-color: var(--gold-glow);
-    animation: snakeFoodPulse 950ms ease-in-out infinite;
+    background-color: transparent !important;
+    border-color: rgba(255, 248, 236, 0.12);
+    background-image: radial-gradient(
+        circle 4px at 50% 50%,
+        #3bffea 0 99%,
+        transparent 100%
+    ) !important;
+    background-repeat: no-repeat;
     z-index: 2;
 }
 
-.github-cell.snake-segment-head {
-    background: #3bffea !important;
-    border-color: rgba(59, 255, 234, 0.95);
+.github-heatmap-grid.snake-game-active .github-cell.snake-column-pulse {
+    z-index: 1;
+}
+
+/* Full-cell dark charcoal overlay above snake/food during column wall telegraph. */
+.github-heatmap-grid.snake-game-active .github-cell.snake-column-pulse::after {
+    opacity: 1 !important;
+    animation: snakeColumnWallDarkOverlayPulse 750ms ease-in-out 1 both !important;
+    z-index: 12;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.28);
+}
+
+.github-heatmap-grid.snake-game-active .github-cell.snake-row-pulse {
+    animation: snakeRowBladePulse 10s linear 1 both;
+    z-index: 1;
+}
+
+/* Blade charge must read on top of snake segments (higher specificity than .snake-segment-* backgrounds). */
+.github-heatmap-grid.snake-game-active .github-cell.snake-row-pulse.snake-segment-head,
+.github-heatmap-grid.snake-game-active .github-cell.snake-row-pulse.snake-segment-body {
+    animation: snakeRowBladePulse 10s linear 1 both;
+    z-index: 6;
+}
+
+.github-heatmap-grid.snake-game-active .github-cell.snake-wall-cell {
+    background: linear-gradient(145deg, #3d1520 0%, #2a0f18 45%, #1f0c12 100%) !important;
+    border-color: rgba(80, 28, 40, 0.95);
     box-shadow:
-        0 0 8px rgba(59, 255, 234, 0.8),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+        inset 0 0 0 1px rgba(120, 48, 60, 0.35),
+        0 0 4px rgba(40, 12, 20, 0.85);
+    z-index: 3;
+}
+
+/* --snake-shade: 1 at head, 0 at tail (set in JS). Uniform bright turquoise on .snake-win-cell only. */
+.github-cell.snake-segment-head {
+    --snake-shade: 1;
+    background: color-mix(
+        in srgb,
+        #fff4de calc(var(--snake-shade) * 100%),
+        #5a3612 calc((1 - var(--snake-shade)) * 100%)
+    ) !important;
+    border-color: color-mix(
+        in srgb,
+        #ffd6a0 calc(var(--snake-shade) * 100%),
+        #3d2710 calc((1 - var(--snake-shade)) * 100%)
+    );
+    box-shadow:
+        0 0 calc(5px + var(--snake-shade) * 9px)
+            color-mix(
+                in srgb,
+                rgba(255, 220, 175, 0.88) calc(var(--snake-shade) * 100%),
+                rgba(70, 42, 22, 0.55) calc((1 - var(--snake-shade)) * 100%)
+            ),
+        inset 0 0 0 1px rgba(255, 255, 255, calc(0.16 + var(--snake-shade) * 0.28));
     z-index: 5;
+    overflow: visible !important;
+    transition: box-shadow 140ms linear, transform 140ms ease-out;
 }
 
 .github-cell.snake-segment-body {
-    background: rgba(59, 255, 234, 0.65) !important;
-    border-color: rgba(59, 255, 234, 0.8);
-    box-shadow: 0 0 6px rgba(59, 255, 234, 0.45);
+    --snake-shade: 1;
+    background: color-mix(
+        in srgb,
+        #fff4de calc(var(--snake-shade) * 100%),
+        #5a3612 calc((1 - var(--snake-shade)) * 100%)
+    ) !important;
+    border-color: color-mix(
+        in srgb,
+        #ffd6a0 calc(var(--snake-shade) * 100%),
+        #3d2710 calc((1 - var(--snake-shade)) * 100%)
+    );
+    box-shadow:
+        0 0 calc(4px + var(--snake-shade) * 7px)
+            color-mix(
+                in srgb,
+                rgba(255, 210, 160, 0.72) calc(var(--snake-shade) * 100%),
+                rgba(65, 40, 20, 0.5) calc((1 - var(--snake-shade)) * 100%)
+            ),
+        inset 0 0 0 1px rgba(255, 255, 255, calc(0.12 + var(--snake-shade) * 0.18));
     z-index: 4;
+    overflow: visible !important;
+    transition: box-shadow 140ms linear, transform 140ms ease-out;
+}
+
+.github-cell.snake-segment-enter {
+    animation: snakeSegmentBlend 160ms ease-out;
+}
+
+/* Connector bridge so segments visually link through heatmap gaps */
+.github-cell.snake-segment-head::before,
+.github-cell.snake-segment-body::before {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    z-index: -1;
+    background: color-mix(
+        in srgb,
+        rgba(255, 230, 200, 0.82) calc(var(--snake-shade) * 100%),
+        rgba(80, 48, 24, 0.78) calc((1 - var(--snake-shade)) * 100%)
+    );
+    box-shadow: 0 0 5px
+        color-mix(
+            in srgb,
+            rgba(255, 210, 165, 0.5) calc(var(--snake-shade) * 100%),
+            rgba(55, 32, 18, 0.45) calc((1 - var(--snake-shade)) * 100%)
+        );
+    border-radius: 4px;
+}
+
+.github-cell.snake-conn-right::before {
+    top: 2px;
+    right: -3px;
+    width: 6px;
+    height: calc(100% - 4px);
+}
+
+.github-cell.snake-conn-left::before {
+    top: 2px;
+    left: -3px;
+    width: 6px;
+    height: calc(100% - 4px);
+}
+
+.github-cell.snake-conn-up::before {
+    top: -3px;
+    left: 2px;
+    width: calc(100% - 4px);
+    height: 6px;
+}
+
+.github-cell.snake-conn-down::before {
+    bottom: -3px;
+    left: 2px;
+    width: calc(100% - 4px);
+    height: 6px;
 }
 
 .github-cell.snake-game-over-cell {
-    background: rgba(255, 122, 122, 0.7) !important;
-    border-color: rgba(255, 152, 152, 0.95);
-    box-shadow: 0 0 8px rgba(255, 122, 122, 0.6);
+    background: color-mix(
+        in srgb,
+        #ff9a9a calc(var(--snake-shade) * 100%),
+        #6e1c1c calc((1 - var(--snake-shade)) * 100%)
+    ) !important;
+    border-color: color-mix(
+        in srgb,
+        #ffb4b4 calc(var(--snake-shade) * 100%),
+        #4a1010 calc((1 - var(--snake-shade)) * 100%)
+    );
+    box-shadow:
+        0 0 calc(5px + var(--snake-shade) * 9px)
+            color-mix(
+                in srgb,
+                rgba(255, 130, 130, 0.75) calc(var(--snake-shade) * 100%),
+                rgba(70, 24, 24, 0.55) calc((1 - var(--snake-shade)) * 100%)
+            ),
+        inset 0 0 0 1px rgba(255, 255, 255, calc(0.12 + var(--snake-shade) * 0.22));
 }
 
-@keyframes snakeWaveSweep {
+.github-cell.snake-win-cell {
+    background: #3bffea !important;
+    border-color: rgba(59, 255, 234, 0.95);
+    box-shadow:
+        0 0 8px rgba(59, 255, 234, 0.85),
+        0 0 16px rgba(59, 255, 234, 0.45),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+}
+
+.github-cell.snake-game-over-cell.snake-conn-right::before,
+.github-cell.snake-game-over-cell.snake-conn-left::before,
+.github-cell.snake-game-over-cell.snake-conn-up::before,
+.github-cell.snake-game-over-cell.snake-conn-down::before {
+    background: color-mix(
+        in srgb,
+        rgba(255, 145, 145, 0.86) calc(var(--snake-shade) * 100%),
+        rgba(95, 28, 28, 0.82) calc((1 - var(--snake-shade)) * 100%)
+    );
+    box-shadow: 0 0 5px
+        color-mix(
+            in srgb,
+            rgba(255, 110, 110, 0.58) calc(var(--snake-shade) * 100%),
+            rgba(55, 18, 18, 0.48) calc((1 - var(--snake-shade)) * 100%)
+        );
+}
+
+.github-cell.snake-win-cell.snake-conn-right::before,
+.github-cell.snake-win-cell.snake-conn-left::before,
+.github-cell.snake-win-cell.snake-conn-up::before,
+.github-cell.snake-win-cell.snake-conn-down::before {
+    background: rgba(59, 255, 234, 0.72);
+    box-shadow: 0 0 6px rgba(59, 255, 234, 0.55);
+}
+
+.snake-status-popup {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0.92);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 20;
+    padding: 0.25rem 0.45rem;
+    border-radius: 6px;
+    font-size: 0.62rem;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    background: rgba(20, 8, 8, 0.85);
+    color: var(--parchment-aged);
+    border: 1px solid rgba(255, 248, 236, 0.2);
+}
+
+.snake-status-popup.is-win {
+    color: #9efff5;
+    border-color: rgba(59, 255, 234, 0.85);
+    box-shadow: 0 0 12px rgba(59, 255, 234, 0.45);
+}
+
+.snake-status-popup.is-loss {
+    color: #ffd3c2;
+    border-color: rgba(255, 160, 160, 0.6);
+    box-shadow: 0 0 9px rgba(255, 122, 122, 0.4);
+}
+
+.snake-status-popup.is-showing {
+    animation: snakeStatusPopupInOut 1.05s ease-out both;
+}
+
+@keyframes snakeWaveSweepGold {
     0% {
-        background-color: rgba(59, 255, 234, 0.7);
-        box-shadow: 0 0 8px rgba(59, 255, 234, 0.6);
+        background-color: transparent;
+        box-shadow: none;
+    }
+    22% {
+        background-color: rgba(255, 235, 198, 0.22);
+        box-shadow: 0 0 4px rgba(255, 225, 160, 0.25);
+    }
+    46% {
+        background-color: rgba(255, 235, 198, 0.46);
+        box-shadow: 0 0 8px rgba(255, 225, 160, 0.45);
+    }
+    70% {
+        background-color: rgba(255, 235, 198, 0.72);
+        box-shadow:
+            0 0 12px rgba(255, 235, 198, 0.88),
+            0 0 22px rgba(255, 220, 150, 0.5);
+    }
+    84% {
+        background-color: rgba(255, 235, 198, 0.42);
+        box-shadow: 0 0 7px rgba(255, 220, 150, 0.4);
     }
     100% {
         background-color: transparent;
@@ -530,22 +1107,105 @@
     }
 }
 
-@keyframes snakeFoodPulse {
+@keyframes snakeWaveSweepTurquoise {
     0% {
-        box-shadow:
-            0 0 3px rgba(255, 235, 198, 0.55),
-            inset 0 0 0 1px rgba(255, 248, 236, 0.35);
+        background-color: transparent;
+        box-shadow: none;
     }
-    50% {
+    22% {
+        background-color: rgba(59, 255, 234, 0.22);
+        box-shadow: 0 0 5px rgba(59, 255, 234, 0.3);
+    }
+    46% {
+        background-color: rgba(59, 255, 234, 0.48);
+        box-shadow: 0 0 10px rgba(59, 255, 234, 0.5);
+    }
+    70% {
+        background-color: rgba(59, 255, 234, 0.88);
         box-shadow:
-            0 0 10px rgba(255, 235, 198, 0.95),
-            0 0 18px rgba(255, 235, 198, 0.45),
-            inset 0 0 0 1px rgba(255, 248, 236, 0.55);
+            0 0 14px rgba(59, 255, 234, 0.95),
+            0 0 28px rgba(59, 255, 234, 0.45);
+    }
+    84% {
+        background-color: rgba(59, 255, 234, 0.45);
+        box-shadow: 0 0 8px rgba(59, 255, 234, 0.42);
     }
     100% {
+        background-color: transparent;
+        box-shadow: inset 0 0 0 1px rgba(255, 248, 236, 0.04);
+    }
+}
+
+@keyframes snakeSegmentBlend {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.55;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes snakeStatusPopupInOut {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -42%) scale(0.88);
+    }
+    20% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    78% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -58%) scale(0.96);
+    }
+}
+
+@keyframes snakeRowBladePulse {
+    0% {
+        background-color: rgba(255, 90, 90, 0.06) !important;
+        box-shadow: inset 0 0 0 1px rgba(255, 120, 120, 0.12);
+    }
+    100% {
+        background: color-mix(in srgb, #ff9a9a 92%, #6e1c1c 8%) !important;
         box-shadow:
-            0 0 3px rgba(255, 235, 198, 0.55),
-            inset 0 0 0 1px rgba(255, 248, 236, 0.35);
+            inset 0 0 0 1px rgba(255, 180, 180, 0.72),
+            0 0 16px rgba(255, 100, 100, 0.95),
+            0 0 26px rgba(200, 40, 40, 0.55);
+    }
+}
+
+@keyframes snakeColumnWallDarkOverlayPulse {
+    0% {
+        background: linear-gradient(
+            180deg,
+            rgba(22, 20, 26, 0.38) 0%,
+            rgba(18, 16, 22, 0.48) 50%,
+            rgba(14, 12, 18, 0.42) 100%
+        );
+    }
+    40% {
+        background: linear-gradient(
+            180deg,
+            rgba(42, 38, 46, 0.9) 0%,
+            rgba(28, 24, 32, 0.94) 50%,
+            rgba(22, 18, 26, 0.92) 100%
+        );
+        box-shadow:
+            inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+            0 0 14px rgba(0, 0, 0, 0.55);
+    }
+    100% {
+        background: linear-gradient(
+            180deg,
+            rgba(36, 32, 40, 0.52) 0%,
+            rgba(28, 24, 32, 0.58) 100%
+        );
     }
 }
 
