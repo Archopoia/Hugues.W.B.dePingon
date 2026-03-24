@@ -447,7 +447,6 @@
 
 .github-cell.ripple-active::after {
     opacity: 1;
-    animation-name: githubCellRippleBreath;
     animation-duration: 1000ms;
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
@@ -458,7 +457,36 @@
     will-change: background-color, box-shadow, opacity;
 }
 
-@keyframes githubCellRippleBreath {
+.github-heatmap-grid.ripple-phase-a .github-cell.ripple-active::after {
+    animation-name: githubCellRippleBreathA;
+}
+
+.github-heatmap-grid.ripple-phase-b .github-cell.ripple-active::after {
+    animation-name: githubCellRippleBreathB;
+}
+
+@keyframes githubCellRippleBreathA {
+    0% {
+        opacity: 0;
+        box-shadow: none;
+    }
+    25% {
+        opacity: calc(var(--ripple-strength, 0.3) * 0.35);
+    }
+    50% {
+        opacity: var(--ripple-strength, 0.3);
+        box-shadow: 0 0 8px rgba(59, 255, 234, 0.5);
+    }
+    75% {
+        opacity: calc(var(--ripple-strength, 0.3) * 0.35);
+    }
+    100% {
+        opacity: 0;
+        box-shadow: none;
+    }
+}
+
+@keyframes githubCellRippleBreathB {
     0% {
         opacity: 0;
         box-shadow: none;

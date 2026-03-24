@@ -125,6 +125,7 @@ function setupCursorRipple(gridContainer) {
 
     let lastOriginKey = '';
     let hoveredCell = null;
+    let ripplePhaseA = false;
     const MIN_RIPPLE_DISTANCE = 1.5; // Excludes the 3x3 center area around cursor.
     const MAX_RIPPLE_DISTANCE = 12.0; // Slightly further propagation.
 
@@ -136,6 +137,7 @@ function setupCursorRipple(gridContainer) {
             cell.style.removeProperty('--ripple-delay');
             cell.style.removeProperty('--ripple-strength');
         });
+        gridContainer.classList.remove('ripple-phase-a', 'ripple-phase-b');
         hoveredCell = null;
     }
 
@@ -213,6 +215,10 @@ function setupCursorRipple(gridContainer) {
         const originKey = `${targetCell.dataset.col}-${targetCell.dataset.row}`;
         if (originKey !== lastOriginKey) {
             lastOriginKey = originKey;
+            // Reset ripple phase on each newly hovered cell to avoid ripple collisions.
+            ripplePhaseA = !ripplePhaseA;
+            gridContainer.classList.toggle('ripple-phase-a', ripplePhaseA);
+            gridContainer.classList.toggle('ripple-phase-b', !ripplePhaseA);
             applyRippleField(targetCell);
         }
     });
