@@ -61,7 +61,7 @@ function buildCompleteCalendar(contributions) {
 
 function renderMonths(days, weeks, monthsContainer) {
     monthsContainer.innerHTML = '';
-    monthsContainer.style.gridTemplateColumns = `repeat(${weeks}, 1fr)`;
+    monthsContainer.style.gridTemplateColumns = `repeat(${weeks}, var(--github-cell-size, 11px))`;
 
     let lastLabeledMonth = -1;
 
@@ -95,8 +95,8 @@ function renderMonths(days, weeks, monthsContainer) {
 
 function renderHeatmap(days, weeks, gridContainer) {
     gridContainer.innerHTML = '';
-    gridContainer.style.gridTemplateColumns = `repeat(${weeks}, 11px)`;
-    gridContainer.style.gridTemplateRows = `repeat(${HEATMAP_ROWS}, 11px)`;
+    gridContainer.style.gridTemplateColumns = `repeat(${weeks}, var(--github-cell-size, 11px))`;
+    gridContainer.style.gridTemplateRows = `repeat(${HEATMAP_ROWS}, var(--github-cell-size, 11px))`;
 
     days.forEach((day, index) => {
         const cell = document.createElement('div');
