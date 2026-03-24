@@ -336,6 +336,10 @@
     white-space: nowrap;
 }
 
+.github-heatmap-months .github-heatmap-month:first-child {
+    visibility: hidden;
+}
+
 .github-heatmap-body {
     display: flex;
     gap: 0.45rem;
