@@ -449,6 +449,106 @@
     animation: none !important;
 }
 
+.github-cell.snake-trigger-cell {
+    cursor: pointer;
+    z-index: 2;
+}
+
+.snake-trigger-icon {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.55rem;
+    font-weight: 700;
+    color: var(--gold-glow);
+    text-shadow: 0 0 6px rgba(255, 235, 198, 0.85);
+    pointer-events: none;
+    z-index: 4;
+}
+
+.github-heatmap-grid.snake-wave-running .github-cell.snake-wave-clearing {
+    animation: snakeWaveSweep 680ms ease-out both;
+    animation-delay: var(--snake-wave-delay, 0ms);
+}
+
+.github-heatmap-grid.snake-game-active .github-cell {
+    transition:
+        background-color 180ms linear,
+        box-shadow 180ms linear,
+        border-color 180ms linear;
+}
+
+.github-heatmap-grid.snake-game-active .github-cell::after {
+    opacity: 0 !important;
+    animation: none !important;
+}
+
+.github-cell.snake-cleared {
+    background-color: transparent !important;
+    box-shadow: inset 0 0 0 1px rgba(255, 248, 236, 0.04);
+}
+
+.github-cell.snake-food-cell {
+    background-color: rgba(255, 235, 198, 0.22) !important;
+    border-color: var(--gold-glow);
+    animation: snakeFoodPulse 950ms ease-in-out infinite;
+    z-index: 2;
+}
+
+.github-cell.snake-segment-head {
+    background: #3bffea !important;
+    border-color: rgba(59, 255, 234, 0.95);
+    box-shadow:
+        0 0 8px rgba(59, 255, 234, 0.8),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+    z-index: 5;
+}
+
+.github-cell.snake-segment-body {
+    background: rgba(59, 255, 234, 0.65) !important;
+    border-color: rgba(59, 255, 234, 0.8);
+    box-shadow: 0 0 6px rgba(59, 255, 234, 0.45);
+    z-index: 4;
+}
+
+.github-cell.snake-game-over-cell {
+    background: rgba(255, 122, 122, 0.7) !important;
+    border-color: rgba(255, 152, 152, 0.95);
+    box-shadow: 0 0 8px rgba(255, 122, 122, 0.6);
+}
+
+@keyframes snakeWaveSweep {
+    0% {
+        background-color: rgba(59, 255, 234, 0.7);
+        box-shadow: 0 0 8px rgba(59, 255, 234, 0.6);
+    }
+    100% {
+        background-color: transparent;
+        box-shadow: inset 0 0 0 1px rgba(255, 248, 236, 0.04);
+    }
+}
+
+@keyframes snakeFoodPulse {
+    0% {
+        box-shadow:
+            0 0 3px rgba(255, 235, 198, 0.55),
+            inset 0 0 0 1px rgba(255, 248, 236, 0.35);
+    }
+    50% {
+        box-shadow:
+            0 0 10px rgba(255, 235, 198, 0.95),
+            0 0 18px rgba(255, 235, 198, 0.45),
+            inset 0 0 0 1px rgba(255, 248, 236, 0.55);
+    }
+    100% {
+        box-shadow:
+            0 0 3px rgba(255, 235, 198, 0.55),
+            inset 0 0 0 1px rgba(255, 248, 236, 0.35);
+    }
+}
+
 .github-cell.ripple-active::after {
     opacity: 1;
     animation-duration: 1000ms;

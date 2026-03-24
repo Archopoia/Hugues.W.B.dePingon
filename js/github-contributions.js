@@ -1,5 +1,7 @@
 const CONTRIBUTIONS_API_URL = 'https://github-contributions-api.jogruber.de/v4/Archopoia?y=last';
 const HEATMAP_ROWS = 7;
+const SNAKE_START_DELAY_MS = 900;
+const SNAKE_TICK_MS = 120;
 
 function formatMonth(date) {
     return date.toLocaleString('en-US', { month: 'short' });
@@ -111,10 +113,12 @@ function renderHeatmap(days, weeks, gridContainer) {
         cell.style.setProperty('--wave-col', `${column - 1}`);
         cell.dataset.col = `${column}`;
         cell.dataset.row = `${row}`;
+        cell.dataset.count = `${Number.isFinite(day.count) ? day.count : 0}`;
         gridContainer.appendChild(cell);
     });
 
     setupCursorRipple(gridContainer);
+    setupSnakeGame(gridContainer, weeks);
 }
 
 function setupCursorRipple(gridContainer) {
@@ -127,7 +131,7 @@ function setupCursorRipple(gridContainer) {
     let hoveredCell = null;
     let ripplePhaseA = false;
     const MIN_RIPPLE_DISTANCE = 1.5; // Excludes the 3x3 center area around cursor.
-    const MAX_RIPPLE_DISTANCE = 12.0; // Slightly further propagation.
+    const MAX_RIPPLE_DISTANCE = 6.0; // Slightly further propagation.
 
     function clearRipple() {
         cells.forEach((cell) => {
@@ -204,6 +208,10 @@ function setupCursorRipple(gridContainer) {
     }
 
     gridContainer.addEventListener('mousemove', (event) => {
+        if (gridContainer.classList.contains('snake-game-active')) {
+            return;
+        }
+
         const targetCell = event.target.closest('.github-cell');
         if (!targetCell || !gridContainer.contains(targetCell)) {
             return;
@@ -229,8 +237,279 @@ function setupCursorRipple(gridContainer) {
     });
 
     gridContainer.addEventListener('mouseleave', () => {
+        if (gridContainer.classList.contains('snake-game-active')) {
+            return;
+        }
         clearRipple();
         lastOriginKey = '';
+    });
+}
+
+function cellKey(col, row) {
+    return `${col}-${row}`;
+}
+
+function setupSnakeGame(gridContainer, weeks) {
+    const cells = Array.from(gridContainer.querySelectorAll('.github-cell'));
+    if (cells.length === 0) {
+        return;
+    }
+
+    const byKey = new Map();
+    cells.forEach((cell) => {
+        byKey.set(cellKey(Number(cell.dataset.col), Number(cell.dataset.row)), cell);
+    });
+
+    const triggerCell = byKey.get(cellKey(1, 1));
+    if (!triggerCell) {
+        return;
+    }
+
+    triggerCell.classList.add('snake-trigger-cell');
+    triggerCell.setAttribute('title', 'Click to play snake');
+
+    if (!triggerCell.querySelector('.snake-trigger-icon')) {
+        const icon = document.createElement('span');
+        icon.className = 'snake-trigger-icon';
+        icon.textContent = '🐍';
+        triggerCell.appendChild(icon);
+    }
+
+    let game = null;
+    let startTimeout = null;
+
+    function clearSnakeClasses() {
+        cells.forEach((cell) => {
+            cell.classList.remove(
+                'snake-wave-clearing',
+                'snake-cleared',
+                'snake-food-cell',
+                'snake-segment-head',
+                'snake-segment-body',
+                'snake-game-over-cell'
+            );
+            cell.style.removeProperty('--snake-wave-delay');
+        });
+        gridContainer.classList.remove('snake-game-active', 'snake-wave-running', 'snake-game-over');
+    }
+
+    function getFoodKeys(excludeKeys) {
+        const candidates = cells
+            .filter((cell) => !excludeKeys.has(cellKey(Number(cell.dataset.col), Number(cell.dataset.row))))
+            .map((cell) => ({
+                key: cellKey(Number(cell.dataset.col), Number(cell.dataset.row)),
+                count: Number(cell.dataset.count || 0),
+                col: Number(cell.dataset.col || 1),
+                row: Number(cell.dataset.row || 1)
+            }))
+            .sort((a, b) => {
+                if (b.count !== a.count) {
+                    return b.count - a.count;
+                }
+                if (a.col !== b.col) {
+                    return a.col - b.col;
+                }
+                return a.row - b.row;
+            });
+
+        const desiredFoodCount = Math.min(12, Math.max(6, Math.floor(cells.length / 35)));
+        return new Set(candidates.slice(0, desiredFoodCount).map((item) => item.key));
+    }
+
+    function buildSpawnSnake() {
+        const startCol = Math.min(Math.max(4, 3), weeks);
+        const head = { col: startCol, row: 4 };
+        const body1 = { col: Math.max(1, startCol - 1), row: 4 };
+        const body2 = { col: Math.max(1, startCol - 2), row: 4 };
+        return [head, body1, body2];
+    }
+
+    function renderSnake() {
+        cells.forEach((cell) => {
+            cell.classList.remove('snake-cleared', 'snake-food-cell', 'snake-segment-head', 'snake-segment-body', 'snake-game-over-cell');
+            const key = cellKey(Number(cell.dataset.col), Number(cell.dataset.row));
+            if (!game) {
+                return;
+            }
+            if (game.foodKeys.has(key)) {
+                cell.classList.add('snake-food-cell');
+            } else if (!triggerCell.isSameNode(cell)) {
+                cell.classList.add('snake-cleared');
+            }
+        });
+
+        if (!game) {
+            return;
+        }
+
+        game.snake.forEach((segment, index) => {
+            const segmentCell = byKey.get(cellKey(segment.col, segment.row));
+            if (!segmentCell) {
+                return;
+            }
+            segmentCell.classList.remove('snake-cleared');
+            segmentCell.classList.add(index === 0 ? 'snake-segment-head' : 'snake-segment-body');
+        });
+    }
+
+    function stopGame() {
+        if (startTimeout) {
+            clearTimeout(startTimeout);
+            startTimeout = null;
+        }
+        if (game?.tickInterval) {
+            clearInterval(game.tickInterval);
+        }
+        game = null;
+        clearSnakeClasses();
+    }
+
+    function gameOver() {
+        if (!game) {
+            return;
+        }
+        clearInterval(game.tickInterval);
+        game.tickInterval = null;
+        gridContainer.classList.add('snake-game-over');
+        game.snake.forEach((segment) => {
+            const segmentCell = byKey.get(cellKey(segment.col, segment.row));
+            if (segmentCell) {
+                segmentCell.classList.add('snake-game-over-cell');
+            }
+        });
+
+        setTimeout(() => {
+            stopGame();
+        }, 1600);
+    }
+
+    function updateDirectionFromCursor(targetCell) {
+        if (!game) {
+            return;
+        }
+        const targetCol = Number(targetCell.dataset.col || 1);
+        const targetRow = Number(targetCell.dataset.row || 1);
+        const head = game.snake[0];
+        const deltaCol = targetCol - head.col;
+        const deltaRow = targetRow - head.row;
+
+        let nextDirection = game.direction;
+        if (Math.abs(deltaCol) >= Math.abs(deltaRow)) {
+            nextDirection = deltaCol >= 0 ? 'right' : 'left';
+        } else {
+            nextDirection = deltaRow >= 0 ? 'down' : 'up';
+        }
+
+        const opposite = {
+            up: 'down',
+            down: 'up',
+            left: 'right',
+            right: 'left'
+        };
+        if (nextDirection !== opposite[game.direction]) {
+            game.nextDirection = nextDirection;
+        }
+    }
+
+    function tickSnake() {
+        if (!game) {
+            return;
+        }
+
+        game.direction = game.nextDirection;
+        const head = game.snake[0];
+        const movement = {
+            up: { col: 0, row: -1 },
+            down: { col: 0, row: 1 },
+            left: { col: -1, row: 0 },
+            right: { col: 1, row: 0 }
+        }[game.direction];
+
+        const nextHead = {
+            col: head.col + movement.col,
+            row: head.row + movement.row
+        };
+
+        if (nextHead.col < 1 || nextHead.col > weeks || nextHead.row < 1 || nextHead.row > HEATMAP_ROWS) {
+            gameOver();
+            return;
+        }
+
+        const nextHeadKey = cellKey(nextHead.col, nextHead.row);
+        const willEat = game.foodKeys.has(nextHeadKey);
+        const bodyToCheck = willEat ? game.snake : game.snake.slice(0, -1);
+        const bodyHit = bodyToCheck.some((segment) => segment.col === nextHead.col && segment.row === nextHead.row);
+        if (bodyHit) {
+            gameOver();
+            return;
+        }
+
+        game.snake.unshift(nextHead);
+        if (willEat) {
+            game.foodKeys.delete(nextHeadKey);
+        } else {
+            game.snake.pop();
+        }
+
+        renderSnake();
+
+        if (game.foodKeys.size === 0) {
+            gameOver();
+        }
+    }
+
+    function startGame() {
+        stopGame();
+        gridContainer.classList.add('snake-game-active', 'snake-wave-running');
+
+        cells.forEach((cell) => {
+            const col = Number(cell.dataset.col || 1);
+            cell.classList.remove('ripple-active', 'ripple-fading', 'ripple-clear', 'hover-origin');
+            cell.style.removeProperty('--ripple-delay');
+            cell.style.removeProperty('--ripple-strength');
+            cell.style.setProperty('--snake-wave-delay', `${(col - 1) * 24}ms`);
+            cell.classList.add('snake-wave-clearing');
+        });
+
+        startTimeout = setTimeout(() => {
+            const snake = buildSpawnSnake();
+            const excluded = new Set([cellKey(1, 1), ...snake.map((segment) => cellKey(segment.col, segment.row))]);
+            const foodKeys = getFoodKeys(excluded);
+
+            cells.forEach((cell) => {
+                cell.classList.remove('snake-wave-clearing');
+                cell.style.removeProperty('--snake-wave-delay');
+            });
+            gridContainer.classList.remove('snake-wave-running');
+
+            game = {
+                snake,
+                foodKeys,
+                direction: 'right',
+                nextDirection: 'right',
+                tickInterval: null
+            };
+
+            renderSnake();
+            game.tickInterval = setInterval(tickSnake, SNAKE_TICK_MS);
+        }, SNAKE_START_DELAY_MS);
+    }
+
+    triggerCell.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        startGame();
+    });
+
+    gridContainer.addEventListener('mousemove', (event) => {
+        if (!game) {
+            return;
+        }
+        const targetCell = event.target.closest('.github-cell');
+        if (!targetCell || !gridContainer.contains(targetCell)) {
+            return;
+        }
+        updateDirectionFromCursor(targetCell);
     });
 }
 
