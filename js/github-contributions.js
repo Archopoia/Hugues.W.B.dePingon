@@ -1752,6 +1752,7 @@ function setupSnakeGame(gridContainer, weeks, days) {
             };
 
             isSnakeTransitioning = false;
+            triggerCell.classList.remove('snake-trigger-fading');
             triggerCell.classList.add('snake-exit-cell');
             triggerCell.setAttribute('title', 'Exit: return here to save (tallies snake length as food eaten)');
             renderSnake();

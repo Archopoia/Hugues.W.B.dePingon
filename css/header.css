@@ -569,12 +569,12 @@
         background 220ms ease-out;
 }
 
-/* Pre-start: soft passive aura pulse (hidden during active game via .snake-game-active rule). */
-.github-cell.snake-trigger-cell:not(.snake-trigger-door-near)::before {
+/* Pre-start gold aura: scoped off active game + intro fade so pulse returns reliably after a run. */
+.github-heatmap-grid:not(.snake-game-active) .github-cell.snake-trigger-cell:not(.snake-trigger-fading):not(.snake-trigger-door-near)::before {
     animation: snakeStartDoorAuraIdle 2.4s ease-in-out infinite;
 }
 
-.github-cell.snake-trigger-cell.snake-trigger-door-near::before {
+.github-heatmap-grid:not(.snake-game-active) .github-cell.snake-trigger-cell.snake-trigger-door-near:not(.snake-trigger-fading)::before {
     animation: snakeStartDoorAuraNear 1.3s ease-in-out infinite;
 }
 
@@ -599,7 +599,6 @@
     pointer-events: none;
     z-index: 2;
     transform-origin: center center;
-    animation: snakeStartDoorIdlePulse 2.4s ease-in-out infinite;
     transition:
         opacity 260ms ease-out,
         filter 260ms ease-out,
@@ -612,7 +611,11 @@
     height: 100%;
 }
 
-.github-cell.snake-trigger-cell.snake-trigger-door-near .snake-trigger-icon {
+.github-heatmap-grid:not(.snake-game-active) .github-cell.snake-trigger-cell:not(.snake-trigger-fading) .snake-trigger-icon {
+    animation: snakeStartDoorIdlePulse 2.4s ease-in-out infinite;
+}
+
+.github-heatmap-grid:not(.snake-game-active) .github-cell.snake-trigger-cell.snake-trigger-door-near:not(.snake-trigger-fading) .snake-trigger-icon {
     animation: snakeStartDoorNearPulse 1.3s ease-in-out infinite;
 }
 
