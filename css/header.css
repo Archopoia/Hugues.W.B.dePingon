@@ -254,6 +254,9 @@
     position: relative;
     z-index: 3;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .github-contributions-link {
@@ -294,8 +297,9 @@
     justify-content: space-between;
     gap: 0.75rem;
     margin-bottom: 0.5rem;
-    width: max-content;
+    width: 100%;
     box-sizing: border-box;
+    max-width: 100%;
 }
 
 .github-contributions-title i {
@@ -381,6 +385,27 @@
     border-radius: 2px;
     border: 1px solid rgba(0, 0, 0, 0.35);
     box-shadow: inset 0 0 0 1px rgba(255, 248, 236, 0.08);
+    --wave-col: 0;
+    position: relative;
+    overflow: hidden;
+    transition:
+        background-color 280ms ease-out,
+        box-shadow 320ms ease-out,
+        border-color 280ms ease-out;
+}
+
+.github-cell::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-color: transparent;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+        opacity 320ms ease-out,
+        background-color 220ms linear,
+        box-shadow 220ms linear;
 }
 
 .github-cell.level-0 {
@@ -401,6 +426,79 @@
 
 .github-cell.level-4 {
     background: #3bffea;
+}
+
+.github-cell.ripple-clear {
+    background-color: transparent;
+}
+
+.github-cell.hover-origin {
+    animation: githubCellGoldPulse 1.7s ease-in-out infinite;
+    border-color: var(--gold-glow);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 248, 236, 0.2),
+        0 0 4px rgba(255, 235, 198, 0.55);
+}
+
+.github-cell.hover-origin::after {
+    opacity: 0 !important;
+    animation: none !important;
+}
+
+.github-cell.ripple-active::after {
+    opacity: 1;
+    animation-name: githubCellRippleBreath;
+    animation-duration: 1000ms;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-delay: var(--ripple-delay, 0ms);
+    animation-fill-mode: both;
+    background-color: #3bffea;
+    will-change: background-color, box-shadow, opacity;
+}
+
+@keyframes githubCellRippleBreath {
+    0% {
+        opacity: 0;
+        box-shadow: none;
+    }
+    25% {
+        opacity: calc(var(--ripple-strength, 0.3) * 0.35);
+    }
+    50% {
+        opacity: var(--ripple-strength, 0.3);
+        box-shadow: 0 0 8px rgba(59, 255, 234, 0.5);
+    }
+    75% {
+        opacity: calc(var(--ripple-strength, 0.3) * 0.35);
+    }
+    100% {
+        opacity: 0;
+        box-shadow: none;
+    }
+}
+
+@keyframes githubCellGoldPulse {
+    0% {
+        border-color: rgba(255, 235, 198, 0.55);
+        box-shadow:
+            inset 0 0 0 1px rgba(255, 248, 236, 0.18),
+            0 0 2px rgba(255, 235, 198, 0.35);
+    }
+    50% {
+        border-color: var(--gold-glow);
+        box-shadow:
+            inset 0 0 0 1px rgba(255, 248, 236, 0.25),
+            0 0 7px rgba(255, 235, 198, 0.8),
+            0 0 12px rgba(255, 235, 198, 0.35);
+    }
+    100% {
+        border-color: rgba(255, 235, 198, 0.55);
+        box-shadow:
+            inset 0 0 0 1px rgba(255, 248, 236, 0.18),
+            0 0 2px rgba(255, 235, 198, 0.35);
+    }
 }
 
 .github-heatmap-legend {
@@ -464,6 +562,7 @@
         width: 100%;
         margin-left: 0;
         padding: 0.25rem 0 0;
+        align-items: flex-start;
     }
 
     .github-heatmap-shell {

@@ -103,9 +103,123 @@ function renderHeatmap(days, weeks, gridContainer) {
         const level = Number.isFinite(day.level) ? day.level : 0;
         cell.className = `github-cell level-${Math.max(0, Math.min(level, 4))}`;
         cell.title = `${day.count} contributions on ${formatDateLabel(day.date)}`;
-        cell.style.gridColumn = `${Math.floor(index / HEATMAP_ROWS) + 1}`;
-        cell.style.gridRow = `${(index % HEATMAP_ROWS) + 1}`;
+        const column = Math.floor(index / HEATMAP_ROWS) + 1;
+        const row = (index % HEATMAP_ROWS) + 1;
+        cell.style.gridColumn = `${column}`;
+        cell.style.gridRow = `${row}`;
+        // Keep column index available for CSS-driven heatmap effects.
+        cell.style.setProperty('--wave-col', `${column - 1}`);
+        cell.dataset.col = `${column}`;
+        cell.dataset.row = `${row}`;
         gridContainer.appendChild(cell);
+    });
+
+    setupCursorRipple(gridContainer);
+}
+
+function setupCursorRipple(gridContainer) {
+    const cells = Array.from(gridContainer.querySelectorAll('.github-cell'));
+    if (cells.length === 0) {
+        return;
+    }
+
+    let lastOriginKey = '';
+    let hoveredCell = null;
+    const MIN_RIPPLE_DISTANCE = 1.5; // Excludes the 3x3 center area around cursor.
+    const MAX_RIPPLE_DISTANCE = 12.0; // Slightly further propagation.
+
+    function clearRipple() {
+        cells.forEach((cell) => {
+            cell.classList.remove('ripple-active');
+            cell.classList.remove('ripple-clear');
+            cell.classList.remove('hover-origin');
+            cell.style.removeProperty('--ripple-delay');
+            cell.style.removeProperty('--ripple-strength');
+        });
+        hoveredCell = null;
+    }
+
+    function applyRippleField(originCell) {
+        const originCol = Number(originCell.dataset.col || 1);
+        const originRow = Number(originCell.dataset.row || 1);
+        const maxDistance = cells.reduce((max, cell) => {
+            const col = Number(cell.dataset.col || 1);
+            const row = Number(cell.dataset.row || 1);
+            const deltaCol = col - originCol;
+            const deltaRow = row - originRow;
+            const distance = Math.sqrt(deltaCol * deltaCol + deltaRow * deltaRow);
+            return Math.max(max, distance);
+        }, 0);
+        const effectiveMaxDistance = Math.min(maxDistance, MAX_RIPPLE_DISTANCE);
+        const usableSpan = Math.max(0.001, effectiveMaxDistance - MIN_RIPPLE_DISTANCE);
+
+        cells.forEach((cell) => {
+            const col = Number(cell.dataset.col || 1);
+            const row = Number(cell.dataset.row || 1);
+            const deltaCol = col - originCol;
+            const deltaRow = row - originRow;
+            const distance = Math.sqrt(deltaCol * deltaCol + deltaRow * deltaRow);
+            const isCenterCell = distance === 0;
+            const isInnerRingCell = distance > 0 && distance <= MIN_RIPPLE_DISTANCE;
+
+            if (isCenterCell) {
+                // Center cell stays untouched: keep its original contribution color.
+                cell.classList.remove('ripple-active');
+                cell.classList.remove('ripple-clear');
+                cell.style.removeProperty('--ripple-delay');
+                cell.style.removeProperty('--ripple-strength');
+            } else if (isInnerRingCell) {
+                // Force the 8 surrounding cells in the 3x3 area to stay transparent.
+                cell.classList.remove('ripple-active');
+                cell.classList.add('ripple-clear');
+                cell.style.removeProperty('--ripple-delay');
+                cell.style.removeProperty('--ripple-strength');
+            } else if (distance <= effectiveMaxDistance) {
+                const normalized = Math.min(1, (distance - MIN_RIPPLE_DISTANCE) / usableSpan);
+                const delay = Math.round(normalized * 360);
+                // Radial profile: low near inner edge, brightest at midpoint, low at outer edge.
+                const midpointFalloff = Math.abs(normalized - 0.5) * 2;
+                const ringProfile = Math.max(0.2, 1 - midpointFalloff);
+                // Additional attenuation: farther cells are dimmer.
+                const attenuation = Math.max(0.12, 1 - Math.pow(normalized, 1.15));
+                const strength = Math.max(0.1, ringProfile * attenuation);
+                cell.style.setProperty('--ripple-delay', `${delay}ms`);
+                cell.style.setProperty('--ripple-strength', strength.toFixed(3));
+                cell.classList.remove('ripple-clear');
+                cell.classList.add('ripple-active');
+            } else {
+                cell.classList.remove('ripple-active');
+                cell.classList.remove('ripple-clear');
+                cell.style.removeProperty('--ripple-delay');
+                cell.style.removeProperty('--ripple-strength');
+            }
+        });
+    }
+
+    gridContainer.addEventListener('mousemove', (event) => {
+        const targetCell = event.target.closest('.github-cell');
+        if (!targetCell || !gridContainer.contains(targetCell)) {
+            return;
+        }
+
+        if (hoveredCell !== targetCell) {
+            if (hoveredCell) {
+                hoveredCell.classList.remove('hover-origin');
+            }
+            hoveredCell = targetCell;
+            hoveredCell.classList.add('hover-origin');
+        }
+
+        const originKey = `${targetCell.dataset.col}-${targetCell.dataset.row}`;
+        if (originKey !== lastOriginKey) {
+            lastOriginKey = originKey;
+            applyRippleField(targetCell);
+        }
+    });
+
+    gridContainer.addEventListener('mouseleave', () => {
+        clearRipple();
+        lastOriginKey = '';
     });
 }
 
