@@ -132,6 +132,7 @@ function setupCursorRipple(gridContainer) {
     function clearRipple() {
         cells.forEach((cell) => {
             cell.classList.remove('ripple-active');
+            cell.classList.remove('ripple-fading');
             cell.classList.remove('ripple-clear');
             cell.classList.remove('hover-origin');
             cell.style.removeProperty('--ripple-delay');
@@ -167,12 +168,14 @@ function setupCursorRipple(gridContainer) {
             if (isCenterCell) {
                 // Center cell stays untouched: keep its original contribution color.
                 cell.classList.remove('ripple-active');
+                cell.classList.add('ripple-fading');
                 cell.classList.remove('ripple-clear');
                 cell.style.removeProperty('--ripple-delay');
                 cell.style.removeProperty('--ripple-strength');
             } else if (isInnerRingCell) {
                 // Force the 8 surrounding cells in the 3x3 area to stay transparent.
                 cell.classList.remove('ripple-active');
+                cell.classList.add('ripple-fading');
                 cell.classList.add('ripple-clear');
                 cell.style.removeProperty('--ripple-delay');
                 cell.style.removeProperty('--ripple-strength');
@@ -187,10 +190,12 @@ function setupCursorRipple(gridContainer) {
                 const strength = Math.max(0.1, ringProfile * attenuation);
                 cell.style.setProperty('--ripple-delay', `${delay}ms`);
                 cell.style.setProperty('--ripple-strength', strength.toFixed(3));
+                cell.classList.remove('ripple-fading');
                 cell.classList.remove('ripple-clear');
                 cell.classList.add('ripple-active');
             } else {
                 cell.classList.remove('ripple-active');
+                cell.classList.add('ripple-fading');
                 cell.classList.remove('ripple-clear');
                 cell.style.removeProperty('--ripple-delay');
                 cell.style.removeProperty('--ripple-strength');

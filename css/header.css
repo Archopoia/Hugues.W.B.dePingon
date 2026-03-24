@@ -457,6 +457,11 @@
     will-change: background-color, box-shadow, opacity;
 }
 
+.github-cell.ripple-fading::after {
+    animation: none !important;
+    opacity: 0;
+}
+
 .github-heatmap-grid.ripple-phase-a .github-cell.ripple-active::after {
     animation-name: githubCellRippleBreathA;
 }
