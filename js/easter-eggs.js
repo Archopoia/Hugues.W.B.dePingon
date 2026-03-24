@@ -14,18 +14,10 @@ let tabSequence = [];
 const konamiTabCode = ['about', 'education', 'portfolio', 'skills', 'portfolio', 'education', 'about']; // A-E-P-S-P-E-A
 let konamiUnlocked = false;
 
-// Generate daily sequence (always starts with 'age')
-const today = new Date().getDay();
-const dailySequences = [
-    ['age', 'origin', 'location', 'current-role'],      // Sunday (default)
-    ['age', 'location', 'current-role', 'origin'],      // Monday
-    ['age', 'current-role', 'origin', 'location'],      // Tuesday
-    ['age', 'origin', 'current-role', 'location'],      // Wednesday
-    ['age', 'location', 'origin', 'current-role'],      // Thursday
-    ['age', 'current-role', 'location', 'origin'],      // Friday
-    ['age', 'origin', 'location', 'current-role'],      // Saturday (same as Sunday)
-];
-const correctSequence = dailySequences[today];
+// Fixed 3-step sequence for the header mini-game.
+// Order: Age -> Current Role -> Origin
+const correctSequence = ['age', 'current-role', 'origin'];
+const MAX_SECRET_STEPS = correctSequence.length;
 
 function resetSequence() {
     secretSequence = [];
@@ -171,7 +163,7 @@ function updatePortraitFeedback() {
     // Remove all previous vibration classes
     portraitFrame.classList.remove('portrait-vibrate-1', 'portrait-vibrate-2', 'portrait-vibrate-3', 'portrait-vibrate-4');
 
-    if (count > 0 && count <= 4) {
+    if (count > 0 && count <= MAX_SECRET_STEPS) {
         portraitFrame.classList.add(`portrait-vibrate-${count}`);
     }
 }
@@ -249,9 +241,15 @@ export function initializeEasterEggs() {
 
                 secretSequence.push(label);
 
+                // Keep sequence capped to the configured mini-game length.
+                // This guarantees strict 3-step behavior now that one stat was removed.
+                if (secretSequence.length > MAX_SECRET_STEPS) {
+                    secretSequence = secretSequence.slice(0, MAX_SECRET_STEPS);
+                }
+
                 // Play bell sound based on this stat's position in the CORRECT sequence
                 // This way, each stat always plays the same bell (as a hint)
-                // Position 0 in correct sequence = bell4, 1 = bell3, 2 = bell2, 3 = bell1
+                // Position in correct sequence maps to progressively higher bell cues.
                 if (window.soundManager && positionInCorrectSequence >= 0) {
                     window.soundManager.playBellForSequence(positionInCorrectSequence);
                 }
@@ -284,8 +282,9 @@ export function initializeEasterEggs() {
             // Check if sequence is correct
             const current = secretSequence.join(',');
             const correct = correctSequence.join(',');
+            const hasCompleteSequence = secretSequence.length === MAX_SECRET_STEPS;
 
-            if (current === correct) {
+            if (hasCompleteSequence && current === correct) {
                 // SUCCESS!
                 if (!achievementUnlocked) {
                     // First time discovery

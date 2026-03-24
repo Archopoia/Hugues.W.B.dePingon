@@ -56,6 +56,7 @@ window.scrollTo(0, 0);
 
 // Import all modules - Initialize when DOM is ready
 import './js/init.js';
+import './js/github-contributions.js';
 
 // Export modal functions globally (called from HTML onclick handlers)
 import { openFullVideo, openFullPDF, openImageGallery, openFullImage, closeModal, toggleExpCard } from './js/modals.js?v=20260316-1';
