@@ -888,62 +888,37 @@ html[lang="fr"] .stat-label.countries-hover::before {
     margin: 0.35rem 0 0.25rem;
 }
 
-.academic-card--diva .diva-stats-charts {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem 0.75rem;
-    justify-content: center;
-    align-items: flex-end;
-}
-
-.academic-card--diva .diva-stat-col {
-    flex: 1 1 160px;
-    max-width: 210px;
-    text-align: center;
+.academic-card--diva .diva-stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 0.35rem 0.6rem;
+    align-items: end;
+    justify-items: center;
+    width: 100%;
 }
 
 .academic-card--diva .diva-stat-canvas {
     display: block;
-    margin: 0 auto;
-    max-width: 100%;
+    margin: 0;
+    width: 100%;
+    max-width: 200px;
     height: auto;
-    border-radius: 6px;
-    border: 1px solid var(--border-dark);
-    background: var(--parchment-aged);
+    border: none;
+    border-radius: 0;
+    background: transparent;
 }
 
-.academic-card--diva .diva-stat-total-line {
-    margin: 0.25rem 0 0;
+.academic-card--diva .diva-stat-legend {
+    margin: 0;
+    padding: 0 0.15rem;
     font-size: 0.78rem;
-    line-height: 1.25;
-    color: var(--text-dark);
-}
-
-.academic-card--diva .diva-stat-total-line strong {
-    color: var(--red-theme);
-    font-size: 0.95rem;
-}
-
-.academic-card--diva .diva-stats-meta {
-    pointer-events: auto;
-    position: relative;
-    z-index: 3;
-    margin: 0.4rem 0 0;
-    font-size: 0.72rem;
-    text-align: center;
-    color: var(--border-brown);
-    line-height: 1.35;
-}
-
-.academic-card--diva .diva-stats-live-a {
-    color: var(--red-theme);
     font-weight: 600;
-    text-decoration: underline;
-    text-underline-offset: 2px;
-}
-
-.academic-card--diva .diva-stats-live-a:hover {
-    color: var(--border-brown);
+    line-height: 1.2;
+    text-align: center;
+    color: var(--text-dark);
+    width: 100%;
+    max-width: 200px;
 }
 
 .sr-only {

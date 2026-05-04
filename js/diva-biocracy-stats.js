@@ -10,7 +10,7 @@ function cssVar(name, fallback) {
     return v || fallback;
 }
 
-function drawVerticalBars(canvas, labels, values, title, barColor) {
+function drawVerticalBars(canvas, labels, values, barColor) {
     const ctx = canvas.getContext("2d");
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const cssW = canvas.width;
@@ -21,8 +21,8 @@ function drawVerticalBars(canvas, labels, values, title, barColor) {
 
     const padL = 4;
     const padR = 4;
-    const padT = title ? 22 : 10;
-    const padB = 36;
+    const padT = 4;
+    const padB = 34;
     const chartW = cssW - padL - padR;
     const chartH = cssH - padT - padB;
     const n = values.length;
@@ -31,16 +31,6 @@ function drawVerticalBars(canvas, labels, values, title, barColor) {
     const barW = n ? (chartW - gap * (n - 1)) / n : 0;
 
     ctx.clearRect(0, 0, cssW, cssH);
-    ctx.fillStyle = "rgba(0,0,0,0.06)";
-    ctx.fillRect(padL, padT, chartW, chartH);
-
-    if (title) {
-        const t = title.length > 44 ? `${title.slice(0, 41)}…` : title;
-        ctx.fillStyle = cssVar("--text-dark", "#2a1810");
-        ctx.font = "600 9px Cinzel, Georgia, serif";
-        ctx.textAlign = "center";
-        ctx.fillText(t, cssW / 2, 13);
-    }
 
     values.forEach((v, i) => {
         const h = (v / maxV) * (chartH - 2);
@@ -65,16 +55,41 @@ function drawVerticalBars(canvas, labels, values, title, barColor) {
     });
 }
 
-function formatSynced(iso) {
-    try {
-        const d = new Date(iso);
-        return d.toLocaleString(undefined, {
-            dateStyle: "medium",
-            timeStyle: "short",
-        });
-    } catch {
-        return iso;
-    }
+/** e.g. 75 → 70+, 8 → 8+ */
+function downloadFloorPlus(total) {
+    const n = Number(total);
+    if (!Number.isFinite(n) || n < 0) return "0+";
+    const flo = Math.floor(n / 10) * 10;
+    const base = flo > 0 ? flo : n;
+    return `${base}+`;
+}
+
+/** e.g. 5343 → 5000+, 842 → 0+ then use total */
+function visitsFloorThousandsPlus(total) {
+    const n = Number(total);
+    if (!Number.isFinite(n) || n < 0) return "0+";
+    const flo = Math.floor(n / 1000) * 1000;
+    const base = flo > 0 ? flo : n;
+    return `${base}+`;
+}
+
+function legendDownloads(total) {
+    const t = typeof window.getTranslation === "function" ? window.getTranslation("port-biocracy-stats-dl-suffix") : "downloads";
+    return `${downloadFloorPlus(total)} ${t}`;
+}
+
+function legendVisits(total) {
+    const t = typeof window.getTranslation === "function" ? window.getTranslation("port-biocracy-stats-vis-suffix") : "visits";
+    return `${visitsFloorThousandsPlus(total)} ${t}`;
+}
+
+export function refreshDivaBiocracyLegends() {
+    const root = document.querySelector(".academic-card--diva [data-diva-stats-root]");
+    if (!root?.dataset.dlTotal || !root.dataset.visTotal) return;
+    const legDl = root.querySelector("[data-diva-legend-downloads]");
+    const legVis = root.querySelector("[data-diva-legend-visits]");
+    if (legDl) legDl.textContent = legendDownloads(root.dataset.dlTotal);
+    if (legVis) legVis.textContent = legendVisits(root.dataset.visTotal);
 }
 
 export async function initDivaBiocracyStats() {
@@ -95,19 +110,15 @@ export async function initDivaBiocracyStats() {
         const red = cssVar("--red-theme", "#8b1a1a");
         const teal = cssVar("--teal-theme", "#2a6f6f");
 
-        if (cDl) drawVerticalBars(cDl, dl.labels, dl.series, dl.title, red);
-        if (cVis) drawVerticalBars(cVis, vis.labels, vis.series, vis.title, teal);
+        if (cDl) drawVerticalBars(cDl, dl.labels, dl.series, red);
+        if (cVis) drawVerticalBars(cVis, vis.labels, vis.series, teal);
 
-        const nDl = root.querySelector("[data-diva-total-downloads]");
-        const nVis = root.querySelector("[data-diva-total-visits]");
-        if (nDl) nDl.textContent = String(dl.total);
-        if (nVis) nVis.textContent = String(vis.total);
-
-        const syncEl = root.querySelector("[data-diva-synced-at]");
-        if (syncEl && data.scrapedAt) {
-            syncEl.textContent = formatSynced(data.scrapedAt);
-            syncEl.setAttribute("datetime", data.scrapedAt);
-        }
+        const legDl = root.querySelector("[data-diva-legend-downloads]");
+        const legVis = root.querySelector("[data-diva-legend-visits]");
+        root.dataset.dlTotal = String(dl.total);
+        root.dataset.visTotal = String(vis.total);
+        if (legDl) legDl.textContent = legendDownloads(dl.total);
+        if (legVis) legVis.textContent = legendVisits(vis.total);
 
         root.removeAttribute("hidden");
         root.dataset.divaStatsRendered = "1";
@@ -115,3 +126,5 @@ export async function initDivaBiocracyStats() {
         /* keep hidden; optional manual JSON later */
     }
 }
+
+window.refreshDivaBiocracyLegends = refreshDivaBiocracyLegends;

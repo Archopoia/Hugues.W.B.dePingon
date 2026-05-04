@@ -451,10 +451,8 @@ const translations = {
         "port-biocracy-meta": "2025 - Master's Thesis",
         "port-biocracy-publication-cta": "Check the publication",
         "port-biocracy-diva-link-label": "Open this thesis on DiVA (Linköping University)",
-        "port-biocracy-stats-dl-caption": "full-text downloads (DiVA)",
-        "port-biocracy-stats-vis-caption": "record visits (DiVA)",
-        "port-biocracy-stats-sync-label": "DiVA feed last synced:",
-        "port-biocracy-stats-live": "Open live record",
+        "port-biocracy-stats-dl-suffix": "downloads",
+        "port-biocracy-stats-vis-suffix": "visits",
 
         // Skills Section
         "skills-overview": "Overview",
@@ -1140,10 +1138,8 @@ const translations = {
         "port-biocracy-meta": "2025 - Mémoire de Master",
         "port-biocracy-publication-cta": "Voir la publication",
         "port-biocracy-diva-link-label": "Ouvrir cette thèse sur DiVA (Université de Linköping)",
-        "port-biocracy-stats-dl-caption": "téléchargements du texte intégral (DiVA)",
-        "port-biocracy-stats-vis-caption": "visites de la notice (DiVA)",
-        "port-biocracy-stats-sync-label": "Données DiVA synchronisées :",
-        "port-biocracy-stats-live": "Voir la notice en direct",
+        "port-biocracy-stats-dl-suffix": "téléchargements",
+        "port-biocracy-stats-vis-suffix": "visites",
 
         // Skills Section
         "skills-overview": "Vue d'ensemble",
@@ -1441,6 +1437,10 @@ function applyLanguage(lang) {
             }
         }
     });
+
+    if (typeof window.refreshDivaBiocracyLegends === 'function') {
+        window.refreshDivaBiocracyLegends();
+    }
 
     // Update language button text and flag icon
     const langText = document.querySelector('.lang-text');
