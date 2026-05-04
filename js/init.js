@@ -3,6 +3,7 @@
 
 import { typeWriter, getElementFromTarget } from './utils.js';
 import { loadSection, switchTab, preloadAllSections } from './navigation.js';
+import { initAboutThesisTeaser } from './diva-biocracy-stats.js';
 import { initializeFlipSounds, createParticles, createRipple } from './animations.js';
 import { initializeEasterEggs, trackKonamiCode } from './easter-eggs.js';
 import { initializeModalListeners } from './modals.js';
@@ -56,6 +57,8 @@ document.addEventListener('DOMContentLoaded', function() {
             aboutTab.classList.add('active');
             aboutButton.classList.add('active');
         }
+
+        void initAboutThesisTeaser();
     });
 
     // Initialize Easter Eggs (secret code, Konami, achievements)

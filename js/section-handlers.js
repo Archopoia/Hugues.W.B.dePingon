@@ -201,4 +201,3 @@ export function animateSkillBars() {
         bar.classList.add('animate');
     });
 }
-
