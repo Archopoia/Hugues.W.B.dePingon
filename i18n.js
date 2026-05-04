@@ -315,6 +315,7 @@ const translations = {
         "edu-mphil-title": "MPhil – Applied Ethics",
         "edu-masters-thesis": "Master's Thesis:",
         "edu-mphil-thesis": "\"Biocracy: From Artificial Intelligence to Accelerated Independence\"",
+        "edu-mphil-diva-cta": "Official open-access record (DiVA, Linköping University)",
         "edu-graduate-title": "Graduate",
         "edu-graduate-subtitle": "Advanced research and specialized expertise",
         "edu-mba-title": "MBA - Foresight and Strategic Governance",
@@ -448,6 +449,8 @@ const translations = {
         "port-ateliers-meta": "2023 - Article",
         "port-biocracy-title": "BIOCRACY - A Nietzschean AI Alignment",
         "port-biocracy-meta": "2025 - Master's Thesis",
+        "port-biocracy-publication-cta": "Check the publication",
+        "port-biocracy-diva-link-label": "Open this thesis on DiVA (Linköping University)",
 
         // Skills Section
         "skills-overview": "Overview",
@@ -997,6 +1000,7 @@ const translations = {
         "edu-mphil-title": "MPhil – Éthique Appliquée",
         "edu-masters-thesis": "Mémoire de Master:",
         "edu-mphil-thesis": "\"Biocratie: De l'Intelligence Artificielle à l'Indépendance Accélérée\"",
+        "edu-mphil-diva-cta": "Fiche officielle en libre accès (DiVA, université de Linköping)",
         "edu-graduate-title": "Graduate",
         "edu-graduate-subtitle": "Recherche avancée et expertise spécialisée",
         "edu-mba-title": "MBA - Prospective et Gouvernance Stratégique",
@@ -1130,6 +1134,8 @@ const translations = {
         "port-ateliers-meta": "2023 - Article",
         "port-biocracy-title": "BIOCRATIE - Un Alignement d'IA Nietzschéen",
         "port-biocracy-meta": "2025 - Mémoire de Master",
+        "port-biocracy-publication-cta": "Voir la publication",
+        "port-biocracy-diva-link-label": "Ouvrir cette thèse sur DiVA (Université de Linköping)",
 
         // Skills Section
         "skills-overview": "Vue d'ensemble",

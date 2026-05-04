@@ -493,6 +493,22 @@ html[lang="fr"] .stat-label.countries-hover::before {
     line-height: 1.4;
 }
 
+.thesis-diva-link-wrap {
+    margin: 0.5rem 0 0;
+}
+
+.thesis-diva-link {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--red-theme);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.thesis-diva-link:hover {
+    color: var(--border-brown);
+}
+
 /* Achievement Highlights */
 .achievement-highlight {
     background: var(--yellow-theme-alpha);
@@ -834,6 +850,46 @@ html[lang="fr"] .stat-label.countries-hover::before {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+}
+
+/* DiVA-linked thesis: full-card hit target except Read button */
+.academic-card--diva {
+    position: relative;
+}
+
+.academic-card--diva .academic-card-cover-link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+}
+
+.academic-card--diva .project-link.compact {
+    position: relative;
+    z-index: 2;
+}
+
+.academic-card--diva .publication-cta {
+    margin: 0 0 0.15rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--red-theme);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    cursor: pointer;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 /* Coming Soon Academic Card */
