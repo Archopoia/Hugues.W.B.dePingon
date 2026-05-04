@@ -1,6 +1,8 @@
 // Medieval Character Sheet - Section-Specific Handlers
 // Location: /home/hullivan/Hugues.W.B.dePingon/js/section-handlers.js
 
+import { initDivaBiocracyStats } from './diva-biocracy-stats.js';
+
 // Portfolio Category Filtering - Function for reinitialization
 export function initializePortfolioNavigation() {
     const portNavBtns = document.querySelectorAll('.port-nav-btn');
@@ -151,6 +153,8 @@ export function initializePortfolioNavigation() {
         // Increased to 4 seconds to give more time for extension initialization
         setTimeout(scheduleFeaturedPDFLoad, 4000);
     }
+
+    void initDivaBiocracyStats();
 }
 
 // Skills Category Filtering - Function for reinitialization

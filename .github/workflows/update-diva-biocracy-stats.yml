@@ -1,0 +1,39 @@
+name: Update DiVA BIOCRACY stats
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Mondays 05:15 UTC — low traffic; adjust freely
+    - cron: "15 5 * * 1"
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch DiVA record HTML (curl; avoids bot wall on urllib)
+        run: |
+          curl -fsSL \
+            -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" \
+            "https://liu.diva-portal.org/smash/record.jsf?pid=diva2:2034306" \
+            -o /tmp/diva-record.html
+          test -s /tmp/diva-record.html
+
+      - name: Parse HTML and write JSON
+        run: python3 scripts/update_diva_biocracy_stats.py /tmp/diva-record.html
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/biocracy-diva-stats.json
+          if git diff --staged --quiet; then
+            echo "No changes to DiVA stats JSON."
+          else
+            git commit -m "chore: refresh DiVA BIOCRACY stats from LiU record page"
+            git push
+          fi
