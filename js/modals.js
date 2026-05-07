@@ -30,11 +30,11 @@ export function openFullVideo(videoType) {
         },
         'spiritsBounty': {
             title: 'Spirits Bounty - local LLM in Godot',
-            src: 'Assets/Spirits_Bounty.avi'
+            src: 'Assets/Spirits_Bounty.mp4'
         },
         'mountedWarfare': {
             title: 'Mounted Warfare',
-            src: 'Assets/Mounted_Warfare.avi'
+            src: 'Assets/Mounted_Warfare.mp4'
         },
         'tutelary': {
             title: 'Tutelary - fly fishing sim',
