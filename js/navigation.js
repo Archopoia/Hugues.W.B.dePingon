@@ -115,6 +115,11 @@ export async function switchTab(targetTab) {
     // Load section dynamically if not loaded
     await loadSection(targetTab);
 
+    const targetContent = document.getElementById(targetTab);
+    if (!targetContent) {
+        return;
+    }
+
     // Find the currently active tab BEFORE removing active class
     const currentlyActiveTab = document.querySelector('.tab-content.active');
     const currentTabId = currentlyActiveTab ? currentlyActiveTab.id : null;
@@ -161,7 +166,7 @@ export async function switchTab(targetTab) {
     // Add active class to target button and content
     const targetButton = document.querySelector(`[data-tab="${targetTab}"]`);
     if (targetButton) targetButton.classList.add('active');
-    document.getElementById(targetTab).classList.add('active');
+    targetContent.classList.add('active');
 
     // Toggle workshop background on sheet-content
     const sheetContent = document.querySelector('.sheet-content');
@@ -298,13 +303,12 @@ export async function switchTab(targetTab) {
     }
 
     // Add page flip animation (skip for workshop if coming from progressive reveal)
-    const activeContent = document.getElementById(targetTab);
     if (targetTab === 'workshop' && skipWorkshopAnimation) {
         skipWorkshopAnimation = false; // Reset flag
     } else {
-        activeContent.style.animation = 'none';
+        targetContent.style.animation = 'none';
         setTimeout(() => {
-            activeContent.style.animation = 'swing-in-top-fwd 1s cubic-bezier(0.175, 0.885, 0.320, 1.275) both';
+            targetContent.style.animation = 'swing-in-top-fwd 1s cubic-bezier(0.175, 0.885, 0.320, 1.275) both';
         }, 10);
     }
 

@@ -51,6 +51,8 @@ export function openFullVideo(videoType) {
         videoElement.className = 'modal-video';
         videoElement.controls = true;
         videoElement.autoplay = true;
+        videoElement.preload = 'auto';
+        videoElement.playsInline = true;
 
         const source = document.createElement('source');
         source.src = video.src;

@@ -480,7 +480,9 @@ class SoundManager {
         this.pullStartTime = Date.now();
         const pull = this.sounds.pull;
         pull.currentTime = 0;
-        pull.play().catch(() => {});
+        pull.play().catch(() => {
+            this.pullPlaying = false;
+        });
 
         // If sound ends naturally (held longer than audio), just stop
         pull.onended = () => {

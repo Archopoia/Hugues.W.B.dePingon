@@ -94,6 +94,10 @@ function handleVideoCardLeave(e) {
     const card = element.closest('.project-card, .alpine-card, .media-item');
     if (!card) return;
 
+    // Moving onto native <video> controls (shadow DOM) can fire mouseleave on the
+    // video while the pointer is still over the card — don’t pause or the scrubber breaks.
+    if (card.matches(':hover')) return;
+
     const video = card.querySelector('video');
     if (video && !video.paused) {
         // Clear any ongoing fade-in

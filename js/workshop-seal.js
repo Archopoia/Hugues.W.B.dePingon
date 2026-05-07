@@ -295,6 +295,13 @@ async function endPress(e) {
 
     const workshopSealButton = document.querySelector('.workshop-seal-button');
 
+    // Ignore orphan mouseup/touchend (no matching pointer down on this control). Without this,
+    // pressStartTime stays 0 and revealProgress becomes ~1, so we fire release + switchTab without
+    // pull audio, preview, or hold timing.
+    if (!workshopSealButton.classList.contains('pressing')) {
+        return;
+    }
+
     // Remove pressing class
     workshopSealButton.classList.remove('pressing');
 

@@ -108,6 +108,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const card = element.closest('.highlight-card, .project-card, .work-item');
         if (card) {
+            // Same as video hover: shadow-DOM controls can spoof mouseleave on children.
+            if (card.matches(':hover')) return;
             card.style.transform = 'translateY(0) scale(1)';
             // Clean up will-change after animation
             setTimeout(() => {
