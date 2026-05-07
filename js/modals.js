@@ -19,6 +19,26 @@ export function openFullVideo(videoType) {
         'kalevipoeg': {
             title: 'KALEVIPOEG - 48H GameJam',
             src: 'Portfolio/Game Development (Design, Worldbuilding, Graphic)/2) GameJams & Prototypes/2025 - KALEVIPOEG - 48H; GameJam as Tech Lead, Generative Tower Defense Estonian Folklore.mp4'
+        },
+        'curvedWorld': {
+            title: 'Curved World - shader prototype',
+            src: 'Assets/Curvedshader.mp4'
+        },
+        'undergroundEnlightenment': {
+            title: 'Underground Enlightenment - custom voxel engine',
+            src: 'Assets/UndergroundEnlightenment.mp4'
+        },
+        'spiritsBounty': {
+            title: 'Spirits Bounty - local LLM in Godot',
+            src: 'Assets/Spirits_Bounty.avi'
+        },
+        'mountedWarfare': {
+            title: 'Mounted Warfare',
+            src: 'Assets/Mounted_Warfare.avi'
+        },
+        'tutelary': {
+            title: 'Tutelary - fly fishing sim',
+            src: 'Assets/Tutelary.mp4'
         }
     };
 
@@ -34,7 +54,12 @@ export function openFullVideo(videoType) {
 
         const source = document.createElement('source');
         source.src = video.src;
-        source.type = 'video/mp4';
+        const lower = video.src.toLowerCase();
+        source.type = lower.endsWith('.webm')
+            ? 'video/webm'
+            : lower.endsWith('.avi')
+                ? 'video/x-msvideo'
+                : 'video/mp4';
 
         videoElement.appendChild(source);
         videoElement.appendChild(document.createTextNode('Your browser does not support the video tag.'));
@@ -80,10 +105,6 @@ export function openFullPDF(pdfType) {
         'ateliers': {
             title: 'Les Ateliers de Jeux de role Pratiques',
             src: 'Portfolio/Academia (Foresight, Ethics & Serious Games)/2023 - ARTICLE - Les Ateliers de Jeux de rôle Pratiques aujourd\'hui.pdf'
-        },
-        'ttrpg': {
-            title: 'The Discording Tales - TTRPG (300 pages)',
-            src: 'Portfolio/Game Development (Design, Worldbuilding, Graphic)/TTRPG - 300p - Des Récits Discordants (FR - The Discording Tales).pdf'
         }
     };
 

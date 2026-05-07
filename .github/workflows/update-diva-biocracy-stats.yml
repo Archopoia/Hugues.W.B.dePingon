@@ -3,7 +3,7 @@ name: Update DiVA BIOCRACY stats
 on:
   workflow_dispatch:
   schedule:
-    # Mondays 05:15 UTC — low traffic; adjust freely
+    # Mondays 05:15 UTC - low traffic; adjust freely
     - cron: "15 5 * * 1"
 
 permissions:

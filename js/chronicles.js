@@ -74,7 +74,7 @@ const goal = {
             <p><em>January 10, 2025 • 8 minute read</em></p>
 
             <h2>The Question</h2>
-            <p>As NPCs become increasingly sophisticated—especially with LLM integration—we're approaching a philosophical crossroads. When does a simulated consciousness deserve ethical consideration?</p>
+            <p>As NPCs become increasingly sophisticated - especially with LLM integration - we're approaching a philosophical crossroads. When does a simulated consciousness deserve ethical consideration?</p>
 
             <h2>The Philosophical Framework</h2>
             <p>Drawing from my MPhil in Applied Ethics, I approach this through three lenses:</p>
@@ -305,7 +305,7 @@ const culture = {
             <p><em>December 20, 2024 • 7 minute read</em></p>
 
             <h2>The Vision</h2>
-            <p>The Wayward Realms aims to create a world as vast as Daggerfall but with modern sophistication. That means massive procedural generation—but done right.</p>
+            <p>The Wayward Realms aims to create a world as vast as Daggerfall but with modern sophistication. That means massive procedural generation - but done right.</p>
 
             <h2>Challenge 1: Scale vs. Meaning</h2>
             <p>Our first major challenge: how do you create a world with thousands of locations that still feels handcrafted?</p>
@@ -468,7 +468,7 @@ func _process(delta):
             <h2>Conclusion</h2>
             <p>Systemic design creates worlds that feel alive and responsive. It's more work upfront, but the payoff is a game where every playthrough tells a unique story.</p>
 
-            <p>The best game design isn't about creating content—it's about creating systems that generate content.</p>
+            <p>The best game design isn't about creating content - it's about creating systems that generate content.</p>
         `
     }
 };

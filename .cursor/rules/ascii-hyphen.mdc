@@ -1,0 +1,10 @@
+---
+description: Use ASCII hyphen instead of em dash in user-facing copy and code comments you add or edit.
+alwaysApply: true
+---
+
+# Typography – hyphen, not em dash
+
+- In **English (and French) UI strings**, **meta text**, **portfolio copy**, **alt text**, **comments meant for maintainers when they quote UI**, and similar: use the **ASCII hyphen-minus** `-` instead of the **em dash** `—` (U+2014).
+- Prefer **spaced pairs** for readability where an em dash would have been used as a pause or separator: ` - ` (e.g. `Role - Lead`, `2024 - Present`).
+- **Do not** introduce em dashes in new copy; if you edit a line that still contains `—`, normalize it to `-` / ` - ` as appropriate.

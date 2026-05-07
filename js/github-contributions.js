@@ -416,7 +416,7 @@ function setupSnakeGame(gridContainer, weeks, days) {
         return Math.abs(col - triggerCol) <= 1 && Math.abs(row - triggerRow) <= 1;
     }
 
-    /** Center exit cell only: immovable — pushed chains cannot occupy or slide through it. */
+    /** Center exit cell only: immovable - pushed chains cannot occupy or slide through it. */
     function isDoorImmovableCell(col, row) {
         return col === triggerCol && row === triggerRow;
     }

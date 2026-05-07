@@ -234,6 +234,7 @@
 
     /* Media Previews Responsive */
     .project-video,
+    .project-video-player,
     .pdf-preview {
         height: 150px;
     }

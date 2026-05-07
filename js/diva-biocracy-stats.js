@@ -71,7 +71,7 @@ async function getBiocracyDivaStats() {
 }
 
 /**
- * @param {boolean} compact — smaller padding & tick labels (About teaser)
+ * @param {boolean} compact - smaller padding & tick labels (About teaser)
  */
 function drawVerticalBars(canvas, labels, values, barColor, compact = false) {
     const ctx = canvas.getContext("2d");
