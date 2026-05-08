@@ -1,0 +1,12 @@
+{
+  "name": "Hugues de Pingon",
+  "short_name": "H. de Pingon",
+  "icons": [
+    { "src": "/Hugues.W.B.dePingon/favicon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/Hugues.W.B.dePingon/favicon-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#8B1A1A",
+  "background_color": "#1a1a1a",
+  "display": "standalone",
+  "start_url": "/Hugues.W.B.dePingon/"
+}
