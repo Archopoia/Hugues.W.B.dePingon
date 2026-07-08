@@ -1,7 +1,7 @@
 // Medieval Character Sheet - Navigation & Section Loading
 // Location: /home/hullivan/Hugues.W.B.dePingon/js/navigation.js
 
-import { initializePortfolioNavigation, initializeSkillsNavigation, animateSkillBars } from './section-handlers.js';
+import { initializePortfolioNavigation } from './section-handlers.js';
 import { initializeContactMethods } from './forms.js';
 import { initializeEducationNavigation, initializeAlpineEducationVideo } from './media.js';
 import { initializeRandomCardFlip } from './animations.js';
@@ -102,7 +102,7 @@ export async function loadSection(sectionName) {
 
 // Preload sections for better UX
 export function preloadAllSections() {
-    const sections = ['chronicles', 'about', 'workshop', 'education', 'experience', 'portfolio', 'skills', 'contact'];
+    const sections = ['chronicles', 'about', 'workshop', 'education', 'experience', 'portfolio', 'contact'];
     sections.forEach(section => {
         if (section !== 'about') { // About is loaded by default
             loadSection(section);
@@ -312,12 +312,6 @@ export async function switchTab(targetTab) {
         }, 10);
     }
 
-    // Animate skill bars when skills tab is opened
-    if (targetTab === 'skills') {
-        setTimeout(() => {
-            animateSkillBars();
-        }, 300);
-    }
 }
 
 // Export for use in workshop seal button logic

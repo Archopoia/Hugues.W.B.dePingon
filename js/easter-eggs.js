@@ -11,7 +11,7 @@ let lockedStats = [];
 
 // Konami-style Tab Code Easter Egg
 let tabSequence = [];
-const konamiTabCode = ['about', 'education', 'portfolio', 'skills', 'portfolio', 'education', 'about']; // A-E-P-S-P-E-A
+const konamiTabCode = ['about', 'education', 'portfolio', 'contact', 'portfolio', 'education', 'about']; // A-E-P-C-P-E-A
 let konamiUnlocked = false;
 
 // Fixed 3-step sequence for the header mini-game.

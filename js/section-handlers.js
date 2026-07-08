@@ -117,17 +117,17 @@ export function initializePortfolioNavigation() {
         });
     });
 
-    // Load PDFs for featured category only after user interaction or gentle delay
+    // Load PDFs for the default category only after user interaction or gentle delay
     // This prevents errors on initial portfolio tab load
-    let featuredPDFsScheduled = false;
+    let initialPDFsScheduled = false;
 
-    function scheduleFeaturedPDFLoad() {
-        if (featuredPDFsScheduled) {
+    function scheduleInitialPDFLoad() {
+        if (initialPDFsScheduled) {
             return;
         }
-        featuredPDFsScheduled = true;
+        initialPDFsScheduled = true;
 
-        const initialCategory = document.querySelector('.portfolio-category[data-category="featured"]');
+        const initialCategory = document.querySelector('.portfolio-category[data-category="academia"]');
         if (initialCategory && initialCategory.style.display !== 'none') {
             // Load with much longer delay and staggering to prevent errors
             // The staggerDelay of 4000ms gives the PDF viewer extension plenty of time to initialize
@@ -141,17 +141,17 @@ export function initializePortfolioNavigation() {
     const portfolioSection = document.getElementById('portfolio');
     if (portfolioSection) {
         // Load on scroll
-        portfolioSection.addEventListener('scroll', scheduleFeaturedPDFLoad, { once: true, passive: true });
+        portfolioSection.addEventListener('scroll', scheduleInitialPDFLoad, { once: true, passive: true });
 
         // Load on mouse move
-        portfolioSection.addEventListener('mousemove', scheduleFeaturedPDFLoad, { once: true, passive: true });
+        portfolioSection.addEventListener('mousemove', scheduleInitialPDFLoad, { once: true, passive: true });
 
         // Load on click anywhere in portfolio
-        portfolioSection.addEventListener('click', scheduleFeaturedPDFLoad, { once: true, passive: true });
+        portfolioSection.addEventListener('click', scheduleInitialPDFLoad, { once: true, passive: true });
 
         // Also schedule load after a gentle delay if no interaction
         // Increased to 4 seconds to give more time for extension initialization
-        setTimeout(scheduleFeaturedPDFLoad, 4000);
+        setTimeout(scheduleInitialPDFLoad, 4000);
     }
 
     void initDivaBiocracyStats();

@@ -9,8 +9,6 @@ import { initializeEasterEggs, trackKonamiCode } from './easter-eggs.js';
 import { initializeModalListeners } from './modals.js';
 import { initializeContactFormSubmit, switchContactMethod, nextQuestion, previousQuestion, resetContactForm } from './forms.js';
 import { initializeVideoHoverPlay } from './media.js';
-import { initializeWorkshopSeal } from './workshop-seal.js';
-
 function updateAgeStat() {
     const ageValueElement = document.getElementById('age-value');
     if (!ageValueElement) return;
@@ -65,12 +63,9 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeEasterEggs();
 
     // Tab switching functionality
-    const tabButtons = document.querySelectorAll('.tab-button, .workshop-seal-button');
+    const tabButtons = document.querySelectorAll('.tab-button');
 
     tabButtons.forEach(button => {
-        // Skip workshop seal button as it has custom handling
-        if (button.classList.contains('workshop-seal-button')) return;
-
         button.addEventListener('click', async function() {
             const targetTab = this.getAttribute('data-tab');
 
@@ -86,9 +81,6 @@ document.addEventListener('DOMContentLoaded', function() {
             await switchTab(targetTab);
         });
     });
-
-    // Initialize Workshop Seal Button
-    initializeWorkshopSeal();
 
     // Hover effects for cards - using event delegation for better performance
     document.addEventListener('mouseenter', (e) => {
@@ -147,11 +139,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Add ripple effect to tab buttons (exclude workshop seal button)
+    // Add ripple effect to tab buttons
     tabButtons.forEach(button => {
-        if (!button.classList.contains('workshop-seal-button')) {
-            button.addEventListener('click', createRipple);
-        }
+        button.addEventListener('click', createRipple);
     });
 
     // Add CSS for ripple effect
