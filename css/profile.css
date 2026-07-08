@@ -204,7 +204,7 @@
     gap: 1rem;
 }
 
-/* MPhil BIOCRACY - two-line DiVA link (left of sparklines) */
+/* MPhil BIOCRACY - DiVA link with static download count */
 .about-thesis-teaser-link {
     display: flex;
     flex-direction: column;
@@ -221,7 +221,8 @@
 }
 
 .about-thesis-teaser-line1,
-.about-thesis-teaser-line2 {
+.about-thesis-teaser-line2,
+.about-thesis-downloads {
     display: block;
 }
 
@@ -232,40 +233,20 @@
     font-weight: 700;
 }
 
+.about-thesis-downloads {
+    margin-top: 0.2rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--border-brown);
+    text-decoration: none;
+}
+
 .about-thesis-teaser-link:hover {
     color: var(--border-brown);
 }
 
-.about-thesis-mini {
-    flex: 0 0 auto;
-}
-
-.about-thesis-mini-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
-    gap: 0.12rem 0.35rem;
-    align-items: end;
-    justify-items: center;
-}
-
-.about-thesis-mini .about-thesis-mini-legend {
-    margin: 0;
-    padding: 0 0.1rem;
-    font-size: 0.62rem;
-    font-weight: 600;
-    line-height: 1.1;
-    text-align: center;
-    color: var(--text-dark);
-    max-width: 104px;
-}
-
-.about-thesis-mini canvas {
-    display: block;
-    border: none;
-    background: transparent;
-    max-width: 100px;
-    height: auto;
+.about-thesis-teaser-link:hover .about-thesis-downloads {
+    color: var(--red-theme);
 }
 
 .mission-text {
@@ -363,7 +344,7 @@
 .expertise-card {
     position: relative;
     cursor: pointer;
-    min-height: 220px;
+    min-height: 240px;
     perspective: 1000px;
 }
 
@@ -380,7 +361,7 @@
         inset 0 0 0 2px var(--border-tan);
     position: relative;
     transform-style: preserve-3d;
-    min-height: 220px;
+    min-height: 240px;
 }
 
 .expertise-card:hover .card-inner,
@@ -413,12 +394,15 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 0.55rem;
     opacity: 0;
     transition: opacity 0.3s ease;
     backface-visibility: hidden;
     transform: rotateY(180deg);
     border-radius: 15px;
-    padding: 1.5rem;
+    padding: 0.85rem 0.9rem;
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
 .expertise-card:hover .card-front,
@@ -526,26 +510,28 @@
 
 .card-back p {
     color: var(--text-cream);
-    font-size: 1rem;
+    font-size: 0.85rem;
     font-weight: 500;
+    line-height: 1.35;
+    margin: 0;
 }
 
 .expertise-tags {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1rem;
+    gap: 0.35rem;
+    margin-top: 0;
 }
 
 .expertise-tags span {
     background: var(--red-theme);
     color: var(--text-cream);
-    padding: 0.3rem 0.7rem;
-    border-radius: 10px;
-    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 8px;
+    font-size: 0.65rem;
     font-weight: 600;
-    border: 2px solid var(--border-dark);
+    border: 1px solid var(--border-dark);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     transition: all var(--transition-speed);
 }
@@ -557,9 +543,13 @@
 }
 
 /* Tags on flipped card-back */
+.card-back .expertise-tags {
+    flex-shrink: 0;
+}
+
 .card-back .expertise-tags span {
     background: rgba(255, 255, 255, 0.2);
-    border: 2px solid var(--text-cream);
+    border: 1px solid var(--text-cream);
     color: var(--text-cream);
     backdrop-filter: blur(5px);
 }
@@ -647,6 +637,8 @@
 .node-icon.theme-yellow { background: var(--yellow-theme); }
 .node-icon.theme-green { background: var(--green-theme); }
 .node-icon.theme-teal { background: var(--teal-theme); }
+.node-icon.theme-purple { background: var(--purple-theme); }
+.node-icon.theme-orange { background: var(--orange-theme); }
 
 .node-content {
     flex: 1;
@@ -657,6 +649,34 @@
     color: var(--text-dark);
     font-size: 1.2rem;
     margin: 0 0 0.5rem 0;
+}
+
+.node-content .journey-diploma {
+    margin: -0.25rem 0 0.45rem 0;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--red-theme);
+    line-height: 1.2;
+}
+
+.node-content .journey-projects {
+    line-height: 1.35;
+}
+
+.node-content .journey-projects a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.node-content .journey-projects a:hover {
+    color: var(--border-brown);
+}
+
+.node-content .journey-projects-sep {
+    font-weight: 700;
 }
 
 .node-content p {

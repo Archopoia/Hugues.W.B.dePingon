@@ -33,8 +33,9 @@
     position: relative;
     min-height: 100vh;
     height: auto;
-    overflow-x: hidden;
-    overflow-y: auto;
+    /* clip X only - hidden+auto on this box can trap iOS touch scroll */
+    overflow-x: clip;
+    overflow-y: visible;
     z-index: 2;
     transform: perspective(1000px) rotateX(1deg);
     transition: transform 0.3s ease;

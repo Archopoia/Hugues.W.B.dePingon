@@ -121,7 +121,7 @@
 
 .exp-badge.passion {
     background: var(--yellow-theme);
-    color: var(--text-dark);
+    color: var(--text-cream);
 }
 
 .exp-toggle {
@@ -168,6 +168,52 @@
     color: var(--text-dark);
     line-height: 1.6;
     margin-bottom: 1rem;
+}
+
+.exp-pitch-link {
+    display: block;
+    position: relative;
+    margin: 0 0 1rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid var(--border-tan);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
+    max-width: 420px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.exp-pitch-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.exp-pitch-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    vertical-align: top;
+}
+
+.exp-pitch-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    width: 100%;
+    padding: 0.55rem 0.75rem;
+    background: var(--red-theme);
+    color: var(--text-cream);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-align: center;
+    border-top: 2px solid var(--border-tan);
+}
+
+.exp-pitch-link:hover .exp-pitch-cta {
+    background: var(--border-brown);
 }
 
 /* Progression Timeline */

@@ -1493,6 +1493,30 @@
     z-index: 9;
 }
 
+.role-stat .role-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.1rem;
+    line-height: 1.2;
+}
+
+.role-stat .role-line {
+    display: block;
+    font-size: 0.95rem;
+}
+
+.role-stat .role-olg-link {
+    color: var(--gold);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    cursor: pointer;
+}
+
+.role-stat .role-olg-link:hover {
+    color: var(--text-cream);
+}
+
 .stat-value {
     font-size: 1.1rem;
     color: var(--parchment-aged);

@@ -880,45 +880,12 @@ html[lang="fr"] .stat-label.countries-hover::before {
     cursor: pointer;
 }
 
-/* DiVA stats (mirrored JSON; charts redraw client-side) */
-.academic-card--diva .diva-stats-wrap {
-    position: relative;
-    z-index: 2;
-    pointer-events: none;
-    margin: 0.35rem 0 0.25rem;
-}
-
-.academic-card--diva .diva-stats-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
-    gap: 0.35rem 0.6rem;
-    align-items: end;
-    justify-items: center;
-    width: 100%;
-}
-
-.academic-card--diva .diva-stat-canvas {
-    display: block;
-    margin: 0;
-    width: 100%;
-    max-width: 200px;
-    height: auto;
-    border: none;
-    border-radius: 0;
-    background: transparent;
-}
-
-.academic-card--diva .diva-stat-legend {
-    margin: 0;
-    padding: 0 0.15rem;
-    font-size: 0.78rem;
-    font-weight: 600;
-    line-height: 1.2;
+.academic-card--diva .biocracy-downloads {
+    margin: 0.15rem 0 0.35rem;
+    font-size: 0.85rem;
+    font-weight: 700;
     text-align: center;
-    color: var(--text-dark);
-    width: 100%;
-    max-width: 200px;
+    color: var(--border-brown);
 }
 
 .sr-only {

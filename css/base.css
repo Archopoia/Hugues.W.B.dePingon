@@ -31,8 +31,10 @@
 
 html {
     scroll-behavior: smooth;
-    overflow-x: hidden;
-    overflow-y: auto;
+    /* Use clip (not hidden) for X: on iOS Safari, overflow-x:hidden + overflow-y:auto
+       on the same element kills finger scrolling while scrollIntoView still works. */
+    overflow-x: clip;
+    overflow-y: visible;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE and Edge */
 }
@@ -42,8 +44,8 @@ html::-webkit-scrollbar {
 }
 
 body {
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow-x: clip;
+    overflow-y: visible;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE and Edge */
 }
@@ -173,7 +175,7 @@ body {
     background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
     color: var(--text-dark);
     min-height: 100vh;
-    overflow-x: hidden;
+    overflow-x: clip;
     position: relative;
 }
 

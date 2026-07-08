@@ -729,6 +729,8 @@ window.addEventListener('DOMContentLoaded', () => {
         if (audioUnlocked) return;
         audioUnlocked = true;
         markEntranceSeenNow();
+        // Always clear the entrance scroll lock (fallback clicks used to leave it on).
+        document.body.classList.remove('entrance-active');
 
         if (animateEntrance) {
             // Hide button
