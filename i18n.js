@@ -491,13 +491,12 @@ const translations = {
         "port-economie-meta": "2022 - PhD Proposal",
         "port-unesco-title": "UNESCO: Future Foresight",
         "port-unesco-meta": "2023 - Article",
-        "port-ateliers-title": "Serious Games: Ateliers de JdR",
+        "port-ateliers-title": "Serious Games",
         "port-ateliers-meta": "2023 - Article",
         "port-biocracy-title": "BIOCRACY - A Nietzschean AI Alignment",
         "port-biocracy-meta": "2025 - Master's Thesis",
         "port-biocracy-publication-cta": "Check the publication",
         "port-biocracy-diva-link-label": "Open this thesis on DiVA (Linköping University)",
-        "port-biocracy-downloads": "100+ downloads",
 
         // Skills Section
         "skills-overview": "Overview",
@@ -1228,13 +1227,12 @@ const translations = {
         "port-economie-meta": "2022 - Projet de Doctorat",
         "port-unesco-title": "UNESCO: Prospective Future",
         "port-unesco-meta": "2023 - Article",
-        "port-ateliers-title": "Serious Games: Ateliers de JdR",
+        "port-ateliers-title": "Serious Games",
         "port-ateliers-meta": "2023 - Article",
         "port-biocracy-title": "BIOCRATIE - Un Alignement d'IA Nietzschéen",
         "port-biocracy-meta": "2025 - Mémoire de Master",
         "port-biocracy-publication-cta": "Voir la publication",
         "port-biocracy-diva-link-label": "Ouvrir cette thèse sur DiVA (Université de Linköping)",
-        "port-biocracy-downloads": "100+ téléchargements",
 
         // Skills Section
         "skills-overview": "Vue d'ensemble",
