@@ -14,9 +14,9 @@ let tabSequence = [];
 const konamiTabCode = ['about', 'education', 'portfolio', 'contact', 'portfolio', 'education', 'about']; // A-E-P-C-P-E-A
 let konamiUnlocked = false;
 
-// Fixed 3-step sequence for the header mini-game.
-// Order: Age -> Current Role -> Origin
-const correctSequence = ['age', 'current-role', 'origin'];
+// Fixed 2-step sequence for the header mini-game.
+// Order: Role -> Origin (then click portrait to win)
+const correctSequence = ['current-role', 'origin'];
 const MAX_SECRET_STEPS = correctSequence.length;
 
 function resetSequence() {
@@ -187,40 +187,41 @@ export function initializeEasterEggs() {
     const stats = document.querySelectorAll('.stat-item');
     const portraitFrame = document.querySelector('.portrait-frame');
 
-    // Add subtle hint to Age stat (first in sequence)
+    // Add subtle hint to Role stat (first in sequence)
     let hintInterval;
-    function startAgeHint() {
-        const ageStat = Array.from(stats).find(stat =>
-            stat.querySelector('.stat-label').getAttribute('data-i18n') === 'age'
+    function startRoleHint() {
+        const roleStat = Array.from(stats).find(stat =>
+            stat.getAttribute('data-stat') === 'current-role'
         );
 
-        if (ageStat) {
-            // Add periodic subtle pulse to Age stat (continues until achievement unlocked)
+        if (roleStat) {
+            // Add periodic subtle pulse to Role stat (continues until achievement unlocked)
             hintInterval = setInterval(() => {
-                if (secretSequence.length === 0 && !ageStat.classList.contains('stat-locked') && !achievementUnlocked) {
-                    ageStat.classList.add('stat-hint-pulse');
+                if (secretSequence.length === 0 && !roleStat.classList.contains('stat-locked') && !achievementUnlocked) {
+                    roleStat.classList.add('stat-hint-pulse');
                     // No sound for hint pulse - visual only
-                    setTimeout(() => ageStat.classList.remove('stat-hint-pulse'), 2000);
+                    setTimeout(() => roleStat.classList.remove('stat-hint-pulse'), 2000);
                 }
             }, 8000); // Pulse every 8 seconds
 
             // Do first pulse immediately
             setTimeout(() => {
                 if (secretSequence.length === 0 && !achievementUnlocked) {
-                    ageStat.classList.add('stat-hint-pulse');
+                    roleStat.classList.add('stat-hint-pulse');
                     // No sound for hint pulse - visual only
-                    setTimeout(() => ageStat.classList.remove('stat-hint-pulse'), 2000);
+                    setTimeout(() => roleStat.classList.remove('stat-hint-pulse'), 2000);
                 }
             }, 2000); // First hint after 2 seconds on page
         }
     }
 
     // Start the hint system
-    startAgeHint();
+    startRoleHint();
 
     stats.forEach(stat => {
-        // Use data-i18n attribute which is language-independent
-        const label = stat.querySelector('.stat-label').getAttribute('data-i18n');
+        // Use data-stat attribute which is language-independent
+        const label = stat.getAttribute('data-stat');
+        if (!label) return;
         stat.addEventListener('click', function(e) {
             // Stop event from bubbling to portrait
             e.stopPropagation();
@@ -242,7 +243,6 @@ export function initializeEasterEggs() {
                 secretSequence.push(label);
 
                 // Keep sequence capped to the configured mini-game length.
-                // This guarantees strict 3-step behavior now that one stat was removed.
                 if (secretSequence.length > MAX_SECRET_STEPS) {
                     secretSequence = secretSequence.slice(0, MAX_SECRET_STEPS);
                 }
@@ -362,15 +362,15 @@ export function initializeEasterEggs() {
                 // No sequence attempted - show fail animation and give hint with color reversal
                 showFailAnimation();
 
-                const ageStat = Array.from(stats).find(stat =>
-                    stat.querySelector('.stat-label').getAttribute('data-i18n') === 'age'
+                const roleStat = Array.from(stats).find(stat =>
+                    stat.getAttribute('data-stat') === 'current-role'
                 );
 
-                if (ageStat) {
+                if (roleStat) {
                     // Add strong hint with color reversal (2 second animation)
-                    ageStat.classList.add('stat-hint-click');
+                    roleStat.classList.add('stat-hint-click');
                     setTimeout(() => {
-                        ageStat.classList.remove('stat-hint-click');
+                        roleStat.classList.remove('stat-hint-click');
                     }, 2000);
                 }
 

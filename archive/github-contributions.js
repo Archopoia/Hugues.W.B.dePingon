@@ -1,3 +1,8 @@
+/**
+ * ARCHIVED (2026-07-23): GitHub contributions heatmap + snake easter egg.
+ * No longer loaded by script.js. Restore by importing this file and putting
+ * the former .github-contributions markup back in index.html.
+ */
 const CONTRIBUTIONS_API_URL = 'https://github-contributions-api.jogruber.de/v4/Archopoia?y=last';
 const HEATMAP_ROWS = 7;
 const SNAKE_START_DELAY_MS = 900;

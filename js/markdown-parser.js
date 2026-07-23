@@ -45,109 +45,148 @@ export function parseFrontMatter(content) {
 }
 
 /**
- * Convert markdown to HTML
+ * Apply inline markdown formatting (bold, italic, code, links, images).
+ * Code spans are extracted first so their contents are never re-parsed.
+ * @param {string} text - A single logical line/segment of markdown
+ * @returns {string} HTML with inline formatting applied
+ */
+function inlineFormat(text) {
+    const codeSpans = [];
+
+    // Extract inline code first so its contents are left untouched.
+    text = text.replace(/`([^`]+)`/g, (_match, code) => {
+        codeSpans.push(`<code>${escapeHTML(code)}</code>`);
+        return `\u0000${codeSpans.length - 1}\u0000`;
+    });
+
+    // Images before links (they share bracket syntax).
+    text = text.replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g,
+        '<img src="$2" alt="$1" loading="lazy" />');
+
+    // Links.
+    text = text.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g,
+        '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+
+    // Bold, then italic.
+    text = text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    text = text.replace(/__([^_]+)__/g, '<strong>$1</strong>');
+    text = text.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    // Restore code spans.
+    text = text.replace(/\u0000(\d+)\u0000/g, (_m, idx) => codeSpans[Number(idx)]);
+
+    return text;
+}
+
+/**
+ * Convert markdown to HTML using a block-based parser.
+ * Supports headings, paragraphs, blockquotes, horizontal rules,
+ * ordered/unordered lists, fenced code blocks, and inline formatting.
  * @param {string} markdown - Markdown content
  * @returns {string} HTML content
  */
 export function markdownToHTML(markdown) {
-    let html = markdown;
+    const lines = markdown.replace(/\r\n/g, '\n').split('\n');
+    const out = [];
+    let i = 0;
 
-    // Escape HTML to prevent XSS (but preserve intentional HTML)
-    // This is a simple implementation - be careful with user input
+    const isBlank = (line) => line.trim() === '';
 
-    // Headers (h1-h6)
-    html = html.replace(/^######\s+(.+)$/gm, '<h6>$1</h6>');
-    html = html.replace(/^#####\s+(.+)$/gm, '<h5>$1</h5>');
-    html = html.replace(/^####\s+(.+)$/gm, '<h4>$1</h4>');
-    html = html.replace(/^###\s+(.+)$/gm, '<h3>$1</h3>');
-    html = html.replace(/^##\s+(.+)$/gm, '<h2>$1</h2>');
-    html = html.replace(/^#\s+(.+)$/gm, '<h1>$1</h1>');
+    while (i < lines.length) {
+        const line = lines[i];
+        const trimmed = line.trim();
 
-    // Bold (**text** or __text__)
-    html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-    html = html.replace(/__(.+?)__/g, '<strong>$1</strong>');
-
-    // Italic (*text* or _text_)
-    html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
-    html = html.replace(/_(.+?)_/g, '<em>$1</em>');
-
-    // Code blocks (```language ... ```)
-    html = html.replace(/```(\w+)?\n([\s\S]*?)```/g, (match, lang, code) => {
-        return `<pre><code class="language-${lang || 'plaintext'}">${escapeHTML(code.trim())}</code></pre>`;
-    });
-
-    // Inline code (`code`)
-    html = html.replace(/`(.+?)`/g, '<code>$1</code>');
-
-    // Links ([text](url))
-    html = html.replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
-
-    // Images (![alt](url))
-    html = html.replace(/!\[(.+?)\]\((.+?)\)/g, '<img src="$2" alt="$1" />');
-
-    // Unordered lists (- item or * item)
-    html = html.replace(/^\s*[-*]\s+(.+)$/gm, '<li>$1</li>');
-    html = html.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
-
-    // Ordered lists (1. item)
-    html = html.replace(/^\s*\d+\.\s+(.+)$/gm, '<li>$1</li>');
-    // Wrap consecutive <li> in <ol> if not already in <ul>
-    html = html.replace(/(<li>(?:(?!<ul>).)*<\/li>)/gs, (match) => {
-        if (!match.includes('<ul>')) {
-            return `<ol>${match}</ol>`;
-        }
-        return match;
-    });
-
-    // Blockquotes (> text)
-    html = html.replace(/^>\s+(.+)$/gm, '<blockquote>$1</blockquote>');
-
-    // Horizontal rule (--- or ***)
-    html = html.replace(/^---$/gm, '<hr>');
-    html = html.replace(/^\*\*\*$/gm, '<hr>');
-
-    // Paragraphs (wrap non-HTML lines)
-    const lines = html.split('\n');
-    let inList = false;
-    let inCodeBlock = false;
-
-    html = lines.map(line => {
-        const trimmedLine = line.trim();
-
-        // Track code blocks
-        if (trimmedLine.startsWith('<pre>')) inCodeBlock = true;
-        if (trimmedLine.endsWith('</pre>')) {
-            inCodeBlock = false;
-            return line;
-        }
-        if (inCodeBlock) return line;
-
-        // Track lists
-        if (trimmedLine.startsWith('<ul>') || trimmedLine.startsWith('<ol>')) inList = true;
-        if (trimmedLine.startsWith('</ul>') || trimmedLine.startsWith('</ol>')) {
-            inList = false;
-            return line;
-        }
-        if (inList) return line;
-
-        // Don't wrap already-HTML lines or empty lines
-        if (trimmedLine === '' ||
-            trimmedLine.startsWith('<') ||
-            trimmedLine.endsWith('>')) {
-            return line;
+        // Blank lines separate blocks.
+        if (isBlank(line)) {
+            i++;
+            continue;
         }
 
-        // Wrap in paragraph
-        return `<p>${line}</p>`;
-    }).join('\n');
+        // Fenced code blocks (```lang ... ```)
+        const fence = trimmed.match(/^```(\w+)?\s*$/);
+        if (fence) {
+            const lang = fence[1] || 'plaintext';
+            const code = [];
+            i++;
+            while (i < lines.length && !lines[i].trim().startsWith('```')) {
+                code.push(lines[i]);
+                i++;
+            }
+            i++; // skip closing fence
+            out.push(`<pre><code class="language-${lang}">${escapeHTML(code.join('\n'))}</code></pre>`);
+            continue;
+        }
 
-    // Clean up extra newlines and spaces
-    html = html.replace(/\n{3,}/g, '\n\n');
-    html = html.replace(/<\/ul>\s*<ul>/g, '');
-    html = html.replace(/<\/ol>\s*<ol>/g, '');
-    html = html.replace(/<\/blockquote>\s*<blockquote>/g, '\n');
+        // Horizontal rule (--- or *** or ___)
+        if (/^(-{3,}|\*{3,}|_{3,})$/.test(trimmed)) {
+            out.push('<hr>');
+            i++;
+            continue;
+        }
 
-    return html;
+        // Headings (# ... ######)
+        const heading = trimmed.match(/^(#{1,6})\s+(.+?)\s*#*$/);
+        if (heading) {
+            const level = heading[1].length;
+            out.push(`<h${level}>${inlineFormat(heading[2])}</h${level}>`);
+            i++;
+            continue;
+        }
+
+        // Blockquotes (consecutive > lines)
+        if (/^>\s?/.test(trimmed)) {
+            const quote = [];
+            while (i < lines.length && /^>\s?/.test(lines[i].trim())) {
+                quote.push(lines[i].trim().replace(/^>\s?/, ''));
+                i++;
+            }
+            out.push(`<blockquote>${inlineFormat(quote.join(' ')).replace(/\n/g, '<br>')}</blockquote>`);
+            continue;
+        }
+
+        // Unordered lists (-, *, +)
+        if (/^[-*+]\s+/.test(trimmed)) {
+            const items = [];
+            while (i < lines.length && /^[-*+]\s+/.test(lines[i].trim())) {
+                items.push(`<li>${inlineFormat(lines[i].trim().replace(/^[-*+]\s+/, ''))}</li>`);
+                i++;
+            }
+            out.push(`<ul>${items.join('')}</ul>`);
+            continue;
+        }
+
+        // Ordered lists (1. 2. ...)
+        if (/^\d+\.\s+/.test(trimmed)) {
+            const items = [];
+            while (i < lines.length && /^\d+\.\s+/.test(lines[i].trim())) {
+                items.push(`<li>${inlineFormat(lines[i].trim().replace(/^\d+\.\s+/, ''))}</li>`);
+                i++;
+            }
+            out.push(`<ol>${items.join('')}</ol>`);
+            continue;
+        }
+
+        // Paragraph: gather consecutive non-blank, non-special lines.
+        const para = [];
+        while (
+            i < lines.length &&
+            !isBlank(lines[i]) &&
+            !/^(#{1,6})\s+/.test(lines[i].trim()) &&
+            !/^(-{3,}|\*{3,}|_{3,})$/.test(lines[i].trim()) &&
+            !/^>\s?/.test(lines[i].trim()) &&
+            !/^[-*+]\s+/.test(lines[i].trim()) &&
+            !/^\d+\.\s+/.test(lines[i].trim()) &&
+            !lines[i].trim().startsWith('```')
+        ) {
+            para.push(lines[i].trim());
+            i++;
+        }
+        if (para.length) {
+            out.push(`<p>${inlineFormat(para.join(' '))}</p>`);
+        }
+    }
+
+    return out.join('\n');
 }
 
 /**
@@ -167,13 +206,14 @@ function escapeHTML(text) {
 }
 
 /**
- * Load and parse a markdown file from blog-posts directory
+ * Load and parse a markdown file from a given directory.
  * @param {string} filename - Filename (e.g., 'my-post.md')
+ * @param {string} [dir='blog-posts'] - Directory the file lives in (no trailing slash)
  * @returns {Promise<object>} { metadata, html }
  */
-export async function loadMarkdownPost(filename) {
+export async function loadMarkdownPost(filename, dir = 'blog-posts') {
     try {
-        const response = await fetch(`blog-posts/${filename}`);
+        const response = await fetch(`${dir}/${filename}`, { cache: 'no-store' });
         if (!response.ok) {
             throw new Error(`Failed to load ${filename}`);
         }

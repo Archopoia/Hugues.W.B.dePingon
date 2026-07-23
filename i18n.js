@@ -11,7 +11,7 @@ const translations = {
         "age": "Age",
         "current-role": "Role",
         "lead-game-designer": "Lead Game Designer at OLG",
-        "role-architecture": "Studying classical architecture",
+        "role-architecture": "Studying traditional architecture",
         "role-olg": "Lead Game Designer at OLG",
         "location": "Location",
         "location-value": "Switzerland / Estonia",
@@ -27,6 +27,7 @@ const translations = {
         "nav-experience": "Experience",
         "nav-portfolio": "Portfolio",
         "nav-chronicles": "Chronicles",
+        "nav-noematics": "Noematics",
         "nav-skills": "Skills",
         "nav-contact": "Contact",
         "nav-workshop": "Workshop",
@@ -163,9 +164,17 @@ const translations = {
         "workshop-cta-desc": "Contact me to discuss your needs and book your workshop.",
         "workshop-cta-button": "Contact Me",
 
+        // Noematics Section (Essays)
+        "noematics-title": "Noematics",
+        "noematics-subtitle": "The Architecture of Meaning-Making",
+        "noematics-intro": "Short essays on how humans turn reality into meaningful structures - through language, art, science, symbols, and worldviews. A personal framework, offered as exploration rather than doctrine. Each piece ends with a period, not an ellipsis: think, write, publish, and move on to building.",
+        "noematics-search": "Search the essays...",
+        "noematics-empty-title": "No essays found",
+        "noematics-empty-text": "Try a different search or category.",
+
         // Chronicles Section (Blog)
         "chronicles-title": "Chronicles of Place & Practice",
-        "chronicles-subtitle": "Notes from classical study, vernacular craft, philosophy, and worlds made real",
+        "chronicles-subtitle": "Notes from traditional study, vernacular craft, philosophy, and worlds made real",
         "chronicles-articles-read": "Scrolls Read",
         "chronicles-streak": "Day Streak",
         "chronicles-xp": "Lore Points",
@@ -211,7 +220,7 @@ const translations = {
         "about-thesis-teaser-line2": "BIOCRACY - A Nietzschean AI Alignment",
         "about-thesis-downloads": "100+ downloads",
         "mission-text-1": "Once I imagined worldviews academically - anthropology, biology, neuroscience, foresight, and applied ethics. Then I created worldsettings artistically - game design, psychology, AI, programming, and creative direction.",
-        "mission-text-2": "Creative direction in games is close kin to architecture: funding, vision, and a team of many crafts aligned toward one finished whole. I still offer that craft - academia, games, systems, and design - while extending it from virtual space into classical and traditional architecture.",
+        "mission-text-2": "Creative direction in games is close kin to architecture: funding, vision, and a team of many crafts aligned toward one finished whole. I still offer that craft - academia, games, systems, and design - while extending it from virtual space into traditional architecture.",
         "mission-text-3": "Systems thinking, spatial imagination, ethics, programming, and leadership stay at the core - applied to interactive worlds today, and to real places tomorrow.",
         "mission-image-caption": "Discussing the creation of new species with Ben Lamm at Brain Bar 2025 (CEO of Colossal, an American biotechnology and genetic engineering company working to de-extinct Mammoths, Dodos and Dire wolves)",
 
@@ -275,7 +284,7 @@ const translations = {
         "journey-project-twr": "The Wayward Realms",
         "journey-gamedev-desc": "Game design and creative direction - building imaginary worlds as playable places, cultures, and spatial systems",
         "journey-architecture-title": "Architectural Worldspaces",
-        "journey-architecture-desc": "Beginning classical architecture now - learning to turn what was once imagined academically and crafted artistically into real places built for people",
+        "journey-architecture-desc": "Beginning traditional architecture now - learning to turn what was once imagined academically and crafted artistically into real places built for people",
 
         // Interests
         "interests-title": "Interests & Passions",
@@ -351,8 +360,8 @@ const translations = {
         "edu-specialized-subtitle": "Focused professional development",
         "edu-alpine-title": "Alpine Pasturing Training",
         "edu-alpine-desc": "Traditional Swiss Alpine farming techniques, livestock management, rural building and fence maintenance, and firsthand exposure to alpine vernacular building traditions",
-        "edu-architecture-title": "Classical Architecture - Beginning the Path",
-        "edu-architecture-desc": "Just beginning independent study toward classical architecture: learning the language of orders and proportion, drawing practice, and following traditional architecture networks (including INTBAU). An apprenticeship ahead - not a finished skillset.",
+        "edu-architecture-title": "Traditional Architecture - Beginning the Path",
+        "edu-architecture-desc": "Just beginning independent study toward traditional architecture: learning the language of orders and proportion, drawing practice, and following traditional architecture networks (including INTBAU). An apprenticeship ahead - not a finished skillset.",
         "edu-architecture-badge": "BEGINNING",
         "edu-architecture-inst": "Independent study & traditional architecture networks",
         "edu-architecture-location": "Switzerland / Europe",
@@ -365,10 +374,10 @@ const translations = {
         "exp-title": "Professional Experience",
         "exp-role-lead": "Lead Game Designer",
         "exp-role-tech": "Technical Game Designer",
-        "exp-architecture-title": "Toward Classical Architecture",
+        "exp-architecture-title": "Toward Traditional Architecture",
         "exp-architecture-company": "INTBAU · La Table Ronde · Independent study",
         "exp-architecture-badge": "Beginning",
-        "exp-architecture-desc": "Just beginning the turn toward classical architecture. Engaging with traditional architecture networks (INTBAU); assisted Nadia and Noé Morin at La Table Ronde de l'Architecture (Westhoffen, Alsace); preparatory observation of a vernacular house in Lääneranna, Estonia with Allan Struss. Learning - not claiming mastery yet.",
+        "exp-architecture-desc": "Just beginning the turn toward traditional architecture. Engaging with traditional architecture networks (INTBAU); assisted Nadia and Noé Morin at La Table Ronde de l'Architecture (Westhoffen, Alsace); preparatory observation of a vernacular house in Lääneranna, Estonia with Allan Struss. Learning - not claiming mastery yet.",
         "exp-architecture-tag-study": "Beginning Study",
         "exp-architecture-tag-drawing": "Learning to Draw",
         "exp-architecture-tag-vernacular": "Vernacular Interest",
@@ -614,7 +623,7 @@ const translations = {
         "social-itch": "Itch.io",
         "social-twitter": "@DiscordingTales",
         "social-instagram": "@hugueswb_de_pingon",
-        "social-wordpress": "The Discording Tales RPG",
+        "social-wordpress": "The Discording Tales",
 
         // Buttons
         "btn-read": "Read",
@@ -739,7 +748,7 @@ const translations = {
         "age": "Âge",
         "current-role": "Rôle",
         "lead-game-designer": "Lead Game Designer chez OLG",
-        "role-architecture": "Étude de l'architecture classique",
+        "role-architecture": "Étude de l'architecture traditionnelle",
         "role-olg": "Lead Game Designer chez OLG",
         "location": "Localisation",
         "location-value": "Suisse / Estonie",
@@ -755,6 +764,7 @@ const translations = {
         "nav-experience": "Expérience",
         "nav-portfolio": "Portfolio",
         "nav-chronicles": "Chroniques",
+        "nav-noematics": "Noématique",
         "nav-skills": "Compétences",
         "nav-contact": "Contact",
         "nav-workshop": "Atelier",
@@ -891,9 +901,17 @@ const translations = {
         "workshop-cta-desc": "Contactez-moi pour discuter de vos besoins et réserver votre atelier.",
         "workshop-cta-button": "Me Contacter",
 
+        // Noematics Section (Essays)
+        "noematics-title": "Noématique",
+        "noematics-subtitle": "L'architecture de la construction du sens",
+        "noematics-intro": "De courts essais sur la manière dont les humains transforment le réel en structures porteuses de sens - par le langage, l'art, la science, les symboles et les visions du monde. Un cadre personnel, proposé comme une exploration plutôt qu'une doctrine. Chaque texte se termine par un point, non par des points de suspension : penser, écrire, publier, puis passer à la construction.",
+        "noematics-search": "Rechercher dans les essais...",
+        "noematics-empty-title": "Aucun essai trouvé",
+        "noematics-empty-text": "Essayez une autre recherche ou catégorie.",
+
         // Chronicles Section (Blog)
         "chronicles-title": "Chroniques de lieux & de pratique",
-        "chronicles-subtitle": "Notes d'étude classique, de savoir vernaculaire, de philosophie, et de mondes rendus concrets",
+        "chronicles-subtitle": "Notes d'étude traditionnelle, de savoir vernaculaire, de philosophie, et de mondes rendus concrets",
         "chronicles-articles-read": "Parchemins Lus",
         "chronicles-streak": "Jours Consécutifs",
         "chronicles-xp": "Points de Savoir",
@@ -939,7 +957,7 @@ const translations = {
         "about-thesis-teaser-line2": "BIOCRACY - Un alignement d'IA nietzschéen",
         "about-thesis-downloads": "100+ téléchargements",
         "mission-text-1": "J'ai d'abord imaginé des visions du monde par la voie académique - anthropologie, biologie, neurosciences, prospective et éthique appliquée. Puis j'ai créé des univers artistiquement - game design, psychologie, IA, programmation et direction créative.",
-        "mission-text-2": "La direction créative dans le jeu est proche de l'architecture: financement, vision, et une équipe aux métiers divers alignée vers une œuvre finie. Je continue d'offrir ce métier - académie, jeux, systèmes et design - tout en l'étendant de l'espace virtuel à l'architecture classique et traditionnelle.",
+        "mission-text-2": "La direction créative dans le jeu est proche de l'architecture: financement, vision, et une équipe aux métiers divers alignée vers une œuvre finie. Je continue d'offrir ce métier - académie, jeux, systèmes et design - tout en l'étendant de l'espace virtuel à l'architecture traditionnelle.",
         "mission-text-3": "Pensée systémique, imagination spatiale, éthique, programmation et leadership restent au centre - pour des mondes interactifs aujourd'hui, et pour des lieux réels demain.",
         "mission-image-caption": "Discussion sur la création de nouvelles espèces avec Ben Lamm au Brain Bar 2025 (PDG de Colossal, une entreprise américaine de biotechnologie et de génie génétique travaillant à la dé-extinction des mammouths, des dodos et des loups terribles)",
 
@@ -1003,7 +1021,7 @@ const translations = {
         "journey-project-twr": "The Wayward Realms",
         "journey-gamedev-desc": "Game design et direction créative - construire des mondes imaginaires comme lieux jouables, cultures et systèmes spatiaux",
         "journey-architecture-title": "Espaces architecturaux",
-        "journey-architecture-desc": "Commencer l'architecture classique maintenant - apprendre à transformer ce qui fut d'abord imaginé académiquement et façonné artistiquement en lieux réels bâtis pour les gens",
+        "journey-architecture-desc": "Commencer l'architecture traditionnelle maintenant - apprendre à transformer ce qui fut d'abord imaginé académiquement et façonné artistiquement en lieux réels bâtis pour les gens",
 
         // Interests
         "interests-title": "Intérêts & Passions",
@@ -1079,8 +1097,8 @@ const translations = {
         "edu-specialized-subtitle": "Développement professionnel ciblé",
         "edu-alpine-title": "Formation en Alpagisme",
         "edu-alpine-desc": "Techniques traditionnelles d'agriculture alpine suisse, gestion du bétail, entretien des bâtiments ruraux et des clôtures, et première approche concrète du bâti vernaculaire alpin",
-        "edu-architecture-title": "Architecture classique - début du parcours",
-        "edu-architecture-desc": "Tout juste en train de commencer une étude indépendante vers l'architecture classique: apprendre le langage des ordres et de la proportion, s'exercer au dessin, et suivre les réseaux d'architecture traditionnelle (dont INTBAU). Un apprentissage à venir - pas un savoir-faire achevé.",
+        "edu-architecture-title": "Architecture traditionnelle - début du parcours",
+        "edu-architecture-desc": "Tout juste en train de commencer une étude indépendante vers l'architecture traditionnelle: apprendre le langage des ordres et de la proportion, s'exercer au dessin, et suivre les réseaux d'architecture traditionnelle (dont INTBAU). Un apprentissage à venir - pas un savoir-faire achevé.",
         "edu-architecture-badge": "DÉBUT",
         "edu-architecture-inst": "Étude indépendante & réseaux d'architecture traditionnelle",
         "edu-architecture-location": "Suisse / Europe",
@@ -1093,10 +1111,10 @@ const translations = {
         "exp-title": "Expérience Professionnelle",
         "exp-role-lead": "Lead Game Designer",
         "exp-role-tech": "Technical Game Designer",
-        "exp-architecture-title": "Vers l'architecture classique",
+        "exp-architecture-title": "Vers l'architecture traditionnelle",
         "exp-architecture-company": "INTBAU · La Table Ronde · Étude indépendante",
         "exp-architecture-badge": "Début",
-        "exp-architecture-desc": "Tout juste au début du tournant vers l'architecture classique. Engagement auprès des réseaux d'architecture traditionnelle (INTBAU); assistance à Nadia et Noé Morin à La Table Ronde de l'Architecture (Westhoffen, Alsace); observation préparatoire d'une maison vernaculaire à Lääneranna (Estonie) avec Allan Struss. Apprendre - sans prétendre déjà maîtriser.",
+        "exp-architecture-desc": "Tout juste au début du tournant vers l'architecture traditionnelle. Engagement auprès des réseaux d'architecture traditionnelle (INTBAU); assistance à Nadia et Noé Morin à La Table Ronde de l'Architecture (Westhoffen, Alsace); observation préparatoire d'une maison vernaculaire à Lääneranna (Estonie) avec Allan Struss. Apprendre - sans prétendre déjà maîtriser.",
         "exp-architecture-tag-study": "Début d'étude",
         "exp-architecture-tag-drawing": "Apprendre à dessiner",
         "exp-architecture-tag-vernacular": "Intérêt vernaculaire",
@@ -1342,7 +1360,7 @@ const translations = {
         "social-itch": "Itch.io",
         "social-twitter": "@DiscordingTales",
         "social-instagram": "@hugueswb_de_pingon",
-        "social-wordpress": "JDR Des Récits Discordants",
+        "social-wordpress": "Des Récits Discordants",
 
         // Buttons
         "btn-read": "Lire",

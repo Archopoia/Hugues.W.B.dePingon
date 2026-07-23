@@ -1,0 +1,53 @@
+<!-- Noematics Section - Essays loaded from Markdown files (/noematics/*.md) -->
+<section id="noematics" class="tab-content">
+<div class="noematics-container">
+    <!-- Header -->
+    <div class="noematics-header">
+        <h2 class="section-title">
+            <i class="fas fa-compass-drafting"></i>
+            <span data-i18n="noematics-title">Noematics</span>
+        </h2>
+        <p class="noematics-subtitle" data-i18n="noematics-subtitle">The Architecture of Meaning-Making</p>
+        <p class="noematics-intro" data-i18n="noematics-intro">
+            Short essays on how humans turn reality into meaningful structures - through language, art,
+            science, symbols, and worldviews. A personal framework, offered as exploration rather than doctrine.
+            Each piece ends with a period, not an ellipsis: think, write, publish, and move on to building.
+        </p>
+    </div>
+
+    <!-- Category Filter (generated from manifest.json) -->
+    <div class="noematics-categories" id="noematics-categories"></div>
+
+    <!-- Search -->
+    <div class="noematics-search">
+        <div class="search-container">
+            <i class="fas fa-magnifying-glass"></i>
+            <input type="text" id="noematics-search-input" placeholder="Search the essays..."
+                   data-i18n-placeholder="noematics-search">
+        </div>
+    </div>
+
+    <!-- Essay Cards (generated from Markdown) -->
+    <div class="noematics-grid" id="noematics-grid"></div>
+
+    <!-- Empty State -->
+    <div class="noematics-empty" id="noematics-empty" style="display: none;">
+        <i class="fas fa-feather"></i>
+        <h3 data-i18n="noematics-empty-title">No essays found</h3>
+        <p data-i18n="noematics-empty-text">Try a different search or category.</p>
+    </div>
+</div>
+
+<!-- Full Essay Modal -->
+<div class="noema-modal" id="noema-modal">
+    <div class="noema-scroll">
+        <button class="noema-close" type="button" aria-label="Close essay">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="noema-content" id="noema-content"></div>
+    </div>
+    <div class="noema-progress-bar">
+        <div class="noema-progress-fill" id="noema-progress"></div>
+    </div>
+</div>
+</section>

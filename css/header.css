@@ -241,6 +241,41 @@
     text-shadow: 0 0 10px rgba(255, 235, 198, 0.55);
 }
 
+/* Header social icons - same row as Role / Origin, before Role */
+.character-header .header-social-platforms {
+    margin: 0;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0.35rem;
+    position: relative;
+    z-index: 3;
+    max-width: none;
+    flex-shrink: 0;
+}
+
+.character-header .header-social-platforms .social-platform-card {
+    padding: 0.25rem 0.2rem;
+}
+
+.character-header .header-social-platforms .social-platform-card i {
+    color: var(--text-cream);
+    font-size: 1.45rem;
+}
+
+.character-header .header-social-platforms .platform-name {
+    color: var(--parchment-aged);
+    font-size: 0.62rem;
+    max-width: 5.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.character-header .header-social-platforms .social-platform-card:hover .platform-name {
+    color: var(--gold-glow);
+}
+
 .github-contributions {
     margin: 0;
     padding: 0.25rem 0 0;
@@ -1462,8 +1497,9 @@
 
 .character-stats {
     display: flex;
-    gap: 2rem;
+    gap: 1.25rem;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 .stat-item {
@@ -1471,10 +1507,16 @@
     flex-direction: row;
     align-items: center;
     gap: 0.55rem;
-    background: rgba(212, 175, 55, 0);
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    border: 1px solid var(--gold);
+    background: transparent;
+    padding: 0.25rem 0;
+    border-radius: 0;
+    border: none;
+    cursor: pointer;
+}
+
+.stat-item.role-stat,
+.stat-item.origin-stat {
+    padding: 0.15rem 0.25rem;
 }
 
 .character-stats .stat-label,

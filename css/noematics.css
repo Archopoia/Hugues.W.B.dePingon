@@ -1,0 +1,508 @@
+/*!
+ * Noematics Section - The Architecture of Meaning-Making
+ * Essays rendered from Markdown files in /noematics.
+ * Serious, restrained, and philosophical - deliberately quieter than Chronicles.
+ */
+
+/* ========================================
+   CONTAINER & HEADER
+   ======================================== */
+
+.noematics-container {
+    width: 100%;
+    padding: 2rem;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.noematics-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--border-dark);
+}
+
+.noematics-header .section-title {
+    letter-spacing: 0.06em;
+}
+
+.noematics-subtitle {
+    color: var(--text-secondary);
+    font-style: italic;
+    font-size: 1.2rem;
+    margin-top: 0.4rem;
+    letter-spacing: 0.03em;
+}
+
+.noematics-intro {
+    max-width: 720px;
+    margin: 1.2rem auto 0;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    font-size: 1rem;
+}
+
+/* ========================================
+   CATEGORY FILTER
+   ======================================== */
+
+.noematics-categories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.noema-cat-btn {
+    font-size: 0.9rem;
+    padding: 0.55rem 1.1rem;
+}
+
+/* ========================================
+   SEARCH
+   ======================================== */
+
+.noematics-search {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.noematics-search .search-container {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+}
+
+.noematics-search .search-container i {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+}
+
+.noematics-search input {
+    width: 100%;
+    font-family: 'Quintessential', cursive;
+    font-size: 1rem;
+    color: var(--text-dark);
+    background: var(--parchment-light);
+    border: 2px solid var(--border-dark);
+    border-radius: 8px;
+    padding: 0.75rem 1rem 0.75rem 2.6rem;
+    transition: box-shadow var(--transition-speed) ease;
+}
+
+.noematics-search input:focus {
+    outline: none;
+    box-shadow: 0 0 10px 2px var(--gold-glow);
+}
+
+/* ========================================
+   ESSAY GRID & CARDS
+   ======================================== */
+
+.noematics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+.noema-loading {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+}
+
+.noema-loading i {
+    margin-right: 0.5rem;
+    color: var(--red-theme);
+}
+
+.noema-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--parchment-light);
+    border: 2px solid var(--border-tan);
+    border-radius: 12px;
+    padding: 1.5rem;
+    position: relative;
+    transition: transform var(--transition-speed) ease,
+                box-shadow var(--transition-speed) ease;
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.12),
+        inset 0 0 0 1px var(--border-tan);
+    /* Fine drafting lines evoke "architecture" of meaning */
+    background-image:
+        linear-gradient(var(--border-tan) 1px, transparent 1px);
+    background-size: 100% 2.2rem;
+    background-position: 0 3.5rem;
+    background-blend-mode: soft-light;
+}
+
+.noema-card:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 0 14px 4px var(--gold-glow),
+        0 10px 20px rgba(0, 0, 0, 0.25),
+        inset 0 0 0 1px var(--focus-glow);
+}
+
+.noema-card-ribbon {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    align-self: flex-start;
+    background: var(--red-theme);
+    color: var(--text-cream);
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border-radius: 20px;
+    margin-bottom: 0.9rem;
+}
+
+.noema-card-title {
+    font-size: 1.3rem;
+    line-height: 1.3;
+    color: var(--ink-dark);
+    margin-bottom: 0.6rem;
+}
+
+.noema-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.9rem;
+}
+
+.noema-card-meta i {
+    color: var(--red-theme);
+    margin-right: 0.25rem;
+}
+
+.noema-card-question {
+    font-style: italic;
+    color: var(--text-dark);
+    line-height: 1.5;
+    margin-bottom: 0.7rem;
+    padding-left: 0.8rem;
+    border-left: 3px solid var(--orange-theme);
+}
+
+.noema-card-question i {
+    color: var(--orange-theme);
+    margin-right: 0.3rem;
+}
+
+.noema-card-excerpt {
+    color: var(--text-secondary);
+    line-height: 1.65;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+}
+
+.noema-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.1rem;
+}
+
+.noema-tag {
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    background: var(--parchment-aged);
+    border: 1px solid var(--border-tan);
+    border-radius: 12px;
+    padding: 0.2rem 0.6rem;
+}
+
+.noema-tag i {
+    margin-right: 0.25rem;
+    color: var(--orange-theme);
+}
+
+.noema-read-btn {
+    align-self: flex-start;
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+}
+
+/* ========================================
+   EMPTY STATE
+   ======================================== */
+
+.noematics-empty {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-secondary);
+}
+
+.noematics-empty i {
+    font-size: 3rem;
+    color: var(--border-brown);
+    margin-bottom: 1rem;
+}
+
+/* ========================================
+   ESSAY MODAL
+   ======================================== */
+
+.noema-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(26, 5, 5, 0.75);
+    backdrop-filter: blur(3px);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 3vh 1rem;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.noema-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.noema-scroll {
+    position: relative;
+    width: 100%;
+    max-width: 780px;
+    max-height: 94vh;
+    overflow-y: auto;
+    background: var(--parchment-light);
+    border: 3px solid var(--border-dark);
+    border-radius: 12px;
+    padding: 3rem 3rem 2.5rem;
+    box-shadow:
+        0 0 0 2px var(--gold-glow),
+        0 20px 50px rgba(0, 0, 0, 0.5);
+    transform: translateY(20px);
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.320, 1.275);
+}
+
+.noema-modal.active .noema-scroll {
+    transform: translateY(0);
+}
+
+.noema-close {
+    position: sticky;
+    top: 0;
+    float: right;
+    margin: -1.5rem -1.5rem 0 0;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 50%;
+    background: var(--red-theme);
+    color: var(--text-cream);
+    border: 2px solid var(--gold-glow);
+    font-size: 1.1rem;
+    cursor: pointer;
+    z-index: 2;
+    transition: transform var(--transition-speed) ease, background var(--transition-speed) ease;
+}
+
+.noema-close:hover {
+    transform: rotate(90deg) scale(1.08);
+    background: var(--ink-brown);
+}
+
+/* Article header inside the modal */
+.noema-article-header {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-tan);
+}
+
+.noema-article-cat {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--red-theme);
+    color: var(--text-cream);
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border-radius: 20px;
+}
+
+.noema-article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    margin-top: 0.7rem;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+}
+
+.noema-article-meta i {
+    color: var(--red-theme);
+    margin-right: 0.25rem;
+}
+
+/* ========================================
+   ARTICLE BODY (rendered Markdown)
+   ======================================== */
+
+.noema-article-body {
+    color: var(--text-dark);
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+.noema-article-body h1 {
+    font-size: 2rem;
+    color: var(--ink-dark);
+    line-height: 1.25;
+    margin: 0 0 1rem;
+}
+
+.noema-article-body h2 {
+    font-size: 1.4rem;
+    color: var(--red-theme);
+    margin: 2rem 0 0.75rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--border-tan);
+}
+
+.noema-article-body h3 {
+    font-size: 1.15rem;
+    color: var(--text-dark);
+    margin: 1.5rem 0 0.5rem;
+}
+
+.noema-article-body p {
+    margin: 0 0 1.1rem;
+}
+
+.noema-article-body em {
+    color: var(--text-secondary);
+}
+
+.noema-article-body strong {
+    color: var(--ink-dark);
+}
+
+.noema-article-body ul,
+.noema-article-body ol {
+    margin: 0 0 1.1rem 1.5rem;
+}
+
+.noema-article-body li {
+    margin-bottom: 0.5rem;
+}
+
+.noema-article-body blockquote {
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    background: var(--parchment-aged);
+    border-left: 4px solid var(--orange-theme);
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--ink-brown);
+    text-align: center;
+}
+
+.noema-article-body hr {
+    border: none;
+    height: 1px;
+    margin: 2rem auto;
+    width: 40%;
+    background: linear-gradient(90deg, transparent, var(--border-brown), transparent);
+}
+
+.noema-article-body code {
+    background: var(--parchment-aged);
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+.noema-article-body pre {
+    background: var(--ink-dark);
+    color: var(--parchment-light);
+    padding: 1rem 1.2rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 0 0 1.1rem;
+}
+
+.noema-article-body pre code {
+    background: none;
+    padding: 0;
+    color: inherit;
+}
+
+.noema-article-body a {
+    color: var(--red-theme);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.noema-article-body img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+/* Reading progress bar */
+.noema-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: transparent;
+    z-index: 10001;
+    pointer-events: none;
+}
+
+.noema-progress-fill {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, var(--red-theme), var(--gold-glow));
+    transition: width 0.1s linear;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 768px) {
+    .noematics-container {
+        padding: 1.25rem;
+    }
+
+    .noematics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .noema-scroll {
+        padding: 2rem 1.3rem 1.8rem;
+        max-height: 92vh;
+    }
+
+    .noema-article-body {
+        font-size: 1rem;
+    }
+
+    .noema-article-body h1 {
+        font-size: 1.6rem;
+    }
+}

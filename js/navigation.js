@@ -8,6 +8,7 @@ import { initializeRandomCardFlip } from './animations.js';
 import { initializeFlipSounds } from './animations.js';
 import { initializeWorkshopAchievements } from './workshop-achievements.js';
 import { initializeChronicles } from './chronicles.js';
+import { initializeNoematics } from './noematics.js';
 
 let skipWorkshopAnimation = false;
 let finalRotation = 0;
@@ -84,6 +85,9 @@ export async function loadSection(sectionName) {
                     if (sectionName === 'chronicles') {
                         initializeChronicles();
                     }
+                    if (sectionName === 'noematics') {
+                        initializeNoematics();
+                    }
 
                     // Initialize flip sounds for any flippable cards in this section
                     initializeFlipSounds();
@@ -102,7 +106,7 @@ export async function loadSection(sectionName) {
 
 // Preload sections for better UX
 export function preloadAllSections() {
-    const sections = ['chronicles', 'about', 'workshop', 'education', 'experience', 'portfolio', 'contact'];
+    const sections = ['chronicles', 'noematics', 'about', 'workshop', 'education', 'experience', 'portfolio', 'contact'];
     sections.forEach(section => {
         if (section !== 'about') { // About is loaded by default
             loadSection(section);
