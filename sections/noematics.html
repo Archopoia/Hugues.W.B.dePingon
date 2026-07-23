@@ -15,26 +15,15 @@
         </p>
     </div>
 
-    <!-- Category Filter (generated from manifest.json) -->
-    <div class="noematics-categories" id="noematics-categories"></div>
-
-    <!-- Search -->
-    <div class="noematics-search">
-        <div class="search-container">
-            <i class="fas fa-magnifying-glass"></i>
-            <input type="text" id="noematics-search-input" placeholder="Search the essays..."
-                   data-i18n-placeholder="noematics-search">
-        </div>
-    </div>
-
-    <!-- Essay Cards (generated from Markdown) -->
-    <div class="noematics-grid" id="noematics-grid"></div>
-
-    <!-- Empty State -->
-    <div class="noematics-empty" id="noematics-empty" style="display: none;">
-        <i class="fas fa-feather"></i>
-        <h3 data-i18n="noematics-empty-title">No essays found</h3>
-        <p data-i18n="noematics-empty-text">Try a different search or category.</p>
+    <!-- Essay carousel (generated from Markdown) -->
+    <div class="noematics-carousel-wrap">
+        <button type="button" class="noematics-carousel-nav prev" id="noematics-carousel-prev" aria-label="Previous essays">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="noematics-carousel" id="noematics-grid" tabindex="0" aria-label="Essay carousel"></div>
+        <button type="button" class="noematics-carousel-nav next" id="noematics-carousel-next" aria-label="Next essays">
+            <i class="fas fa-chevron-right"></i>
+        </button>
     </div>
 </div>
 

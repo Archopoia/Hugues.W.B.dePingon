@@ -11,7 +11,6 @@ const CONTENT_DIR = 'noematics';
 
 // In-memory store of loaded essays, keyed by slug (filename without .md).
 const essays = new Map();
-let categories = [];
 let initialized = false;
 
 function slugFromFilename(filename) {
@@ -25,10 +24,6 @@ function formatDate(value) {
     return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 }
 
-function categoryById(id) {
-    return categories.find(c => c.id === id) || { id, label: id, icon: 'fa-scroll' };
-}
-
 async function loadManifest() {
     const response = await fetch(`${CONTENT_DIR}/manifest.json`, { cache: 'no-store' });
     if (!response.ok) throw new Error('Failed to load Noematics manifest');
@@ -36,7 +31,6 @@ async function loadManifest() {
 }
 
 async function buildEssays(manifest) {
-    categories = Array.isArray(manifest.categories) ? manifest.categories : [];
     const files = Array.isArray(manifest.posts) ? manifest.posts : [];
 
     const loaded = await Promise.all(files.map(async (filename) => {
@@ -56,109 +50,115 @@ async function buildEssays(manifest) {
     });
 }
 
-function renderCategoryFilter() {
-    const container = document.getElementById('noematics-categories');
-    if (!container) return;
-
-    const buttons = [`
-        <button class="noema-cat-btn btn-nav active" data-category="all">
-            <i class="fas fa-book"></i>
-            <span>All Essays</span>
-        </button>`];
-
-    categories.forEach(cat => {
-        buttons.push(`
-        <button class="noema-cat-btn btn-nav" data-category="${cat.id}">
-            <i class="fas ${cat.icon || 'fa-scroll'}"></i>
-            <span>${cat.label}</span>
-        </button>`);
-    });
-
-    container.innerHTML = buttons.join('');
-
-    container.querySelectorAll('.noema-cat-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            container.querySelectorAll('.noema-cat-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            filterEssays(btn.dataset.category);
-            if (window.soundManager) window.soundManager.playRandomPageSound();
-        });
-    });
-}
-
 function renderCards() {
-    const grid = document.getElementById('noematics-grid');
-    if (!grid) return;
+    const carousel = document.getElementById('noematics-grid');
+    if (!carousel) return;
 
     const ordered = Array.from(essays.values()).sort((a, b) => a.order - b.order);
 
-    grid.innerHTML = ordered.map(essay => {
+    carousel.innerHTML = ordered.map(essay => {
         const m = essay.metadata || {};
-        const cat = categoryById(m.category);
-        const tags = (m.tags ? String(m.tags).split(',') : [])
-            .map(t => t.trim())
-            .filter(Boolean)
-            .map(t => `<span class="noema-tag"><i class="fas fa-tag"></i> ${t}</span>`)
-            .join('');
 
         return `
-        <article class="noema-card" data-category="${m.category || ''}" data-slug="${essay.slug}">
-            <div class="noema-card-ribbon">
-                <i class="fas ${cat.icon}"></i>
-                <span>${cat.label}</span>
-            </div>
+        <article class="noema-card" data-slug="${essay.slug}" role="button" tabindex="0" aria-label="Open essay: ${m.title || essay.slug}">
             <h3 class="noema-card-title">${m.title || essay.slug}</h3>
             <div class="noema-card-meta">
                 <span><i class="fas fa-feather-pointed"></i> ${formatDate(m.date)}</span>
                 ${m.readTime ? `<span><i class="fas fa-hourglass-half"></i> ${m.readTime} min</span>` : ''}
             </div>
-            ${m.question ? `<p class="noema-card-question"><i class="fas fa-circle-question"></i> ${m.question}</p>` : ''}
+            ${m.question ? `<p class="noema-card-question">${m.question}</p>` : ''}
             <p class="noema-card-excerpt">${m.excerpt || ''}</p>
-            <div class="noema-card-tags">${tags}</div>
-            <button class="noema-read-btn btn-action" type="button">
-                <i class="fas fa-book-open"></i>
-                <span>Read the essay</span>
-            </button>
         </article>`;
     }).join('');
 
-    grid.querySelectorAll('.noema-card').forEach(card => {
+    carousel.querySelectorAll('.noema-card').forEach(card => {
         const slug = card.dataset.slug;
-        card.querySelector('.noema-read-btn').addEventListener('click', () => openNoema(slug));
+        const open = () => {
+            // Ignore clicks that were really a drag/swipe through the carousel.
+            if (carousel.dataset.dragMoved === 'true') return;
+            openNoema(slug);
+        };
+        card.addEventListener('click', open);
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                open();
+            }
+        });
     });
 }
 
-function filterEssays(category) {
-    const cards = document.querySelectorAll('.noema-card');
-    const empty = document.getElementById('noematics-empty');
-    let visible = 0;
+function bindCarouselNav() {
+    const wrap = document.querySelector('.noematics-carousel-wrap');
+    const carousel = document.getElementById('noematics-grid');
+    const prev = document.getElementById('noematics-carousel-prev');
+    const next = document.getElementById('noematics-carousel-next');
+    if (!carousel || !prev || !next || carousel.dataset.navBound === 'true') return;
 
-    cards.forEach(card => {
-        const match = category === 'all' || card.dataset.category === category;
-        card.style.display = match ? '' : 'none';
-        if (match) visible++;
+    carousel.dataset.navBound = 'true';
+
+    const scrollByCard = (direction) => {
+        const card = carousel.querySelector('.noema-card');
+        const step = card ? card.getBoundingClientRect().width + 16 : 240;
+        carousel.scrollBy({ left: direction * step, behavior: 'smooth' });
+        if (window.soundManager) window.soundManager.playRandomPageSound();
+    };
+
+    prev.addEventListener('click', () => scrollByCard(-1));
+    next.addEventListener('click', () => scrollByCard(1));
+
+    // Vertical wheel / trackpad over the carousel scrolls it horizontally.
+    const onWheel = (e) => {
+        const mostlyVertical = Math.abs(e.deltaY) >= Math.abs(e.deltaX);
+        if (!mostlyVertical) return;
+        if (carousel.scrollWidth <= carousel.clientWidth) return;
+
+        e.preventDefault();
+        const previousBehavior = carousel.style.scrollBehavior;
+        carousel.style.scrollBehavior = 'auto';
+        carousel.scrollLeft += e.deltaY + e.deltaX;
+        carousel.style.scrollBehavior = previousBehavior;
+    };
+
+    const wheelTarget = wrap || carousel;
+    wheelTarget.addEventListener('wheel', onWheel, { passive: false });
+
+    // Track drag/swipe so a touch-drag does not accidentally open a card.
+    let pointerActive = false;
+    let startX = 0;
+    let startY = 0;
+
+    const onPointerDown = (e) => {
+        pointerActive = true;
+        startX = e.clientX;
+        startY = e.clientY;
+        carousel.dataset.dragMoved = 'false';
+    };
+
+    const onPointerMove = (e) => {
+        if (!pointerActive) return;
+        const dx = Math.abs(e.clientX - startX);
+        const dy = Math.abs(e.clientY - startY);
+        if (dx > 8 || dy > 8) {
+            carousel.dataset.dragMoved = 'true';
+        }
+    };
+
+    const onPointerUp = () => {
+        pointerActive = false;
+        // Keep dragMoved true briefly so the click that follows a swipe is ignored.
+        window.setTimeout(() => {
+            carousel.dataset.dragMoved = 'false';
+        }, 50);
+    };
+
+    carousel.addEventListener('pointerdown', onPointerDown);
+    carousel.addEventListener('pointermove', onPointerMove);
+    carousel.addEventListener('pointerup', onPointerUp);
+    carousel.addEventListener('pointercancel', onPointerUp);
+    carousel.addEventListener('pointerleave', () => {
+        if (pointerActive) onPointerUp();
     });
-
-    if (empty) empty.style.display = visible === 0 ? 'block' : 'none';
-}
-
-function searchEssays(query) {
-    const q = query.trim().toLowerCase();
-    const cards = document.querySelectorAll('.noema-card');
-    const empty = document.getElementById('noematics-empty');
-    let visible = 0;
-
-    cards.forEach(card => {
-        const essay = essays.get(card.dataset.slug);
-        const m = (essay && essay.metadata) || {};
-        const haystack = [m.title, m.question, m.excerpt, m.tags]
-            .filter(Boolean).join(' ').toLowerCase();
-        const match = q === '' || haystack.includes(q);
-        card.style.display = match ? '' : 'none';
-        if (match) visible++;
-    });
-
-    if (empty) empty.style.display = visible === 0 ? 'block' : 'none';
 }
 
 function openNoema(slug) {
@@ -170,11 +170,9 @@ function openNoema(slug) {
     if (!modal || !content) return;
 
     const m = essay.metadata || {};
-    const cat = categoryById(m.category);
 
     content.innerHTML = `
         <div class="noema-article-header">
-            <span class="noema-article-cat"><i class="fas ${cat.icon}"></i> ${cat.label}</span>
             <div class="noema-article-meta">
                 <span><i class="fas fa-feather-pointed"></i> ${formatDate(m.date)}</span>
                 ${m.readTime ? `<span><i class="fas fa-hourglass-half"></i> ${m.readTime} min read</span>` : ''}
@@ -220,32 +218,27 @@ window.openNoema = openNoema;
 window.closeNoema = closeNoema;
 
 export async function initializeNoematics() {
-    const grid = document.getElementById('noematics-grid');
-    if (!grid) return;
+    const carousel = document.getElementById('noematics-grid');
+    if (!carousel) return;
 
     // Guard against double init when the section reloads.
     if (initialized && essays.size > 0) {
-        renderCategoryFilter();
         renderCards();
+        bindCarouselNav();
         return;
     }
 
-    grid.innerHTML = `<div class="noema-loading"><i class="fas fa-spinner fa-spin"></i> Gathering the essays...</div>`;
+    carousel.innerHTML = `<div class="noema-loading"><i class="fas fa-spinner fa-spin"></i> Gathering the essays...</div>`;
 
     try {
         const manifest = await loadManifest();
         await buildEssays(manifest);
-        renderCategoryFilter();
         renderCards();
+        bindCarouselNav();
         initialized = true;
     } catch (err) {
         console.error('Noematics failed to initialize', err);
-        grid.innerHTML = `<div class="noema-loading">The essays could not be loaded right now.</div>`;
-    }
-
-    const searchInput = document.getElementById('noematics-search-input');
-    if (searchInput) {
-        searchInput.addEventListener('input', (e) => searchEssays(e.target.value));
+        carousel.innerHTML = `<div class="noema-loading">The essays could not be loaded right now.</div>`;
     }
 
     const modal = document.getElementById('noema-modal');

@@ -217,6 +217,32 @@ html[lang="fr"] .stat-label.countries-hover::before {
     font-size: 1.1rem;
 }
 
+/* Diplomas flip face: compact one-line entries */
+.stat-hover-content.diplomas-list {
+    padding: 0.45rem 0.35rem;
+    justify-content: center;
+}
+
+.stat-hover-content.diplomas-list ul {
+    width: 100%;
+}
+
+.stat-hover-content.diplomas-list li {
+    font-size: 0.82rem;
+    margin: 0.1rem 0;
+    padding-left: 0.8rem;
+    line-height: 1.15;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.stat-hover-content.diplomas-list li::before {
+    font-size: 0.8rem;
+    top: 0;
+    line-height: 1.15;
+}
+
 .stat-hover-content p {
     font-size: 1.1rem;
     color: var(--text-cream);
@@ -1043,6 +1069,11 @@ html[lang="fr"] .stat-label.countries-hover::before {
     .stat-hover-content li {
         font-size: 0.85rem;
         margin: 0.25rem 0;
+    }
+
+    .stat-hover-content.diplomas-list li {
+        font-size: 0.85rem;
+        margin: 0.08rem 0;
     }
 
     /* Education card adjustments */

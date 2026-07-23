@@ -1,12 +1,5 @@
 {
-  "_comment": "Noematics section content index. To add an essay: drop a new .md file (with YAML front matter) in this folder and add its filename to the 'posts' array below. To add a category, add an entry to 'categories' and use its id as the 'category' value in a post's front matter. Order in 'posts' is the default display order.",
-  "categories": [
-    { "id": "language-meaning", "label": "Language & Meaning", "icon": "fa-feather" },
-    { "id": "truth-beauty", "label": "Truth, Beauty & Representation", "icon": "fa-scale-balanced" },
-    { "id": "worldviews", "label": "Worldviews & Reality Models", "icon": "fa-atom" },
-    { "id": "symbolic-worlds", "label": "Symbolic Worlds", "icon": "fa-wand-sparkles" },
-    { "id": "intellectual-life", "label": "The Intellectual Life", "icon": "fa-person-walking-arrow-right" }
-  ],
+  "_comment": "Noematics content index. To add an essay: drop a new .md file (with YAML front matter) in this folder and add its filename to the 'posts' array. Order in 'posts' is the carousel display order.",
   "posts": [
     "why-ancient-poetry-felt-more-powerful.md",
     "the-problem-of-abstraction.md",

@@ -16,8 +16,8 @@
 
 .noematics-header {
     text-align: center;
-    margin-bottom: 2rem;
-    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.25rem;
     border-bottom: 2px solid var(--border-dark);
 }
 
@@ -42,77 +42,74 @@
 }
 
 /* ========================================
-   CATEGORY FILTER
+   ESSAY CAROUSEL
    ======================================== */
 
-.noematics-categories {
+.noematics-carousel-wrap {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.75rem;
-    margin-bottom: 1.5rem;
-}
-
-.noema-cat-btn {
-    font-size: 0.9rem;
-    padding: 0.55rem 1.1rem;
-}
-
-/* ========================================
-   SEARCH
-   ======================================== */
-
-.noematics-search {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2rem;
-}
-
-.noematics-search .search-container {
+    align-items: center;
+    gap: 0.65rem;
     position: relative;
-    width: 100%;
-    max-width: 480px;
 }
 
-.noematics-search .search-container i {
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--text-secondary);
+.noematics-carousel {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 0.5rem 0.25rem 1rem;
+    flex: 1;
+    min-width: 0;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x;
+    overscroll-behavior-x: contain;
+    cursor: grab;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-brown) transparent;
 }
 
-.noematics-search input {
-    width: 100%;
-    font-family: 'Quintessential', cursive;
-    font-size: 1rem;
-    color: var(--text-dark);
-    background: var(--parchment-light);
+.noematics-carousel:active {
+    cursor: grabbing;
+}
+
+.noematics-carousel::-webkit-scrollbar {
+    height: 6px;
+}
+
+.noematics-carousel::-webkit-scrollbar-thumb {
+    background: var(--border-brown);
+    border-radius: 4px;
+}
+
+.noematics-carousel-nav {
+    flex-shrink: 0;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
     border: 2px solid var(--border-dark);
-    border-radius: 8px;
-    padding: 0.75rem 1rem 0.75rem 2.6rem;
-    transition: box-shadow var(--transition-speed) ease;
+    background: var(--parchment-light);
+    color: var(--red-theme);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform var(--transition-speed) ease,
+                background var(--transition-speed) ease,
+                color var(--transition-speed) ease;
 }
 
-.noematics-search input:focus {
-    outline: none;
-    box-shadow: 0 0 10px 2px var(--gold-glow);
-}
-
-/* ========================================
-   ESSAY GRID & CARDS
-   ======================================== */
-
-.noematics-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 1.5rem;
+.noematics-carousel-nav:hover {
+    background: var(--red-theme);
+    color: var(--text-cream);
+    transform: scale(1.06);
 }
 
 .noema-loading {
-    grid-column: 1 / -1;
+    flex: 1 0 100%;
     text-align: center;
-    padding: 3rem 1rem;
+    padding: 2.5rem 1rem;
     color: var(--text-secondary);
     font-size: 1.05rem;
 }
@@ -123,133 +120,86 @@
 }
 
 .noema-card {
+    flex: 0 0 220px;
+    width: 220px;
+    max-width: 220px;
+    scroll-snap-align: start;
     display: flex;
     flex-direction: column;
     background: var(--parchment-light);
     border: 2px solid var(--border-tan);
-    border-radius: 12px;
-    padding: 1.5rem;
+    border-radius: 10px;
+    padding: 0.95rem 1rem;
     position: relative;
+    cursor: pointer;
     transition: transform var(--transition-speed) ease,
                 box-shadow var(--transition-speed) ease;
     box-shadow:
-        0 3px 10px rgba(0, 0, 0, 0.12),
+        0 2px 8px rgba(0, 0, 0, 0.1),
         inset 0 0 0 1px var(--border-tan);
-    /* Fine drafting lines evoke "architecture" of meaning */
     background-image:
         linear-gradient(var(--border-tan) 1px, transparent 1px);
-    background-size: 100% 2.2rem;
-    background-position: 0 3.5rem;
+    background-size: 100% 1.8rem;
+    background-position: 0 2.4rem;
     background-blend-mode: soft-light;
+    min-height: 210px;
 }
 
-.noema-card:hover {
-    transform: translateY(-5px);
+.noema-card:hover,
+.noema-card:focus-visible {
+    outline: none;
+    transform: translateY(-4px);
     box-shadow:
-        0 0 14px 4px var(--gold-glow),
-        0 10px 20px rgba(0, 0, 0, 0.25),
+        0 0 12px 3px var(--gold-glow),
+        0 8px 16px rgba(0, 0, 0, 0.22),
         inset 0 0 0 1px var(--focus-glow);
 }
 
-.noema-card-ribbon {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    align-self: flex-start;
-    background: var(--red-theme);
-    color: var(--text-cream);
-    font-size: 0.72rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.7rem;
-    border-radius: 20px;
-    margin-bottom: 0.9rem;
-}
-
 .noema-card-title {
-    font-size: 1.3rem;
-    line-height: 1.3;
+    font-size: 1rem;
+    line-height: 1.25;
     color: var(--ink-dark);
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.45rem;
 }
 
 .noema-card-meta {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
-    font-size: 0.8rem;
+    gap: 0.65rem;
+    font-size: 0.7rem;
     color: var(--text-secondary);
-    margin-bottom: 0.9rem;
+    margin-bottom: 0.55rem;
 }
 
 .noema-card-meta i {
     color: var(--red-theme);
-    margin-right: 0.25rem;
+    margin-right: 0.2rem;
 }
 
 .noema-card-question {
     font-style: italic;
     color: var(--text-dark);
-    line-height: 1.5;
-    margin-bottom: 0.7rem;
-    padding-left: 0.8rem;
-    border-left: 3px solid var(--orange-theme);
-}
-
-.noema-card-question i {
-    color: var(--orange-theme);
-    margin-right: 0.3rem;
+    line-height: 1.35;
+    font-size: 0.78rem;
+    margin-bottom: 0.45rem;
+    padding-left: 0.55rem;
+    border-left: 2px solid var(--orange-theme);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .noema-card-excerpt {
     color: var(--text-secondary);
-    line-height: 1.65;
-    font-size: 0.95rem;
-    margin-bottom: 1rem;
+    line-height: 1.45;
+    font-size: 0.8rem;
+    margin-bottom: 0;
     flex-grow: 1;
-}
-
-.noema-card-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1.1rem;
-}
-
-.noema-tag {
-    font-size: 0.72rem;
-    color: var(--text-secondary);
-    background: var(--parchment-aged);
-    border: 1px solid var(--border-tan);
-    border-radius: 12px;
-    padding: 0.2rem 0.6rem;
-}
-
-.noema-tag i {
-    margin-right: 0.25rem;
-    color: var(--orange-theme);
-}
-
-.noema-read-btn {
-    align-self: flex-start;
-    font-size: 0.9rem;
-    padding: 0.6rem 1.2rem;
-}
-
-/* ========================================
-   EMPTY STATE
-   ======================================== */
-
-.noematics-empty {
-    text-align: center;
-    padding: 3rem 1rem;
-    color: var(--text-secondary);
-}
-
-.noematics-empty i {
-    font-size: 3rem;
-    color: var(--border-brown);
-    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 /* ========================================
@@ -319,31 +269,16 @@
     background: var(--ink-brown);
 }
 
-/* Article header inside the modal */
 .noema-article-header {
     margin-bottom: 1.5rem;
     padding-bottom: 1rem;
     border-bottom: 2px solid var(--border-tan);
 }
 
-.noema-article-cat {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    background: var(--red-theme);
-    color: var(--text-cream);
-    font-size: 0.72rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.7rem;
-    border-radius: 20px;
-}
-
 .noema-article-meta {
     display: flex;
     flex-wrap: wrap;
     gap: 1.2rem;
-    margin-top: 0.7rem;
     font-size: 0.82rem;
     color: var(--text-secondary);
 }
@@ -461,7 +396,6 @@
     margin: 1rem 0;
 }
 
-/* Reading progress bar */
 .noema-progress-bar {
     position: fixed;
     top: 0;
@@ -489,8 +423,18 @@
         padding: 1.25rem;
     }
 
-    .noematics-grid {
-        grid-template-columns: 1fr;
+    .noema-card {
+        flex-basis: 180px;
+        width: 180px;
+        max-width: 180px;
+        min-height: 190px;
+        padding: 0.8rem 0.85rem;
+    }
+
+    .noematics-carousel-nav {
+        width: 2rem;
+        height: 2rem;
+        font-size: 0.85rem;
     }
 
     .noema-scroll {
