@@ -12,6 +12,8 @@
     width: 100%;
     padding: 2rem;
     animation: fadeInUp 0.6s ease-out;
+    position: relative;
+    z-index: 3;
 }
 
 .noematics-header {
@@ -50,6 +52,7 @@
     align-items: center;
     gap: 0.65rem;
     position: relative;
+    z-index: 3;
 }
 
 .noematics-carousel {
@@ -57,8 +60,8 @@
     gap: 1rem;
     overflow-x: auto;
     overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
+    scroll-snap-type: x proximity;
+    scroll-behavior: auto;
     padding: 0.5rem 0.25rem 1rem;
     flex: 1;
     min-width: 0;
@@ -68,10 +71,17 @@
     cursor: grab;
     scrollbar-width: thin;
     scrollbar-color: var(--border-brown) transparent;
+    user-select: none;
 }
 
-.noematics-carousel:active {
+.noematics-carousel:active,
+.noematics-carousel.is-dragging {
     cursor: grabbing;
+    scroll-snap-type: none;
+}
+
+.noematics-carousel.is-dragging .noema-card {
+    pointer-events: none;
 }
 
 .noematics-carousel::-webkit-scrollbar {

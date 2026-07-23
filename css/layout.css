@@ -133,6 +133,7 @@
     left: 0;
     right: 0;
     bottom: 0;
+    pointer-events: none;
     background:
             radial-gradient(#6100001f 3px, transparent 4px),
             radial-gradient(#6100001f 3px, transparent 4px),

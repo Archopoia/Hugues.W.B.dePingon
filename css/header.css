@@ -95,11 +95,6 @@
         0 4px 12px rgba(0, 0, 0, 0.4);
     z-index: 3;
     transform: rotate(0deg);
-    transition: transform 0.3s ease;
-}
-
-.portrait-frame:hover {
-    transform: rotate(0deg) scale(1.05);
 }
 
 .portrait-frame::before {
@@ -1511,7 +1506,7 @@
     padding: 0.25rem 0;
     border-radius: 0;
     border: none;
-    cursor: pointer;
+    cursor: default;
 }
 
 .stat-item.role-stat,
@@ -1569,9 +1564,9 @@
     margin-top: 1px;
 }
 
-/* Portrait Circle Animation */
+/* Portrait (mini-game disabled - decorative only) */
 .portrait-image {
-    cursor: pointer;
+    cursor: default;
     transition: transform 0.3s ease;
 }
 
@@ -1617,16 +1612,10 @@
     filter: brightness(1.2);
 }
 
-/* Make stat items clickable */
+/* Former portrait mini-game styles (disabled) */
 .stat-item {
-    cursor: pointer;
-    transition: all 0.3s ease;
+    cursor: default;
     user-select: none;
-}
-
-.stat-item:hover {
-    transform: translateY(-2px);
-    filter: brightness(1.1);
 }
 
 /* Locked stat highlight */

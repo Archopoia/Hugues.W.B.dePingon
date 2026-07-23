@@ -148,8 +148,8 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.head.appendChild(rippleStyle);
 
-    // Add glow effect on hover for gold elements
-    const goldElements = document.querySelectorAll('.character-name, .stat-value, .tab-button.active');
+    // Add glow effect on hover for gold elements (name hover disabled)
+    const goldElements = document.querySelectorAll('.stat-value, .tab-button.active');
     goldElements.forEach(element => {
         element.addEventListener('mouseenter', function() {
             this.style.textShadow = '0 0 20px var(--gold), 0 0 40px var(--gold)';

@@ -1095,14 +1095,11 @@ window.addEventListener('DOMContentLoaded', () => {
             if (
                 current.classList.contains('tab-button') ||
                 current.classList.contains('workshop-seal-button') ||
-                current.classList.contains('stat-item') ||
                 current.classList.contains('port-nav-btn') ||
                 current.classList.contains('skill-nav-btn') ||
                 current.classList.contains('edu-nav-btn') ||
                 current.classList.contains('skill-item') ||
                 current.classList.contains('method-btn') ||
-                current.classList.contains('portrait-image') ||
-                current.classList.contains('portrait-frame') ||
                 current.classList.contains('lang-btn') ||
                 current.classList.contains('modal-close') ||
                 current.classList.contains('cta-button') ||

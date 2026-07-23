@@ -403,13 +403,23 @@ html[lang="fr"] .stat-label.countries-hover::before {
     color: var(--text-dark);
 }
 
-.location {
+.edu-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.25rem;
+}
+
+.location,
+.study-period {
     color: var(--text-dark);
     opacity: 0.8;
     font-size: 0.95rem;
+    text-align: left;
 }
 
-.location i {
+.location i,
+.study-period i {
     margin-right: 0.5rem;
     color: var(--red-theme);
 }
@@ -438,59 +448,6 @@ html[lang="fr"] .stat-label.countries-hover::before {
     font-size: 0.9rem;
     color: var(--text-dark);
     font-weight: 600;
-}
-
-/* Study Details */
-.study-details {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 2rem;
-    align-items: end;
-}
-
-.study-focus h5 {
-    font-size: 1rem;
-    color: var(--text-dark);
-    margin-bottom: 0.5rem;
-}
-
-.focus-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.focus-tag {
-    background: var(--red-theme);
-    color: var(--text-cream);
-    padding: 0.3rem 0.8rem;
-    border-radius: 15px;
-    font-size: 0.85rem;
-    font-weight: 600;
-}
-
-.focus-tag.philosophy {
-    background: var(--purple-theme);
-}
-
-.focus-tag.science {
-    background: var(--green-theme);
-}
-
-.focus-tag.math {
-    background: var(--teal-theme);
-}
-
-.study-period {
-    color: var(--text-dark);
-    opacity: 0.8;
-    font-size: 0.95rem;
-    text-align: right;
-}
-
-.study-period i {
-    margin-right: 0.5rem;
-    color: var(--red-theme);
 }
 
 /* Thesis Information */
@@ -631,41 +588,6 @@ html[lang="fr"] .stat-label.countries-hover::before {
     font-size: 0.85rem;
     color: var(--text-dark);
     opacity: 0.8;
-}
-
-/* Focus Areas */
-.focus-areas {
-    margin: 1.5rem 0;
-}
-
-.focus-areas h5 {
-    color: var(--text-dark);
-    margin-bottom: 0.5rem;
-}
-
-/* Training Skills */
-.training-skills {
-    margin: 1.5rem 0;
-}
-
-.training-skills h5 {
-    color: var(--text-dark);
-    margin-bottom: 0.5rem;
-}
-
-.skill-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.skill-tag {
-    background: var(--green-theme);
-    color: var(--text-cream);
-    padding: 0.3rem 0.8rem;
-    border-radius: 15px;
-    font-size: 0.85rem;
-    font-weight: 600;
 }
 
 /* Certification Grid */
@@ -1085,13 +1007,10 @@ html[lang="fr"] .stat-label.countries-hover::before {
         font-size: 1.3rem;
     }
 
-    .study-details {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
-    .study-period {
-        text-align: left;
+    .edu-meta-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.35rem;
     }
 
     .degrees-grid {
@@ -1141,16 +1060,5 @@ html[lang="fr"] .stat-label.countries-hover::before {
 
     .edu-card-content h4 {
         font-size: 1.1rem;
-    }
-
-    .focus-tags,
-    .skill-tags {
-        gap: 0.3rem;
-    }
-
-    .focus-tag,
-    .skill-tag {
-        font-size: 0.75rem;
-        padding: 0.25rem 0.6rem;
     }
 }

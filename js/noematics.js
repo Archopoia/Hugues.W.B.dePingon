@@ -93,72 +93,119 @@ function bindCarouselNav() {
     const carousel = document.getElementById('noematics-grid');
     const prev = document.getElementById('noematics-carousel-prev');
     const next = document.getElementById('noematics-carousel-next');
-    if (!carousel || !prev || !next || carousel.dataset.navBound === 'true') return;
+    if (!carousel || !prev || !next) return;
 
+    // Re-bind safely if the section DOM was replaced.
+    if (carousel.dataset.navBound === 'true') return;
     carousel.dataset.navBound = 'true';
 
-    const scrollByCard = (direction) => {
+    const getCardStep = () => {
         const card = carousel.querySelector('.noema-card');
-        const step = card ? card.getBoundingClientRect().width + 16 : 240;
-        carousel.scrollBy({ left: direction * step, behavior: 'smooth' });
+        if (!card) return 240;
+        const styles = window.getComputedStyle(carousel);
+        const gap = parseFloat(styles.columnGap || styles.gap || '16') || 16;
+        return card.getBoundingClientRect().width + gap;
+    };
+
+    const scrollByCard = (direction) => {
+        carousel.scrollBy({ left: direction * getCardStep(), behavior: 'smooth' });
         if (window.soundManager) window.soundManager.playRandomPageSound();
     };
 
     prev.addEventListener('click', () => scrollByCard(-1));
     next.addEventListener('click', () => scrollByCard(1));
 
+    const WHEEL_SENSITIVITY = 2.75;
+
+    const normalizeWheelDelta = (e) => {
+        // deltaMode: 0 = pixels, 1 = lines, 2 = pages
+        const lineHeight = 40;
+        const pageHeight = carousel.clientWidth || 800;
+        if (e.deltaMode === 1) return { x: e.deltaX * lineHeight, y: e.deltaY * lineHeight };
+        if (e.deltaMode === 2) return { x: e.deltaX * pageHeight, y: e.deltaY * pageHeight };
+        return { x: e.deltaX, y: e.deltaY };
+    };
+
     // Vertical wheel / trackpad over the carousel scrolls it horizontally.
     const onWheel = (e) => {
-        const mostlyVertical = Math.abs(e.deltaY) >= Math.abs(e.deltaX);
-        if (!mostlyVertical) return;
-        if (carousel.scrollWidth <= carousel.clientWidth) return;
+        const { x, y } = normalizeWheelDelta(e);
+        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+        if (maxScroll <= 1) return;
 
+        // Prefer converting vertical intent; also honor native horizontal deltas.
+        const delta = (Math.abs(y) >= Math.abs(x) ? y : x) * WHEEL_SENSITIVITY;
+        if (!delta) return;
+
+        // Keep the page still while the pointer is over the carousel.
         e.preventDefault();
-        const previousBehavior = carousel.style.scrollBehavior;
-        carousel.style.scrollBehavior = 'auto';
-        carousel.scrollLeft += e.deltaY + e.deltaX;
-        carousel.style.scrollBehavior = previousBehavior;
+        e.stopPropagation();
+        carousel.scrollLeft = Math.max(0, Math.min(maxScroll, carousel.scrollLeft + delta));
     };
 
+    // Capture on the wrap so hovering cards / arrows still routes here.
     const wheelTarget = wrap || carousel;
-    wheelTarget.addEventListener('wheel', onWheel, { passive: false });
+    wheelTarget.addEventListener('wheel', onWheel, { passive: false, capture: true });
 
-    // Track drag/swipe so a touch-drag does not accidentally open a card.
-    let pointerActive = false;
-    let startX = 0;
-    let startY = 0;
+    // Pointer drag / touch swipe scrolls the carousel.
+    let drag = null;
 
     const onPointerDown = (e) => {
-        pointerActive = true;
-        startX = e.clientX;
-        startY = e.clientY;
-        carousel.dataset.dragMoved = 'false';
-    };
+        // Left mouse button, touch, or pen only.
+        if (e.pointerType === 'mouse' && e.button !== 0) return;
 
-    const onPointerMove = (e) => {
-        if (!pointerActive) return;
-        const dx = Math.abs(e.clientX - startX);
-        const dy = Math.abs(e.clientY - startY);
-        if (dx > 8 || dy > 8) {
-            carousel.dataset.dragMoved = 'true';
+        drag = {
+            pointerId: e.pointerId,
+            startX: e.clientX,
+            startScroll: carousel.scrollLeft,
+            moved: false,
+            // Touch uses native overflow pan-x; mouse/pen use custom drag scroll.
+            nativeTouch: e.pointerType === 'touch'
+        };
+        carousel.dataset.dragMoved = 'false';
+
+        if (!drag.nativeTouch) {
+            carousel.classList.add('is-dragging');
+            try {
+                carousel.setPointerCapture(e.pointerId);
+            } catch (_) {
+                // Ignore capture failures.
+            }
         }
     };
 
-    const onPointerUp = () => {
-        pointerActive = false;
-        // Keep dragMoved true briefly so the click that follows a swipe is ignored.
-        window.setTimeout(() => {
+    const onPointerMove = (e) => {
+        if (!drag || e.pointerId !== drag.pointerId) return;
+        const dx = e.clientX - drag.startX;
+        if (!drag.moved && Math.abs(dx) > 6) {
+            drag.moved = true;
+            carousel.dataset.dragMoved = 'true';
+        }
+        if (drag.nativeTouch || !drag.moved) return;
+        e.preventDefault();
+        carousel.scrollLeft = drag.startScroll - dx;
+    };
+
+    const endDrag = (e) => {
+        if (!drag || (e && e.pointerId !== drag.pointerId)) return;
+        const wasMoved = drag.moved;
+        drag = null;
+        carousel.classList.remove('is-dragging');
+        // Keep dragMoved true briefly so the click after a swipe is ignored.
+        if (wasMoved) {
+            carousel.dataset.dragMoved = 'true';
+            window.setTimeout(() => {
+                carousel.dataset.dragMoved = 'false';
+            }, 80);
+        } else {
             carousel.dataset.dragMoved = 'false';
-        }, 50);
+        }
     };
 
     carousel.addEventListener('pointerdown', onPointerDown);
-    carousel.addEventListener('pointermove', onPointerMove);
-    carousel.addEventListener('pointerup', onPointerUp);
-    carousel.addEventListener('pointercancel', onPointerUp);
-    carousel.addEventListener('pointerleave', () => {
-        if (pointerActive) onPointerUp();
-    });
+    carousel.addEventListener('pointermove', onPointerMove, { passive: false });
+    carousel.addEventListener('pointerup', endDrag);
+    carousel.addEventListener('pointercancel', endDrag);
+    carousel.addEventListener('lostpointercapture', endDrag);
 }
 
 function openNoema(slug) {
