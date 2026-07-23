@@ -12,7 +12,7 @@
     display: flex;
     gap: 2rem;
     margin-bottom: 2rem;
-    align-items: flex-start;
+    align-items: stretch;
 }
 
 .contact-methods-wrapper {

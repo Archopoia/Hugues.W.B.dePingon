@@ -271,6 +271,10 @@ body::before {
   margin: var(--s-4) 0;
 }
 
+.rule.rule--tight {
+  margin: var(--s-2) 0;
+}
+
 .rule::before,
 .rule::after {
   content: "";
@@ -290,10 +294,230 @@ body::before {
   flex: none;
 }
 
+/* Labeled rule: line - diamond - label - diamond - line */
+.rule--inscribed {
+  gap: var(--s-3);
+  width: 100%;
+}
+
+.rule--inscribed::before,
+.rule--inscribed::after {
+  max-width: none;
+}
+
+.rule-label {
+  font-family: "Cinzel", serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--burgundy);
+  white-space: nowrap;
+  flex: none;
+}
+
+/* Acanthus flourish — ClassicWeb ornament */
+.flourish {
+  display: block;
+  height: var(--s-4);
+  margin: var(--s-2) auto 0;
+  opacity: var(--ornament);
+  color: var(--accent);
+}
+
+.mission-header .flourish,
+.journey-header .flourish,
+.chronicles-title-container .flourish {
+  margin-top: var(--s-1);
+}
+
+/* Vertical axis spacer (symmetry room language) */
+.axis-mark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-1);
+  color: var(--accent);
+  margin: var(--s-2) auto;
+  align-self: stretch;
+  min-height: var(--s-10);
+}
+
+.axis-mark .line {
+  width: 1px;
+  flex: 1;
+  min-height: var(--s-3);
+  background: linear-gradient(var(--accent), transparent, var(--accent));
+}
+
+.axis-mark .node {
+  width: 7px;
+  height: 7px;
+  transform: rotate(45deg);
+  border: 1px solid var(--burgundy);
+  background: var(--gold-glow);
+  box-shadow: 0 0 0 1px var(--gold-glow), 0 0 6px 1px rgba(184, 134, 11, 0.25);
+  flex: none;
+}
+
+/* Horizontal axis between side-by-side bays */
+.axis-mark.axis-mark--row {
+  flex-direction: row;
+  min-height: 0;
+  min-width: var(--s-8);
+  margin: 0 var(--s-2);
+  align-self: stretch;
+}
+
+.axis-mark.axis-mark--row .line {
+  width: auto;
+  height: 1px;
+  flex: 1;
+  min-height: 0;
+  min-width: var(--s-2);
+  background: linear-gradient(90deg, var(--accent), transparent, var(--accent));
+}
+
+.axis-mark.axis-mark--desktop {
+  flex: 0 0 auto;
+  width: var(--s-4);
+  margin: 0 var(--s-1);
+  min-height: var(--s-16);
+}
+
+@media (max-width: 768px) {
+  .axis-mark.axis-mark--desktop {
+    display: none;
+  }
+}
+
 .inscription {
   font-family: "Cinzel", serif;
   letter-spacing: 0.16em;
   text-transform: uppercase;
+}
+
+/* Section titles that used gold bars → ClassicWeb rule language */
+.section-divider {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: var(--s-3) !important;
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: 1.6rem !important;
+  color: var(--ink) !important;
+  text-align: center !important;
+  margin: var(--s-6) 0 var(--s-4) !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  text-shadow: none !important;
+}
+
+.section-divider::before,
+.section-divider::after {
+  content: "" !important;
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+  height: var(--rule-w) !important;
+  width: auto !important;
+  flex: 1 1 auto !important;
+  max-width: var(--s-16) !important;
+  background: linear-gradient(90deg, transparent, var(--line-strong), transparent) !important;
+  box-shadow: none !important;
+}
+
+/* Diamond eyes flanking section-divider titles */
+.section-divider > .node,
+.section-divider .section-divider-node {
+  width: 7px;
+  height: 7px;
+  transform: rotate(45deg);
+  border: 1px solid var(--burgundy);
+  background: var(--gold-glow);
+  box-shadow: 0 0 0 1px var(--gold-glow), 0 0 6px 1px rgba(184, 134, 11, 0.25);
+  flex: none;
+  display: inline-block;
+}
+
+.section-divider i {
+  animation: none !important;
+  color: var(--burgundy) !important;
+  text-shadow: none !important;
+  margin-right: 0.4rem !important;
+}
+
+/* Hide beige institution icons on education cards */
+.institution-logo {
+  display: none !important;
+}
+
+/* Portfolio labeled divider → inscribed rule with diamond nodes */
+.portfolio-prototypes-divider {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: var(--s-3) !important;
+  width: 100% !important;
+  margin: var(--s-5) 0 var(--s-3) !important;
+  padding: 0 !important;
+}
+
+.portfolio-prototypes-divider::before,
+.portfolio-prototypes-divider::after {
+  content: "" !important;
+  flex: 1 1 auto !important;
+  min-width: var(--s-3) !important;
+  height: var(--rule-w) !important;
+  max-width: none !important;
+  background: linear-gradient(90deg, transparent, var(--line-strong), transparent) !important;
+  opacity: 1 !important;
+}
+
+.portfolio-prototypes-divider .node {
+  width: 7px;
+  height: 7px;
+  transform: rotate(45deg);
+  border: 1px solid var(--burgundy);
+  background: var(--gold-glow);
+  box-shadow: 0 0 0 1px var(--gold-glow), 0 0 6px 1px rgba(184, 134, 11, 0.25);
+  flex: none;
+}
+
+.portfolio-prototypes-divider__label {
+  font-family: "Cinzel", serif !important;
+  font-size: 0.85rem !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  color: var(--burgundy) !important;
+  white-space: nowrap !important;
+}
+
+/* Journey vertical connectors → axis with diamond eye */
+.journey-connector {
+  position: relative !important;
+  width: 1px !important;
+  height: var(--s-4) !important;
+  margin: var(--s-1) auto !important;
+  margin-left: calc(1.5rem + 30px - 0.5px) !important;
+  background: linear-gradient(var(--accent), transparent, var(--accent)) !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.journey-connector::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  width: 7px !important;
+  height: 7px !important;
+  transform: translate(-50%, -50%) rotate(45deg) !important;
+  border: 1px solid var(--burgundy) !important;
+  background: var(--gold-glow) !important;
+  box-shadow: 0 0 0 1px var(--gold-glow), 0 0 6px 1px rgba(184, 134, 11, 0.25) !important;
 }
 
 /* =========================================================
@@ -646,7 +870,6 @@ body::before {
 .expertise-card h4,
 .skill-group-title,
 .category-header h3,
-.journey-header h3,
 .exp-header .exp-title,
 .edu-card-content h4,
 .academic-card h4 {
