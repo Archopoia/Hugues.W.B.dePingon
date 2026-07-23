@@ -157,6 +157,13 @@ export function openImageGallery(galleryType) {
     const modalBody = document.getElementById('modal-body');
 
     const galleries = {
+        'cattle-bridge': {
+            title: 'Victorian Alpine Cattle Bridge Fantaisie',
+            images: [
+                { src: 'Assets/Architecture/bridge1.jpg', caption: 'Front elevation - hand-drawn timber frame' },
+                { src: 'Assets/Architecture/bridge2.jpg', caption: 'Side elevation - hand-drawn timber frame' }
+            ]
+        },
         'worldmaps': {
             title: 'Worldmaps & Cartography - The Discording Tales',
             images: [

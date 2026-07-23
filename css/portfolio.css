@@ -667,6 +667,32 @@ a.project-ribbon.ribbon-gold:hover {
     z-index: 10;
 }
 
+/* Architecture card: tighter media → title spacing */
+.project-card--compact .portfolio-gallery {
+    height: 200px;
+}
+
+.project-card--compact .portfolio-gallery-item:nth-child(1) {
+    transform: translate(-50%, -50%) rotate(-3deg) translateY(-28px);
+}
+
+.project-card--compact .portfolio-gallery-item:nth-child(2) {
+    transform: translate(-50%, -50%) rotate(2deg) translateY(-20px);
+}
+
+.project-card--compact .project-content {
+    padding-top: 0.35rem;
+    margin-top: 0;
+}
+
+.project-card--compact.card {
+    padding-bottom: 1rem;
+}
+
+.project-card--compact .project-description {
+    margin-bottom: 0;
+}
+
 /* Add subtle visual cue on gallery hover */
 .portfolio-gallery::before {
     content: '';
