@@ -1,221 +1,265 @@
 /* ========================================
    NAVIGATION STYLES
-   Tab Navigation and All Nav Elements
+   Entablature tabs - ClassicWeb circulation
+   left cluster | About (colophon) | right cluster
    ======================================== */
 
-/* Navigation Tabs - Crystal Chronicles Style */
 .sheet-tabs {
-    display: flex;
-    background: var(--hover-bg);
-    border-bottom: 3px solid var(--border-dark);
+    display: block;
+    background:
+        radial-gradient(circle at 18% 50%, rgba(100, 48, 48, 0.4) 0%, transparent 55%),
+        radial-gradient(circle at 82% 50%, rgba(100, 48, 48, 0.32) 0%, transparent 55%),
+        linear-gradient(135deg, var(--burgundy-deep, #421212) 0%, var(--burgundy, #643030) 100%);
+    border-bottom: 3px solid var(--border-dark, #674b1b);
     overflow-x: auto;
-    position: relative;
-    z-index: 10;
-    box-shadow: inset 0 0 0 2px var(--border-tan);
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    box-shadow:
+        inset 0 1px 0 var(--gold-glow, #ffebc6),
+        0 4px 20px -6px rgba(26, 5, 5, 0.45);
+    padding: 0;
+    scrollbar-width: none;
+}
+
+.sheet-tabs::-webkit-scrollbar {
+    display: none;
 }
 
 .sheet-tabs::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background:
-        repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 15px,
-            rgba(184, 134, 11, 0.05) 15px,
-            rgba(184, 134, 11, 0.05) 16px
-        );
+    inset: 0;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 24px,
+        rgba(184, 134, 11, 0.07) 24px,
+        rgba(184, 134, 11, 0.07) 25px
+    );
     pointer-events: none;
+    z-index: 0;
+}
+
+/* ClassicWeb .entablature .plan — 1fr | auto | 1fr */
+.sheet-tabs-plan {
+    position: relative;
     z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    min-height: var(--s-8, 4rem);
+    width: 100%;
+    max-width: var(--plan, 1056px);
+    margin-inline: auto;
+    padding-inline: var(--s-4, 2rem);
+    box-sizing: border-box;
+}
+
+.sheet-tabs-side {
+    display: flex;
+    align-items: center;
+    gap: var(--s-4, 2rem);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+}
+
+.sheet-tabs-left {
+    justify-self: start;
+    justify-content: flex-start;
+}
+
+.sheet-tabs-right {
+    justify-self: end;
+    justify-content: flex-end;
 }
 
 .tab-button {
-    flex: 1;
-    background: var(--gold-glow);
-    border: 3px solid var(--border-dark);
-    border-bottom: none;
-    color: var(--text-dark);
-    padding: 1rem 0.5rem;
+    flex: 0 0 auto;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid transparent;
+    color: rgba(243, 226, 169, 0.78);
+    padding: var(--s-1, 0.5rem) var(--s-2, 1rem);
     cursor: pointer;
-    transition: all var(--transition-speed) ease;
+    transition:
+        color var(--ease-hover, 0.35s ease),
+        border-color var(--ease-hover, 0.35s ease),
+        background var(--ease-hover, 0.35s ease),
+        box-shadow var(--ease-hover, 0.35s ease),
+        transform var(--ease-hover, 0.35s ease),
+        text-shadow var(--ease-hover, 0.35s ease);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
-    font-family: 'Quintessential', cursive;
-    font-weight: 600;
+    gap: 0.35rem;
+    font-family: "Cinzel", serif;
+    font-weight: 500;
     position: relative;
-    min-width: 120px;
-    box-shadow: 0px 0px 10px 1px #421212 inset;
+    min-width: 0;
+    width: auto;
+    box-shadow: none;
     z-index: 1;
+    border-radius: 2px;
 }
 
 .tab-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background:
-        radial-gradient(circle at 30% 30%, rgba(184, 134, 11, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 70% 70%, rgba(184, 134, 11, 0.1) 0%, transparent 50%);
-    pointer-events: none;
-    z-index: -1;
+    display: none;
 }
 
 .tab-button:hover {
-    background: var(--hover-bg);
-    transform: translateY(-2px);
+    color: var(--gold-glow, #ffebc6);
+    border-bottom-color: var(--gold-glow, #ffebc6);
+    background: rgba(255, 235, 198, 0.1);
     box-shadow:
-        0 0 15px 8px var(--gold-glow),
-        0 0 30px 15px #72522f75,
-        0px 0px 10px 1px var(--focus-glow) inset;
-    z-index: 999;
+        0 0 12px 3px rgba(255, 235, 198, 0.2),
+        inset 0 0 8px 1px rgba(234, 203, 102, 0.08);
+    transform: translateY(-1px);
+    z-index: 2;
 }
 
 .tab-button.active {
-    background: var(--text-light);
-    border-color: var(--gold-glow);
+    color: var(--gold-glow, #ffebc6);
+    border-bottom-color: var(--gold-glow, #ffebc6);
+    background: rgba(255, 235, 198, 0.12);
     box-shadow:
-        0 0 0 1px var(--red-theme),
-        0 0 0 3px var(--gold-glow),
-        0 0 0 4px var(--red-theme),
-        0px 0px 15px 5px var(--gold-glow),
-        0px 0px 10px 1px var(--focus-glow) inset;
+        inset 0 -2px 0 var(--gold-glow, #ffebc6),
+        0 0 14px 4px rgba(255, 235, 198, 0.22);
+}
+
+/* About — ClassicWeb .colophon (“․ THE ORDER ․”): dots, no chip highlight */
+.tab-button-about {
+    justify-self: center;
+    flex-direction: row;
+    gap: 0;
+    color: var(--gold-glow, #ffebc6);
+    letter-spacing: 0.2em;
+    padding: var(--s-1, 0.5rem) var(--s-2, 1rem);
+    border-bottom-color: transparent;
+    background: transparent;
+    box-shadow: none;
+    transform: none;
+    cursor: pointer;
+}
+
+.tab-button-about i {
+    display: none;
+}
+
+.tab-button-about .tab-about-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    font-family: "Cinzel", serif;
+    font-size: var(--t-caption, 0.875rem);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: inherit;
+}
+
+.tab-button-about .colophon-dot {
+    letter-spacing: 0;
+    font-size: 0.85em;
+    line-height: 1;
+    opacity: 0.95;
+}
+
+.tab-button-about span {
+    letter-spacing: 0.2em;
+}
+
+/* Colophon hover: soft text only - never the side-nav chip highlight */
+.tab-button-about:hover,
+.tab-button-about:focus-visible,
+.tab-button-about.active,
+.tab-button-about.active:hover {
+    color: var(--gold-glow, #ffebc6);
+    border-bottom-color: transparent;
+    background: transparent;
+    box-shadow: none;
+    transform: none;
+    text-shadow: none;
 }
 
 .tab-button i {
-    font-size: 1.2rem;
+    font-size: 0.95rem;
+    opacity: 0.9;
 }
 
 .tab-button span {
-    font-size: 0.9rem;
+    font-size: 0.72rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.16em;
 }
 
-/* ========================================
-   CHRONICLES TAB - Dark burgundy default, golden borders when active
-   ======================================== */
+/* Chronicles tab - same language as peers */
+.tab-button-chronicles,
+.tab-button-chronicles:hover,
+.tab-button-chronicles.active {
+    background: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+}
 
 .tab-button-chronicles {
-    background: var(--red-theme) !important;
-    color: var(--text-cream) !important;
-    border-color: var(--border-dark) !important;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
-}
-
-.tab-button-chronicles::before {
-    background:
-        radial-gradient(circle at 30% 30%, rgba(184, 134, 11, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 70% 70%, rgba(184, 134, 11, 0.1) 0%, transparent 50%) !important;
+    color: rgba(243, 226, 169, 0.78) !important;
 }
 
 .tab-button-chronicles i,
 .tab-button-chronicles span {
-    color: var(--text-cream) !important;
+    color: inherit !important;
     text-shadow: none;
 }
 
-.tab-button-chronicles:hover {
-    background: var(--hover-bg) !important;
-    transform: translateY(-2px);
+.tab-button-chronicles:hover,
+.tab-button-chronicles.active {
+    color: var(--gold-glow, #ffebc6) !important;
+    border-bottom-color: var(--gold-glow, #ffebc6) !important;
+    background: rgba(255, 235, 198, 0.12) !important;
     box-shadow:
-        0 0 15px 8px var(--gold-glow),
-        0 0 30px 15px rgba(114, 82, 47, 0.46),
-        0px 0px 10px 1px var(--focus-glow) inset !important;
-    z-index: 999;
+        inset 0 -2px 0 var(--gold-glow, #ffebc6),
+        0 0 14px 4px rgba(255, 235, 198, 0.22) !important;
+    transform: translateY(-1px);
 }
 
 .tab-button-chronicles:hover i,
-.tab-button-chronicles:hover span {
-    color: var(--text-dark) !important;
-}
-
-/* ACTIVE STATE: Same detailed borders as other active tabs */
-.tab-button-chronicles.active {
-    background: var(--text-light) !important;
-    color: var(--text-dark) !important;
-    border-color: var(--gold-glow) !important;
-    box-shadow:
-        0 0 0 1px var(--red-theme),
-        0 0 0 3px var(--gold-glow),
-        0 0 0 4px var(--red-theme),
-        0px 0px 15px 5px var(--gold-glow),
-        0px 0px 10px 1px var(--focus-glow) inset !important;
-}
-
+.tab-button-chronicles:hover span,
 .tab-button-chronicles.active i,
 .tab-button-chronicles.active span {
-    color: var(--text-dark) !important;
-    text-shadow: none;
+    color: inherit !important;
 }
 
-/* Education Navigation */
-.education-nav {
+.education-nav,
+.portfolio-nav,
+.contact-method-selector {
     display: flex;
     justify-content: center;
-    gap: 0.5rem;
-    margin: 2rem 0;
+    gap: var(--s-2, 1rem);
+    margin: var(--s-4, 2rem) 0;
     flex-wrap: wrap;
 }
 
-/* Education Navigation */
-/* Uses unified .btn-nav class from base.css */
-
-/* Portfolio Navigation Pills */
-.portfolio-nav {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin: 2rem 0;
-    flex-wrap: wrap;
-}
-
-/* Portfolio Navigation */
-/* Uses unified .btn-nav class from base.css */
-
-/* Skills Navigation */
 .skills-nav {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 0.75rem;
-    margin: 2rem auto;
+    margin: var(--s-4, 2rem) auto;
     max-width: 800px;
 }
 
-/* Skills Navigation */
-/* Uses unified .btn-nav class from base.css */
-
-/* Contact Method Selector */
-.contact-method-selector {
-    display: flex;
-    gap: 1rem;
-    margin: 1rem 0;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-/* Contact Method Buttons */
-/* Uses unified .btn-method class from base.css */
-
-/* Language Switcher */
 .language-switcher {
     position: fixed;
-    top: 1.5rem;
+    bottom: 1.5rem;
     right: 1.5rem;
-    z-index: 10003; /* Above vignette effect (10002) */
+    top: auto;
+    z-index: 10003;
     pointer-events: none;
-    opacity: 0; /* Hidden initially until entrance screen is dismissed */
+    opacity: 0;
     transition: opacity 1s ease-in-out;
 }
 
-/* Show language switcher after entrance */
 .language-switcher.visible {
     opacity: 1;
 }
@@ -228,26 +272,43 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.75rem 1.25rem;
-    background: var(--red-theme);
-    border: 2px solid var(--border-dark);
-    border-radius: 3px;
+    padding: 0.55rem 1rem;
+    background: var(--burgundy, #643030);
+    border: 1px solid var(--border-tan, #ceb68d);
+    border-radius: 0;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    font-family: 'Cinzel', serif;
-    font-weight: 600;
-    color: var(--text-cream);
-    font-size: 1rem;
+    transition:
+        background var(--ease-hover, 0.35s ease),
+        border-color var(--ease-hover, 0.35s ease),
+        box-shadow var(--ease-hover, 0.35s ease),
+        transform var(--ease-hover, 0.35s ease);
+    box-shadow: inset 0 0 0 1px var(--burgundy-soft, rgba(100, 48, 48, 0.14));
+    font-family: "Cinzel", serif;
+    font-weight: 500;
+    color: var(--text-cream, #f3e2a9);
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
 }
 
 .lang-btn:hover {
-    background: var(--red-theme);
-    border-color: var(--gold-glow);
+    background: var(--burgundy, #643030);
+    border-color: var(--gold-glow, #ffebc6);
     transform: translateY(-2px);
     box-shadow:
-        0 0 15px var(--gold-glow),
-        0 6px 12px rgba(0, 0, 0, 0.3);
+        0 0 12px 3px rgba(255, 235, 198, 0.3),
+        inset 0 0 8px 1px rgba(234, 203, 102, 0.1);
+}
+
+.lang-btn .flag-icon {
+    width: 22px;
+    height: 14px;
+    object-fit: cover;
+    border: 1px solid rgba(255, 235, 198, 0.35);
+}
+
+.lang-text {
+    line-height: 1;
 }
 
 .lang-btn:active {

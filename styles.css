@@ -1,43 +1,10 @@
 /*!
  * Hugues de Pingon - Portfolio Website
- * Final Fantasy Crystal Chronicles Style Character Sheet
+ * Classical Web Design (Vignola) - parchment, bronze, burgundy
  *
  * Modular CSS Architecture
- * Author: Hugues William Brentone de Pingon
- * Version: 2.0 (Refactored)
- *
- * This stylesheet has been refactored into smaller, manageable modules
- * for better organization and maintainability.
- *
- * ========================================
- * QUICK REFERENCE: LAYERING SYSTEM
- * ========================================
- *
- * The character sheet uses a multi-layer overlay system:
- *
- * LAYER 1 - Main Background (Parchment)
- *   Location: css/base.css (body element)
- *   - Base color: #9c8e72 (parchment-bg)
- *   - Red dot pattern
- *   - Horizontal lines
- *
- * LAYER 2 - Khaki/Green Diagonal Grid Overlay
- *   Location: css/base.css (body element)
- *   - Color: #78c9a3 (khaki/jade green)
- *   - 45deg and -45deg diagonal lines
- *   - Creates diamond checkered pattern
- *
- * LAYER 3 - Section-Specific Overlays
- *   Header (css/header.css):
- *     LAYER 3A: Dark burgundy base (#643030)
- *     LAYER 3B: Diagonal gold lines (rgba(184, 134, 11, 0.1))
- *     LAYER 3C: Inner gold border frame
- *
- * For detailed documentation, see:
- * - css/base.css (lines 6-30)
- * - css/header.css (lines 6-24)
- * - css/layout.css (lines 6-12)
- * ========================================
+ * Author: Hugues William Brenthone de Pingon
+ * Version: 3.0 (Classic Web restyle)
  */
 
 /* ========================================
@@ -95,6 +62,9 @@
 
 /* Lazy Loading - Performance optimizations for media */
 @import url('css/lazy-load.css');
+
+/* Classic Web Theme - materials, hover, ornaments (overrides chrome) */
+@import url('css/classic-theme.css');
 
 /* Responsive - All Media Queries for Different Screen Sizes */
 @import url('css/responsive.css');

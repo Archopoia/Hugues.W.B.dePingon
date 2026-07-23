@@ -63,7 +63,7 @@ const PATTERNS = {
         nameKey: 'pattern-snake-name',
         descKey: 'pattern-snake-desc',
         icon: 'fas fa-route',
-        color: 'var(--green-theme)',
+        color: 'var(--burgundy)',
         check: (flippedCards, sequence) => {
             return isSnakeSequence(sequence);
         }
@@ -96,7 +96,7 @@ const PATTERNS = {
         nameKey: 'pattern-o-name',
         descKey: 'pattern-o-desc',
         icon: 'fas fa-o',
-        color: 'var(--yellow-theme)',
+        color: 'var(--accent)',
         check: (flippedCards) => {
             // O pattern: all perimeter cards except middle 4
             const oPositions = [

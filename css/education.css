@@ -86,47 +86,7 @@
     z-index: 1;
 }
 
-/* Theme-specific styling for academic stats */
-.academic-stat.theme-red .stat-icon {
-    background: var(--red-theme);
-    color: var(--text-cream);
-}
-
-.academic-stat.theme-red .stat-label {
-    background: var(--red-theme);
-    color: var(--text-cream);
-}
-
-.academic-stat.theme-yellow .stat-icon {
-    background: var(--yellow-theme);
-    color: var(--text-cream);
-}
-
-.academic-stat.theme-yellow .stat-label {
-    background: var(--yellow-theme);
-    color: var(--text-cream);
-}
-
-.academic-stat.theme-green .stat-icon {
-    background: var(--green-theme);
-    color: var(--text-cream);
-}
-
-.academic-stat.theme-green .stat-label {
-    background: var(--green-theme);
-    color: var(--text-cream);
-}
-
-.academic-stat.theme-teal .stat-icon {
-    background: var(--teal-theme);
-    color: var(--text-cream);
-}
-
-.academic-stat.theme-teal .stat-label {
-    background: var(--teal-theme);
-    color: var(--text-cream);
-}
-
+/* Academic stats flip faces */
 /* Stat card hover effect - flip animation */
 .stat-default {
     display: flex;
@@ -260,31 +220,6 @@ html[lang="fr"] .stat-label.countries-hover::before {
     line-height: 1.3;
 }
 
-/* Theme-specific hover backgrounds */
-.academic-stat.theme-red:hover,
-.academic-stat.theme-red.flipped {
-    background: var(--red-theme);
-    transform: rotateY(180deg) scale(1.05);
-}
-
-.academic-stat.theme-yellow:hover,
-.academic-stat.theme-yellow.flipped {
-    background: var(--yellow-theme);
-    transform: rotateY(180deg) scale(1.05);
-}
-
-.academic-stat.theme-green:hover,
-.academic-stat.theme-green.flipped {
-    background: var(--green-theme);
-    transform: rotateY(180deg) scale(1.05);
-}
-
-.academic-stat.theme-teal:hover,
-.academic-stat.theme-teal.flipped {
-    background: var(--teal-theme);
-    transform: rotateY(180deg) scale(1.05);
-}
-
 /* Education Sections */
 .education-section {
     display: none;
@@ -316,14 +251,12 @@ html[lang="fr"] .stat-label.countries-hover::before {
 
 /* Education Cards */
 .education-card {
-    background: var(--hover-bg);
-    border: 3px solid var(--border-tan);
-    border-radius: 20px;
+    background: var(--marble, #f4ebda);
+    border: 1px solid var(--border-tan);
+    border-radius: 0;
     margin: 2rem 0;
     overflow: hidden;
-    box-shadow:
-        0 0 20px rgba(0, 0, 0, 0.1),
-        inset 0 0 0 2px var(--border-tan);
+    box-shadow: inset 0 0 0 1px var(--burgundy-soft);
     transition: all var(--transition-speed);
 }
 
@@ -357,13 +290,13 @@ html[lang="fr"] .stat-label.countries-hover::before {
 }
 
 .degree-badge.current {
-    background: var(--orange-theme);
+    background: var(--burgundy);
     color: var(--text-cream);
-    animation: pulse 2s infinite;
+    animation: none;
 }
 
 .degree-badge.completed {
-    background: var(--green-theme);
+    background: var(--burgundy);
     color: var(--text-cream);
 }
 
@@ -454,9 +387,11 @@ html[lang="fr"] .stat-label.countries-hover::before {
 .thesis-info {
     margin: 1.5rem 0;
     padding: 1rem;
-    background: var(--parchment-aged);
-    border-radius: 10px;
-    border-left: 4px solid var(--red-theme);
+    background: var(--marble, #f4ebda);
+    border-radius: 0;
+    border: 1px solid var(--border-tan);
+    border-left: 3px solid var(--burgundy);
+    box-shadow: inset 0 0 0 1px var(--burgundy-soft);
 }
 
 .thesis-info h5 {
@@ -494,8 +429,8 @@ html[lang="fr"] .stat-label.countries-hover::before {
 
 /* Achievement Highlights */
 .achievement-highlight {
-    background: var(--yellow-theme-alpha);
-    border: 2px solid var(--yellow-theme);
+    background: rgba(156, 120, 50, 0.72);
+    border: 2px solid var(--accent);
     border-radius: 10px;
     padding: 1rem;
     margin: 1.5rem 0;
@@ -504,7 +439,7 @@ html[lang="fr"] .stat-label.countries-hover::before {
 }
 
 .achievement-highlight i {
-    color: var(--yellow-theme);
+    color: var(--accent);
     margin-right: 0.5rem;
 }
 
@@ -515,8 +450,10 @@ html[lang="fr"] .stat-label.countries-hover::before {
     gap: 2rem;
     margin: 1.5rem 0;
     padding: 1rem;
-    background: var(--parchment-aged);
-    border-radius: 15px;
+    background: var(--marble, #f4ebda);
+    border: 1px solid var(--border-tan);
+    border-radius: 0;
+    box-shadow: inset 0 0 0 1px var(--burgundy-soft);
 }
 
 .grade-display {
@@ -539,7 +476,7 @@ html[lang="fr"] .stat-label.countries-hover::before {
 }
 
 .thesis-grade {
-    background: var(--green-theme);
+    background: var(--burgundy);
     color: var(--text-cream);
     padding: 0.5rem 1rem;
     border-radius: 20px;
@@ -559,16 +496,18 @@ html[lang="fr"] .stat-label.countries-hover::before {
     align-items: center;
     gap: 1rem;
     padding: 1rem;
-    background: var(--parchment-aged);
-    border-radius: 10px;
-    border: 2px solid transparent;
+    background: var(--marble, #f4ebda);
+    border-radius: 0;
+    border: 1px solid var(--border-tan);
+    box-shadow: inset 0 0 0 1px var(--burgundy-soft);
     transition: all var(--transition-speed);
 }
 
 .degree-item:hover {
-    border-color: var(--red-theme);
+    border-color: var(--gold-glow);
     background: var(--hover-bg);
-    transform: translateX(5px);
+    box-shadow: 0 0 12px 4px rgba(255, 235, 198, 0.2);
+    transform: none;
 }
 
 .degree-icon {
@@ -679,13 +618,13 @@ html[lang="fr"] .stat-label.countries-hover::before {
 }
 
 .timeline-marker.current {
-    background: var(--orange-theme);
-    box-shadow: 0 0 15px var(--orange-theme);
+    background: var(--accent);
+    box-shadow: 0 0 15px var(--accent);
     animation: pulse 2s infinite;
 }
 
 .timeline-content h3 {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     color: var(--text-dark);
     font-size: 1.3rem;
     margin-bottom: 0.5rem;
@@ -715,10 +654,10 @@ html[lang="fr"] .stat-label.countries-hover::before {
 
 .timeline-content .thesis,
 .timeline-content .achievement {
-    background: var(--yellow-theme-alpha);
+    background: rgba(156, 120, 50, 0.72);
     padding: 0.5rem;
     border-radius: 5px;
-    border-left: 3px solid var(--yellow-theme);
+    border-left: 3px solid var(--accent);
     margin-top: 0.5rem;
     font-style: italic;
 }
@@ -901,7 +840,7 @@ html[lang="fr"] .stat-label.countries-hover::before {
 }
 
 .academic-card h4 {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     color: var(--text-dark);
     font-size: 1.1rem;
     margin: 0.5rem 0;

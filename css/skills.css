@@ -9,7 +9,7 @@
 }
 
 .section-title {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     font-size: 1.6rem;
     color: var(--text-dark);
     text-align: center;
@@ -58,30 +58,6 @@
     z-index: 10;
 }
 
-.attribute-card-lg.theme-red {
-    border-color: var(--red-theme);
-}
-
-.attribute-card-lg.theme-yellow {
-    border-color: var(--yellow-theme);
-}
-
-.attribute-card-lg.theme-green {
-    border-color: var(--green-theme);
-}
-
-.attribute-card-lg.theme-teal {
-    border-color: var(--teal-theme);
-}
-
-.attribute-card-lg.theme-purple {
-    border-color: var(--purple-theme);
-}
-
-.attribute-card-lg.theme-orange {
-    border-color: var(--orange-theme);
-}
-
 .attr-icon {
     width: 60px;
     height: 60px;
@@ -101,28 +77,8 @@
         inset 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-.attribute-card-lg.theme-yellow .attr-icon {
-    background: var(--yellow-theme);
-}
-
-.attribute-card-lg.theme-green .attr-icon {
-    background: var(--green-theme);
-}
-
-.attribute-card-lg.theme-teal .attr-icon {
-    background: var(--teal-theme);
-}
-
-.attribute-card-lg.theme-purple .attr-icon {
-    background: var(--purple-theme);
-}
-
-.attribute-card-lg.theme-orange .attr-icon {
-    background: var(--orange-theme);
-}
-
 .attribute-card-lg h4 {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     color: var(--text-dark);
     font-size: 1.2rem;
     margin: 0 0 0.5rem 0;
@@ -144,7 +100,7 @@
 
 .attr-progress {
     height: 100%;
-    background: linear-gradient(90deg, var(--red-theme), var(--yellow-theme));
+    background: linear-gradient(90deg, var(--red-theme), var(--accent));
     border-radius: 8px;
     transition: width 1s ease-in-out;
     box-shadow: 0 0 10px var(--gold-glow);
@@ -178,7 +134,7 @@
 }
 
 .skill-group-title {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     color: var(--text-dark);
     font-size: 1.4rem;
     margin: 0 0 1.5rem 0;
@@ -223,7 +179,7 @@
 }
 
 .skill-card .skill-name {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     font-size: 1.05rem;
     color: var(--text-dark);
     font-weight: 600;
@@ -254,7 +210,7 @@
 
 .skill-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--red-theme) 0%, var(--yellow-theme) 50%, var(--green-theme) 100%);
+    background: linear-gradient(90deg, var(--red-theme) 0%, var(--accent) 50%, var(--burgundy) 100%);
     border-radius: 10px;
     transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow:
@@ -286,7 +242,7 @@
 }
 
 .detail-tag {
-    background: var(--teal-theme);
+    background: var(--burgundy);
     color: var(--text-cream);
     padding: 0.2rem 0.5rem;
     border-radius: 8px;
@@ -398,7 +354,7 @@
 }
 
 .language-card.classical {
-    border-color: var(--yellow-theme);
+    border-color: var(--accent);
 }
 
 .lang-flag {
@@ -422,7 +378,7 @@
 }
 
 .language-card h4 {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     color: var(--text-dark);
     font-size: 1.3rem;
     margin: 0 0 0.5rem 0;
@@ -473,7 +429,7 @@
 
 .mini-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--red-theme), var(--green-theme));
+    background: linear-gradient(90deg, var(--red-theme), var(--burgundy));
     border-radius: 6px;
     transition: width 1s ease-in-out;
     box-shadow: 0 0 6px var(--gold-glow);

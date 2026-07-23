@@ -34,16 +34,13 @@
 }
 
 .exp-card.featured {
-    border: 3px solid var(--gold-glow);
-    box-shadow:
-        0 0 0 1px var(--red-theme),
-        0 0 0 2px var(--gold-glow),
-        0 0 15px rgba(0, 0, 0, 0.1),
-        inset 0 0 0 2px var(--border-tan);
+    /* Same bay as every other experience card */
+    border-color: var(--border-tan);
+    box-shadow: inset 0 0 0 1px var(--burgundy-soft);
 }
 
 .exp-card.passion {
-    border-color: var(--gold-glow);
+    border-color: var(--border-tan);
 }
 
 .exp-header {
@@ -51,14 +48,14 @@
     align-items: center;
     gap: 1rem;
     padding: 1.5rem;
-    background: linear-gradient(135deg, var(--parchment-aged) 0%, var(--hover-bg) 100%);
-    border-bottom: 2px solid var(--border-tan);
+    background: var(--stone-2, #f0e4cc);
+    border-bottom: 1px solid var(--border-tan);
 }
 
 .exp-icon {
     width: 60px;
     height: 60px;
-    background: var(--teal-theme);
+    background: var(--burgundy);
     border: 3px solid var(--border-tan);
     border-radius: 50%;
     display: flex;
@@ -74,12 +71,12 @@
 }
 
 .exp-icon.current {
-    background: var(--red-theme);
-    animation: pulseIcon 2s ease-in-out infinite;
+    background: var(--burgundy);
+    animation: none;
 }
 
 .exp-icon.passion {
-    background: var(--yellow-theme);
+    background: var(--burgundy);
 }
 
 .exp-title {
@@ -87,7 +84,7 @@
 }
 
 .exp-title h3 {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     color: var(--text-dark);
     font-size: 1.3rem;
     margin: 0 0 0.25rem 0;
@@ -102,7 +99,7 @@
 }
 
 .exp-badge {
-    background: var(--teal-theme);
+    background: var(--burgundy);
     color: var(--text-cream);
     padding: 0.5rem 1rem;
     border: 2px solid var(--border-tan);
@@ -114,13 +111,13 @@
 }
 
 .exp-badge.current {
-    background: var(--red-theme);
+    background: var(--burgundy);
     color: var(--text-cream);
-    animation: badgePulse 2s ease-in-out infinite;
+    animation: none;
 }
 
 .exp-badge.passion {
-    background: var(--yellow-theme);
+    background: var(--burgundy);
     color: var(--text-cream);
 }
 
@@ -216,46 +213,32 @@
     background: var(--border-brown);
 }
 
-/* Progression Timeline */
+/* Progression Timeline — same body language as other exp cards */
 .progression-timeline {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.25rem;
 }
 
 .prog-step {
-    display: flex;
-    gap: 1rem;
-    padding: 1rem;
+    display: block;
+    gap: 0;
+    padding: 0;
     background: transparent;
     border: none;
-    border-radius: 10px;
-    transition: all var(--transition-speed);
+    border-radius: 0;
+    transition: none;
 }
 
 .prog-step:hover {
     background: transparent;
-    transform: translateX(10px);
+    transform: none;
     box-shadow: none;
 }
 
 .prog-step.featured {
     border: none;
-}
-
-.prog-marker {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    border: 3px solid var(--border-tan);
-    flex-shrink: 0;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
-    background: linear-gradient(135deg, var(--gold-glow), var(--orange-theme));
-    color: var(--text-dark);
+    background: transparent;
 }
 
 .prog-content {
@@ -263,29 +246,28 @@
 }
 
 .prog-content h4 {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     color: var(--text-dark);
-    font-size: 1.1rem;
-    margin: 0 0 0.25rem 0;
+    font-size: 1.15rem;
+    margin: 0 0 0.35rem 0;
 }
 
 .prog-content .period {
-    font-size: 0.8rem;
-    background: var(--red-theme);
+    font-size: 0.85rem;
+    background: var(--burgundy);
     color: var(--text-cream);
     font-weight: 600;
-    margin: 0 0 0.5rem 0;
-    padding: 0.25rem 0.6rem;
-    border-radius: 10px;
+    margin: 0 0 0.75rem 0;
+    padding: 0.3rem 0.8rem;
+    border-radius: 0;
     display: inline-block;
-    border: 2px solid var(--border-tan);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-tan);
 }
 
 .prog-content .desc {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: var(--text-dark);
-    line-height: 1.5;
+    line-height: 1.6;
     margin: 0 0 0.75rem 0;
 }
 
@@ -335,7 +317,7 @@
 }
 
 .minor-exp-item h4 {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     color: var(--text-dark);
     font-size: 1rem;
     margin: 0 0 0.25rem 0;
@@ -372,14 +354,14 @@
 }
 
 .role-item {
-    background: var(--yellow-theme-alpha);
+    background: rgba(156, 120, 50, 0.72);
     padding: 1rem;
     border-radius: 8px;
     border-left: 4px solid var(--gold-glow);
 }
 
 .role-item h4 {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     color: var(--red-theme);
     margin-bottom: 0.3rem;
 }

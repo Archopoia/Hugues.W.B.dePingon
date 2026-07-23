@@ -126,25 +126,27 @@
     font-size: 1.1rem;
     font-weight: 700;
     color: var(--text-dark);
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
 }
 
-/* Mission Statement */
+/* Mission Statement — ClassicWeb blueprint vessel */
 .mission-statement {
-    background: var(--hover-bg);
-    border: 3px solid var(--border-dark);
-    border-radius: 15px;
+    background:
+        linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 100% var(--s-3),
+        var(--marble);
+    border: 2px solid var(--border-tan);
+    border-radius: 0;
     padding: 2rem;
-    margin: 2rem 0;
+    margin: 0 0 2rem 0;
     box-shadow:
-        0 4px 8px rgba(0, 0, 0, 0.2),
+        0 0 0 1px var(--burgundy-soft),
         inset 0 0 0 2px var(--border-tan);
 }
 
 .mission-header {
-    margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 2px solid var(--border-dark);
+    margin: 2rem 0 0.85rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-tan);
 }
 
 .mission-header-with-thesis {
@@ -166,7 +168,7 @@
 }
 
 .mission-header-title h3 {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     color: var(--text-dark);
     font-size: 1.6rem;
     margin: 0;
@@ -201,7 +203,36 @@
 .mission-content {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--s-1, 0.5rem);
+}
+
+/* Room VII storey cells inside Mission & Vision */
+.mission-content .storey,
+.mission-storey {
+    text-align: left;
+    padding: var(--s-2, 1rem);
+    margin-bottom: 0;
+    border: 1px dashed var(--border-brown);
+    border-radius: 0;
+    background: rgba(247, 240, 224, 0.65);
+    box-shadow: none;
+    transition:
+        background var(--ease-hover, 0.35s ease),
+        border-color var(--ease-hover, 0.35s ease),
+        box-shadow var(--ease-hover, 0.35s ease);
+}
+
+.mission-content .storey:hover,
+.mission-storey:hover {
+    background: var(--hover-bg);
+    border-color: var(--gold-glow);
+    box-shadow: inset 0 0 8px 1px rgba(234, 203, 102, 0.1);
+    transform: none;
+}
+
+.mission-content .storey .mission-text,
+.mission-storey .mission-text {
+    margin: 0;
 }
 
 /* MPhil BIOCRACY - DiVA link with static download count */
@@ -228,7 +259,7 @@
 
 .about-thesis-teaser-line2 {
     margin-top: 0.1rem;
-    font-family: 'Cinzel', 'Quintessential', Georgia, serif;
+    font-family: 'Cinzel', "Cormorant Garamond", Georgia, serif;
     font-size: 0.8rem;
     font-weight: 700;
 }
@@ -264,7 +295,7 @@
     margin-right: 0.5rem;
     margin-top: 0.1rem;
     color: var(--red-theme);
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
 }
 
 /* Mission Image */
@@ -415,55 +446,12 @@
     opacity: 1;
 }
 
-/* Theme-specific hover backgrounds */
-.expertise-card.theme-red:hover .card-inner,
-.expertise-card.theme-red.flipped .card-inner {
-    background: var(--red-theme);
-    transform: rotateY(180deg) scale(1.05);
-    border-radius: 15px;
-}
-
-.expertise-card.theme-yellow:hover .card-inner,
-.expertise-card.theme-yellow.flipped .card-inner {
-    background: var(--yellow-theme);
-    transform: rotateY(180deg) scale(1.05);
-    border-radius: 15px;
-}
-
-.expertise-card.theme-green:hover .card-inner,
-.expertise-card.theme-green.flipped .card-inner {
-    background: var(--green-theme);
-    transform: rotateY(180deg) scale(1.05);
-    border-radius: 15px;
-}
-
-.expertise-card.theme-teal:hover .card-inner,
-.expertise-card.theme-teal.flipped .card-inner {
-    background: var(--teal-theme);
-    transform: rotateY(180deg) scale(1.05);
-    border-radius: 15px;
-}
-
-.expertise-card.theme-purple:hover .card-inner,
-.expertise-card.theme-purple.flipped .card-inner {
-    background: var(--purple-theme);
-    transform: rotateY(180deg) scale(1.05);
-    border-radius: 15px;
-}
-
-.expertise-card.theme-orange:hover .card-inner,
-.expertise-card.theme-orange.flipped .card-inner {
-    background: var(--orange-theme);
-    transform: rotateY(180deg) scale(1.05);
-    border-radius: 15px;
-}
-
 .expertise-icon {
     width: 60px;
     height: 60px;
-    background: var(--red-theme);
-    border: 3px solid var(--border-dark);
-    border-radius: 50%;
+    background: var(--burgundy);
+    border: 1px solid var(--gold-glow);
+    border-radius: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -471,18 +459,12 @@
     color: var(--text-cream);
     margin: 0 auto 1rem auto;
     box-shadow:
-        0 0 15px var(--gold-glow),
-        inset 0 0 10px rgba(0, 0, 0, 0.3);
+        0 0 0 1px var(--burgundy),
+        inset 0 0 0 1px var(--burgundy-soft);
 }
 
-.expertise-card.theme-yellow .expertise-icon { background: var(--yellow-theme); }
-.expertise-card.theme-green .expertise-icon { background: var(--green-theme); }
-.expertise-card.theme-teal .expertise-icon { background: var(--teal-theme); }
-.expertise-card.theme-purple .expertise-icon { background: var(--purple-theme); }
-.expertise-card.theme-orange .expertise-icon { background: var(--orange-theme); }
-
 .expertise-card h4 {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     color: var(--text-dark);
     font-size: 1.3rem;
     margin: 0 0 0.3rem 0;
@@ -537,7 +519,7 @@
 }
 
 .expertise-tags span:hover {
-    background: var(--yellow-theme);
+    background: var(--accent);
     color: var(--text-dark);
     transform: scale(1.1);
 }
@@ -559,15 +541,17 @@
     color: var(--text-dark);
 }
 
-/* Journey Section */
+/* Journey Section — ClassicWeb blueprint vessel */
 .journey-section {
-    background: var(--hover-bg);
-    border: 3px solid var(--border-dark);
-    border-radius: 15px;
+    background:
+        linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 100% var(--s-3),
+        var(--marble);
+    border: 2px solid var(--border-tan);
+    border-radius: 0;
     padding: 2rem;
-    margin: 2rem 0;
+    margin: 0 0 2rem 0;
     box-shadow:
-        0 4px 8px rgba(0, 0, 0, 0.2),
+        0 0 0 1px var(--burgundy-soft),
         inset 0 0 0 2px var(--border-tan);
 }
 
@@ -575,9 +559,9 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 2px solid var(--border-dark);
+    margin: 2rem 0 0.85rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-tan);
 }
 
 .journey-header i {
@@ -586,7 +570,7 @@
 }
 
 .journey-header h3 {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     color: var(--text-dark);
     font-size: 1.6rem;
     margin: 0;
@@ -620,9 +604,9 @@
 .node-icon {
     width: 60px;
     height: 60px;
-    background: var(--red-theme);
-    border: 3px solid var(--border-dark);
-    border-radius: 50%;
+    background: var(--burgundy);
+    border: 1px solid var(--gold-glow);
+    border-radius: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -630,22 +614,17 @@
     color: var(--text-cream);
     flex-shrink: 0;
     box-shadow:
-        0 0 10px var(--gold-glow),
+        0 0 0 1px var(--burgundy),
+        inset 0 0 0 1px var(--burgundy-soft);
         inset 0 0 10px rgba(0, 0, 0, 0.3);
 }
-
-.node-icon.theme-yellow { background: var(--yellow-theme); }
-.node-icon.theme-green { background: var(--green-theme); }
-.node-icon.theme-teal { background: var(--teal-theme); }
-.node-icon.theme-purple { background: var(--purple-theme); }
-.node-icon.theme-orange { background: var(--orange-theme); }
 
 .node-content {
     flex: 1;
 }
 
 .node-content h4 {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     color: var(--text-dark);
     font-size: 1.2rem;
     margin: 0 0 0.5rem 0;
@@ -722,7 +701,7 @@
 }
 
 .interests-header h3 {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     color: var(--text-dark);
     font-size: 1.6rem;
     margin: 0;
@@ -795,7 +774,7 @@
     line-height: 2rem;
     padding-right: 0.3rem;
     padding-top: 0.1rem;
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     color: var(--text-dark);
     text-shadow:
         0 1px black,

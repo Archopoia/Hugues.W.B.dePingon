@@ -29,7 +29,7 @@
 }
 
 .category-header h3 {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     color: var(--text-dark);
     font-size: 1.8rem;
     margin: 0 0 0.5rem 0;
@@ -95,7 +95,7 @@
 }
 
 .portfolio-prototypes-divider__label {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     font-size: 1.05rem;
     color: var(--red-theme);
     letter-spacing: 0.14em;
@@ -265,16 +265,16 @@ a.project-ribbon.ribbon-gold:hover {
 }
 
 .ribbon-gold {
-    background: linear-gradient(135deg, var(--gold-glow), var(--orange-theme));
+    background: linear-gradient(135deg, var(--gold-glow), var(--accent));
     color: var(--text-dark);
 }
 
 .ribbon-green {
-    background: var(--green-theme);
+    background: var(--burgundy);
 }
 
 .ribbon-blue {
-    background: var(--teal-theme);
+    background: var(--burgundy);
 }
 
 .ribbon-current {
@@ -407,7 +407,7 @@ a.project-ribbon.ribbon-gold:hover {
 }
 
 .tech-tag {
-    background: var(--teal-theme);
+    background: var(--burgundy);
     color: var(--text-cream);
     padding: 0.35rem 0.7rem;
     border-radius: 10px;
@@ -419,7 +419,7 @@ a.project-ribbon.ribbon-gold:hover {
 }
 
 .tech-tag:hover {
-    background: var(--green-theme);
+    background: var(--burgundy);
     transform: translateY(-2px);
     box-shadow:
         0 0 10px 3px var(--gold-glow),
@@ -597,7 +597,7 @@ a.project-ribbon.ribbon-gold:hover {
 }
 
 .modal-title {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     font-size: 1.5rem;
     font-weight: 600;
     text-shadow:

@@ -149,7 +149,7 @@
 .seal-line1,
 .seal-line2 {
     display: block;
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     font-size: 0.75rem;
     font-weight: 700;
     color: var(--text-cream);
@@ -321,7 +321,7 @@
 }
 
 .workshop-title {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     font-size: 2.5rem;
     color: var(--gold-glow);
     margin-bottom: 0.5rem;
@@ -339,7 +339,7 @@
 }
 
 .workshop-subtitle {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     font-size: 1.2rem;
     color: var(--text-cream);
     font-style: italic;
@@ -353,47 +353,25 @@
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Workshop Mission - Parchment style like other tabs */
+/* Workshop Mission — ClassicWeb blueprint vessel */
 .workshop-mission {
-    background: linear-gradient(135deg, var(--hover-bg) 0%, var(--parchment-aged) 100%);
-    border: 2px solid var(--gold-glow);
-    border-radius: 12px;
+    background:
+        linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 100% var(--s-3),
+        var(--marble);
+    border: 2px solid var(--border-tan);
+    border-radius: 0;
     padding: 2rem;
     margin-bottom: 2.5rem;
     box-shadow:
-        0 0 0 1px var(--red-theme),
-        0 0 0 2px var(--gold-glow),
-        0 4px 8px rgba(0, 0, 0, 0.2),
-        inset 0 0 0 1px var(--border-tan);
+        0 0 0 1px var(--burgundy-soft),
+        inset 0 0 0 2px var(--border-tan);
     position: relative;
     overflow: hidden;
     animation: fade-in-up 0.8s ease-out;
 }
 
-.workshop-mission::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg,
-        transparent 30%,
-        rgba(184, 134, 11, 0.3) 50%,
-        transparent 70%);
-    background-size: 200% 200%;
-    border-radius: 12px;
-    animation: border-flow 3s linear infinite;
-    z-index: -1;
-}
-
-@keyframes border-flow {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 200% 50%; }
-}
-
 .workshop-mission h3 {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     font-size: 2rem;
     color: var(--text-dark);
     margin-bottom: 1.5rem;
@@ -467,7 +445,7 @@
 
 /* Section Dividers - Enhanced with decorative elements */
 .section-divider {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     font-size: 1.8rem;
     color: var(--gold-glow);
     text-align: center;
@@ -550,27 +528,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-/* Theme-specific backgrounds for unflipped format cards */
-.format-card.theme-red .card-inner {
-    background: var(--red-theme);
-    border-color: var(--red-theme);
-}
-
-.format-card.theme-yellow .card-inner {
-    background: var(--yellow-theme);
-    border-color: var(--yellow-theme);
-}
-
-.format-card.theme-green .card-inner {
-    background: var(--green-theme);
-    border-color: var(--green-theme);
-}
-
-.format-card.theme-teal .card-inner {
-    background: var(--teal-theme);
-    border-color: var(--teal-theme);
 }
 
 .format-card:hover .card-inner,
@@ -711,7 +668,7 @@
 }
 
 .format-tags span:hover {
-    background: var(--yellow-theme);
+    background: var(--accent);
     color: var(--text-dark);
     transform: scale(1.1);
 }
@@ -737,7 +694,7 @@
     border: 2px solid var(--gold-glow);
     border-radius: 8px;
     text-align: center;
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
 }
 
 .format-pricing strong {
@@ -755,7 +712,7 @@
 }
 
 .format-card h4 {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     font-size: 1.8rem;
     color: var(--text-cream);
     margin: 1.2rem 0;
@@ -784,29 +741,12 @@
     font-size: 2.5rem;
 }
 
-/* Theme-specific icon colors */
-.format-card.theme-red .format-icon i {
-    color: var(--red-theme);
-}
-
-.format-card.theme-yellow .format-icon i {
-    color: var(--yellow-theme);
-}
-
-.format-card.theme-green .format-icon i {
-    color: var(--green-theme);
-}
-
-.format-card.theme-teal .format-icon i {
-    color: var(--teal-theme);
-}
-
 .format-card .format-badge {
     display: inline-block;
     color: var(--text-cream);
     padding: 0.6rem 1.5rem;
     border-radius: 15px;
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     font-size: 1.1rem;
     font-weight: 600;
     margin-top: 1rem;
@@ -882,7 +822,7 @@
 }
 
 .value-item h4 {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     font-size: 1.1rem;
     color: var(--text-dark);
     margin-bottom: 0.4rem;
@@ -1004,27 +944,6 @@
     opacity: 1;
 }
 
-/* Theme-specific hover backgrounds for game elements */
-.game-element.theme-red:hover .card-inner,
-.game-element.theme-red.flipped .card-inner {
-    background: var(--red-theme);
-}
-
-.game-element.theme-yellow:hover .card-inner,
-.game-element.theme-yellow.flipped .card-inner {
-    background: var(--yellow-theme);
-}
-
-.game-element.theme-green:hover .card-inner,
-.game-element.theme-green.flipped .card-inner {
-    background: var(--green-theme);
-}
-
-.game-element.theme-teal:hover .card-inner,
-.game-element.theme-teal.flipped .card-inner {
-    background: var(--teal-theme);
-}
-
 .game-element .card-back p {
     font-size: 1.2rem;
     line-height: 1.4;
@@ -1049,17 +968,12 @@
         inset 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-.game-element.theme-red .game-icon { background: var(--red-theme); }
-.game-element.theme-yellow .game-icon { background: var(--yellow-theme); }
-.game-element.theme-green .game-icon { background: var(--green-theme); }
-.game-element.theme-teal .game-icon { background: var(--teal-theme); }
-
 .game-element .game-icon i {
     font-size: 2.5rem;
 }
 
 .game-element h4 {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     font-size: 1.8rem;
     color: var(--text-dark);
     margin: 0;
@@ -1102,7 +1016,7 @@
 }
 
 .tool-item span {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     font-size: 0.95rem;
     color: var(--text-dark);
 }
@@ -1125,7 +1039,7 @@
     border: 2px solid var(--border-dark);
     border-radius: 20px;
     padding: 0.7rem 1.3rem;
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     font-size: 0.95rem;
     font-weight: 600;
     color: var(--gold-glow);
@@ -1204,7 +1118,7 @@
 }
 
 .workshop-cta h3 {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     font-size: 2.2rem;
     color: var(--text-dark);
     margin-bottom: 1rem;
@@ -1212,7 +1126,7 @@
 }
 
 .workshop-cta p {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     font-size: 1.2rem;
     color: var(--red-theme);
     margin-bottom: 2rem;
@@ -1224,7 +1138,7 @@
     border: 3px solid var(--red-theme);
     border-radius: 0;
     padding: 1.2rem 3rem;
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     font-size: 1.2rem;
     font-weight: 700;
     cursor: pointer;

@@ -159,7 +159,7 @@ async function startPress(e) {
 
         // Apply workshop burgundy background with ALL layers (1, 2, 3A)
         // LAYER 1: Red dots, horizontal lines, parchment base
-        // LAYER 2: Diagonal khaki/green grid
+        // LAYER 2: Burgundy wash
         // LAYER 3A: Dark burgundy overlay
         activeWorkshopTab.style.background = `
             radial-gradient(circle at 20% 20%, rgba(100, 48, 48, 0.3) 0%, transparent 50%),
@@ -168,8 +168,8 @@ async function startPress(e) {
             radial-gradient(#6100001f 3px, transparent 4px),
             radial-gradient(#6100001f 3px, transparent 4px),
             linear-gradient(var(--parchment-sublight) 4px, transparent 0),
-            linear-gradient(45deg, transparent 74px, #78c9a3 75px, transparent 76px, transparent 109px),
-            linear-gradient(-45deg, transparent 75px, #78c9a3 76px, transparent 77px, transparent 109px),
+            linear-gradient(45deg, transparent 74px, transparent 75px, transparent 76px, transparent 109px),
+            linear-gradient(-45deg, transparent 75px, transparent 76px, transparent 77px, transparent 109px),
             var(--parchment-sublight)
         `;
         activeWorkshopTab.style.backgroundSize = '100% 100%, 100% 100%, 100% 100%, 109px 109px, 109px 109px, 100% 6px, 109px 109px, 109px 109px, 100% 100%';

@@ -371,20 +371,24 @@
 
 /* Interactive Quest Form */
 .contact-quest-intro {
-    background: var(--hover-bg);
-    border: 3px solid var(--border-dark);
-    border-radius: 15px;
+    background:
+        linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 100% var(--s-3),
+        var(--marble);
+    border: 2px solid var(--border-tan);
+    border-radius: 0;
     padding: 2rem;
     margin-bottom: 2rem;
     text-align: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow:
+        0 0 0 1px var(--burgundy-soft),
+        inset 0 0 0 2px var(--border-tan);
 }
 
 .contact-quest-intro h3 {
     color: var(--red-theme);
     font-size: 1.8rem;
     margin-bottom: 1rem;
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
 }
 
 .contact-quest-intro p {
@@ -546,7 +550,7 @@
 }
 
 .question-header h4 {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     font-size: 1.5rem;
     color: var(--text-dark);
     margin: 0;
@@ -586,7 +590,7 @@
 }
 
 .option-card span {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     font-size: 1.05rem;
     color: var(--text-dark);
     font-weight: 600;
@@ -622,7 +626,7 @@
     border-radius: 15px;
     background: var(--hover-bg);
     color: var(--text-dark);
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     font-size: 1.05rem;
     resize: vertical;
     transition: all var(--transition-speed);
@@ -650,7 +654,7 @@
 }
 
 .input-group label {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     font-size: 1rem;
     color: var(--text-dark);
     font-weight: 600;
@@ -667,7 +671,7 @@
     border-radius: 10px;
     background: var(--hover-bg);
     color: var(--text-dark);
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     font-size: 1rem;
     transition: all var(--transition-speed);
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -726,12 +730,12 @@
 
 .success-icon {
     font-size: 5rem;
-    color: var(--green-theme);
+    color: var(--burgundy);
     margin-bottom: 1.5rem;
 }
 
 .quest-success h3 {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     font-size: 2rem;
     color: var(--text-dark);
     margin-bottom: 1rem;
@@ -789,7 +793,7 @@
 }
 
 .contact-card h3 {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     font-size: 1.5rem;
     color: var(--text-dark);
     margin-bottom: 1rem;
@@ -819,7 +823,7 @@
     padding: 0.75rem 1.5rem;
     border-radius: 10px;
     text-decoration: none;
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     font-weight: 600;
     transition: all var(--transition-speed);
     margin-bottom: 1rem;
@@ -843,7 +847,7 @@
 }
 
 .location-showcase h3 {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     font-size: 1.5rem;
     color: var(--text-dark);
     text-align: center;
@@ -857,7 +861,7 @@
 }
 
 .social-platforms-intro h3 {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     font-size: 1.8rem;
     color: var(--text-dark);
     margin-bottom: 0.5rem;
@@ -912,7 +916,7 @@
 }
 
 .platform-name {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     font-size: 0.75rem;
     color: var(--text-dark);
     font-weight: 600;
@@ -971,7 +975,7 @@
 }
 
 .callout-content h3 {
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     font-size: 2rem;
     margin-bottom: 1rem;
     color: white;
@@ -993,7 +997,7 @@
     padding: 1rem 2rem;
     border-radius: 10px;
     text-decoration: none;
-    font-family: 'Quintessential', cursive;
+    font-family: "Cormorant Garamond", serif;
     font-weight: 600;
     font-size: 1.1rem;
     transition: all var(--transition-speed);

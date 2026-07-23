@@ -1,127 +1,70 @@
 /* ========================================
    HEADER STYLES
-   Character Header Section and Portrait
+   Pediment: portrait | name + socials + role + country
+             then System Designer on the line below the name
+   Classical burgundy entablature materials
    ======================================== */
 
-/* ========================================
-   HEADER LAYERING SYSTEM
-
-   The header uses these overlay layers on top of the main background:
-
-   LAYER 3A - DARK BURGUNDY OVERLAY (.character-header background):
-   - Base burgundy gradient: var(--red-theme) #643030
-   - Radial highlights: rgba(100, 48, 48, 0.3) at corners
-   - Creates the dark burgundy foundation
-
-   LAYER 3B - DIAGONAL GOLD LINES (.character-header::before):
-   - Repeating diagonal lines at 45deg
-   - Color: rgba(184, 134, 11, 0.1) - semi-transparent gold
-   - 20px spacing between lines
-
-   LAYER 3C - INNER GOLD BORDER (.character-header::after):
-   - Inner decorative border frame
-   - Color: var(--border-brown)
-   ======================================== */
-
-/* Header Section - Crystal Chronicles Style */
 .character-header {
-    /* LAYER 3A: Dark Burgundy Overlay with Radial Highlights */
     background:
-        radial-gradient(circle at 20% 20%, rgba(100, 48, 48, 0.3) 0%, transparent 50%),  /* Top-left radial glow */
-        radial-gradient(circle at 80% 80%, rgba(100, 48, 48, 0.3) 0%, transparent 50%),  /* Bottom-right radial glow */
-        linear-gradient(135deg, var(--red-theme-alpha) 0%, var(--red-theme) 100%);       /* Burgundy gradient base */
+        radial-gradient(circle at 18% 50%, rgba(100, 48, 48, 0.4) 0%, transparent 55%),
+        radial-gradient(circle at 82% 50%, rgba(100, 48, 48, 0.32) 0%, transparent 55%),
+        linear-gradient(135deg, var(--burgundy-deep, #421212) 0%, var(--burgundy, #643030) 100%);
     color: var(--text-cream);
-    padding: 2rem;
+    padding: 0.85rem 1.25rem;
     display: flex;
-    align-items: flex-start;
-    gap: 2rem;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0.85rem 1.1rem;
     position: relative;
     z-index: 2;
     border-bottom: 3px solid var(--border-dark);
-    box-shadow: inset 0 0 0 2px var(--border-tan);
+    box-shadow: inset 0 1px 0 var(--gold-glow);
+    min-height: 0;
 }
 
 .character-header::before {
-    /* LAYER 3B: Diagonal Gold Line Overlay */
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background:
-        repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 20px,
-            rgba(184, 134, 11, 0.1) 20px,  /* Gold diagonal lines */
-            rgba(184, 134, 11, 0.1) 21px
-        );
+    inset: 0;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 24px,
+        rgba(184, 134, 11, 0.07) 24px,
+        rgba(184, 134, 11, 0.07) 25px
+    );
     pointer-events: none;
     z-index: 1;
 }
 
 .character-header::after {
-    /* LAYER 3C: Inner Gold Border Frame */
-    content: '';
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    right: 1rem;
-    bottom: 1rem;
-    /* border: 2px solid var(--border-brown);  */
-    border-radius: 8px;
-    pointer-events: none;
-    z-index: 1;
+    display: none;
 }
 
 .portrait-frame {
     position: relative;
-    width: 140px;
-    min-width: 140px;
-    flex: 0 0 140px;
-    height: 140px;
-    min-height: 140px;
-    border: 4px solid var(--gold-glow);
+    width: 64px;
+    min-width: 64px;
+    flex: 0 0 64px;
+    height: 64px;
+    min-height: 64px;
+    border: 2px solid var(--gold-glow);
     border-radius: 50%;
-    background: var(--parchment-bg);
+    background: var(--marble, #f4ebda);
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow:
-        0 0 0 1px var(--red-theme),
-        0 0 0 3px var(--gold-glow),
-        0 0 0 4px var(--red-theme),
-        0 4px 12px rgba(0, 0, 0, 0.4);
+        0 0 0 1px var(--burgundy),
+        0 0 10px 2px rgba(255, 235, 198, 0.25);
     z-index: 3;
-    transform: rotate(0deg);
 }
 
-.portrait-frame::before {
-    content: '';
-    position: absolute;
-    top: -12px;
-    left: -12px;
-    right: -12px;
-    bottom: -12px;
-    border: 2px solid var(--gold-glow);
-    border-radius: 50%;
-    box-shadow:
-        0 0 0 2px var(--red-theme),
-        0 0 15px rgba(255, 235, 198, 0.5);
-    z-index: -1;
-}
-
+.portrait-frame::before,
 .portrait-frame::after {
-    content: '';
-    position: absolute;
-    top: 6px;
-    left: 6px;
-    right: 6px;
-    bottom: 6px;
-    border: 1px solid var(--red-theme);
-    border-radius: 50%;
-    z-index: 1;
+    display: none;
 }
 
 .portrait-placeholder {
@@ -130,9 +73,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 4.5rem;
-    color: var(--ink-brown);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     z-index: 2;
     overflow: hidden;
     border-radius: 50%;
@@ -146,65 +86,66 @@
     border-radius: 50%;
 }
 
-/* .portrait-decoration {
-    position: absolute;
-    top: -18px;
-    left: -18px;
-    right: -18px;
-    bottom: -18px;
-    border: 2px solid var(--red-theme);
-    border-radius: 50%;
-    box-shadow:
-        0 0 0 2px var(--gold-glow);
-    z-index: -2;
-} */
-
 .character-info {
-    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 0.2rem;
+    flex: 1 1 auto;
     min-width: 0;
+    position: relative;
+    z-index: 3;
+}
+
+.character-identity-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
+    min-width: 0;
+    width: 100%;
 }
 
 .character-name {
-    font-family: 'Quintessential', cursive;
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--text-cream);
-    text-shadow:
-        0 1px black,
-        0 2px rgb(19, 19, 19),
-        0 3px rgb(30, 30, 30),
-        0 4px rgb(50, 50, 50),
-        0 5px rgb(70, 70, 70),
-        0 6px #555;
-    margin-bottom: 0.5rem;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(1.15rem, 2.2vw, 1.85rem);
+    font-weight: 600;
+    color: var(--gold-glow);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
+    margin: 0;
     position: relative;
     z-index: 3;
-    letter-spacing: 1px;
-    min-height: 3rem; /* Reserve space for name to prevent layout shift */
+    letter-spacing: 0.04em;
+    line-height: 1.15;
+    white-space: nowrap;
+    flex: 0 1 auto;
+    min-width: 0;
 }
 
 .character-name::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: -20px;
-    right: -20px;
-    bottom: -10px;
-    /* background:
-        radial-gradient(circle at 20% 20%, rgba(184, 134, 11, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(184, 134, 11, 0.1) 0%, transparent 50%); */
-    z-index: -1;
+    display: none;
 }
 
 .character-title {
-    font-size: 1.2rem;
-    color: var(--parchment-aged);
-    margin-bottom: 1rem;
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: clamp(0.78rem, 1.35vw, 0.95rem);
+    color: rgba(243, 226, 169, 0.82);
+    margin: 0;
     font-style: italic;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    text-shadow: none;
     position: relative;
     z-index: 3;
-    letter-spacing: 1px;
+    letter-spacing: 0.02em;
+    line-height: 1.3;
+    white-space: normal;
+    flex: none;
+    max-width: none;
+    width: 100%;
+    text-align: center;
+    overflow: visible;
+    text-overflow: unset;
 }
 
 .github-portfolio-link {
@@ -239,10 +180,11 @@
 /* Header social icons - same row as Role / Origin, before Role */
 .character-header .header-social-platforms {
     margin: 0;
+    display: flex;
     justify-content: flex-start;
     flex-wrap: nowrap;
     align-items: center;
-    gap: 0.35rem;
+    gap: 0.25rem;
     position: relative;
     z-index: 3;
     max-width: none;
@@ -250,24 +192,49 @@
 }
 
 .character-header .header-social-platforms .social-platform-card {
-    padding: 0.25rem 0.2rem;
+    padding: 0.3rem 0.4rem;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 0;
+    box-shadow: none;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+    transition:
+        background var(--ease-hover, 0.35s ease),
+        border-color var(--ease-hover, 0.35s ease),
+        box-shadow var(--ease-hover, 0.35s ease),
+        transform var(--ease-hover, 0.35s ease);
+}
+
+.character-header .header-social-platforms .social-platform-card:hover {
+    background: rgba(255, 235, 198, 0.1);
+    border-color: var(--gold-glow);
+    box-shadow: 0 0 10px 3px rgba(255, 235, 198, 0.25);
+    transform: translateY(-1px);
 }
 
 .character-header .header-social-platforms .social-platform-card i {
     color: var(--text-cream);
-    font-size: 1.45rem;
+    font-size: 1.15rem;
 }
 
 .character-header .header-social-platforms .platform-name {
-    color: var(--parchment-aged);
-    font-size: 0.62rem;
-    max-width: 5.5rem;
+    color: rgba(243, 226, 169, 0.7);
+    font-family: "Cinzel", serif;
+    font-size: 0.52rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    max-width: 4.5rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-.character-header .header-social-platforms .social-platform-card:hover .platform-name {
+.character-header .header-social-platforms .social-platform-card:hover .platform-name,
+.character-header .header-social-platforms .social-platform-card:hover i {
     color: var(--gold-glow);
 }
 
@@ -1492,41 +1459,49 @@
 
 .character-stats {
     display: flex;
-    gap: 1.25rem;
-    flex-wrap: wrap;
+    gap: 0.75rem 1rem;
+    flex-wrap: nowrap;
     align-items: center;
+    margin-left: auto;
+    position: relative;
+    z-index: 3;
+    flex: 0 1 auto;
+    min-width: 0;
 }
 
 .stat-item {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 0.55rem;
+    gap: 0.4rem;
     background: transparent;
-    padding: 0.25rem 0;
+    padding: 0.15rem 0;
     border-radius: 0;
     border: none;
     cursor: default;
+    flex-shrink: 0;
 }
 
 .stat-item.role-stat,
 .stat-item.origin-stat {
-    padding: 0.15rem 0.25rem;
+    padding: 0.15rem 0.35rem;
+    border-left: 1px solid rgba(255, 235, 198, 0.22);
 }
 
 .character-stats .stat-label,
 .stat-item .stat-label,
 .stat-label {
-    font-size: 0.85rem;
-    background: var(--red-theme);
-    color: var(--text-cream) !important;
+    font-family: "Cinzel", serif;
+    font-size: 0.65rem;
+    background: transparent;
+    color: var(--gold-glow) !important;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 0.3rem 0.6rem;
-    border-radius: 8px;
-    font-weight: 600;
-    border: 2px solid var(--border-dark);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.12em;
+    padding: 0;
+    border-radius: 0;
+    font-weight: 500;
+    border: none;
+    box-shadow: none;
     z-index: 9;
 }
 
@@ -1534,34 +1509,38 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.1rem;
+    gap: 0.05rem;
     line-height: 1.2;
 }
 
 .role-stat .role-line {
     display: block;
-    font-size: 0.95rem;
+    font-size: 0.78rem;
+    color: rgba(243, 226, 169, 0.88);
+    white-space: nowrap;
 }
 
 .role-stat .role-olg-link {
-    color: var(--gold);
-    text-decoration: underline;
+    color: var(--gold, #c9a24e);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(201, 162, 78, 0.45);
     text-underline-offset: 2px;
     cursor: pointer;
+    transition: color var(--ease-hover, 0.35s ease), border-color var(--ease-hover, 0.35s ease);
 }
 
 .role-stat .role-olg-link:hover {
-    color: var(--text-cream);
+    color: var(--gold-glow);
+    border-bottom-color: var(--gold-glow);
 }
 
 .stat-value {
-    font-size: 1.1rem;
-    color: var(--parchment-aged);
-    /* font-style: italic; */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    font-size: 0.9rem;
+    color: rgba(243, 226, 169, 0.88);
+    text-shadow: none;
     position: relative;
-    line-height: 1;
-    margin-top: 1px;
+    line-height: 1.2;
+    margin-top: 0;
 }
 
 /* Portrait (mini-game disabled - decorative only) */
@@ -1676,4 +1655,3 @@
     transform: scale(1.11);
     filter: brightness(1.28);
 }
-
