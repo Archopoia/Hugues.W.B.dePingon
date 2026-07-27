@@ -226,7 +226,7 @@ const translations = {
         // Expertise Areas
         "expertise-leadership-title": "Leadership",
         "expertise-leadership-subtitle": "Team coordination & vision",
-        "expertise-leadership-desc": "Team coordination for creative projects - with a focus on learning the longer craft of shaping real places with care",
+        "expertise-leadership-desc": "Team coordination for creative projects",
         "tag-team-lead": "Team Lead",
         "tag-vision": "Vision",
         "tag-coordination": "Coordination",
@@ -283,7 +283,7 @@ const translations = {
         "journey-project-twr": "The Wayward Realms",
         "journey-gamedev-desc": "Leading creative direction in philosophical fiction - shaping illustrated worlds into playable places and cultures, and into narrative and trailer form, to explore human existence",
         "journey-architecture-title": "Learning Traditional Arts",
-        "journey-architecture-desc": "Learning traditional arts - drawing and craft alongside traditional architecture and traditional art, studied with care",
+        "journey-architecture-desc": "Learning traditional arts and traditional architecture.",
 
         // Interests
         "interests-title": "Interests & Passions",
@@ -376,7 +376,7 @@ const translations = {
         "exp-architecture-title": "Toward Traditional Art",
         "exp-architecture-company": "INTBAU · La Table Ronde · Independent study",
         "exp-architecture-badge": "Beginning",
-        "exp-architecture-desc": "Just beginning to learn traditional art and the measured practice that supports it. Engaging with traditional architecture communities (INTBAU); attending Dirk Mortier's traditional timber frame workshop to learn vernacular measured architectural drawing; assisting Nadia and Noé Morin at La Table Ronde de l'Architecture (Westhoffen, Alsace); and now learning traditional academic art on my own. Learning - not claiming mastery yet.",
+        "exp-architecture-desc": "Just beginning to learn traditional art and the measured practice that supports it. Engaging with traditional architecture communities (INTBAU); attending Dirk Mortier's traditional timber frame workshop to learn vernacular measured architectural drawing; assisting Nadia and Noé Morin at La Table Ronde de l'Architecture (Westhoffen, Alsace); and now learning traditional academic art on my own.",
         "exp-architecture-tag-study": "Beginning Study",
         "exp-architecture-tag-drawing": "Learning to Draw",
         "exp-architecture-tag-vernacular": "Vernacular Interest",
@@ -392,7 +392,7 @@ const translations = {
         "exp-archop-title": "Creative Director",
         "exp-archop-company": "Archopoia - \"The Discording Tales\"",
         "exp-archop-badge": "Current",
-        "exp-archop-desc": "Five years solo on The Discording Tales as a tabletop RPG and world. Since May 2026, turning it into a video game with eight volunteers - business, artists, musicians, and more.",
+        "exp-archop-desc": "Creative direction on The Discording Tales - a philosophical fiction that began as a book, was partly illustrated, and is now being turned into a trailer with a team.",
         "exp-archop-pitch-alt": "The Discording Tales pitch deck",
         "exp-archop-pitch-cta": "Click to view the pitch deck",
         "exp-psycho-title": "Product/Game Design & Management Intern",
@@ -968,7 +968,7 @@ const translations = {
         // Expertise Areas
         "expertise-leadership-title": "Leadership",
         "expertise-leadership-subtitle": "Coordination d'équipe & vision",
-        "expertise-leadership-desc": "Coordination d'équipe pour projets créatifs - avec l'envie d'apprendre le métier plus long de façonner des lieux réels avec soin",
+        "expertise-leadership-desc": "Coordination d'équipe pour projets créatifs",
         "tag-team-lead": "Chef d'équipe",
         "tag-vision": "Vision",
         "tag-coordination": "Coordination",
@@ -1025,7 +1025,7 @@ const translations = {
         "journey-project-twr": "The Wayward Realms",
         "journey-gamedev-desc": "Direction créative pour la fiction philosophique - transformer des mondes illustrés en lieux et cultures jouables, puis en récit et bande-annonce, pour explorer l'existence humaine",
         "journey-architecture-title": "Apprentissage des arts traditionnels",
-        "journey-architecture-desc": "Apprendre les arts traditionnels - dessin et craft aux côtés de l'architecture traditionnelle et de l'art traditionnel, étudiés avec soin",
+        "journey-architecture-desc": "Apprendre les arts traditionnels et l'architecture traditionnelle.",
 
         // Interests
         "interests-title": "Intérêts & Passions",
@@ -1118,7 +1118,7 @@ const translations = {
         "exp-architecture-title": "Vers l'art traditionnel",
         "exp-architecture-company": "INTBAU · La Table Ronde · Étude indépendante",
         "exp-architecture-badge": "Début",
-        "exp-architecture-desc": "Tout juste au début d'apprendre l'art traditionnel et la pratique mesurée qui le soutient. Engagement auprès de communautés d'architecture traditionnelle (INTBAU); participation à l'atelier d'ossature traditionnelle en bois de Dirk Mortier pour apprendre le dessin architectural mesuré vernaculaire; assistance à Nadia et Noé Morin à La Table Ronde de l'Architecture (Westhoffen, Alsace); et maintenant apprentissage de l'art académique traditionnel en autonomie. Apprendre - sans prétendre déjà maîtriser.",
+        "exp-architecture-desc": "Tout juste au début d'apprendre l'art traditionnel et la pratique mesurée qui le soutient. Engagement auprès de communautés d'architecture traditionnelle (INTBAU); participation à l'atelier d'ossature traditionnelle en bois de Dirk Mortier pour apprendre le dessin architectural mesuré vernaculaire; assistance à Nadia et Noé Morin à La Table Ronde de l'Architecture (Westhoffen, Alsace); et maintenant apprentissage de l'art académique traditionnel en autonomie.",
         "exp-architecture-tag-study": "Début d'étude",
         "exp-architecture-tag-drawing": "Apprendre à dessiner",
         "exp-architecture-tag-vernacular": "Intérêt vernaculaire",
@@ -1134,7 +1134,7 @@ const translations = {
         "exp-archop-title": "Directeur Créatif",
         "exp-archop-company": "Archopoia - \"Des Récits Discordants\"",
         "exp-archop-badge": "Actuel",
-        "exp-archop-desc": "Cinq années en solo sur The Discording Tales comme jeu de rôle et univers. Depuis mai 2026, transformation en jeu vidéo avec huit bénévoles - business, artistes, musiciens, et plus.",
+        "exp-archop-desc": "Direction créative sur The Discording Tales - une fiction philosophique d'abord écrite, en partie illustrée, puis transformée en bande-annonce avec une équipe.",
         "exp-archop-pitch-alt": "Pitch deck de The Discording Tales",
         "exp-archop-pitch-cta": "Cliquez pour voir le pitch deck",
         "exp-psycho-title": "Stagiaire en Product/Game Design & Management",
