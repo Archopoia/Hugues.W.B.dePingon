@@ -3,7 +3,7 @@
 
 [CmdletBinding()]
 param(
-    [string]$Source = "Assets/Hugues/Hugues.W.B.dePingon - roundvignette.jpg",
+    [string]$Source = "Assets/Hugues/Heroic Filter copyblur.jpg",
     [string]$OutDir = "."
 )
 
