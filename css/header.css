@@ -1,7 +1,7 @@
 /* ========================================
    HEADER STYLES
-   Pediment: portrait | name + socials + role + country
-             then Designer & Researcher (AAA) on the line below the name
+   Pediment: portrait | name + role + country
+             then IG + LinkedIn | Toward Arts... | TDT + GitHub
    Classical burgundy entablature materials
    ======================================== */
 
@@ -128,6 +128,18 @@
     display: none;
 }
 
+/* Subtitle flanked by socials - same plan as sheet-tabs: 1fr | center | 1fr */
+.character-title-row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 0;
+    width: 100%;
+    min-width: 0;
+    position: relative;
+    z-index: 3;
+}
+
 .character-title {
     font-family: "EB Garamond", Georgia, serif;
     font-size: clamp(0.78rem, 1.35vw, 0.95rem);
@@ -139,13 +151,15 @@
     z-index: 3;
     letter-spacing: 0.02em;
     line-height: 1.3;
-    white-space: normal;
+    white-space: nowrap;
     flex: none;
     max-width: none;
-    width: 100%;
+    width: auto;
+    justify-self: center;
     text-align: center;
     overflow: visible;
     text-overflow: unset;
+    padding-inline: 1rem;
 }
 
 .github-portfolio-link {
@@ -177,18 +191,27 @@
     text-shadow: 0 0 10px rgba(255, 235, 198, 0.55);
 }
 
-/* Header social icons - same row as Role / Origin, before Role */
+/* Header social icons - outer columns like sheet-tabs-side */
 .character-header .header-social-platforms {
     margin: 0;
     display: flex;
-    justify-content: flex-start;
     flex-wrap: nowrap;
     align-items: center;
-    gap: 0.25rem;
+    gap: 0.35rem;
     position: relative;
     z-index: 3;
     max-width: none;
-    flex-shrink: 0;
+    min-width: 0;
+}
+
+.character-header .header-social-left {
+    justify-self: start;
+    justify-content: flex-start;
+}
+
+.character-header .header-social-right {
+    justify-self: end;
+    justify-content: flex-end;
 }
 
 .character-header .header-social-platforms .social-platform-card {
@@ -1462,11 +1485,13 @@
     gap: 0.75rem 1rem;
     flex-wrap: nowrap;
     align-items: center;
+    justify-content: flex-end;
     margin-left: auto;
     position: relative;
     z-index: 3;
-    flex: 0 1 auto;
+    flex: 0 0 auto;
     min-width: 0;
+    text-align: right;
 }
 
 .stat-item {
@@ -1508,7 +1533,7 @@
 .role-stat .role-stack {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-end;
     gap: 0.05rem;
     line-height: 1.2;
 }
