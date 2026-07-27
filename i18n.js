@@ -7,11 +7,11 @@ const translations = {
         "lang-name": "EN",
 
         // Header
-        "subtitle": "DESIGNER & RESEARCHER: Arts, Aesthetics, Architecture",
+        "subtitle": "Toward art, aesthetics & architecture",
         "age": "Age",
         "current-role": "Role",
         "lead-game-designer": "Lead Game Designer at OLG",
-        "role-architecture": "Learning traditional architecture",
+        "role-architecture": "Study of traditional art and architecture",
         "role-olg": "Lead Game Designer at OLG",
         "location": "Location",
         "location-value": "Switzerland",
@@ -272,9 +272,9 @@ const translations = {
         "journey-scientific-title": "Academic Foundation",
         "journey-scientific-diploma": "Bachelors",
         "journey-scientific-desc": "Neuroscience, biology, and anthropology - beginning to imagine how humans perceive, evolve, and inhabit culture",
-        "journey-foresight-title": "Business Foresight",
+        "journey-foresight-title": "Scenario Foresight",
         "journey-foresight-diploma": "MBA",
-        "journey-foresight-desc": "Foresight and strategic governance - turning academic worldviews into practical visions of what could come next",
+        "journey-foresight-desc": "Scenario foresight and strategic governance - turning academic worldviews into practical visions of what could come next",
         "journey-philosophical-title": "Philosophical Exploration",
         "journey-philosophical-diploma": "MPhil",
         "journey-philosophical-desc": "Philosophy and ethics - framing the worldviews behind how societies choose, create, and justify their futures",
@@ -749,11 +749,11 @@ const translations = {
         "lang-name": "FR",
 
         // Header
-        "subtitle": "DESIGNER & CHERCHEUR: Arts, Aesthétique, Architecture",
+        "subtitle": "Vers l'art, l'aesthétique et l'architecture",
         "age": "Âge",
         "current-role": "Rôle",
         "lead-game-designer": "Lead Game Designer chez OLG",
-        "role-architecture": "Étude de l'architecture traditionnelle",
+        "role-architecture": "Étude de l'art et de l'architecture traditionnels",
         "role-olg": "Lead Game Designer chez OLG",
         "location": "Localisation",
         "location-value": "Suisse",
@@ -1014,9 +1014,9 @@ const translations = {
         "journey-scientific-title": "Fondation académique",
         "journey-scientific-diploma": "Bachelors",
         "journey-scientific-desc": "Neurosciences, biologie et anthropologie - commencer à imaginer comment les humains perçoivent, évoluent et habitent la culture",
-        "journey-foresight-title": "Prospective Business",
+        "journey-foresight-title": "Prospective scénario",
         "journey-foresight-diploma": "MBA",
-        "journey-foresight-desc": "Prospective et gouvernance stratégique - transformer des visions académiques en visions pratiques de ce qui pourrait venir",
+        "journey-foresight-desc": "Prospective scénario et gouvernance stratégique - transformer des visions académiques en visions pratiques de ce qui pourrait venir",
         "journey-philosophical-title": "Exploration Philosophique",
         "journey-philosophical-diploma": "MPhil",
         "journey-philosophical-desc": "Philosophie et éthique - cadrer les visions du monde derrière la façon dont les sociétés choisissent, créent et justifient leurs futurs",
@@ -1563,9 +1563,9 @@ function applyLanguage(lang) {
 
     // Update document title
     if (lang === 'fr') {
-        document.title = "Hugues de Pingon | Designer & Chercheur: Arts, Esthétique, Architecture";
+        document.title = "Hugues de Pingon | Vers les Arts, l'aesthétique et l'Architecture";
     } else {
-        document.title = "Hugues de Pingon | Designer & Researcher: Arts, Aesthetics, Architecture";
+        document.title = "Hugues de Pingon | Toward Arts, Aesthetics & Architecture";
     }
 }
 

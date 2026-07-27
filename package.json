@@ -1,7 +1,7 @@
 {
   "name": "hugues-de-pingon-portfolio",
   "version": "1.0.0",
-  "description": "Portfolio of Hugues W.B. de Pingon - Designer & Researcher: Arts, Aesthetics, Architecture",
+  "description": "Portfolio of Hugues W.B. de Pingon - Toward Arts, Aesthetics & Architecture. Philosophical fiction, aesthetics, traditional arts.",
   "main": "index.html",
   "scripts": {
     "start": "python -m http.server 8000",
@@ -11,10 +11,11 @@
   },
   "keywords": [
     "portfolio",
-    "visual-arts",
+    "philosophical-fiction",
     "aesthetics",
+    "traditional-arts",
     "traditional-architecture",
-    "philosophy",
+    "the-discording-tales",
     "designer-researcher"
   ],
   "author": "Hugues William Brenthone de Pingon",
