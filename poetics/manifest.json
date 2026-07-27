@@ -1,0 +1,28 @@
+{
+  "_comment": "Poetics content index - Universe Lore tab book fragments only (bilingual). Each .md has <!--lang:en--> / <!--lang:fr--> bodies. Order in posts is carousel order. Prefix a listed filename with '-' (e.g. '-rils-siwomiz.md') to hide it while keeping the file.",
+  "posts": [
+    "universe-lore-intro.md",
+    "vivre-ainsi.md",
+    "mots-et-sens.md",
+    "rildees-astrales.md",
+    "ruines-aiars.md",
+    "abondances-hsaewal-samiana.md",
+    "temple-yekkwui-apsebjum.md",
+    "festivals-wahros-hwethioz.md",
+    "artefacts-tehkswen-minzhije.md",
+    "signes-guident.md",
+    "construit-construit.md",
+    "wom-hism-o.md",
+    "rils-siwomiz.md",
+    "erreur-sioiz-zimwis.md",
+    "iohoi-magie.md",
+    "corps-coeur-ril-cendrees.md",
+    "ordres-riliques.md",
+    "vie-mort.md",
+    "rilie-fantastique.md",
+    "attirer-repousser.md",
+    "tomber-elever.md",
+    "apparaitre-disparaitre.md",
+    "changer-persister.md"
+  ]
+}

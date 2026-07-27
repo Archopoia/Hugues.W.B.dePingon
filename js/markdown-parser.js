@@ -206,6 +206,17 @@ function escapeHTML(text) {
 }
 
 /**
+ * Filenames starting with "-" are kept on disk but hidden from the site
+ * (e.g. "-rils-siwomiz.md" will not appear in Poetics / Noematics).
+ * @param {string} filename
+ * @returns {boolean}
+ */
+export function isHiddenMarkdownFilename(filename) {
+    const base = String(filename || '').split(/[/\\]/).pop() || '';
+    return base.startsWith('-');
+}
+
+/**
  * Load and parse a markdown file from a given directory.
  * @param {string} filename - Filename (e.g., 'my-post.md')
  * @param {string} [dir='blog-posts'] - Directory the file lives in (no trailing slash)

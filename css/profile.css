@@ -149,13 +149,6 @@
     border-bottom: 1px solid var(--border-tan);
 }
 
-.mission-header-with-thesis {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    align-items: center;
-    gap: 0.65rem 1rem;
-}
-
 .mission-header-title {
     display: flex;
     align-items: center;
@@ -173,31 +166,6 @@
     font-size: 1.6rem;
     margin: 0;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.mission-header-thesis-cluster {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 0.55rem 0.85rem;
-    min-width: 0;
-}
-
-@media (max-width: 900px) {
-    .mission-header-with-thesis {
-        grid-template-columns: 1fr;
-    }
-
-    .mission-header-thesis-cluster {
-        justify-content: flex-start;
-        align-items: flex-start;
-    }
-
-    .about-thesis-teaser-link {
-        max-width: 100%;
-    }
 }
 
 .mission-content {
@@ -233,51 +201,6 @@
 .mission-content .storey .mission-text,
 .mission-storey .mission-text {
     margin: 0;
-}
-
-/* MPhil BIOCRACY - DiVA link with static download count */
-.about-thesis-teaser-link {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    font-size: 0.78rem;
-    font-weight: 600;
-    line-height: 1.25;
-    color: var(--red-theme);
-    text-decoration: underline;
-    text-underline-offset: 2px;
-    text-align: right;
-    max-width: 12.5rem;
-    flex: 0 1 auto;
-}
-
-.about-thesis-teaser-line1,
-.about-thesis-teaser-line2,
-.about-thesis-downloads {
-    display: block;
-}
-
-.about-thesis-teaser-line2 {
-    margin-top: 0.1rem;
-    font-family: 'Cinzel', "Cormorant Garamond", Georgia, serif;
-    font-size: 0.8rem;
-    font-weight: 700;
-}
-
-.about-thesis-downloads {
-    margin-top: 0.2rem;
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: var(--border-brown);
-    text-decoration: none;
-}
-
-.about-thesis-teaser-link:hover {
-    color: var(--border-brown);
-}
-
-.about-thesis-teaser-link:hover .about-thesis-downloads {
-    color: var(--red-theme);
 }
 
 .mission-text {

@@ -1,0 +1,491 @@
+/*!
+ * Poetics Section - Lore of The Discording Tales
+ * Essays rendered from Markdown files in /poetics.
+ * Serious, restrained, and philosophical - drawn from bilingual Discording Tales lore.
+ */
+
+/* ========================================
+   CONTAINER & HEADER
+   ======================================== */
+
+.poetics-container {
+    width: 100%;
+    padding: 2rem;
+    animation: fadeInUp 0.6s ease-out;
+    position: relative;
+    z-index: 3;
+}
+
+.poetics-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 2px solid var(--border-dark);
+}
+
+.poetics-header .section-title {
+    letter-spacing: 0.06em;
+}
+
+.poetics-subtitle {
+    color: var(--text-secondary);
+    font-style: italic;
+    font-size: 1.2rem;
+    margin-top: 0.4rem;
+    letter-spacing: 0.03em;
+}
+
+.poetics-intro {
+    max-width: 720px;
+    margin: 1.2rem auto 0;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    font-size: 1rem;
+    text-align: justify;
+    text-wrap: pretty;
+}
+
+.poetics-translate-warn {
+    display: none;
+    max-width: 720px;
+    margin: 0.65rem auto 0;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-style: italic;
+    line-height: 1.4;
+    opacity: 0.9;
+}
+
+html[lang="en"] .poetics-translate-warn {
+    display: block;
+}
+
+/* ========================================
+   ESSAY CAROUSEL
+   ======================================== */
+
+.poetics-carousel-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    position: relative;
+    z-index: 3;
+}
+
+.poetics-carousel {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x proximity;
+    scroll-behavior: auto;
+    padding: 0.5rem 0.25rem 1rem;
+    flex: 1;
+    min-width: 0;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x;
+    overscroll-behavior-x: contain;
+    cursor: grab;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-brown) transparent;
+    user-select: none;
+}
+
+.poetics-carousel:active,
+.poetics-carousel.is-dragging {
+    cursor: grabbing;
+    scroll-snap-type: none;
+}
+
+.poetics-carousel.is-dragging .poema-card {
+    pointer-events: none;
+}
+
+.poetics-carousel::-webkit-scrollbar {
+    height: 6px;
+}
+
+.poetics-carousel::-webkit-scrollbar-thumb {
+    background: var(--border-brown);
+    border-radius: 4px;
+}
+
+.poetics-carousel-nav {
+    flex-shrink: 0;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    border: 2px solid var(--border-dark);
+    background: var(--parchment-light);
+    color: var(--red-theme);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform var(--transition-speed) ease,
+                background var(--transition-speed) ease,
+                color var(--transition-speed) ease;
+}
+
+.poetics-carousel-nav:hover {
+    background: var(--red-theme);
+    color: var(--text-cream);
+    transform: scale(1.06);
+}
+
+.poema-loading {
+    flex: 1 0 100%;
+    text-align: center;
+    padding: 2.5rem 1rem;
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+}
+
+.poema-loading i {
+    margin-right: 0.5rem;
+    color: var(--red-theme);
+}
+
+.poema-card {
+    flex: 0 0 220px;
+    width: 220px;
+    max-width: 220px;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    background: var(--parchment-light);
+    border: 2px solid var(--border-tan);
+    border-radius: 10px;
+    padding: 0.95rem 1rem;
+    position: relative;
+    cursor: pointer;
+    transition: transform var(--transition-speed) ease,
+                box-shadow var(--transition-speed) ease;
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.1),
+        inset 0 0 0 1px var(--border-tan);
+    background-image:
+        linear-gradient(var(--border-tan) 1px, transparent 1px);
+    background-size: 100% 1.8rem;
+    background-position: 0 2.4rem;
+    background-blend-mode: soft-light;
+    min-height: 210px;
+}
+
+.poema-card:hover,
+.poema-card:focus-visible {
+    outline: none;
+    transform: translateY(-4px);
+    box-shadow:
+        0 0 12px 3px var(--gold-glow),
+        0 8px 16px rgba(0, 0, 0, 0.22),
+        inset 0 0 0 1px var(--focus-glow);
+}
+
+.poema-card-title {
+    font-size: 1rem;
+    line-height: 1.25;
+    color: var(--ink-dark);
+    margin-bottom: 0.45rem;
+}
+
+.poema-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.55rem;
+}
+
+.poema-card-meta i {
+    color: var(--red-theme);
+    margin-right: 0.2rem;
+}
+
+.poema-card-question {
+    font-style: italic;
+    color: var(--text-dark);
+    line-height: 1.35;
+    font-size: 0.78rem;
+    margin-bottom: 0.45rem;
+    padding-left: 0.55rem;
+    border-left: 2px solid var(--accent);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.poema-card-excerpt {
+    color: var(--text-secondary);
+    line-height: 1.45;
+    font-size: 0.8rem;
+    margin-bottom: 0;
+    flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* ========================================
+   ESSAY MODAL
+   ======================================== */
+
+.poema-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(26, 5, 5, 0.75);
+    backdrop-filter: blur(3px);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 3vh 1rem;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.poema-modal.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.poema-scroll {
+    position: relative;
+    width: 100%;
+    max-width: 780px;
+    max-height: 94vh;
+    overflow-y: auto;
+    background: var(--parchment-light);
+    border: 3px solid var(--border-dark);
+    border-radius: 12px;
+    padding: 3rem 3rem 2.5rem;
+    box-shadow:
+        0 0 0 2px var(--gold-glow),
+        0 20px 50px rgba(0, 0, 0, 0.5);
+    transform: translateY(20px);
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.320, 1.275);
+}
+
+.poema-modal.active .poema-scroll {
+    transform: translateY(0);
+}
+
+.poema-close {
+    position: sticky;
+    top: 0;
+    float: right;
+    margin: -1.5rem -1.5rem 0 0;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 50%;
+    background: var(--red-theme);
+    color: var(--text-cream);
+    border: 2px solid var(--gold-glow);
+    font-size: 1.1rem;
+    cursor: pointer;
+    z-index: 2;
+    transition: transform var(--transition-speed) ease, background var(--transition-speed) ease;
+}
+
+.poema-close:hover {
+    transform: rotate(90deg) scale(1.08);
+    background: var(--ink-brown);
+}
+
+.poema-article-header {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-tan);
+}
+
+.poema-article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+}
+
+.poema-article-meta i {
+    color: var(--red-theme);
+    margin-right: 0.25rem;
+}
+
+/* ========================================
+   ARTICLE BODY (rendered Markdown)
+   ======================================== */
+
+.poema-article-body {
+    color: var(--text-dark);
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+.poema-article-body h1 {
+    font-size: 2rem;
+    color: var(--ink-dark);
+    line-height: 1.25;
+    margin: 0 0 1rem;
+}
+
+.poema-article-body h2 {
+    font-size: 1.4rem;
+    color: var(--red-theme);
+    margin: 2rem 0 0.75rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--border-tan);
+}
+
+.poema-article-body h3 {
+    font-size: 1.15rem;
+    color: var(--text-dark);
+    margin: 1.5rem 0 0.5rem;
+}
+
+.poema-article-body p {
+    margin: 0 0 1.1rem;
+}
+
+.poema-article-body em {
+    color: var(--text-secondary);
+}
+
+.poema-article-body strong {
+    color: var(--ink-dark);
+}
+
+.poema-article-body ul,
+.poema-article-body ol {
+    margin: 0 0 1.1rem 1.5rem;
+}
+
+.poema-article-body li {
+    margin-bottom: 0.5rem;
+}
+
+.poema-article-body blockquote {
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    background: var(--parchment-aged);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--ink-brown);
+    text-align: center;
+}
+
+.poema-article-body hr {
+    border: none;
+    height: 1px;
+    margin: 2rem auto;
+    width: 40%;
+    background: linear-gradient(90deg, transparent, var(--border-brown), transparent);
+}
+
+.poema-article-body code {
+    background: var(--parchment-aged);
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+.poema-article-body pre {
+    background: var(--ink-dark);
+    color: var(--parchment-light);
+    padding: 1rem 1.2rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 0 0 1.1rem;
+}
+
+.poema-article-body pre code {
+    background: none;
+    padding: 0;
+    color: inherit;
+}
+
+.poema-article-body a {
+    color: var(--red-theme);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.poema-article-body img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+.poema-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: transparent;
+    z-index: 10001;
+    pointer-events: none;
+}
+
+.poema-progress-fill {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, var(--red-theme), var(--gold-glow));
+    transition: width 0.1s linear;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 768px) {
+    .poetics-container {
+        padding: 1.25rem;
+    }
+
+    .poema-card {
+        flex-basis: 180px;
+        width: 180px;
+        max-width: 180px;
+        min-height: 190px;
+        padding: 0.8rem 0.85rem;
+    }
+
+    .poetics-carousel-nav {
+        width: 2rem;
+        height: 2rem;
+        font-size: 0.85rem;
+    }
+
+    .poema-scroll {
+        padding: 2rem 1.3rem 1.8rem;
+        max-height: 92vh;
+    }
+
+    .poema-article-body {
+        font-size: 1rem;
+    }
+
+    .poema-article-body h1 {
+        font-size: 1.6rem;
+    }
+}
+
+/* Nested inside Portfolio category */
+.poetics-container--portfolio {
+    padding: 0.25rem 0 1rem;
+}
+
+.poetics-container--portfolio .poetics-header {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+}

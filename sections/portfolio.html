@@ -8,6 +8,7 @@
                 <div class="portfolio-nav">
                     <button class="port-nav-btn btn-nav active" data-category="architecture"><i class="fas fa-landmark"></i> <span data-i18n="port-architecture">Architecture</span></button>
                     <button class="port-nav-btn btn-nav" data-category="academia"><i class="fas fa-book"></i> <span data-i18n="port-academia">Academia</span></button>
+                    <button class="port-nav-btn btn-nav" data-category="poetics"><i class="fas fa-feather-pointed"></i> <span data-i18n="port-poetics">Poetics</span></button>
                     <button class="port-nav-btn btn-nav" data-category="design"><i class="fas fa-palette"></i> <span data-i18n="port-design">Design</span></button>
                     <button class="port-nav-btn btn-nav" data-category="games"><i class="fas fa-code"></i> <span data-i18n="port-games">Dev</span></button>
             </div>
@@ -34,7 +35,7 @@
                                     <h4 data-i18n="port-cattle-bridge-title">Victorian Alpine Cattle Bridge Fantaisie</h4>
                                     <p class="project-type" data-i18n="port-cattle-bridge-type">Hand-drawn timber frame design</p>
                                     <p class="project-description" data-i18n="port-cattle-bridge-desc">
-                                        My first design, hand drawn, after ten days of drawing practice and five days at Dirk Mortier's traditional timber frame workshop.
+                                        My first measured architectural design, hand drawn, after a week at Dirk Mortier's traditional timber frame workshop.
                                     </p>
                                 </div>
                             </div>
@@ -707,6 +708,46 @@
                                 <h4 data-i18n="port-ateliers-title">Serious Games</h4>
                                 <p class="work-meta" data-i18n="port-ateliers-meta">2023 - Article</p>
                                 <button class="project-link compact" onclick="openFullPDF('ateliers')"><i class="fas fa-expand"></i> Read</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Poetics Category - lore essays from Markdown (/poetics/*.md) -->
+                    <div class="portfolio-category" data-category="poetics" style="display:none;">
+                        <div class="poetics-container poetics-container--portfolio">
+                            <div class="poetics-header">
+                                <h2 class="section-title">
+                                    <i class="fas fa-feather-pointed"></i>
+                                    <span data-i18n="poetics-title">Poetics</span>
+                                </h2>
+                                <p class="poetics-translate-warn" data-i18n="poetics-translate-warn">
+                                    All these texts were auto-translated into English for now.
+                                </p>
+                                <p class="poetics-intro" data-i18n="poetics-intro">
+                                    This is a production trial of what I call truthful poetics - an attempt to harmonize science with art, or truth with beauty. It grew out of my research in Noematics, around a hypothesis that older poetry (from roughly the Bronze Age through Homer) often feels so vivid because early language had few conceptual words, so meaning stayed tethered to shape, location, motion, and sensation. Here I try to write about concrete, even scientific, questions - gravity, time, existence, reason, magic, logic - through poetry, so they stay aesthetic and referential to real things. Looked at carefully, the ideas are meant to be simple and checkable rather than obscure; the difficulty is that the art has to carry them. I am not claiming this is correct or unique in history - only that it is a style I have tried to push forward, because I do not yet see it elsewhere.
+                                </p>
+                            </div>
+
+                            <div class="poetics-carousel-wrap">
+                                <button type="button" class="poetics-carousel-nav prev" id="poetics-carousel-prev" aria-label="Previous texts">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <div class="poetics-carousel" id="poetics-grid" tabindex="0" aria-label="Poetics carousel"></div>
+                                <button type="button" class="poetics-carousel-nav next" id="poetics-carousel-next" aria-label="Next texts">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="poema-modal" id="poema-modal">
+                            <div class="poema-scroll">
+                                <button class="poema-close" type="button" aria-label="Close text">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                                <div class="poema-content" id="poema-content"></div>
+                            </div>
+                            <div class="poema-progress-bar">
+                                <div class="poema-progress-fill" id="poema-progress"></div>
                             </div>
                         </div>
                     </div>

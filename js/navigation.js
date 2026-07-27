@@ -9,6 +9,7 @@ import { initializeFlipSounds } from './animations.js';
 import { initializeWorkshopAchievements } from './workshop-achievements.js';
 import { initializeChronicles } from './chronicles.js';
 import { initializeNoematics } from './noematics.js';
+import { initializePoetics } from './poetics.js';
 
 let skipWorkshopAnimation = false;
 let finalRotation = 0;
@@ -60,6 +61,9 @@ export async function loadSection(sectionName) {
                         if (typeof window.initializeGalleryNavigation === 'function') {
                             window.initializeGalleryNavigation();
                         }
+
+                        // Poetics lives inside Portfolio (between Academia and Design).
+                        initializePoetics();
                     }
                     if (sectionName === 'contact') {
                         initializeContactMethods();

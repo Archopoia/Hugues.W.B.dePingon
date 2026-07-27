@@ -4,8 +4,9 @@
 // This section is fully data-driven. Every essay is a real Markdown file in the
 // /noematics folder, listed in /noematics/manifest.json. Edit or add .md files,
 // push, and the page updates itself - no HTML editing required.
+// Prefix a filename with "-" (e.g. "-rational-magic.md") to keep it on disk but hide it.
 
-import { loadMarkdownPost } from './markdown-parser.js';
+import { loadMarkdownPost, isHiddenMarkdownFilename } from './markdown-parser.js';
 
 const CONTENT_DIR = 'noematics';
 
@@ -34,10 +35,20 @@ async function buildEssays(manifest) {
     const files = Array.isArray(manifest.posts) ? manifest.posts : [];
 
     const loaded = await Promise.all(files.map(async (filename) => {
+        if (isHiddenMarkdownFilename(filename)) return null;
+
         try {
             const { metadata, html } = await loadMarkdownPost(filename, CONTENT_DIR);
             return { slug: slugFromFilename(filename), filename, metadata, html };
         } catch (err) {
+            // Renamed on disk to "-name.md" but still listed without the prefix: treat as hidden.
+            const hiddenName = `-${String(filename).replace(/^\.\//, '')}`;
+            try {
+                const probe = await fetch(`${CONTENT_DIR}/${hiddenName}`, { cache: 'no-store' });
+                if (probe.ok) return null;
+            } catch (_) {
+                // Ignore probe failures; fall through to the original error.
+            }
             console.error(`Noematics: could not load ${filename}`, err);
             return null;
         }
@@ -109,7 +120,6 @@ function bindCarouselNav() {
 
     const scrollByCard = (direction) => {
         carousel.scrollBy({ left: direction * getCardStep(), behavior: 'smooth' });
-        if (window.soundManager) window.soundManager.playRandomPageSound();
     };
 
     prev.addEventListener('click', () => scrollByCard(-1));
@@ -164,7 +174,6 @@ function bindCarouselNav() {
         carousel.dataset.dragMoved = 'false';
 
         if (!drag.nativeTouch) {
-            carousel.classList.add('is-dragging');
             try {
                 carousel.setPointerCapture(e.pointerId);
             } catch (_) {
@@ -179,6 +188,10 @@ function bindCarouselNav() {
         if (!drag.moved && Math.abs(dx) > 6) {
             drag.moved = true;
             carousel.dataset.dragMoved = 'true';
+            // Only enter drag mode after real movement so a plain click can open the card.
+            if (!drag.nativeTouch) {
+                carousel.classList.add('is-dragging');
+            }
         }
         if (drag.nativeTouch || !drag.moved) return;
         e.preventDefault();

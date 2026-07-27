@@ -1,5 +1,5 @@
 {
-  "_comment": "Noematics content index. To add an essay: drop a new .md file (with YAML front matter) in this folder and add its filename to the 'posts' array. Order in 'posts' is the carousel display order.",
+  "_comment": "Noematics content index. To add an essay: drop a new .md file (with YAML front matter) in this folder and add its filename to the 'posts' array. Order in 'posts' is the carousel display order. Prefix a listed filename with '-' (e.g. '-rational-magic.md') to hide it while keeping the file.",
   "posts": [
     "why-ancient-poetry-felt-more-powerful.md",
     "the-problem-of-abstraction.md",

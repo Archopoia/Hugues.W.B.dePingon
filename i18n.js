@@ -171,6 +171,11 @@ const translations = {
         "noematics-search": "Search the essays...",
         "noematics-empty-title": "No essays found",
         "noematics-empty-text": "Try a different search or category.",
+        "poetics-title": "Poetics",
+        "poetics-intro": "This is a production trial of what I call truthful poetics - an attempt to harmonize science with art, or truth with beauty. It grew out of my research in Noematics, around a hypothesis that older poetry (from roughly the Bronze Age through Homer) often feels so vivid because early language had few conceptual words, so meaning stayed tethered to shape, location, motion, and sensation. Here I try to write about concrete, even scientific, questions - gravity, time, existence, reason, magic, logic - through poetry, so they stay aesthetic and referential to real things. Looked at carefully, the ideas are meant to be simple and checkable rather than obscure; the difficulty is that the art has to carry them. I am not claiming this is correct or unique in history - only that it is a style I have tried to push forward, because I do not yet see it elsewhere.",
+        "poetics-translate-warn": "All these texts were auto-translated into English for now.",
+        "poetics-loading": "Gathering the texts...",
+        "poetics-error": "The texts could not be loaded right now.",
 
         // Chronicles Section (Blog)
         "chronicles-title": "Chronicles of Place & Practice",
@@ -216,9 +221,6 @@ const translations = {
 
         // About Section
         "mission-vision": "Mission & Vision",
-        "about-thesis-teaser-line1": "Check out my latest Master's thesis",
-        "about-thesis-teaser-line2": "BIOCRACY - A Nietzschean AI Alignment",
-        "about-thesis-downloads": "100+ downloads",
         "mission-text-1": "After years of study, questioning, and writing, I worked on a philosophical fiction - a book I wrote first, then illustrated in part, and am now turning narratively into a trailer with a team - to reach as many people as possible through aesthetics.",
         "mission-text-2": "Aesthetics is what I keep returning to. I learn traditional arts and traditional architecture as I go. I wish to make beautiful, meaningful work that inspires people to act in life.",
         "mission-image-caption": "Asking Ben Lamm about the creation of new species at Brain Bar 2025 (CEO of Colossal, de-extincting mammoths, dodos, and dire wolves)",
@@ -268,22 +270,22 @@ const translations = {
         "tag-intbau": "INTBAU",
 
         // Journey
-        "journey-title": "Interdisciplinary Journey",
+        "journey-title": "Toward that work",
         "journey-scientific-title": "Academic Foundation",
         "journey-scientific-diploma": "Bachelors",
-        "journey-scientific-desc": "Neuroscience, biology, and anthropology - beginning to imagine how humans perceive, evolve, and inhabit culture",
+        "journey-scientific-desc": "Neuroscience, biology, and anthropology - first questions about how people perceive, evolve, and inhabit culture",
         "journey-foresight-title": "Scenario Foresight",
         "journey-foresight-diploma": "MBA",
-        "journey-foresight-desc": "Scenario foresight and strategic governance - turning academic worldviews into practical visions of what could come next",
+        "journey-foresight-desc": "Scenario foresight and strategic governance - learning to give those questions a shared shape for what might come next",
         "journey-philosophical-title": "Philosophical Exploration",
         "journey-philosophical-diploma": "MPhil",
-        "journey-philosophical-desc": "Philosophy and ethics - framing the worldviews behind how societies choose, create, and justify their futures",
+        "journey-philosophical-desc": "Philosophy and ethics - asking what kinds of futures are worth making",
         "journey-gamedev-title": "Philosophical Fiction",
         "journey-project-tdt": "The Discording Tales",
         "journey-project-twr": "The Wayward Realms",
-        "journey-gamedev-desc": "Leading creative direction in philosophical fiction - shaping illustrated worlds into playable places and cultures, and into narrative and trailer form, to explore human existence",
+        "journey-gamedev-desc": "Turning my thoughts into an aesthetic medium - trying to reach people through story, image, and interactivity",
         "journey-architecture-title": "Learning Traditional Arts",
-        "journey-architecture-desc": "Learning traditional arts and traditional architecture.",
+        "journey-architecture-desc": "Learning traditional arts and traditional architecture - working to build the skills to hopefully turn my thoughts into beautiful and meaningful works",
 
         // Interests
         "interests-title": "Interests & Passions",
@@ -418,10 +420,11 @@ const translations = {
         "port-games": "Dev",
         "port-prototypes": "Prototypes",
         "port-academia": "Academia",
+        "port-poetics": "Poetics",
         "port-architecture": "Architecture",
         "port-cattle-bridge-title": "Victorian Alpine Cattle Bridge Fantaisie",
         "port-cattle-bridge-type": "Hand-drawn timber frame design",
-        "port-cattle-bridge-desc": "My first design, hand drawn, after ten days of drawing practice and five days at Dirk Mortier's traditional timber frame workshop.",
+        "port-cattle-bridge-desc": "My first measured architectural design, hand drawn, after a week at Dirk Mortier's traditional timber frame workshop.",
         "tech-hand-drawing": "Hand Drawing",
         "tech-timber-frame": "Timber Frame",
         "tech-traditional-architecture": "Traditional Architecture",
@@ -574,7 +577,7 @@ const translations = {
         "contact-q1-hire": "Hiring Opportunity",
         "contact-q1-network": "Networking & Connection",
         "contact-q2": "What industry or field interests you most?",
-        "contact-q2-gaming": "Game Development",
+        "contact-q2-arts": "Art, Aesthetics & Architecture",
         "contact-q2-edu": "Education & Learning",
         "contact-q2-tech": "Technology & Innovation",
         "contact-q2-other": "Other / General",
@@ -913,6 +916,11 @@ const translations = {
         "noematics-search": "Rechercher dans les essais...",
         "noematics-empty-title": "Aucun essai trouvé",
         "noematics-empty-text": "Essayez une autre recherche ou catégorie.",
+        "poetics-title": "Poétique",
+        "poetics-intro": "Voici le résultat d'un essai de production de ce que j'appelle une poétique véridique - une tentative d'harmoniser la science et l'art, ou la vérité et la beauté. Cela vient de mes recherches en Noématique, autour d'une hypothèse : que la poésie ancienne (grosso modo de l'âge du bronze jusqu'à Homère) paraît souvent si vive parce que les langues anciennes avaient peu de mots conceptuels, et que le sens restait donc accroché à la forme, au lieu, au mouvement et à la sensation. Ici j'essaie d'écrire sur des questions concrètes, voire scientifiques - la gravité, le temps, l'existence, la raison, la magie, la logique - à travers la poésie, pour qu'elles restent esthétiques et référées à des choses réelles. Lues avec attention, les idées visent le simple et le vérifiable plutôt que l'obscur ; la difficulté, c'est que l'art doit les porter. Je ne prétends pas avoir raison, ni avoir inventé quelque chose d'unique dans l'histoire - seulement avoir essayé de pousser un style que je ne vois pas encore ailleurs.",
+        "poetics-translate-warn": "",
+        "poetics-loading": "Assemblage des textes...",
+        "poetics-error": "Les textes n'ont pas pu être chargés pour le moment.",
 
         // Chronicles Section (Blog)
         "chronicles-title": "Chroniques de lieux & de pratique",
@@ -958,9 +966,6 @@ const translations = {
 
         // About Section
         "mission-vision": "Mission & Vision",
-        "about-thesis-teaser-line1": "Découvrez mon dernier mémoire de master",
-        "about-thesis-teaser-line2": "BIOCRACY - Un alignement d'IA nietzschéen",
-        "about-thesis-downloads": "100+ téléchargements",
         "mission-text-1": "Après des années d'étude, de questionnement et d'écriture, j'ai travaillé sur une fiction philosophique - un livre que j'ai d'abord écrit, puis en partie illustré, et que je transforme maintenant en bande-annonce narrative avec une équipe - afin de toucher le plus de gens possible par l'esthétique.",
         "mission-text-2": "L'esthétique est ce à quoi je reviens toujours. Au fil du chemin, j'apprends les arts traditionnels et l'architecture traditionnelle. Je souhaite faire des œuvres belles et porteuses de sens qui donnent envie d'agir dans la vie.",
         "mission-image-caption": "Questionnant Ben Lamm sur la création de nouvelles espèces au Brain Bar 2025 (PDG de Colossal, dé-éteignant mammouths, dodos et loups terribles)",
@@ -1010,22 +1015,22 @@ const translations = {
         "tag-intbau": "INTBAU",
 
         // Journey
-        "journey-title": "Parcours Interdisciplinaire",
+        "journey-title": "Vers ce travail",
         "journey-scientific-title": "Fondation académique",
         "journey-scientific-diploma": "Bachelors",
-        "journey-scientific-desc": "Neurosciences, biologie et anthropologie - commencer à imaginer comment les humains perçoivent, évoluent et habitent la culture",
+        "journey-scientific-desc": "Neurosciences, biologie et anthropologie - premières questions sur la façon dont les gens perçoivent, évoluent et habitent la culture",
         "journey-foresight-title": "Prospective scénario",
         "journey-foresight-diploma": "MBA",
-        "journey-foresight-desc": "Prospective scénario et gouvernance stratégique - transformer des visions académiques en visions pratiques de ce qui pourrait venir",
+        "journey-foresight-desc": "Prospective scénario et gouvernance stratégique - apprendre à donner à ces questions une forme partagée de ce qui pourrait venir",
         "journey-philosophical-title": "Exploration Philosophique",
         "journey-philosophical-diploma": "MPhil",
-        "journey-philosophical-desc": "Philosophie et éthique - cadrer les visions du monde derrière la façon dont les sociétés choisissent, créent et justifient leurs futurs",
+        "journey-philosophical-desc": "Philosophie et éthique - demander quels futurs méritent d'être faits",
         "journey-gamedev-title": "Fiction philosophique",
         "journey-project-tdt": "The Discording Tales",
         "journey-project-twr": "The Wayward Realms",
-        "journey-gamedev-desc": "Direction créative pour la fiction philosophique - transformer des mondes illustrés en lieux et cultures jouables, puis en récit et bande-annonce, pour explorer l'existence humaine",
+        "journey-gamedev-desc": "Transformer mes pensées en un médium esthétique - essayer d'atteindre les gens par le récit, l'image et l'interactivité",
         "journey-architecture-title": "Apprentissage des arts traditionnels",
-        "journey-architecture-desc": "Apprendre les arts traditionnels et l'architecture traditionnelle.",
+        "journey-architecture-desc": "Apprendre les arts traditionnels et l'architecture traditionnelle - travailler à acquérir les compétences pour, je l'espère, transformer mes pensées en œuvres belles et porteuses de sens",
 
         // Interests
         "interests-title": "Intérêts & Passions",
@@ -1160,10 +1165,11 @@ const translations = {
         "port-games": "Dev",
         "port-prototypes": "Prototypes",
         "port-academia": "Académie",
+        "port-poetics": "Poétique",
         "port-architecture": "Architecture",
         "port-cattle-bridge-title": "Victorian Alpine Cattle Bridge Fantaisie",
         "port-cattle-bridge-type": "Charpente dessinée à la main",
-        "port-cattle-bridge-desc": "Mon premier dessin, à la main, après dix jours de pratique du dessin et cinq jours à l'atelier de charpente traditionnelle de Dirk Mortier.",
+        "port-cattle-bridge-desc": "Mon premier dessin architectural mesuré, à la main, après une semaine à l'atelier de charpente traditionnelle de Dirk Mortier.",
         "tech-hand-drawing": "Dessin à la main",
         "tech-timber-frame": "Charpente",
         "tech-traditional-architecture": "Architecture traditionnelle",
@@ -1316,7 +1322,7 @@ const translations = {
         "contact-q1-hire": "Opportunité d'Emploi",
         "contact-q1-network": "Réseautage & Connexion",
         "contact-q2": "Quel secteur ou domaine vous intéresse le plus?",
-        "contact-q2-gaming": "Développement de Jeux",
+        "contact-q2-arts": "Art, Esthétique & Architecture",
         "contact-q2-edu": "Éducation & Apprentissage",
         "contact-q2-tech": "Technologie & Innovation",
         "contact-q2-other": "Autre / Général",
@@ -1566,6 +1572,10 @@ function applyLanguage(lang) {
         document.title = "Hugues de Pingon | Vers les Arts, l'aesthétique et l'Architecture";
     } else {
         document.title = "Hugues de Pingon | Toward Arts, Aesthetics & Architecture";
+    }
+
+    if (typeof window.refreshPoeticsLanguage === 'function') {
+        window.refreshPoeticsLanguage();
     }
 }
 

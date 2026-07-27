@@ -1,6 +1,8 @@
 // Medieval Character Sheet - Section-Specific Handlers
 // Location: /home/hullivan/Hugues.W.B.dePingon/js/section-handlers.js
 
+import { initializePoetics } from './poetics.js';
+
 // Portfolio Category Filtering - Function for reinitialization
 export function initializePortfolioNavigation() {
     const portNavBtns = document.querySelectorAll('.port-nav-btn');
@@ -106,6 +108,10 @@ export function initializePortfolioNavigation() {
 
                     // Load PDF iframes for this category after animation starts
                     setTimeout(() => loadPDFIframes(cat), 800);
+
+                    if (category === 'poetics') {
+                        initializePoetics();
+                    }
                 } else {
                     cat.style.display = 'none';
                     cat.style.animation = '';
