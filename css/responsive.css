@@ -22,11 +22,11 @@
     }
 
     .character-identity-row {
-        flex-wrap: wrap;
+        grid-template-columns: 1fr auto;
     }
 
     .character-stats {
-        margin-left: 0;
+        justify-self: end;
         flex-wrap: wrap;
     }
 }
@@ -48,7 +48,7 @@
     }
 
     .character-identity-row {
-        flex-wrap: wrap;
+        grid-template-columns: 1fr auto;
         align-items: flex-start;
     }
 
@@ -58,7 +58,6 @@
         white-space: normal;
         overflow-wrap: anywhere;
         word-break: break-word;
-        flex: 1 1 auto;
     }
 
     .character-title {
@@ -78,9 +77,10 @@
         flex-wrap: wrap;
         align-items: center;
         justify-content: flex-end;
+        justify-self: end;
         gap: 0.55rem 0.75rem;
-        max-width: 100%;
-        width: 100%;
+        max-width: none;
+        width: auto;
         margin: 0;
         text-align: right;
     }
