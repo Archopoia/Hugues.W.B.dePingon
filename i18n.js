@@ -219,7 +219,7 @@ const translations = {
         "about-thesis-teaser-line1": "Check out my latest Master's thesis",
         "about-thesis-teaser-line2": "BIOCRACY - A Nietzschean AI Alignment",
         "about-thesis-downloads": "100+ downloads",
-        "mission-text-1": "After years of study, questioning, and writing, I worked on a philosophical fiction - a book I wrote first, then illustrated in part, and am now turning narratively into a trailer with a team. The goal was to reach as many people as possible through aesthetics.",
+        "mission-text-1": "After years of study, questioning, and writing, I worked on a philosophical fiction - a book I wrote first, then illustrated in part, and am now turning narratively into a trailer with a team - to reach as many people as possible through aesthetics.",
         "mission-text-2": "Aesthetics is what I keep returning to. I learn traditional arts and traditional architecture as I go. I wish to make beautiful, meaningful work that inspires people to act in life.",
         "mission-image-caption": "Asking Ben Lamm about the creation of new species at Brain Bar 2025 (CEO of Colossal, de-extincting mammoths, dodos, and dire wolves)",
 
@@ -961,7 +961,7 @@ const translations = {
         "about-thesis-teaser-line1": "Découvrez mon dernier mémoire de master",
         "about-thesis-teaser-line2": "BIOCRACY - Un alignement d'IA nietzschéen",
         "about-thesis-downloads": "100+ téléchargements",
-        "mission-text-1": "Après des années d'étude, de questionnement et d'écriture, j'ai travaillé sur une fiction philosophique - un livre que j'ai d'abord écrit, puis en partie illustré, et que je transforme maintenant en bande-annonce narrative avec une équipe. L'objectif était de toucher le plus de gens possible par l'esthétique.",
+        "mission-text-1": "Après des années d'étude, de questionnement et d'écriture, j'ai travaillé sur une fiction philosophique - un livre que j'ai d'abord écrit, puis en partie illustré, et que je transforme maintenant en bande-annonce narrative avec une équipe - afin de toucher le plus de gens possible par l'esthétique.",
         "mission-text-2": "L'esthétique est ce à quoi je reviens toujours. Au fil du chemin, j'apprends les arts traditionnels et l'architecture traditionnelle. Je souhaite faire des œuvres belles et porteuses de sens qui donnent envie d'agir dans la vie.",
         "mission-image-caption": "Questionnant Ben Lamm sur la création de nouvelles espèces au Brain Bar 2025 (PDG de Colossal, dé-éteignant mammouths, dodos et loups terribles)",
 
