@@ -5,13 +5,13 @@
   <!-- Main Portfolio Page -->
   <url>
     <loc>https://archopoia.github.io/Hugues.W.B.dePingon/</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://archopoia.github.io/Hugues.W.B.dePingon/Assets/Hugues/Hugues.W.B.dePingon - roundvignette.jpg</image:loc>
       <image:title>Hugues de Pingon Portrait</image:title>
-      <image:caption>Hugues William Brenthone de Pingon - Lead Game Designer at OnceLost Games</image:caption>
+      <image:caption>Hugues William Brenthone de Pingon - Designer & Researcher: Arts, Aesthetics, Architecture</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://archopoia.github.io/Hugues.W.B.dePingon/Assets/Hugues/Hugues.W.B.dePingon - speakingatmicrophone.jpg</image:loc>
@@ -23,7 +23,7 @@
   <!-- Portfolio - Academia Section -->
   <url>
     <loc>https://archopoia.github.io/Hugues.W.B.dePingon/#portfolio</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -31,7 +31,7 @@
   <!-- BIOCRACY Thesis -->
   <url>
     <loc>https://archopoia.github.io/Hugues.W.B.dePingon/Portfolio/Academia%20(Foresight,%20Ethics%20%26%20Serious%20Games)/2025%20-%20BIOCRACY%20-%20A%20Nietzschean%20Alignment;%20From%20Artificial%20Intelligence%20to%20Accelerated%20Independence%20-%20H.W.B.dePingon.pdf</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-07-27</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>

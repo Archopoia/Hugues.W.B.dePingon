@@ -7,7 +7,7 @@ const translations = {
         "lang-name": "EN",
 
         // Header
-        "subtitle": "SYSTEM DESIGNER: Emergence through Ethics, Esthetics and Experience",
+        "subtitle": "DESIGNER & RESEARCHER: Arts, Aesthetics, Architecture",
         "age": "Age",
         "current-role": "Role",
         "lead-game-designer": "Lead Game Designer at OLG",
@@ -442,8 +442,8 @@ const translations = {
         "port-twr-meta-role": "Lead Designer",
         "port-twr-official": "Official Website",
         "port-tdt-title": "The Discording Tales",
-        "port-tdt-type": "Tabletop RPG - 5 Years Solo Development",
-        "port-tdt-desc": "A 300-page ethno-science-fantasy tabletop RPG with automated character sheets, extensive worldbuilding, and unique mechanics. An immersive game world where Morrowind's extremes meet a subterranean Star Wars. The project website includes an integrated LLM chatbot and a game-style character sheet - linked together as a step-by-step tutorial to build your character through the bot.",
+        "port-tdt-type": "Philosophical Fiction - Book & Trailer in Construction",
+        "port-tdt-desc": "Philosophical fiction as a book and a trailer in construction - philosophy turned into worldbuilding people can more easily interact with.",
         "port-tdt-meta-date": "2019 - Present",
         "port-tdt-meta-team": "Team: 3-10 members",
         "port-tdt-meta-pages": "300 pages",
@@ -750,7 +750,7 @@ const translations = {
         "lang-name": "FR",
 
         // Header
-        "subtitle": "Concepteur de Systèmes: Émergence par l'Éthique, l'Esthétique et l'Expérience",
+        "subtitle": "DESIGNER & CHERCHEUR: Arts, Aesthétique, Architecture",
         "age": "Âge",
         "current-role": "Rôle",
         "lead-game-designer": "Lead Game Designer chez OLG",
@@ -1185,8 +1185,8 @@ const translations = {
         "port-twr-meta-role": "Lead Designer",
         "port-twr-official": "Site Officiel",
         "port-tdt-title": "Des Récits Discordants",
-        "port-tdt-type": "JdR de Table - 5 Ans de Développement Solo",
-        "port-tdt-desc": "Un JdR de table ethno-science-fantasy de 300 pages avec feuilles de personnage automatisées, worldbuilding extensif et mécaniques uniques. Un univers de jeu immersif où les extrêmes de Morrowind rencontrent un Star Wars souterrain. Le site du projet intègre un chatbot LLM et une feuille de personnage interactive façon jeu vidéo - reliés pour un tutoriel pas à pas afin de construire votre personnage via le bot.",
+        "port-tdt-type": "Fiction philosophique - Livre & bande-annonce en construction",
+        "port-tdt-desc": "Une fiction philosophique sous forme de livre et de bande-annonce en construction - de la philosophie transformée en worldbuilding avec lequel les gens peuvent plus facilement interagir.",
         "port-tdt-meta-date": "2019 - Présent",
         "port-tdt-meta-team": "Équipe: 3-10 membres",
         "port-tdt-meta-pages": "300 pages",
@@ -1565,9 +1565,9 @@ function applyLanguage(lang) {
 
     // Update document title
     if (lang === 'fr') {
-        document.title = "Hugues de Pingon | Lead Game Designer, Philosophe & Concepteur de Systèmes";
+        document.title = "Hugues de Pingon | Designer & Chercheur: Arts, Esthétique, Architecture";
     } else {
-        document.title = "Hugues de Pingon | Lead Game Designer, Philosopher & System Designer";
+        document.title = "Hugues de Pingon | Designer & Researcher: Arts, Aesthetics, Architecture";
     }
 }
 

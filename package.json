@@ -1,7 +1,7 @@
 {
   "name": "hugues-de-pingon-portfolio",
   "version": "1.0.0",
-  "description": "Medieval-themed interactive portfolio website for Hugues W.B. de Pingon",
+  "description": "Portfolio of Hugues W.B. de Pingon - Designer & Researcher: Arts, Aesthetics, Architecture",
   "main": "index.html",
   "scripts": {
     "start": "python -m http.server 8000",
@@ -11,12 +11,11 @@
   },
   "keywords": [
     "portfolio",
-    "medieval",
-    "character-sheet",
-    "interactive",
-    "game-designer",
-    "philosopher",
-    "academic"
+    "visual-arts",
+    "aesthetics",
+    "traditional-architecture",
+    "philosophy",
+    "designer-researcher"
   ],
   "author": "Hugues William Brenthone de Pingon",
   "license": "MIT",
