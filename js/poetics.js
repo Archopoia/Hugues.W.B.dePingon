@@ -141,19 +141,21 @@ function bindCarouselNav() {
     if (carousel.dataset.navBound === 'true') return;
     carousel.dataset.navBound = 'true';
 
-    // Delegate open so clicks still work even if pointer capture retargets events.
-    carousel.addEventListener('click', (e) => {
-        if (carousel.dataset.dragMoved === 'true') return;
-        const card = e.target.closest('.poema-card');
-        if (!card) return;
-        openPoema(card.dataset.slug);
-    });
+    const isMobileLayout = () => window.matchMedia('(max-width: 768px)').matches;
 
     carousel.addEventListener('keydown', (e) => {
         if (e.key !== 'Enter' && e.key !== ' ') return;
         const card = e.target.closest('.poema-card');
         if (!card) return;
         e.preventDefault();
+        openPoema(card.dataset.slug);
+    });
+
+    // Simple click open on mobile stacked layout (no drag carousel).
+    carousel.addEventListener('click', (e) => {
+        if (!isMobileLayout()) return;
+        const card = e.target.closest('.poema-card');
+        if (!card) return;
         openPoema(card.dataset.slug);
     });
 
@@ -173,6 +175,7 @@ function bindCarouselNav() {
     next.addEventListener('click', () => scrollByCard(1));
 
     const WHEEL_SENSITIVITY = 2.75;
+    const DRAG_THRESHOLD_PX = 14;
 
     const normalizeWheelDelta = (e) => {
         const lineHeight = 40;
@@ -183,6 +186,7 @@ function bindCarouselNav() {
     };
 
     const onWheel = (e) => {
+        if (isMobileLayout()) return;
         const { x, y } = normalizeWheelDelta(e);
         const maxScroll = carousel.scrollWidth - carousel.clientWidth;
         if (maxScroll <= 1) return;
@@ -201,16 +205,18 @@ function bindCarouselNav() {
     let drag = null;
 
     const onPointerDown = (e) => {
+        if (isMobileLayout()) return;
         if (e.pointerType === 'mouse' && e.button !== 0) return;
-        // Ignore presses on interactive chrome inside the wrap (nav is outside carousel).
         if (e.target.closest('.poetics-carousel-nav')) return;
 
+        const card = e.target.closest('.poema-card');
         drag = {
             pointerId: e.pointerId,
             startX: e.clientX,
             startScroll: carousel.scrollLeft,
             moved: false,
-            nativeTouch: e.pointerType === 'touch'
+            nativeTouch: e.pointerType === 'touch',
+            openSlug: card ? card.dataset.slug : null
         };
         carousel.dataset.dragMoved = 'false';
     };
@@ -218,7 +224,7 @@ function bindCarouselNav() {
     const onPointerMove = (e) => {
         if (!drag || e.pointerId !== drag.pointerId) return;
         const dx = e.clientX - drag.startX;
-        if (!drag.moved && Math.abs(dx) > 6) {
+        if (!drag.moved && Math.abs(dx) > DRAG_THRESHOLD_PX) {
             drag.moved = true;
             carousel.dataset.dragMoved = 'true';
             if (!drag.nativeTouch) {
@@ -238,23 +244,32 @@ function bindCarouselNav() {
     const endDrag = (e) => {
         if (!drag || (e && e.pointerId !== drag.pointerId)) return;
         const wasMoved = drag.moved;
+        const openSlug = drag.openSlug;
         drag = null;
         carousel.classList.remove('is-dragging');
-        if (wasMoved) {
-            carousel.dataset.dragMoved = 'true';
-            window.setTimeout(() => {
-                carousel.dataset.dragMoved = 'false';
-            }, 80);
-        } else {
-            carousel.dataset.dragMoved = 'false';
+        carousel.dataset.dragMoved = 'false';
+
+        // Desktop: open on pointerup when the gesture was a click, not a drag.
+        if (!wasMoved && openSlug && e && e.type === 'pointerup') {
+            openPoema(openSlug);
         }
     };
 
     carousel.addEventListener('pointerdown', onPointerDown);
     carousel.addEventListener('pointermove', onPointerMove, { passive: false });
     carousel.addEventListener('pointerup', endDrag);
-    carousel.addEventListener('pointercancel', endDrag);
-    carousel.addEventListener('lostpointercapture', endDrag);
+    carousel.addEventListener('pointercancel', (e) => {
+        if (!drag || (e && e.pointerId !== drag.pointerId)) return;
+        drag = null;
+        carousel.classList.remove('is-dragging');
+        carousel.dataset.dragMoved = 'false';
+    });
+    carousel.addEventListener('lostpointercapture', (e) => {
+        if (!drag || e.pointerId !== drag.pointerId) return;
+        drag = null;
+        carousel.classList.remove('is-dragging');
+        carousel.dataset.dragMoved = 'false';
+    });
 }
 
 function openPoema(slug) {

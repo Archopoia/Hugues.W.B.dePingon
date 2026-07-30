@@ -35,14 +35,19 @@
     letter-spacing: 0.03em;
 }
 
-.poetics-intro {
-    max-width: 720px;
-    margin: 1.2rem auto 0;
-    color: var(--text-secondary);
-    line-height: 1.75;
-    font-size: 1rem;
-    text-align: justify;
-    text-wrap: pretty;
+.poetics-intro strong {
+    color: var(--ink-dark);
+    font-weight: 700;
+}
+
+.poetics-intro a {
+    color: var(--red-theme);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.poetics-intro a:hover {
+    color: var(--ink-dark);
 }
 
 .poetics-translate-warn {
@@ -449,21 +454,53 @@ html[lang="en"] .poetics-translate-warn {
 
 @media (max-width: 768px) {
     .poetics-container {
-        padding: 1.25rem;
+        padding: 0.85rem 0.35rem 1rem;
     }
 
-    .poema-card {
-        flex-basis: 180px;
-        width: 180px;
-        max-width: 180px;
-        min-height: 190px;
-        padding: 0.8rem 0.85rem;
+    .poetics-container--portfolio {
+        padding: 0.15rem 0 0.75rem;
+    }
+
+    .poetics-intro {
+        font-size: 0.92rem;
+        text-align: left;
+        padding: 0 0.35rem;
+    }
+
+    .poetics-translate-warn {
+        padding: 0 0.35rem;
+        text-align: left;
+    }
+
+    /* Stack cards on phones - horizontal carousels often collapse / clip on mobile WebKit */
+    .poetics-carousel-wrap {
+        display: block;
+        width: 100%;
     }
 
     .poetics-carousel-nav {
-        width: 2rem;
-        height: 2rem;
-        font-size: 0.85rem;
+        display: none;
+    }
+
+    .poetics-carousel {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.85rem;
+        overflow: visible;
+        scroll-snap-type: none;
+        touch-action: manipulation;
+        cursor: default;
+        padding: 0.35rem 0.15rem 0.5rem;
+        width: 100%;
+        min-height: 8rem;
+    }
+
+    .poema-card {
+        flex: none;
+        width: 100%;
+        max-width: none;
+        min-height: 0;
+        scroll-snap-align: none;
     }
 
     .poema-scroll {

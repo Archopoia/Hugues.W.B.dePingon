@@ -7,7 +7,7 @@ const translations = {
         "lang-name": "EN",
 
         // Header
-        "subtitle": "Toward art, aesthetics & architecture",
+        "subtitle": "Toward art, aesthetics, architecture & anthropology",
         "age": "Age",
         "current-role": "Role",
         "lead-game-designer": "Lead Game Designer at OLG",
@@ -172,7 +172,7 @@ const translations = {
         "noematics-empty-title": "No essays found",
         "noematics-empty-text": "Try a different search or category.",
         "poetics-title": "Poetics",
-        "poetics-intro": "This is a production trial of what I call truthful poetics - an attempt to harmonize science with art, or truth with beauty. It grew out of my research in Noematics, around a hypothesis that older poetry (from roughly the Bronze Age through Homer) often feels so vivid because early language had few conceptual words, so meaning stayed tethered to shape, location, motion, and sensation. Here I try to write about concrete, even scientific, questions - gravity, time, existence, reason, magic, logic - through poetry, so they stay aesthetic and referential to real things. Looked at carefully, the ideas are meant to be simple and checkable rather than obscure; the difficulty is that the art has to carry them. I am not claiming this is correct or unique in history - only that it is a style I have tried to push forward, because I do not yet see it elsewhere.",
+        "poetics-intro": "This is a production trial of what I call <strong>truthful poetics</strong> - an attempt to harmonize science with art, or truth with beauty. For me it answered a personal need: to face an issue <a href='https://onlinelibrary.wiley.com/doi/10.1111/phpr.70004' target='_blank' rel='noopener noreferrer'>Friedrich Nietzsche</a>, and later <a href='https://orwell1627.wordpress.com/2015/01/21/ludovici-superiority-of-art-over-science/' target='_blank' rel='noopener noreferrer'>Anthony Ludovici</a>, described between science and the arts - a split I felt I had to work through myself, and this is the solution I have tried to build. It also grew out of my research in Noematics, around a line <a href='https://www.youtube.com/watch?v=1XCCD53iOPQ' target='_blank' rel='noopener noreferrer'>Owen Barfield</a> draws in <a href='https://www.youtube.com/watch?v=1XCCD53iOPQ' target='_blank' rel='noopener noreferrer'><em>Poetic Diction: A Study of Meaning</em></a> - the book that helped inspire Tolkien's own poetry - that no one will ever beat Homer. My working hypothesis for why that might be so is that early language had few conceptual words, so meaning stayed tethered to shape, location, motion, and sensation. Here I try to write about concrete, even scientific, questions - gravity, time, existence, reason, magic, logic - through poetry, so they stay aesthetic and referential to real things. Looked at carefully, the ideas are meant to be simple and checkable rather than obscure; the difficulty is that the art has to carry them. I am not claiming this is correct or unique in history - only that it is a style I have tried to push forward, because I do not yet see it elsewhere.",
         "poetics-translate-warn": "All these texts were auto-translated into English for now.",
         "poetics-loading": "Gathering the texts...",
         "poetics-error": "The texts could not be loaded right now.",
@@ -222,7 +222,7 @@ const translations = {
         // About Section
         "mission-vision": "Mission & Vision",
         "mission-text-1": "After years of study, questioning, and writing, I worked on a philosophical fiction - a book I wrote first, then illustrated in part, and am now turning narratively into a trailer with a team - to reach as many people as possible through aesthetics.",
-        "mission-text-2": "Aesthetics is what I keep returning to. I learn traditional arts and traditional architecture as I go. I wish to make beautiful, meaningful work that inspires people to act in life.",
+        "mission-text-2": "Aesthetics is what I keep returning to. I learn traditional arts and traditional architecture as I go, while remaining attentive to how people perceive, embody, and inhabit culture. I wish to make beautiful, meaningful work that inspires people to act in life.",
         "mission-image-caption": "Asking Ben Lamm about the creation of new species at Brain Bar 2025 (CEO of Colossal, de-extincting mammoths, dodos, and dire wolves)",
 
         // Expertise Areas
@@ -752,7 +752,7 @@ const translations = {
         "lang-name": "FR",
 
         // Header
-        "subtitle": "Vers l'art, l'aesthétique et l'architecture",
+        "subtitle": "Vers l'art, l'aesthétique, l'architecture et l'anthropologie",
         "age": "Âge",
         "current-role": "Rôle",
         "lead-game-designer": "Lead Game Designer chez OLG",
@@ -917,7 +917,7 @@ const translations = {
         "noematics-empty-title": "Aucun essai trouvé",
         "noematics-empty-text": "Essayez une autre recherche ou catégorie.",
         "poetics-title": "Poétique",
-        "poetics-intro": "Voici le résultat d'un essai de production de ce que j'appelle une poétique véridique - une tentative d'harmoniser la science et l'art, ou la vérité et la beauté. Cela vient de mes recherches en Noématique, autour d'une hypothèse : que la poésie ancienne (grosso modo de l'âge du bronze jusqu'à Homère) paraît souvent si vive parce que les langues anciennes avaient peu de mots conceptuels, et que le sens restait donc accroché à la forme, au lieu, au mouvement et à la sensation. Ici j'essaie d'écrire sur des questions concrètes, voire scientifiques - la gravité, le temps, l'existence, la raison, la magie, la logique - à travers la poésie, pour qu'elles restent esthétiques et référées à des choses réelles. Lues avec attention, les idées visent le simple et le vérifiable plutôt que l'obscur ; la difficulté, c'est que l'art doit les porter. Je ne prétends pas avoir raison, ni avoir inventé quelque chose d'unique dans l'histoire - seulement avoir essayé de pousser un style que je ne vois pas encore ailleurs.",
+        "poetics-intro": "Voici le résultat d'un essai de production de ce que j'appelle une <strong>poétique véridique</strong> - une tentative d'harmoniser la science et l'art, ou la vérité et la beauté. Pour moi, cela répondait à un besoin personnel : affronter un problème dont <a href='https://onlinelibrary.wiley.com/doi/10.1111/phpr.70004' target='_blank' rel='noopener noreferrer'>Friedrich Nietzsche</a>, puis <a href='https://orwell1627.wordpress.com/2015/01/21/ludovici-superiority-of-art-over-science/' target='_blank' rel='noopener noreferrer'>Anthony Ludovici</a>, ont parlé entre science et arts - une scission que je sentais devoir travailler par moi-même, et voici la solution que j'ai essayé de construire. Cela vient aussi de mes recherches en Noématique, autour d'une remarque d'<a href='https://www.youtube.com/watch?v=1XCCD53iOPQ' target='_blank' rel='noopener noreferrer'>Owen Barfield</a> dans <a href='https://www.youtube.com/watch?v=1XCCD53iOPQ' target='_blank' rel='noopener noreferrer'><em>Poetic Diction: A Study of Meaning</em></a> - le livre qui a contribué à inspirer la poésie de Tolkien - selon laquelle personne ne battra jamais Homère. Mon hypothèse de travail pour expliquer cela est que les langues anciennes avaient peu de mots conceptuels, et que le sens restait donc accroché à la forme, au lieu, au mouvement et à la sensation. Ici j'essaie d'écrire sur des questions concrètes, voire scientifiques - la gravité, le temps, l'existence, la raison, la magie, la logique - à travers la poésie, pour qu'elles restent esthétiques et référées à des choses réelles. Lues avec attention, les idées visent le simple et le vérifiable plutôt que l'obscur ; la difficulté, c'est que l'art doit les porter. Je ne prétends pas avoir raison, ni avoir inventé quelque chose d'unique dans l'histoire - seulement avoir essayé de pousser un style que je ne vois pas encore ailleurs.",
         "poetics-translate-warn": "",
         "poetics-loading": "Assemblage des textes...",
         "poetics-error": "Les textes n'ont pas pu être chargés pour le moment.",
@@ -967,7 +967,7 @@ const translations = {
         // About Section
         "mission-vision": "Mission & Vision",
         "mission-text-1": "Après des années d'étude, de questionnement et d'écriture, j'ai travaillé sur une fiction philosophique - un livre que j'ai d'abord écrit, puis en partie illustré, et que je transforme maintenant en bande-annonce narrative avec une équipe - afin de toucher le plus de gens possible par l'esthétique.",
-        "mission-text-2": "L'esthétique est ce à quoi je reviens toujours. Au fil du chemin, j'apprends les arts traditionnels et l'architecture traditionnelle. Je souhaite faire des œuvres belles et porteuses de sens qui donnent envie d'agir dans la vie.",
+        "mission-text-2": "L'esthétique est ce à quoi je reviens toujours. Au fil du chemin, j'apprends les arts traditionnels et l'architecture traditionnelle, tout en restant attentif à la manière dont les êtres humains perçoivent, incarnent et habitent la culture. Je souhaite faire des œuvres belles et porteuses de sens qui donnent envie d'agir dans la vie.",
         "mission-image-caption": "Questionnant Ben Lamm sur la création de nouvelles espèces au Brain Bar 2025 (PDG de Colossal, dé-éteignant mammouths, dodos et loups terribles)",
 
         // Expertise Areas
@@ -1543,6 +1543,8 @@ function applyLanguage(lang) {
             // Check if element has a placeholder attribute
             if (element.placeholder !== undefined) {
                 element.placeholder = translations[lang][key];
+            } else if (element.hasAttribute('data-i18n-html')) {
+                element.innerHTML = translations[lang][key];
             } else {
                 element.textContent = translations[lang][key];
             }
@@ -1571,7 +1573,7 @@ function applyLanguage(lang) {
     if (lang === 'fr') {
         document.title = "Hugues de Pingon | Vers les Arts, l'aesthétique et l'Architecture";
     } else {
-        document.title = "Hugues de Pingon | Toward Arts, Aesthetics & Architecture";
+        document.title = "Hugues de Pingon | Toward art, aesthetics, architecture & anthropology";
     }
 
     if (typeof window.refreshPoeticsLanguage === 'function') {
