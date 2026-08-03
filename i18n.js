@@ -222,7 +222,7 @@ const translations = {
 
         // About Section
         "mission-vision": "Mission & Vision",
-        "mission-text-1": "After years of study, questioning, and writing, I worked on a philosophical fiction - a book I wrote first, then illustrated in part, and am now turning narratively into a trailer with a team - to reach as many people as possible through aesthetics.",
+        "mission-text-1": "I developed a fictional world as a way to explore philosophical ideas through visual design, cultures, and storytelling.",
         "mission-text-2": "Aesthetics is what I keep returning to. I learn traditional arts and traditional architecture as I go, while remaining attentive to how people perceive, embody, and inhabit culture. I wish to make beautiful, meaningful work that inspires people to act in life.",
         "mission-image-caption": "Asking Ben Lamm about the creation of new species at Brain Bar 2025 (CEO of Colossal, de-extincting mammoths, dodos, and dire wolves)",
 
@@ -236,7 +236,7 @@ const translations = {
 
         "expertise-gamedesign-title": "Game Design",
         "expertise-gamedesign-subtitle": "Mechanics & systems",
-        "expertise-gamedesign-desc": "Systems, UI/UX, and experience design - a practice of helping people move through imagined space as philosophical fiction",
+        "expertise-gamedesign-desc": "Systems, UI/UX, and experience design - a practice of helping people move through imagined space",
         "tag-mechanics": "Mechanics",
         "tag-systems": "Systems",
         "tag-worldbuilding": "Worldbuilding",
@@ -281,7 +281,7 @@ const translations = {
         "journey-philosophical-title": "Philosophical Exploration",
         "journey-philosophical-diploma": "MPhil",
         "journey-philosophical-desc": "Philosophy and ethics - asking what kinds of futures are worth making",
-        "journey-gamedev-title": "Philosophical Fiction",
+        "journey-gamedev-title": "Fictional World",
         "journey-project-tdt": "The Discording Tales",
         "journey-project-twr": "The Wayward Realms",
         "journey-gamedev-desc": "Turning my thoughts into an aesthetic medium - trying to reach people through story, image, and interactivity",
@@ -395,7 +395,7 @@ const translations = {
         "exp-archop-title": "Creative Director",
         "exp-archop-company": "Archopoia - \"The Discording Tales\"",
         "exp-archop-badge": "Current",
-        "exp-archop-desc": "Creative direction on The Discording Tales - a philosophical fiction that began as a book, was partly illustrated, and is now being turned into a trailer with a team.",
+        "exp-archop-desc": "Creative direction on The Discording Tales - a fictional world developed to explore philosophical ideas through visual design, cultures, and storytelling.",
         "exp-archop-pitch-alt": "The Discording Tales pitch deck",
         "exp-archop-pitch-cta": "Click to view the pitch deck",
         "exp-psycho-title": "Product/Game Design & Management Intern",
@@ -445,8 +445,8 @@ const translations = {
         "port-twr-meta-role": "Lead Designer",
         "port-twr-official": "Official Website",
         "port-tdt-title": "The Discording Tales",
-        "port-tdt-type": "Philosophical Fiction - Book & Trailer in Construction",
-        "port-tdt-desc": "Philosophical fiction as a book and a trailer in construction - philosophy turned into worldbuilding people can more easily interact with.",
+        "port-tdt-type": "Fictional World - Book & Trailer in Construction",
+        "port-tdt-desc": "A fictional world developed to explore philosophical ideas through visual design, cultures, and storytelling - as a book and a trailer in construction.",
         "port-tdt-meta-date": "2019 - Present",
         "port-tdt-meta-team": "Team: 3-10 members",
         "port-tdt-meta-pages": "300 pages",
@@ -968,7 +968,7 @@ const translations = {
 
         // About Section
         "mission-vision": "Mission & Vision",
-        "mission-text-1": "Après des années d'étude, de questionnement et d'écriture, j'ai travaillé sur une fiction philosophique - un livre que j'ai d'abord écrit, puis en partie illustré, et que je transforme maintenant en bande-annonce narrative avec une équipe - afin de toucher le plus de gens possible par l'esthétique.",
+        "mission-text-1": "J'ai développé un monde fictionnel pour explorer des idées philosophiques à travers le design visuel, les cultures et le récit.",
         "mission-text-2": "L'esthétique est ce à quoi je reviens toujours. Au fil du chemin, j'apprends les arts traditionnels et l'architecture traditionnelle, tout en restant attentif à la manière dont les êtres humains perçoivent, incarnent et habitent la culture. Je souhaite faire des œuvres belles et porteuses de sens qui donnent envie d'agir dans la vie.",
         "mission-image-caption": "Questionnant Ben Lamm sur la création de nouvelles espèces au Brain Bar 2025 (PDG de Colossal, dé-éteignant mammouths, dodos et loups terribles)",
 
@@ -982,7 +982,7 @@ const translations = {
 
         "expertise-gamedesign-title": "Game Design",
         "expertise-gamedesign-subtitle": "Mécaniques & systèmes",
-        "expertise-gamedesign-desc": "Systèmes, UI/UX et conception d'expérience - une pratique pour aider les gens à traverser un espace imaginé comme fiction philosophique",
+        "expertise-gamedesign-desc": "Systèmes, UI/UX et conception d'expérience - une pratique pour aider les gens à traverser un espace imaginé",
         "tag-mechanics": "Mécaniques",
         "tag-systems": "Systèmes",
         "tag-worldbuilding": "Worldbuilding",
@@ -1027,7 +1027,7 @@ const translations = {
         "journey-philosophical-title": "Exploration Philosophique",
         "journey-philosophical-diploma": "MPhil",
         "journey-philosophical-desc": "Philosophie et éthique - demander quels futurs méritent d'être faits",
-        "journey-gamedev-title": "Fiction philosophique",
+        "journey-gamedev-title": "Monde fictionnel",
         "journey-project-tdt": "The Discording Tales",
         "journey-project-twr": "The Wayward Realms",
         "journey-gamedev-desc": "Transformer mes pensées en un médium esthétique - essayer d'atteindre les gens par le récit, l'image et l'interactivité",
@@ -1141,7 +1141,7 @@ const translations = {
         "exp-archop-title": "Directeur Créatif",
         "exp-archop-company": "Archopoia - \"Des Récits Discordants\"",
         "exp-archop-badge": "Actuel",
-        "exp-archop-desc": "Direction créative sur The Discording Tales - une fiction philosophique d'abord écrite, en partie illustrée, puis transformée en bande-annonce avec une équipe.",
+        "exp-archop-desc": "Direction créative sur The Discording Tales - un monde fictionnel développé pour explorer des idées philosophiques à travers le design visuel, les cultures et le récit.",
         "exp-archop-pitch-alt": "Pitch deck de The Discording Tales",
         "exp-archop-pitch-cta": "Cliquez pour voir le pitch deck",
         "exp-psycho-title": "Stagiaire en Product/Game Design & Management",
@@ -1191,8 +1191,8 @@ const translations = {
         "port-twr-meta-role": "Lead Designer",
         "port-twr-official": "Site Officiel",
         "port-tdt-title": "Des Récits Discordants",
-        "port-tdt-type": "Fiction philosophique - Livre & bande-annonce en construction",
-        "port-tdt-desc": "Une fiction philosophique sous forme de livre et de bande-annonce en construction - de la philosophie transformée en worldbuilding avec lequel les gens peuvent plus facilement interagir.",
+        "port-tdt-type": "Monde fictionnel - Livre & bande-annonce en construction",
+        "port-tdt-desc": "Un monde fictionnel développé pour explorer des idées philosophiques à travers le design visuel, les cultures et le récit - sous forme de livre et de bande-annonce en construction.",
         "port-tdt-meta-date": "2019 - Présent",
         "port-tdt-meta-team": "Équipe: 3-10 membres",
         "port-tdt-meta-pages": "300 pages",
