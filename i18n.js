@@ -577,7 +577,7 @@ const translations = {
         "contact-q1-hire": "Hiring Opportunity",
         "contact-q1-network": "Networking & Connection",
         "contact-q2": "What industry or field interests you most?",
-        "contact-q2-arts": "Art, Aesthetics & Architecture",
+        "contact-q2-arts": "Art, Aesthetics, Architecture & Anthropology",
         "contact-q2-edu": "Education & Learning",
         "contact-q2-tech": "Technology & Innovation",
         "contact-q2-other": "Other / General",
@@ -1322,7 +1322,7 @@ const translations = {
         "contact-q1-hire": "Opportunité d'Emploi",
         "contact-q1-network": "Réseautage & Connexion",
         "contact-q2": "Quel secteur ou domaine vous intéresse le plus?",
-        "contact-q2-arts": "Art, Esthétique & Architecture",
+        "contact-q2-arts": "Art, Esthétique, Architecture & Anthropologie",
         "contact-q2-edu": "Éducation & Apprentissage",
         "contact-q2-tech": "Technologie & Innovation",
         "contact-q2-other": "Autre / Général",
@@ -1571,7 +1571,7 @@ function applyLanguage(lang) {
 
     // Update document title
     if (lang === 'fr') {
-        document.title = "Hugues de Pingon | Vers les Arts, l'aesthétique et l'Architecture";
+        document.title = "Hugues de Pingon | Vers l'art, l'aesthétique, l'architecture et l'anthropologie";
     } else {
         document.title = "Hugues de Pingon | Toward art, aesthetics, architecture & anthropology";
     }
