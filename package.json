@@ -1,7 +1,7 @@
 {
   "name": "hugues-de-pingon-portfolio",
   "version": "1.0.0",
-  "description": "Portfolio of Hugues W.B. de Pingon - Toward art, aesthetics, architecture & anthropology. Fictional worlds, aesthetics, traditional arts.",
+  "description": "Portfolio of Hugues W.B. de Pingon - Toward art, aesthetics, architecture & anthropology. Philosophical fiction, aesthetics, traditional arts.",
   "main": "index.html",
   "scripts": {
     "start": "python -m http.server 8000",
@@ -11,7 +11,7 @@
   },
   "keywords": [
     "portfolio",
-    "fictional-world",
+    "philosophical-fiction",
     "aesthetics",
     "anthropology",
     "traditional-arts",
