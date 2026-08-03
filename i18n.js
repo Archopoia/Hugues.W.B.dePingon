@@ -176,6 +176,7 @@ const translations = {
         "poetics-translate-warn": "All these texts were auto-translated into English for now.",
         "poetics-loading": "Gathering the texts...",
         "poetics-error": "The texts could not be loaded right now.",
+        "poetics-copy-link": "Copy link",
 
         // Chronicles Section (Blog)
         "chronicles-title": "Chronicles of Place & Practice",
@@ -921,6 +922,7 @@ const translations = {
         "poetics-translate-warn": "",
         "poetics-loading": "Assemblage des textes...",
         "poetics-error": "Les textes n'ont pas pu être chargés pour le moment.",
+        "poetics-copy-link": "Copier le lien",
 
         // Chronicles Section (Blog)
         "chronicles-title": "Chroniques de lieux & de pratique",

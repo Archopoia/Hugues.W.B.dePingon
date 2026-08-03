@@ -8,6 +8,7 @@ import { initializeEasterEggs, trackKonamiCode } from './easter-eggs.js';
 import { initializeModalListeners } from './modals.js';
 import { initializeContactFormSubmit, switchContactMethod, nextQuestion, previousQuestion, resetContactForm } from './forms.js';
 import { initializeVideoHoverPlay } from './media.js';
+import { openPoeticsDeepLink, parsePoeticsHash } from './poetics.js';
 
 document.addEventListener('DOMContentLoaded', function() {
     // Always scroll to top of page on load
@@ -20,8 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
         characterName.textContent = '\u200B'; // Zero-width space to maintain layout
     }
 
-    // Load and activate About section immediately
-    loadSection('about').then(() => {
+    // Load and activate About section immediately (unless a Poetics deep link is present)
+    loadSection('about').then(async () => {
         // After loading, ensure About tab is active and visible
         const aboutTab = document.getElementById('about');
         const aboutButton = document.querySelector('.tab-button[data-tab="about"]');
@@ -35,6 +36,10 @@ document.addEventListener('DOMContentLoaded', function() {
             aboutButton.classList.add('active');
         }
 
+        const poeticsSlug = parsePoeticsHash();
+        if (poeticsSlug) {
+            await openPoeticsDeepLink(poeticsSlug);
+        }
     });
 
     // Initialize Easter Eggs (secret code, Konami, achievements)

@@ -151,6 +151,12 @@ html[lang="en"] .poetics-translate-warn {
     color: var(--red-theme);
 }
 
+a.poema-card {
+    text-decoration: none;
+    color: inherit;
+    -webkit-tap-highlight-color: transparent;
+}
+
 .poema-card {
     flex: 0 0 220px;
     width: 220px;
@@ -281,21 +287,43 @@ html[lang="en"] .poetics-translate-warn {
     transform: translateY(0);
 }
 
-.poema-close {
+.poema-toolbar {
     position: sticky;
     top: 0;
     float: right;
+    z-index: 2;
+    display: flex;
+    gap: 0.45rem;
     margin: -1.5rem -1.5rem 0 0;
+}
+
+.poema-share,
+.poema-close {
     width: 2.6rem;
     height: 2.6rem;
     border-radius: 50%;
-    background: var(--red-theme);
     color: var(--text-cream);
     border: 2px solid var(--gold-glow);
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     cursor: pointer;
-    z-index: 2;
     transition: transform var(--transition-speed) ease, background var(--transition-speed) ease;
+}
+
+.poema-share {
+    background: var(--ink-brown);
+}
+
+.poema-close {
+    background: var(--red-theme);
+}
+
+.poema-share:hover {
+    transform: scale(1.08);
+    background: var(--red-theme);
+}
+
+.poema-share.is-copied {
+    background: var(--accent, #8a6a2f);
 }
 
 .poema-close:hover {

@@ -9,12 +9,57 @@
 import { parseFrontMatter, markdownToHTML, isHiddenMarkdownFilename } from './markdown-parser.js';
 
 const CONTENT_DIR = 'poetics';
+const HASH_PREFIX = 'poetics/';
 
 const essays = new Map();
 let initialized = false;
+let hashListenerBound = false;
+let deepLinkInFlight = null;
 
 function slugFromFilename(filename) {
     return filename.replace(/\.md$/i, '');
+}
+
+/** Parse `#poetics/<slug>` from the current (or given) location hash. */
+export function parsePoeticsHash(hash = window.location.hash) {
+    const raw = String(hash || '').replace(/^#/, '');
+    if (!raw.startsWith(HASH_PREFIX)) return null;
+    const slug = decodeURIComponent(raw.slice(HASH_PREFIX.length)).split(/[/?#]/)[0];
+    return slug || null;
+}
+
+function poemaShareUrl(slug) {
+    const base = `${window.location.origin}${window.location.pathname}${window.location.search}`;
+    return `${base}#${HASH_PREFIX}${encodeURIComponent(slug)}`;
+}
+
+function setPoeticsHash(slug) {
+    const next = `#${HASH_PREFIX}${encodeURIComponent(slug)}`;
+    if (window.location.hash === next) return;
+    history.pushState({ poetics: slug }, '', next);
+}
+
+function clearPoeticsHash() {
+    if (!parsePoeticsHash()) return;
+    const path = `${window.location.pathname}${window.location.search}`;
+    history.pushState({ poetics: null }, '', path);
+}
+
+function activatePoeticsCategory() {
+    const btn = document.querySelector('.port-nav-btn[data-category="poetics"]');
+    if (btn && !btn.classList.contains('active')) {
+        btn.click();
+        return;
+    }
+    const category = document.querySelector('.portfolio-category[data-category="poetics"]');
+    if (category) {
+        document.querySelectorAll('.portfolio-category').forEach((cat) => {
+            cat.style.display = cat.getAttribute('data-category') === 'poetics' ? 'block' : 'none';
+        });
+        document.querySelectorAll('.port-nav-btn').forEach((b) => {
+            b.classList.toggle('active', b.getAttribute('data-category') === 'poetics');
+        });
+    }
 }
 
 function currentLanguage() {
@@ -121,13 +166,14 @@ function renderCards() {
         const title = pickLocalized(m, 'title', lang) || essay.slug;
         const question = pickLocalized(m, 'question', lang);
         const excerpt = pickLocalized(m, 'excerpt', lang);
+        const href = `#${HASH_PREFIX}${encodeURIComponent(essay.slug)}`;
 
         return `
-        <article class="poema-card" data-slug="${essay.slug}" role="button" tabindex="0" aria-label="${openLabel}: ${title}">
+        <a class="poema-card" href="${href}" data-slug="${essay.slug}" aria-label="${openLabel}: ${title}">
             <h3 class="poema-card-title">${title}</h3>
             ${question ? `<p class="poema-card-question">${question}</p>` : ''}
             <p class="poema-card-excerpt">${excerpt || ''}</p>
-        </article>`;
+        </a>`;
     }).join('');
 }
 
@@ -151,11 +197,13 @@ function bindCarouselNav() {
         openPoema(card.dataset.slug);
     });
 
-    // Simple click open on mobile stacked layout (no drag carousel).
+    // Cards are real links (`#poetics/slug`) for copy/share; keep open-in-place.
     carousel.addEventListener('click', (e) => {
-        if (!isMobileLayout()) return;
-        const card = e.target.closest('.poema-card');
+        const card = e.target.closest('a.poema-card');
         if (!card) return;
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button === 1) return;
+        e.preventDefault();
+        if (carousel.dataset.dragMoved === 'true') return;
         openPoema(card.dataset.slug);
     });
 
@@ -244,14 +292,15 @@ function bindCarouselNav() {
     const endDrag = (e) => {
         if (!drag || (e && e.pointerId !== drag.pointerId)) return;
         const wasMoved = drag.moved;
-        const openSlug = drag.openSlug;
         drag = null;
         carousel.classList.remove('is-dragging');
-        carousel.dataset.dragMoved = 'false';
-
-        // Desktop: open on pointerup when the gesture was a click, not a drag.
-        if (!wasMoved && openSlug && e && e.type === 'pointerup') {
-            openPoema(openSlug);
+        // Keep dragMoved true through the following click when this was a drag.
+        if (wasMoved) {
+            requestAnimationFrame(() => {
+                carousel.dataset.dragMoved = 'false';
+            });
+        } else {
+            carousel.dataset.dragMoved = 'false';
         }
     };
 
@@ -272,7 +321,7 @@ function bindCarouselNav() {
     });
 }
 
-function openPoema(slug) {
+function openPoema(slug, options = {}) {
     const essay = essays.get(slug);
     if (!essay) return;
 
@@ -295,18 +344,119 @@ function openPoema(slug) {
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
 
+    if (!options.skipHash) setPoeticsHash(slug);
+
     const scroll = modal.querySelector('.poema-scroll');
     if (scroll) scroll.scrollTop = 0;
     updateReadingProgress();
 
-    if (window.soundManager) window.soundManager.playRandomPageSound();
+    if (window.soundManager && !options.silent) window.soundManager.playRandomPageSound();
 }
 
-function closePoema() {
+function closePoema(options = {}) {
     const modal = document.getElementById('poema-modal');
     if (!modal) return;
     modal.classList.remove('active');
     document.body.style.overflow = '';
+    if (!options.skipHash) clearPoeticsHash();
+}
+
+async function copyPoemaLink() {
+    const content = document.getElementById('poema-content');
+    const slug = content && content.dataset.slug;
+    if (!slug) return;
+
+    const url = poemaShareUrl(slug);
+    const lang = currentLanguage();
+    const copied = lang === 'fr' ? 'Lien copié' : 'Link copied';
+    const failed = lang === 'fr' ? 'Impossible de copier le lien' : 'Could not copy link';
+
+    try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(url);
+        } else {
+            const input = document.createElement('input');
+            input.value = url;
+            document.body.appendChild(input);
+            input.select();
+            document.execCommand('copy');
+            input.remove();
+        }
+        flashPoemaShareFeedback(copied);
+    } catch (_) {
+        flashPoemaShareFeedback(failed);
+    }
+}
+
+function flashPoemaShareFeedback(message) {
+    const btn = document.querySelector('#poema-modal .poema-share');
+    if (!btn) return;
+    const label = btn.getAttribute('aria-label') || '';
+    btn.classList.add('is-copied');
+    btn.setAttribute('aria-label', message);
+    btn.title = message;
+    window.clearTimeout(flashPoemaShareFeedback._timer);
+    flashPoemaShareFeedback._timer = window.setTimeout(() => {
+        btn.classList.remove('is-copied');
+        const restore = currentLanguage() === 'fr' ? 'Copier le lien' : 'Copy link';
+        btn.setAttribute('aria-label', label || restore);
+        btn.title = label || restore;
+    }, 1600);
+}
+
+function syncPoeticsFromLocation() {
+    const slug = parsePoeticsHash();
+    const modal = document.getElementById('poema-modal');
+    const content = document.getElementById('poema-content');
+    const isOpen = !!(modal && modal.classList.contains('active'));
+
+    if (slug) {
+        if (!initialized || essays.size === 0) {
+            openPoeticsDeepLink(slug);
+            return;
+        }
+        if (!essays.has(slug)) return;
+        if (!isOpen || (content && content.dataset.slug !== slug)) {
+            activatePoeticsCategory();
+            openPoema(slug, { skipHash: true, silent: isOpen });
+        }
+        return;
+    }
+
+    if (isOpen) closePoema({ skipHash: true });
+}
+
+function bindHashListener() {
+    if (hashListenerBound) return;
+    hashListenerBound = true;
+    window.addEventListener('popstate', syncPoeticsFromLocation);
+    window.addEventListener('hashchange', syncPoeticsFromLocation);
+}
+
+/**
+ * Open Portfolio → Poetics → a specific text from a shared `#poetics/<slug>` URL.
+ */
+export async function openPoeticsDeepLink(slug) {
+    const target = slug || parsePoeticsHash();
+    if (!target) return false;
+    if (deepLinkInFlight === target) return false;
+    deepLinkInFlight = target;
+
+    try {
+        const { switchTab } = await import('./navigation.js');
+        await switchTab('portfolio');
+        // Portfolio nav binds slightly after section inject.
+        await new Promise((resolve) => setTimeout(resolve, 220));
+        activatePoeticsCategory();
+        await initializePoetics();
+        if (essays.has(target)) {
+            openPoema(target, { skipHash: true });
+            return true;
+        }
+        return false;
+    } finally {
+        if (deepLinkInFlight === target) deepLinkInFlight = null;
+    }
 }
 
 function updateReadingProgress() {
@@ -328,10 +478,16 @@ function updateReadingProgress() {
 function refreshPoeticsLanguage() {
     if (!initialized || essays.size === 0) return;
     renderCards();
+    const shareBtn = document.querySelector('#poema-modal .poema-share');
+    if (shareBtn && !shareBtn.classList.contains('is-copied')) {
+        const label = currentLanguage() === 'fr' ? 'Copier le lien' : 'Copy link';
+        shareBtn.setAttribute('aria-label', label);
+        shareBtn.title = label;
+    }
     const modal = document.getElementById('poema-modal');
     const body = document.getElementById('poema-content');
     if (modal && modal.classList.contains('active') && body && body.dataset.slug) {
-        openPoema(body.dataset.slug);
+        openPoema(body.dataset.slug, { skipHash: true, silent: true });
     }
 }
 
@@ -343,9 +499,13 @@ export async function initializePoetics() {
     const carousel = document.getElementById('poetics-grid');
     if (!carousel) return;
 
+    bindHashListener();
+
     if (initialized && essays.size > 0) {
         renderCards();
         bindCarouselNav();
+        const pending = parsePoeticsHash();
+        if (pending && essays.has(pending)) openPoema(pending, { skipHash: true, silent: true });
         return;
     }
 
@@ -360,6 +520,11 @@ export async function initializePoetics() {
         renderCards();
         bindCarouselNav();
         initialized = true;
+
+        const pending = parsePoeticsHash();
+        if (pending && essays.has(pending)) {
+            openPoema(pending, { skipHash: true, silent: true });
+        }
     } catch (err) {
         console.error('Poetics failed to initialize', err);
         carousel.innerHTML = `<div class="poema-loading">${
@@ -380,7 +545,15 @@ export async function initializePoetics() {
         });
         const closeBtn = modal.querySelector('.poema-close');
         if (closeBtn) closeBtn.addEventListener('click', closePoema);
+        const shareBtn = modal.querySelector('.poema-share');
+        if (shareBtn) shareBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            copyPoemaLink();
+        });
     }
 }
 
 window.initializePoetics = initializePoetics;
+window.openPoeticsDeepLink = openPoeticsDeepLink;
+window.parsePoeticsHash = parsePoeticsHash;
