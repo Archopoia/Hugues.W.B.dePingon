@@ -767,6 +767,41 @@ html[lang="fr"] .stat-label.countries-hover::before {
     cursor: pointer;
 }
 
+/* Evolutionary architectonics dossier card */
+.academic-card--dossier {
+    position: relative;
+}
+
+.academic-card--dossier .academic-card-cover-link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+}
+
+.academic-card--dossier .project-link.compact {
+    position: relative;
+    z-index: 2;
+}
+
+.academic-dossier-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 10rem;
+    background:
+        radial-gradient(ellipse at 50% 20%, rgba(255, 250, 236, 0.7), transparent 55%),
+        linear-gradient(160deg, var(--stone, #f7f0e0), var(--stone-2, #f0e4cc));
+    border: 1px solid var(--border-tan, #ceb68d);
+}
+
+.academic-dossier-mark {
+    font-family: "Cinzel", serif;
+    font-size: 2.4rem;
+    letter-spacing: 0.12em;
+    color: var(--burgundy, #643030);
+}
+
 .academic-card--diva .biocracy-downloads {
     margin: 0.15rem 0 0.35rem;
     font-size: 0.85rem;

@@ -428,7 +428,7 @@ const translations = {
         "port-cattle-bridge-desc": "My first measured architectural design, hand drawn, after a week at Dirk Mortier's traditional timber frame workshop.",
         "port-ltra-title": "La Table Ronde de l'Architecture",
         "port-ltra-type": "Measured drawings - summer school, Alsace",
-        "port-ltra-desc": "Two-week summer school in Alsace with La Table Ronde de l'Architecture. We travelled through some of the region's most beautiful and interesting towns, making measured drawings - plans, sections, and elevations - alongside historical research.",
+        "port-ltra-desc": "Summer school (2026) in Alsace with La Table Ronde de l'Architecture. We travelled through some of the region's most beautiful and interesting towns, making measured drawings - plans, sections, and elevations - alongside historical research.",
         "tech-hand-drawing": "Hand Drawing",
         "tech-timber-frame": "Timber Frame",
         "tech-traditional-architecture": "Traditional Architecture",
@@ -510,6 +510,10 @@ const translations = {
         "port-biocracy-meta": "2025 - Master's Thesis",
         "port-biocracy-publication-cta": "Check the publication",
         "port-biocracy-diva-link-label": "Open this thesis on DiVA (Linköping University)",
+        "port-dossier-title": "Evolutionary Architectonics",
+        "port-dossier-meta": "Research dossier - built environments as human niches",
+        "port-dossier-link-label": "Open the evolutionary architectonics research dossier",
+        "port-dossier-open": "Open",
 
         // Skills Section
         "skills-overview": "Overview",
@@ -1177,7 +1181,7 @@ const translations = {
         "port-cattle-bridge-desc": "Mon premier dessin architectural mesuré, à la main, après une semaine à l'atelier de charpente traditionnelle de Dirk Mortier.",
         "port-ltra-title": "La Table Ronde de l'Architecture",
         "port-ltra-type": "Relevés - école d'été, Alsace",
-        "port-ltra-desc": "École d'été de deux semaines en Alsace avec La Table Ronde de l'Architecture. Nous avons parcouru certaines des plus belles villes et des plus intéressantes de la région, pour y faire des relevés - plans, coupes et élévations - ainsi que des recherches historiques.",
+        "port-ltra-desc": "École d'été (2026) en Alsace avec La Table Ronde de l'Architecture. Nous avons parcouru certaines des plus belles villes et des plus intéressantes de la région, pour y faire des relevés - plans, coupes et élévations - ainsi que des recherches historiques.",
         "tech-hand-drawing": "Dessin à la main",
         "tech-timber-frame": "Charpente",
         "tech-traditional-architecture": "Architecture traditionnelle",
@@ -1259,6 +1263,10 @@ const translations = {
         "port-biocracy-meta": "2025 - Mémoire de Master",
         "port-biocracy-publication-cta": "Voir la publication",
         "port-biocracy-diva-link-label": "Ouvrir cette thèse sur DiVA (Université de Linköping)",
+        "port-dossier-title": "Architectonique évolutive",
+        "port-dossier-meta": "Dossier de recherche - environnements bâtis comme niches humaines",
+        "port-dossier-link-label": "Ouvrir le dossier de recherche en architectonique évolutive",
+        "port-dossier-open": "Ouvrir",
 
         // Skills Section
         "skills-overview": "Vue d'ensemble",
