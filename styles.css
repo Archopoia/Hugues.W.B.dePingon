@@ -68,7 +68,7 @@
 @import url('css/classic-theme.css');
 
 /* Responsive - All Media Queries for Different Screen Sizes */
-@import url('css/responsive.css');
+@import url('css/responsive.css?v=20260813n');
 
 /*!
  * End of Stylesheet
