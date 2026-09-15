@@ -59,7 +59,7 @@ import './js/init.js';
 // Archived: GitHub contributions heatmap (see archive/github-contributions.js)
 
 // Export modal functions globally (called from HTML onclick handlers)
-import { openFullVideo, openFullPDF, openImageGallery, openFullImage, closeModal, toggleExpCard } from './js/modals.js?v=20260316-1';
+import { openFullVideo, openFullPDF, openImageGallery, openFullImage, closeModal, toggleExpCard } from './js/modals.js?v=20260915-1';
 
 window.openFullVideo = openFullVideo;
 window.openFullPDF = openFullPDF;

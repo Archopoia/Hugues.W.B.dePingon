@@ -164,6 +164,17 @@ export function openImageGallery(galleryType) {
                 { src: 'Assets/Architecture/bridge2.jpg', caption: 'Side elevation - hand-drawn timber frame' }
             ]
         },
+        'ltra-jta': {
+            title: "La Table Ronde de l'Architecture",
+            images: [
+                { src: 'Assets/Architecture/LTRA JTA/57103.jpg', caption: 'Sketches of Eguisheim, Alsace' },
+                { src: 'Assets/Architecture/LTRA JTA/57107.jpg', caption: 'Ornamental details from the Koifhus, Colmar' },
+                { src: 'Assets/Architecture/LTRA JTA/57102.jpg', caption: 'Measured window, Rue des Forgerons, Kaysersberg' },
+                { src: 'Assets/Architecture/LTRA JTA/57105.jpg', caption: 'Doorway, 12 rue du Général de Gaulle, Ribeauvillé' },
+                { src: 'Assets/Architecture/LTRA JTA/57106.jpg', caption: 'Château du Haut-Koenigsbourg' },
+                { src: 'Assets/Architecture/LTRA JTA/57104.jpg', caption: 'Hôtel des Deux Doigts, Turckheim' }
+            ]
+        },
         'worldmaps': {
             title: 'Worldmaps & Cartography - The Discording Tales',
             images: [

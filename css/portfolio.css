@@ -672,11 +672,11 @@ a.project-ribbon.ribbon-gold:hover {
     height: 200px;
 }
 
-.project-card--compact .portfolio-gallery-item:nth-child(1) {
+.project-card--compact .portfolio-gallery:has(.portfolio-gallery-item:nth-child(2):last-child) .portfolio-gallery-item:nth-child(1) {
     transform: translate(-50%, -50%) rotate(-3deg) translateY(-28px);
 }
 
-.project-card--compact .portfolio-gallery-item:nth-child(2) {
+.project-card--compact .portfolio-gallery:has(.portfolio-gallery-item:nth-child(2):last-child) .portfolio-gallery-item:nth-child(2) {
     transform: translate(-50%, -50%) rotate(2deg) translateY(-20px);
 }
 
