@@ -22,7 +22,7 @@
     }
 
     .character-identity-row {
-        grid-template-columns: 1fr auto;
+        grid-template-columns: 1fr auto 1fr;
     }
 
     .character-stats {
@@ -53,6 +53,15 @@
         gap: 0.45rem;
     }
 
+    .character-mark {
+        justify-self: center;
+        order: 2;
+    }
+
+    .character-stats {
+        order: 3;
+    }
+
     .character-name {
         font-size: 1.25rem;
         min-height: 0 !important;
@@ -62,6 +71,7 @@
         overflow-wrap: anywhere;
         word-break: break-word;
         overflow: visible !important;
+        order: 1;
     }
 
     .character-title {
