@@ -157,6 +157,15 @@ export function openImageGallery(galleryType) {
     const modalBody = document.getElementById('modal-body');
 
     const galleries = {
+        'ideal-city': {
+            title: 'Ideal City',
+            images: [
+                {
+                    src: 'Assets/Architecture/IdealSpaces - Loss of Cultural Heritage.jpg',
+                    caption: 'Ideal City - freehand ink, A3. Presented at Ideal Spaces, Loss of Cultural Heritage (6 Sep 2026)'
+                }
+            ]
+        },
         'cattle-bridge': {
             title: 'Victorian Alpine Cattle Bridge Fantaisie',
             images: [

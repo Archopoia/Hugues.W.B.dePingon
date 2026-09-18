@@ -693,6 +693,10 @@ a.project-ribbon.ribbon-gold:hover {
     margin-bottom: 0;
 }
 
+.project-card--compact .project-description + .project-links {
+    margin-top: 0.75rem;
+}
+
 /* Add subtle visual cue on gallery hover */
 .portfolio-gallery::before {
     content: '';
